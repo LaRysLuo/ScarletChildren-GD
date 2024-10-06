@@ -1,0 +1,65 @@
+extends Control
+
+var itemList:Array[LButton]
+@onready var menuPanel = $MenuPanel
+
+var last := -1
+var index := 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	#visibility_changed.connect(func ():
+		#get_tree().paused = visible)
+	var list = menuPanel.get_children()
+	for item in list:
+		if item is LButton: 
+			itemList.append(item)
+			item.connect("lb_select_changed",on_select)
+	init_window()
+	pass # Replace with function body.
+
+func init_window():
+	AudioManager.play_se("Computer")
+	select(0,true)
+	
+# 检测输入
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("cancel"):
+		close_window()
+		
+func close_window():
+	get_window().set_input_as_handled()
+	SceneManager.backto()
+	
+
+func on_item_menu():
+	SceneManager.navigate_to("item_panel")
+	pass
+
+func on_other():
+	pass	
+
+func select(_index:int,skip_se:bool = false):
+	index = _index
+	var last_btn = itemList[last]
+	var btn = itemList[index]
+	if last_btn: last_btn.unfocus()
+	if btn: btn.focus(skip_se)
+	if last != index: last = index
+
+func _on_tree_entered() -> void:
+	var timer =  get_tree().create_timer(0.1)
+	timer.connect("timeout",func():
+		print("计时器触发")
+	)
+	pass # Replace with function body.
+
+func on_select(event:int):
+	print("list的数量：",itemList.size())
+	match  event:
+		3:
+			# 向下移动
+			if index > 0: select(index-1)
+		0:
+			# 向上移动
+			if index < itemList.size() -1: select(index+1)

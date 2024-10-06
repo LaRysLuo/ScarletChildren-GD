@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ijj8tcxuhut7"]
+
+[ext_resource type="PackedScene" uid="uid://dcpd1u6slvjtw" path="res://scenes/character.tscn" id="1_q1vlu"]
+[ext_resource type="Script" path="res://scripts/event.gd" id="2_futbx"]
+[ext_resource type="Resource" uid="uid://dwetwtddy24w5" path="res://event_res/door_test.tres" id="3_545gv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3l2y"]
+
+[node name="Door" groups=["events"] instance=ExtResource("1_q1vlu")]
+script = ExtResource("2_futbx")
+event_name = ""
+is_collsion = true
+trigger_type = 2
+event_code_group = ExtResource("3_545gv")
+sprite = null
+
+[node name="CollisionShape2D2" parent="." index="2"]
+z_index = 100
+shape = SubResource("RectangleShape2D_d3l2y")
+
+[node name="AnimatedSprite2D2" parent="." index="3"]
+sprite_frames = null

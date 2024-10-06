@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtjn8c2ay15xk"]
+
+[ext_resource type="Script" path="res://scripts/dialogue_system.gd" id="1_dckcq"]
+[ext_resource type="Texture2D" uid="uid://bq1fb8i7vtves" path="res://assets/resu_menu.png" id="2_0j14e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rbe6h"]
+font_color = Color(0.92475, 0.574947, 0.209639, 1)
+
+[node name="DialogueSystem" type="Control"]
+process_priority = 10
+z_index = 99
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dckcq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 33.0
+offset_top = 67.0
+offset_right = 334.0
+offset_bottom = 605.0
+texture = ExtResource("2_0j14e")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04
+anchor_top = 1.0
+anchor_right = 0.956
+anchor_bottom = 1.0
+offset_top = -140.0
+offset_right = 0.199951
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/Control"]
+custom_minimum_size = Vector2(-3.275, 0)
+layout_mode = 2
+offset_left = 4.0
+offset_right = 104.0
+offset_bottom = 23.0
+text = "礼诗"
+label_settings = SubResource("LabelSettings_rbe6h")
+
+[node name="ContentLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "礼诗要说的话显示在这里xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx礼诗要说的话显示在这里xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx礼诗要说的话显示在这里xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx礼诗要说的话显示在这里xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+autowrap_mode = 1
+clip_text = true

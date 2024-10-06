@@ -1,0 +1,38 @@
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://4h8rsnwtsgr2"]
+
+[ext_resource type="PackedScene" uid="uid://fwltuxos1oca" path="res://character/player.tscn" id="1_ho40l"]
+[ext_resource type="Texture2D" uid="uid://cgush3j2h8fuv" path="res://assets/tileset0/movable.png" id="2_j3we6"]
+[ext_resource type="PackedScene" uid="uid://dfo3m5vxmgpnu" path="res://character/player_start_sign.tscn" id="2_m7tjg"]
+[ext_resource type="PackedScene" uid="uid://ijj8tcxuhut7" path="res://scenes/door.tscn" id="3_5e7mq"]
+[ext_resource type="PackedScene" uid="uid://peicqc66pvva" path="res://character/出口点(1号房间特殊）.tscn" id="4_37syh"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_00n38"]
+tile_data = PackedInt32Array(0, 1, 262144)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_fawjx"]
+tile_data = PackedInt32Array(0, 1, 262144)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_r122q"]
+resource_name = "Events"
+scenes/1/scene = ExtResource("1_ho40l")
+scenes/2/scene = ExtResource("2_m7tjg")
+scenes/3/scene = ExtResource("3_5e7mq")
+scenes/4/scene = ExtResource("4_37syh")
+scenes/4/display_placeholder = ExtResource("4_37syh")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wmd5j"]
+texture = ExtResource("2_j3we6")
+texture_region_size = Vector2i(32, 32)
+1:1/0 = 0
+1:1/0/custom_data_0 = true
+
+[resource]
+tile_size = Vector2i(32, 32)
+custom_data_layer_0/name = "movable"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "start_pos"
+custom_data_layer_1/type = 1
+sources/1 = SubResource("TileSetScenesCollectionSource_r122q")
+sources/2 = SubResource("TileSetAtlasSource_wmd5j")
+pattern_0 = SubResource("TileMapPattern_00n38")
+pattern_1 = SubResource("TileMapPattern_fawjx")

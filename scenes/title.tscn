@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://cijslljq8o8l0"]
+
+[ext_resource type="Script" path="res://title.gd" id="1_cw6f7"]
+[ext_resource type="Texture2D" uid="uid://cjbgk70s38yn3" path="res://assets/title_bg.png" id="1_jd6cy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yqmq1"]
+
+[sub_resource type="Theme" id="Theme_psdse"]
+
+[node name="TitleMenu" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_cw6f7")
+
+[node name="Panel" type="Panel" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_yqmq1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_psdse")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -12.0
+offset_right = 8.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jd6cy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -312.0
+offset_top = 60.0
+offset_right = -160.0
+offset_bottom = 242.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_next = NodePath("NewGame")
+focus_mode = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 1
+
+[node name="NewGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_next = NodePath("../LoadGame")
+focus_previous = NodePath("../ExitGame")
+mouse_filter = 2
+theme_override_font_sizes/font_size = 36
+text = "新的故事"
+language = "zh"
+
+[node name="LoadGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_next = NodePath("../ExitGame")
+focus_previous = NodePath("../NewGame")
+mouse_filter = 2
+theme_override_font_sizes/font_size = 36
+text = "旧的回忆"
+
+[node name="ExitGame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_next = NodePath("../NewGame")
+focus_previous = NodePath("../LoadGame")
+mouse_filter = 2
+theme_override_font_sizes/font_size = 36
+text = "离开游戏"
+
+[connection signal="pressed" from="VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadGame" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitGame" to="." method="_on_exit_game_pressed"]

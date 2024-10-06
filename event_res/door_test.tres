@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="EventCodeGroup" load_steps=10 format=3 uid="uid://dwetwtddy24w5"]
+
+[ext_resource type="Script" path="res://scripts/event_node.gd" id="1_j081f"]
+[ext_resource type="Script" path="res://event_code_group.gd" id="2_0ted6"]
+
+[sub_resource type="Resource" id="Resource_10ohl"]
+script = ExtResource("1_j081f")
+code_name = 4
+args = ""
+
+[sub_resource type="Resource" id="Resource_1f2ti"]
+script = ExtResource("1_j081f")
+code_name = 1
+args = "地牢通道,4,false"
+
+[sub_resource type="Resource" id="Resource_36wpp"]
+script = ExtResource("1_j081f")
+code_name = 2
+args = "player,16,false"
+
+[sub_resource type="Resource" id="Resource_atumm"]
+script = ExtResource("1_j081f")
+code_name = 6
+args = "1"
+
+[sub_resource type="Resource" id="Resource_o5i4d"]
+script = ExtResource("1_j081f")
+code_name = 5
+args = ""
+
+[sub_resource type="Resource" id="Resource_7qdv6"]
+script = ExtResource("1_j081f")
+code_name = 8
+args = "player,5"
+
+[sub_resource type="Resource" id="Resource_7cjef"]
+script = ExtResource("1_j081f")
+code_name = 14
+args = "player"
+
+[resource]
+script = ExtResource("2_0ted6")
+list = Array[ExtResource("1_j081f")]([SubResource("Resource_10ohl"), SubResource("Resource_1f2ti"), SubResource("Resource_36wpp"), SubResource("Resource_atumm"), SubResource("Resource_o5i4d"), SubResource("Resource_7qdv6"), SubResource("Resource_7cjef")])

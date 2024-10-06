@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="EventCodeGroup" load_steps=13 format=3 uid="uid://bs2ke38hjrflg"]
+
+[ext_resource type="Script" path="res://scripts/event_node.gd" id="1_l45l7"]
+[ext_resource type="Script" path="res://event_code_group.gd" id="2_drr01"]
+
+[sub_resource type="Resource" id="Resource_ypsin"]
+script = ExtResource("1_l45l7")
+code_name = 0
+args = "各位大家好，我是悠月君"
+
+[sub_resource type="Resource" id="Resource_5exht"]
+script = ExtResource("1_l45l7")
+code_name = 0
+args = "今天是国庆第三天，终于做出来部分可以展示的内容了"
+
+[sub_resource type="Resource" id="Resource_rn4yi"]
+script = ExtResource("1_l45l7")
+code_name = 0
+args = "机会难得，就拿这个半成品的演出功能来为大家展示今日的工作成果吧"
+
+[sub_resource type="Resource" id="Resource_mjgo1"]
+script = ExtResource("1_l45l7")
+code_name = 0
+args = "今天完成了角色的交互功能，如你所见，现在跟角色对话时，礼诗身上会有交互标识"
+
+[sub_resource type="Resource" id="Resource_jkqdi"]
+script = ExtResource("1_l45l7")
+code_name = 0
+args = "同时现在在交互中，可以控制指定角色移动，比如我现在想要艾琳向前移动1格"
+
+[sub_resource type="Resource" id="Resource_xrhj8"]
+script = ExtResource("1_l45l7")
+code_name = 0
+args = "走，艾琳！"
+
+[sub_resource type="Resource" id="Resource_vitmq"]
+script = ExtResource("1_l45l7")
+code_name = 1
+args = "this,1"
+
+[sub_resource type="Resource" id="Resource_ck484"]
+script = ExtResource("1_l45l7")
+code_name = 0
+args = "看到了吧，艾琳她动了，当然不是她自己动的，是我让她动的"
+
+[sub_resource type="Resource" id="Resource_juuwn"]
+script = ExtResource("1_l45l7")
+code_name = 0
+args = "目前做的功能就这些了，请期待明天的成果"
+
+[sub_resource type="Resource" id="Resource_tqrl4"]
+script = ExtResource("1_l45l7")
+code_name = 0
+args = "拜拜"
+
+[resource]
+script = ExtResource("2_drr01")
+list = Array[ExtResource("1_l45l7")]([SubResource("Resource_ypsin"), SubResource("Resource_5exht"), SubResource("Resource_rn4yi"), SubResource("Resource_mjgo1"), SubResource("Resource_jkqdi"), SubResource("Resource_xrhj8"), SubResource("Resource_vitmq"), SubResource("Resource_ck484"), SubResource("Resource_juuwn"), SubResource("Resource_tqrl4")])

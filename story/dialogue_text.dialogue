@@ -1,0 +1,17 @@
+~ 开始标题1
+悠月: [[嗨|哈喽|扣脚]], 这是我的测试哦.
+悠月: Here are some choices.
+- 选择第一项
+	悠月: You picked the first one.
+- 选择第二项
+	悠月: You picked the second one.
+- 重新开始 => 开始标题1
+- 离开 => END
+悠月: 扣大脚
+=> END
+
+
+~ 测试
+悠月: 咔咔怪兽
+
+=> END
