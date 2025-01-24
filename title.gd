@@ -12,10 +12,7 @@ func _gui_input(event: InputEvent) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	first_focus.grab_focus()
-	first_focus.connect("focus_entered",on_focused)
-	load_game_btn.connect("focus_entered",on_focused)
-	exit_game_btn.connect("focus_entered",on_focused)
+
 	#AudioManager.start_music("Theme1")
 	pass # Replace with function body.
 

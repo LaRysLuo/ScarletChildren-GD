@@ -1,0 +1,101 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=19 format=3 uid="uid://bau67jq8xm4vm"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_4m31m"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_8ms8y"]
+[ext_resource type="Script" path="res://event_editor/models/reading_page_data.gd" id="3_7krlk"]
+[ext_resource type="Script" path="res://event_editor/models/reading_data.gd" id="4_rdxm7"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="5_a8rhc"]
+
+[sub_resource type="Resource" id="Resource_85uy7"]
+script = ExtResource("3_7krlk")
+content = "file_aboutscar_05"
+children = Array[ExtResource("2_8ms8y")]([])
+node_type = 15
+pos = Vector2(2280, 280)
+
+[sub_resource type="Resource" id="Resource_2jt3a"]
+script = ExtResource("2_8ms8y")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_85uy7")
+
+[sub_resource type="Resource" id="Resource_cn2vv"]
+script = ExtResource("3_7krlk")
+content = "file_aboutscar_04"
+children = Array[ExtResource("2_8ms8y")]([SubResource("Resource_2jt3a")])
+node_type = 15
+pos = Vector2(2000, 280)
+
+[sub_resource type="Resource" id="Resource_x4wso"]
+script = ExtResource("2_8ms8y")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_cn2vv")
+
+[sub_resource type="Resource" id="Resource_20rnq"]
+script = ExtResource("3_7krlk")
+content = "file_aboutscar_03"
+children = Array[ExtResource("2_8ms8y")]([SubResource("Resource_x4wso")])
+node_type = 15
+pos = Vector2(1720, 280)
+
+[sub_resource type="Resource" id="Resource_ju7fw"]
+script = ExtResource("2_8ms8y")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_20rnq")
+
+[sub_resource type="Resource" id="Resource_iwdss"]
+script = ExtResource("3_7krlk")
+content = "file_aboutscar_02"
+children = Array[ExtResource("2_8ms8y")]([SubResource("Resource_ju7fw")])
+node_type = 15
+pos = Vector2(1420, 280)
+
+[sub_resource type="Resource" id="Resource_aral5"]
+script = ExtResource("2_8ms8y")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_iwdss")
+
+[sub_resource type="Resource" id="Resource_k2gb1"]
+script = ExtResource("3_7krlk")
+content = "file_aboutscar_01"
+children = Array[ExtResource("2_8ms8y")]([SubResource("Resource_aral5")])
+node_type = 15
+pos = Vector2(1140, 280)
+
+[sub_resource type="Resource" id="Resource_m6yes"]
+script = ExtResource("2_8ms8y")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_k2gb1")
+
+[sub_resource type="Resource" id="Resource_p86e1"]
+script = ExtResource("4_rdxm7")
+title = "file_aboutscar_title"
+close_any_time = false
+children = Array[ExtResource("2_8ms8y")]([SubResource("Resource_m6yes")])
+node_type = 14
+pos = Vector2(880, 220)
+
+[sub_resource type="Resource" id="Resource_7s3qq"]
+script = ExtResource("2_8ms8y")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_p86e1")
+
+[sub_resource type="Resource" id="Resource_rdo5p"]
+script = ExtResource("5_a8rhc")
+children = Array[ExtResource("2_8ms8y")]([SubResource("Resource_7s3qq")])
+node_type = 0
+pos = Vector2(660, 280)
+
+[resource]
+script = ExtResource("1_4m31m")
+title = ""
+is_collsion = false
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_rdo5p")
+map = {}

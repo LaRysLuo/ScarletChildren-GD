@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://deansbpw3rygd"]
+
+[ext_resource type="StyleBox" uid="uid://bsl01ijdjj0hn" path="res://event_editor/styles/node_style.tres" id="1_ghcbu"]
+[ext_resource type="Script" path="res://event_editor/nodes/condition_node/condition_gn.gd" id="2_ph1o3"]
+
+[node name="ConditionNode" type="GraphNode"]
+offset_left = 113.0
+offset_top = 262.0
+offset_right = 442.0
+offset_bottom = 474.0
+mouse_filter = 1
+theme_override_colors/resizer_color = Color(0, 0.827451, 0, 1)
+theme_override_styles/titlebar = ExtResource("1_ghcbu")
+title = "运行脚本"
+ignore_invalid_connection_type = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = true
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+script = ExtResource("2_ph1o3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+
+[node name="HSplitContainer" type="SplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+vertical = true
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "条件代码"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "请输入GDScripts语句，只支持单语句"
+wrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "那么"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "否则"

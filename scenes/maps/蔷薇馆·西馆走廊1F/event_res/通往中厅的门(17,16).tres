@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=5 format=3 uid="uid://8bhv85iu5cee"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_ps08c"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_cx7wv"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_q5kar"]
+
+[sub_resource type="Resource" id="Resource_sqk25"]
+script = ExtResource("2_cx7wv")
+children = Array[ExtResource("2_q5kar")]([])
+node_type = 0
+pos = Vector2(2500, 300)
+
+[resource]
+script = ExtResource("1_ps08c")
+title = "通往中厅得门(17,16)"
+is_collsion = true
+trigger_type = 2
+one_shot = false
+tree = SubResource("Resource_sqk25")
+map = {}

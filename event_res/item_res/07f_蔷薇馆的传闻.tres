@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://c2o14c7pjo2u6"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_tp5g0"]
+
+[resource]
+script = ExtResource("1_tp5g0")
+item_id = &"07f_蔷薇馆的传闻"
+item_name = &"蔷薇馆的传闻"
+item_catagory = 3
+item_desc = "关于蔷薇馆的一个传闻"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_tp5g0")]([])

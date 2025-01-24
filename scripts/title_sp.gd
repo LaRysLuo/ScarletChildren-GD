@@ -38,6 +38,6 @@ func start_game():
 	await  animation_player.animation_finished
 	
 	# 进入别的场景
-	SceneManager.goto("maps/2梦境",false)
+	SceneManager.goto("maps/Map_2梦境",false)
 	
 	pass	

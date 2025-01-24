@@ -1,0 +1,58 @@
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://cjkcoid5hggu7"]
+
+[ext_resource type="Texture2D" uid="uid://dggv03ppcd1in" path="res://assets/tileset0/black8.png" id="1_bb8f0"]
+[ext_resource type="PackedScene" uid="uid://fwltuxos1oca" path="res://character/player.tscn" id="1_c50li"]
+[ext_resource type="PackedScene" uid="uid://dfo3m5vxmgpnu" path="res://character/player_start_sign.tscn" id="2_lhh12"]
+[ext_resource type="PackedScene" uid="uid://ijj8tcxuhut7" path="res://scenes/door.tscn" id="3_qw7do"]
+[ext_resource type="PackedScene" uid="uid://peicqc66pvva" path="res://character/事件模板.tscn" id="5_hbawe"]
+[ext_resource type="Texture2D" uid="uid://cgush3j2h8fuv" path="res://assets/tileset0/movable.png" id="6_phvh6"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_00n38"]
+tile_data = PackedInt32Array(0, 1, 262144)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_fawjx"]
+tile_data = PackedInt32Array(0, 1, 262144)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awikf"]
+resource_name = "blacks"
+texture = ExtResource("1_bb8f0")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_r122q"]
+resource_name = "Events"
+scenes/1/scene = ExtResource("1_c50li")
+scenes/2/scene = ExtResource("2_lhh12")
+scenes/3/scene = ExtResource("3_qw7do")
+scenes/4/scene = ExtResource("5_hbawe")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wmd5j"]
+texture = ExtResource("6_phvh6")
+texture_region_size = Vector2i(32, 32)
+1:1/0 = 0
+1:1/0/custom_data_0 = true
+3:1/next_alternative_id = 2
+3:1/0 = 0
+3:1/1 = 1
+0:1/0 = 0
+0:1/0/custom_data_2 = true
+4:1/next_alternative_id = 3
+4:1/0 = 0
+4:1/2 = 2
+
+[resource]
+tile_size = Vector2i(8, 8)
+custom_data_layer_0/name = "movable"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "start_pos"
+custom_data_layer_1/type = 1
+custom_data_layer_2/name = "antiglare"
+custom_data_layer_2/type = 1
+sources/1 = SubResource("TileSetScenesCollectionSource_r122q")
+sources/2 = SubResource("TileSetAtlasSource_wmd5j")
+sources/0 = SubResource("TileSetAtlasSource_awikf")
+pattern_0 = SubResource("TileMapPattern_00n38")
+pattern_1 = SubResource("TileMapPattern_fawjx")

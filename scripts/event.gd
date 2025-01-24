@@ -1,71 +1,129 @@
+@tool
 extends "res://scripts/game_object.gd"
 class_name Event
 
-# 触发方式
-enum TriggerType {
-	None无,
-	Interact交互,
-	Touch触碰
-}
 
-var condition = "" #触发条件
-@export var event_name = "" #事件名
-@export var is_collsion:bool = false # 是否为障碍物,表示该事件是否可穿透
-@export var trigger_type:TriggerType = TriggerType.None无 # 触发方式
-@export var event_code_group:EventCodeGroup #事件语句集
 
+@export var event_name:String
+
+## 是否无视碰撞
+var ingore_collsion:bool = false
+var is_running := false
+
+## 信号
 signal  event_finish # 事件交互结束
 
-#var code_list:Array[EventCode] = [
-	#EventCode.new(EventCode.CodeName.MESSAGE,"你好呀"),
-	#EventCode.new(EventCode.CodeName.MESSAGE,"你是什么人")
-#]
 
-# 不可穿透 并且Touch就会触发的类型 -> 各种无图像的门，用于场景传送
-# 不可穿透 并且只有交互后才会触发的类型 -> 各种NPC人物，可进行对话
 
-# 交互
+
+
+## 事件NPC的实现：方案1，在Event_Res上增加一个行走图的选择
+## 当事件被激活时，使该行走图人物被渲染出来显示。
+## 事件的tres要是一个可控制的角色
+
+## 事件NPC的实现：方案2，每个NPC都制作一个独特的预制体，放入到场景内
+## 并根据EventConfig联系两个元素
+
+func _ready() -> void:
+	GameManager.data_player.on_player_item_changed.connect(_refresh_event_state)
+	#_refresh_event_state()
+
+## 连接信号使用，当或许的条件变化时，刷新事件
+func _refresh_event_state(item_name:StringName = "",state:int = 0):
+	#print("test条件变化了%s,%s" % [self.name,activable(get_event_config())])
+	var config = get_event_config()
+	if config: config.is_show = activable(config)
+	#print("test当前透明度",self.visible)
+
+## 交互函数
 func interact():
-	print_rich("[color=red]事件触发了，将要执行的语句有%s个[/color]" % event_code_group.list.size() )
-	for code in event_code_group.list:
-		print_rich("[color=red]开始执行名为%s的event语句[/color]" % code.code_name)
-		match code.code_name:
-			EventCode.CodeName.MESSAGE:	 await show_message(code.args)
-			EventCode.CodeName.TELEPORT: await teleport(code.args)
-			EventCode.CodeName.MOVEDOWN: await character_move(code.args,Vector2i.DOWN)
-			EventCode.CodeName.MOVELEFT: await character_move(code.args,Vector2i.LEFT)
-			EventCode.CodeName.MOVERIGHT: await character_move(code.args,Vector2i.RIGHT)
-			EventCode.CodeName.MOVEUP: await character_move(code.args,Vector2i.UP)
-			EventCode.CodeName.MOVEFORWARD: await character_move(code.args,0)
-			EventCode.CodeName.FACEDOWN: await face_dir(code.args,Vector2i.DOWN)
-			EventCode.CodeName.FACELEFT: await face_dir(code.args,Vector2i.LEFT)
-			EventCode.CodeName.FACERIGHT: await face_dir(code.args,Vector2i.RIGHT)
-			EventCode.CodeName.FACEUP: await face_dir(code.args,Vector2i.UP)
-			EventCode.CodeName.FADEOUT:await fadeout()
-			EventCode.CodeName.FADEIN:await fadein()
-			EventCode.CodeName.WAIT: await wait(code.args)
-		print_rich("[color=red]%s语句执行完毕[/color]" % str(code.code_name))
-	print_rich("[color=red]event事件全部执行完毕[/color]")
+	var event_config = get_event_config()
+	if !event_config.event_res || !event_config.event_res.tree:
+		printerr("当前事件%s未配置语句" %event_config.event_res.title) 
+		event_finish.emit()
+		return
+	GameManager.set_game_state_buszing()
+	await _parse_event_config(event_config.event_res)
+	GameManager.set_game_state_normal()
+
+## 解析事件资源
+func _parse_event_config(event_res):
+	if is_running: return
+	print("开始执行事件")
+	## WARNING 事件处理主逻辑
+	## 如果需要添加新的节点逻辑，请去对应继承BaseEventNode的子类去重写_execute
+	is_running = true
+	## 当事件拥有one_shot限制时,将执行过1次写入字典
+	if event_res.one_shot:
+		var event_id:String = event_res.resource_path
+		GameManager.data_variable.set_switch(event_id,true)
+	await GameManager.trigger_event_res(event_res,self)
+	is_running = false
+	print("X事件执行结束")
 	#清除该节点
-	if !self.map: queue_free()
-	else: self.map.add_child(self) # TODO 这里可能会有问题
+	#if !self.map: queue_free()
+	#else: self.map.add_child(self) # TODO 这里可能会有问题
 	event_finish.emit()
 
-# 显示信息框
-func show_message(args:String):
-	var arglist =  args.split(',') # 使用逗号分隔数组
-	if arglist.is_empty(): 
-		print_debug("参数为空，MESSAGE语句必须要传入一个参数")
-		return
-	var message_text = arglist[0]
-	if !(message_text is String):
-		print_debug("参数错误，MESSAGE语句必须是String")
-		return	 
-	DialogueManager.show_message(message_text)
-	await  DialogueManager.dialogue_finish 
-	print("信息显示完成")
+## 判断是否激活
+func activable(event:EventConfig) -> bool:
+	if event and event.event_res:
+		return one_shot_valid(event) && _condition_valid(event) 
+	return true
 
+## 是否可交互
+func interactable() -> bool:
+	var event = get_event_config()
+	if event and event.event_res:
+		print("ac=",activable(event))
+		return activable(event) && event.event_res.trigger_type == Events_Res.TriggerType.Interact交互
+	return false
+	
+func touchable() -> bool:
+	var event = get_event_config()
+	if event and event.event_res:
+		return activable(event) && event.event_res.trigger_type == Events_Res.TriggerType.Touch触碰
+	return false
 
+func can_auto_trigger() -> bool:
+	var event = get_event_config()
+	
+	if event and event.event_res:
+		#var event_id = event.event_res.resource_path
+		### 如果事件仅限执行一次，并且已执行过，则返回false
+		#print("是否可执行该事件：",GameManager.data_variable.get_event_switch(event_id))
+		#if	event.event_res.one_shot && GameManager.data_variable.get_event_switch(event_id):
+			#return false
+		return  one_shot_valid(event) && event.event_res.trigger_type == Events_Res.TriggerType.Auto自动触发
+	return false
+
+## 是否仅限一次
+func one_shot_valid(event:EventConfig) -> bool:
+	var event_id = event.event_res.resource_path
+	if	event.event_res.one_shot && GameManager.data_variable.get_event_switch(event_id):
+		return false
+	return true
+
+## 是否满足事件条件
+func _condition_valid(event:EventConfig) -> bool:
+	## 当有事件条件时，返回该条件的判定结果
+	if event.condition: return event.condition._get_result()
+	return true
+
+func get_event_config() -> EventConfig:
+	## 从MapConfig中找到该事件坐标的EventConfig
+	var map_config:MapConfig = GameManager.get_map_config()
+	if !map_config: return null
+	var event_config:EventConfig =	map_config.get_event(cell_pos)
+	if !event_config:
+		printerr("该事件没有配置Event_RES")
+	return event_config
+
+## WARNING 已弃用，迁移到对应的NODE（DATA）里
+## 参数1 显示文本
+## 方式 1等待按键/2
+func show_message(text:String,wait_type:int,wait_time:float):
+	pass
 
 func _get_event_by_name(name:String) -> CharacterBase:
 	if name == "this": return self # 如果输入的是this的话，则返回本身
@@ -96,9 +154,7 @@ func teleport(args:String):
 	var with_fade:bool = true
 	if arglist.size() == 3: with_fade = string_to_bool(arglist[2])
 	
-	
-	SceneManager.move(scene_name,target_event_id,with_fade) #传送到目标场合
-	
+	#SceneManager.move(scene_name,target_event_id,with_fade) #传送到目标场合
 	await SceneManager.move_finished #等待移动结束
 
 func string_to_bool(str:String):
@@ -179,6 +235,3 @@ func face_dir(args:String,dir:Vector2i):
 		print_debug("输入了不存在的事件名称")
 		return
 	event.face_to(dir)
-
-func _args_validate(args:String):
-	pass

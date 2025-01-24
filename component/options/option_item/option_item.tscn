@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://f1f40cjgu3rq"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_pamar"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 0
+vertical = true
+
+[node name="OptionItem" type="Label"]
+theme_override_styles/normal = SubResource("StyleBoxLine_pamar")
+text = "测试"

@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1nbqil3hvig6"]
+
+[ext_resource type="Script" path="res://event_editor/nodes/option/scripts/option_item.gd" id="1_3wkvx"]
+
+[node name="OptionItem" type="VBoxContainer"]
+offset_right = 234.0
+offset_bottom = 105.0
+script = ExtResource("1_3wkvx")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "选项"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="delBtn" type="Button" parent="HSplitContainer/HBoxContainer"]
+layout_mode = 2
+text = "-"
+
+[node name="addBtn" type="Button" parent="HSplitContainer/HBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="HBoxContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+split_offset = 60
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "文字键"
+
+[node name="TextEdit" type="LineEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 35)
+layout_mode = 2
+placeholder_text = "请输入选项的文字键"
+
+[node name="HBoxContainer2" type="HSplitContainer" parent="."]
+layout_mode = 2
+split_offset = 60
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "预览"
+
+[node name="TextEdit" type="LineEdit" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(150, 35)
+layout_mode = 2
+editable = false

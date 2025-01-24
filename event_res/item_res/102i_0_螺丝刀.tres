@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://4vgbyr00ova7"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_8dexf"]
+
+[resource]
+script = ExtResource("1_8dexf")
+item_id = &"102i_0_螺丝刀"
+item_name = &"螺丝刀"
+item_catagory = 1
+item_desc = "一把十字螺丝刀，可以拿来转开螺丝"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_8dexf")]([])

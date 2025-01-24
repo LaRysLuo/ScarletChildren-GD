@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=14 format=3 uid="uid://btlpolvixwhtb"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_w7exv"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_6th6m"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_d64e0"]
+[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="4_v7x5l"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="5_3j6ul"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="6_4qec6"]
+
+[sub_resource type="Resource" id="Resource_jv825"]
+script = ExtResource("3_d64e0")
+script_cmd = "GameManager.data_player.gain_item(\"06i_0_手电筒（无电池）\")"
+children = Array[ExtResource("2_6th6m")]([])
+node_type = 9
+pos = Vector2(1340, -380)
+
+[sub_resource type="Resource" id="Resource_1jsb3"]
+script = ExtResource("2_6th6m")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_jv825")
+
+[sub_resource type="Resource" id="Resource_31gf7"]
+script = ExtResource("4_v7x5l")
+options = Array[Dictionary]([{
+"child_index": 0,
+"id": 0,
+"name": "libsurvey07"
+}, {
+"child_index": -1,
+"id": 1,
+"name": "test06"
+}])
+children = Array[ExtResource("2_6th6m")]([SubResource("Resource_1jsb3")])
+node_type = 2
+pos = Vector2(1040, -360)
+
+[sub_resource type="Resource" id="Resource_y3ida"]
+script = ExtResource("2_6th6m")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_31gf7")
+
+[sub_resource type="Resource" id="Resource_1rpcr"]
+script = ExtResource("5_3j6ul")
+text = "libsurvey06"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_6th6m")]([SubResource("Resource_y3ida")])
+node_type = 1
+pos = Vector2(680, -400)
+
+[sub_resource type="Resource" id="Resource_cuswm"]
+script = ExtResource("2_6th6m")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_1rpcr")
+
+[sub_resource type="Resource" id="Resource_q0o6g"]
+script = ExtResource("6_4qec6")
+children = Array[ExtResource("2_6th6m")]([SubResource("Resource_cuswm")])
+node_type = 0
+pos = Vector2(440, -300)
+
+[resource]
+script = ExtResource("1_w7exv")
+title = "藏在书架上的手电"
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_q0o6g")
+map = {}

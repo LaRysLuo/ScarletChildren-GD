@@ -10,11 +10,14 @@ config_version=5
 
 [application]
 
-config/name="TestWorld"
+config/name="蔷薇之子"
+config/name_localized={
+"en": "The Scarlet's Children"
+}
 config/version="0.01"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/title_sp.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon/larys.svg"
 
 [autoload]
 
@@ -22,6 +25,7 @@ SceneManager="*res://scenes/scene_manager.tscn"
 AudioManager="*res://scenes/audio_manager.tscn"
 GameManager="*res://scenes/game_play.tscn"
 DialogueManager="*res://scenes/dialogue_system.tscn"
+SaveManager="*res://auto_load/save_manager.gd"
 
 [dialogic]
 
@@ -67,10 +71,18 @@ window/size/viewport_width=800
 window/size/viewport_height=600
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/character_setting/plugin.cfg")
+
 [global_group]
 
 player_sign="玩家开始位置的标识"
 events="事件分组"
+blacks=""
+characters=""
+save_point=""
+light=""
 
 [input]
 
@@ -140,11 +152,30 @@ cancel={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+craft={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":67,"key_label":0,"unicode":99,"location":0,"echo":false,"script":null)
+]
+}
+y={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":86,"key_label":0,"unicode":118,"location":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
+rendering/root_node_auto_translate=false
+locale/translation_remaps={}
+locale/translations=PackedStringArray("res://localization/local utf-8.en.translation", "res://localization/local utf-8.ja.translation", "res://localization/local utf-8.zh_CN.translation")
 locale/translations_pot_files=PackedStringArray("res://story/dialogue_text.dialogue")
+locale/include_text_server_data=true
+locale/test="zh-CN"
+locale/fallback="zh"
+pseudolocalization/override=true
+pseudolocalization/skip_placeholders=false
 locale/locale_filter_mode=1
+locale/language_filter=[null]
 
 [layer_names]
 
@@ -152,6 +183,12 @@ locale/locale_filter_mode=1
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Charactor"
 
+[physics]
+
+common/physics_interpolation=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://b5g65pfsyxi6d"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_h186k"]
+
+[resource]
+script = ExtResource("1_h186k")
+item_id = &"03i_1_永久相纸"
+item_name = &"永久相纸（已曝光）"
+item_catagory = 1
+item_desc = "可插入相机使用，可反复曝光的特殊相纸"
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_h186k")]([])

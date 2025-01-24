@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=19 format=3 uid="uid://dlbd5758c6axf"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_ywd8t"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_vgctk"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="3_k8cyk"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_vtdpt"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_vbsyp"]
+[ext_resource type="Script" path="res://event_editor/models/keyword_data.gd" id="5_12xhl"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="6_2lg23"]
+
+[sub_resource type="Resource" id="Resource_ypch3"]
+script = ExtResource("3_vtdpt")
+script_cmd = "GameManager.data_player.update_item(\"06i_0_手电筒（疑问）\",\"06i_1_手电筒（无电池）\")"
+children = Array[ExtResource("2_vgctk")]([])
+node_type = 9
+pos = Vector2(1280, 360)
+
+[sub_resource type="Resource" id="Resource_tdshd"]
+script = ExtResource("2_vgctk")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ypch3")
+
+[sub_resource type="Resource" id="Resource_gcfj5"]
+script = ExtResource("4_vbsyp")
+text = "flashlight03"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_vgctk")]([SubResource("Resource_tdshd")])
+node_type = 1
+pos = Vector2(920, 320)
+
+[sub_resource type="Resource" id="Resource_s62g6"]
+script = ExtResource("2_vgctk")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_gcfj5")
+
+[sub_resource type="Resource" id="Resource_060hc"]
+script = ExtResource("5_12xhl")
+keyword = "flashlight02_keyword"
+children = Array[ExtResource("2_vgctk")]([SubResource("Resource_s62g6")])
+node_type = 12
+pos = Vector2(620, 340)
+
+[sub_resource type="Resource" id="Resource_kqwqq"]
+script = ExtResource("2_vgctk")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_060hc")
+
+[sub_resource type="Resource" id="Resource_klau0"]
+script = ExtResource("4_vbsyp")
+text = "flashlight04"
+role = ExtResource("3_k8cyk")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_vgctk")]([])
+node_type = 1
+pos = Vector2(620, 20)
+
+[sub_resource type="Resource" id="Resource_oh3xp"]
+script = ExtResource("2_vgctk")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_klau0")
+
+[sub_resource type="Resource" id="Resource_o5ewa"]
+script = ExtResource("4_vbsyp")
+text = "flashlight01"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_vgctk")]([SubResource("Resource_kqwqq"), SubResource("Resource_oh3xp")])
+node_type = 1
+pos = Vector2(260, 120)
+
+[sub_resource type="Resource" id="Resource_sna18"]
+script = ExtResource("2_vgctk")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_o5ewa")
+
+[sub_resource type="Resource" id="Resource_c7a8m"]
+script = ExtResource("6_2lg23")
+children = Array[ExtResource("2_vgctk")]([SubResource("Resource_sna18")])
+node_type = 0
+pos = Vector2(40, 220)
+
+[resource]
+script = ExtResource("1_ywd8t")
+title = "检查手电的问题"
+is_collsion = false
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_c7a8m")
+map = {}

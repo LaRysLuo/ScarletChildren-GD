@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwqclo5yw5lri"]
+
+[ext_resource type="Texture2D" uid="uid://lpilsdx5g3v4" path="res://assets/system/joypadkey.png" id="1_a3o42"]
+[ext_resource type="Script" path="res://component/key_tips_bottom/key_tips_bottom.gd" id="1_jind7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vevhi"]
+atlas = ExtResource("1_a3o42")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to5ve"]
+atlas = ExtResource("1_a3o42")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhimk"]
+atlas = ExtResource("1_a3o42")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiw36"]
+atlas = ExtResource("1_a3o42")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thk8g"]
+atlas = ExtResource("1_a3o42")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cig5d"]
+atlas = ExtResource("1_a3o42")
+region = Rect2(160, 0, 32, 32)
+
+[node name="KeyTipsBottom" type="HBoxContainer"]
+offset_right = 356.0
+offset_bottom = 23.0
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+script = ExtResource("1_jind7")
+metadata/_edit_use_anchors_ = true
+
+[node name="Key5" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Key5"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vevhi")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Key5"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_to5ve")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Key5"]
+layout_mode = 2
+text = "功能名称"
+
+[node name="Key" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Key"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_fhimk")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Key"]
+layout_mode = 2
+text = "功能名称"
+
+[node name="Key2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Key2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_yiw36")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Key2"]
+layout_mode = 2
+text = "功能名称"
+
+[node name="Key3" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Key3"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_thk8g")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Key3"]
+layout_mode = 2
+text = "功能名称"
+
+[node name="Key4" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Key4"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_cig5d")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Key4"]
+layout_mode = 2
+text = "功能名称"

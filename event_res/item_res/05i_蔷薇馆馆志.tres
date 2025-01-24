@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cxyinkm1vkwrj"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_p24lo"]
+
+[resource]
+script = ExtResource("1_p24lo")
+item_id = &"05i_蔷薇馆馆志"
+item_name = &"蔷薇馆馆志"
+item_catagory = 1
+item_desc = "红色封面厚厚的一本书"
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_p24lo")]([])

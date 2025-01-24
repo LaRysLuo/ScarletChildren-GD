@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=17 format=3 uid="uid://c5jeqo7bosyrg"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_dwgbu"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_l4k1r"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="3_0jsyg"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_ft1le"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="5_4fq0n"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="6_1wulm"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="7_8jx2o"]
+
+[sub_resource type="Resource" id="Resource_biok7"]
+script = ExtResource("4_ft1le")
+text = "loudao1f_02"
+role = ExtResource("3_0jsyg")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_l4k1r")]([])
+node_type = 1
+pos = Vector2(1480, -260)
+
+[sub_resource type="Resource" id="Resource_fidwt"]
+script = ExtResource("2_l4k1r")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_biok7")
+
+[sub_resource type="Resource" id="Resource_7hvvn"]
+script = ExtResource("5_4fq0n")
+script_cmd = "has_item(\"06i_0_手电筒（疑问）,true\")"
+children = Array[ExtResource("2_l4k1r")]([SubResource("Resource_fidwt")])
+node_type = 17
+pos = Vector2(1100, -220)
+
+[sub_resource type="Resource" id="Resource_13kts"]
+script = ExtResource("2_l4k1r")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_7hvvn")
+
+[sub_resource type="Resource" id="Resource_l0y02"]
+script = ExtResource("4_ft1le")
+text = "loudao1f_01"
+role = ExtResource("3_0jsyg")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_l4k1r")]([SubResource("Resource_13kts")])
+node_type = 1
+pos = Vector2(740, -280)
+
+[sub_resource type="Resource" id="Resource_xpayw"]
+script = ExtResource("2_l4k1r")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_l0y02")
+
+[sub_resource type="Resource" id="Resource_lkpv4"]
+script = ExtResource("6_1wulm")
+move_type = 2
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 1
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_l4k1r")]([SubResource("Resource_xpayw")])
+node_type = 3
+pos = Vector2(340, -240)
+
+[sub_resource type="Resource" id="Resource_3283i"]
+script = ExtResource("2_l4k1r")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_lkpv4")
+
+[sub_resource type="Resource" id="Resource_pjgne"]
+script = ExtResource("7_8jx2o")
+children = Array[ExtResource("2_l4k1r")]([SubResource("Resource_3283i")])
+node_type = 0
+pos = Vector2(100, -180)
+
+[resource]
+script = ExtResource("1_dwgbu")
+title = ""
+is_collsion = true
+trigger_type = 2
+one_shot = false
+tree = SubResource("Resource_pjgne")
+map = {}

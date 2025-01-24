@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Role" load_steps=2 format=3 uid="uid://cwiipdxbnn31l"]
+
+[ext_resource type="Script" path="res://component/role_manager/role.gd" id="1_fglgn"]
+
+[resource]
+script = ExtResource("1_fglgn")
+role_name = "女孩子"
+theme_color = Color(0.64, 0.1728, 0.421973, 1)
+desc = ""

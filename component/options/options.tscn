@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn73yc4lc33tk"]
+
+[ext_resource type="Script" path="res://component/options/option_menu.gd" id="1_hqb3c"]
+
+[node name="Options" type="PanelContainer"]
+offset_right = 167.0
+offset_bottom = 86.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_hqb3c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1

@@ -1,0 +1,310 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=39 format=3 uid="uid://ccxcddevqbynj"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_bhan0"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_jxvlv"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_0bf0o"]
+[ext_resource type="Resource" uid="uid://wwqunvwisisf" path="res://config/role_data/yui.tres" id="3_ceyla"]
+[ext_resource type="Script" path="res://event_editor/models/fadeout_data.gd" id="3_fbdv8"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="3_muipy"]
+[ext_resource type="Resource" uid="uid://dq8drkho25mmr" path="res://config/role_data/ai.tres" id="3_u36cj"]
+[ext_resource type="Resource" uid="uid://dsgx32uy2556n" path="res://config/role_data/hasin.tres" id="5_tyof8"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="8_ufnym"]
+
+[sub_resource type="Resource" id="Resource_cphkq"]
+script = ExtResource("3_fbdv8")
+children = Array[ExtResource("2_jxvlv")]([])
+node_type = 4
+pos = Vector2(9340, 120)
+
+[sub_resource type="Resource" id="Resource_pqn3h"]
+script = ExtResource("3_0bf0o")
+text = "你们别迟到了"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_cphkq")])
+node_type = 1
+pos = Vector2(8960, 40)
+
+[sub_resource type="Resource" id="Resource_ipkv4"]
+script = ExtResource("3_0bf0o")
+text = "好了，就这么说定了，明天9点出发"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_pqn3h")])
+node_type = 1
+pos = Vector2(8620, 40)
+
+[sub_resource type="Resource" id="Resource_k8y2s"]
+script = ExtResource("3_0bf0o")
+text = "跟他说了肯定不允许我们去那么危险的地方"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_ipkv4")])
+node_type = 1
+pos = Vector2(8280, 40)
+
+[sub_resource type="Resource" id="Resource_g74a6"]
+script = ExtResource("3_0bf0o")
+text = "不需要跟他说，我们自己去就好"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_k8y2s")])
+node_type = 1
+pos = Vector2(7940, 40)
+
+[sub_resource type="Resource" id="Resource_j4i2i"]
+script = ExtResource("3_0bf0o")
+text = "这事有跟顾问的程老师说吗？"
+role = ExtResource("5_tyof8")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_g74a6")])
+node_type = 1
+pos = Vector2(7580, 40)
+
+[sub_resource type="Resource" id="Resource_wt8fd"]
+script = ExtResource("3_0bf0o")
+text = "这次去蔷薇馆，
+我们就是要搞清楚那个所谓的疯狂科学家背后有没有科学依据，
+这可是我们的重要任务"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_j4i2i")])
+node_type = 1
+pos = Vector2(7220, 40)
+
+[sub_resource type="Resource" id="Resource_0qhwi"]
+script = ExtResource("3_0bf0o")
+text = "超自然研究部的意义就在于
+用科学解释那些神秘事件啊"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_wt8fd")])
+node_type = 1
+pos = Vector2(6860, 40)
+
+[sub_resource type="Resource" id="Resource_djefv"]
+script = ExtResource("3_0bf0o")
+text = "你在说什么呢！"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_0qhwi")])
+node_type = 1
+pos = Vector2(6520, 40)
+
+[sub_resource type="Resource" id="Resource_lkbex"]
+script = ExtResource("3_0bf0o")
+text = "哪有什么超自然需要研究的呢，
+没有这个社团也没差吧"
+role = ExtResource("3_muipy")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_djefv")])
+node_type = 1
+pos = Vector2(6180, 40)
+
+[sub_resource type="Resource" id="Resource_rp1dm"]
+script = ExtResource("3_0bf0o")
+text = "你就知道摸鱼，
+我们可是都是好好的来参加社团活动的"
+role = ExtResource("3_u36cj")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_lkbex")])
+node_type = 1
+pos = Vector2(5820, 40)
+
+[sub_resource type="Resource" id="Resource_2lcr7"]
+script = ExtResource("3_0bf0o")
+text = "学校里没地方摸鱼了也挺困扰的"
+role = ExtResource("3_muipy")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_rp1dm")])
+node_type = 1
+pos = Vector2(5480, 40)
+
+[sub_resource type="Resource" id="Resource_owsax"]
+script = ExtResource("3_0bf0o")
+text = "如果本学期我们社团还没有完成一个像样的研究报告，
+我们超自然研究部就要解散了"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_2lcr7")])
+node_type = 1
+pos = Vector2(5140, 40)
+
+[sub_resource type="Resource" id="Resource_kfq87"]
+script = ExtResource("3_0bf0o")
+text = "而且，你要知道，这是我们最后的机会了"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_owsax")])
+node_type = 1
+pos = Vector2(4800, 40)
+
+[sub_resource type="Resource" id="Resource_p4eer"]
+script = ExtResource("3_0bf0o")
+text = "这个你放心吧，
+我前不久找到一张古老的蔷薇馆地图，
+没问题的"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_kfq87")])
+node_type = 1
+pos = Vector2(4460, 40)
+
+[sub_resource type="Resource" id="Resource_y8pvm"]
+script = ExtResource("3_0bf0o")
+text = "是说在森林深处吧，万一迷路了就麻烦了"
+role = ExtResource("5_tyof8")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_p4eer")])
+node_type = 1
+pos = Vector2(4120, 40)
+
+[sub_resource type="Resource" id="Resource_i6woh"]
+script = ExtResource("3_0bf0o")
+text = "不过，说真的，那个地方真的能找到吗？"
+role = ExtResource("5_tyof8")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_y8pvm")])
+node_type = 1
+pos = Vector2(3760, 40)
+
+[sub_resource type="Resource" id="Resource_08s7n"]
+script = ExtResource("3_0bf0o")
+text = "别瞎扯了，这世上怎么会有这种东西？"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_i6woh")])
+node_type = 1
+pos = Vector2(3420, 40)
+
+[sub_resource type="Resource" id="Resource_5ldtr"]
+script = ExtResource("3_0bf0o")
+text = "可是……万一……有什么冤死的怨魂什么的"
+role = ExtResource("3_u36cj")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_08s7n")])
+node_type = 1
+pos = Vector2(3080, 40)
+
+[sub_resource type="Resource" id="Resource_gst4x"]
+script = ExtResource("3_0bf0o")
+text = "放心吧，传闻里的科学家十年前就死了，
+现在那里不过是座空荡荡的废弃洋馆罢了"
+role = ExtResource("3_ceyla")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_5ldtr")])
+node_type = 1
+pos = Vector2(2760, 40)
+
+[sub_resource type="Resource" id="Resource_nylx4"]
+script = ExtResource("3_0bf0o")
+text = "不是，唯音!
+我们真的要去那种的地方啊，
+听起来太危险了吧"
+role = ExtResource("3_u36cj")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_gst4x")])
+node_type = 1
+pos = Vector2(2440, 40)
+
+[sub_resource type="Resource" id="Resource_p43qk"]
+script = ExtResource("3_0bf0o")
+text = "礼诗你这人太讨厌了"
+role = ExtResource("3_u36cj")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_nylx4")])
+node_type = 1
+pos = Vector2(2120, 40)
+
+[sub_resource type="Resource" id="Resource_7swcp"]
+script = ExtResource("3_0bf0o")
+text = "大笨蛋！！！"
+role = ExtResource("3_u36cj")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_p43qk")])
+node_type = 1
+pos = Vector2(1800, 40)
+
+[sub_resource type="Resource" id="Resource_klx46"]
+script = ExtResource("3_0bf0o")
+text = "小爱你也太胆小了
+哈哈哈哈，笑死我了"
+role = ExtResource("3_muipy")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_7swcp")])
+node_type = 1
+pos = Vector2(1500, 40)
+
+[sub_resource type="Resource" id="Resource_fdit1"]
+script = ExtResource("8_ufnym")
+script_cmd = "AudioManager.start_music(\"happy_bgm01\")"
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_klx46")])
+node_type = 9
+pos = Vector2(1280, 60)
+
+[sub_resource type="Resource" id="Resource_yw7cp"]
+script = ExtResource("3_0bf0o")
+text = "哇啊啊啊"
+role = ExtResource("3_u36cj")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_fdit1")])
+node_type = 1
+pos = Vector2(960, 40)
+
+[sub_resource type="Resource" id="Resource_ln2mp"]
+script = ExtResource("3_0bf0o")
+text = "既然来了，那就一个都别想跑了"
+role = ExtResource("3_muipy")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_yw7cp")])
+node_type = 1
+pos = Vector2(620, 40)
+
+[sub_resource type="Resource" id="Resource_cysa7"]
+script = ExtResource("3_0bf0o")
+text = "嘎嘎嘎嘎"
+role = ExtResource("3_muipy")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_ln2mp")])
+node_type = 1
+pos = Vector2(280, 40)
+
+[sub_resource type="Resource" id="Resource_qc0oe"]
+script = ExtResource("2_jxvlv")
+children = Array[ExtResource("2_jxvlv")]([SubResource("Resource_cysa7")])
+node_type = 0
+pos = Vector2(45.1365, 117.568)
+
+[resource]
+script = ExtResource("1_bhan0")
+title = "序章 - 2社团部室的对话"
+is_collsion = false
+trigger_type = 3
+tree = SubResource("Resource_qc0oe")
+map = {}

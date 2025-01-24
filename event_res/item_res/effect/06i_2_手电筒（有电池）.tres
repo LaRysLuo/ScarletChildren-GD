@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=18 format=3 uid="uid://cxskmeojw2pjv"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_ehgiy"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_gnifo"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_7aoka"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_13wt6"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="4_iulsf"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_lbb66"]
+
+[sub_resource type="Resource" id="Resource_87636"]
+script = ExtResource("3_7aoka")
+text = "手电筒关闭了"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_gnifo")]([])
+node_type = 1
+pos = Vector2(1760, 500)
+
+[sub_resource type="Resource" id="Resource_lwggp"]
+script = ExtResource("2_gnifo")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_87636")
+
+[sub_resource type="Resource" id="Resource_ar5qm"]
+script = ExtResource("3_13wt6")
+script_cmd = "GameManager.player.hide_flash_light()"
+children = Array[ExtResource("2_gnifo")]([SubResource("Resource_lwggp")])
+node_type = 9
+pos = Vector2(1480, 520)
+
+[sub_resource type="Resource" id="Resource_vatem"]
+script = ExtResource("2_gnifo")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_ar5qm")
+
+[sub_resource type="Resource" id="Resource_bxuqn"]
+script = ExtResource("3_7aoka")
+text = "手电筒打开了"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_gnifo")]([])
+node_type = 1
+pos = Vector2(1780, 180)
+
+[sub_resource type="Resource" id="Resource_rj48j"]
+script = ExtResource("2_gnifo")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_bxuqn")
+
+[sub_resource type="Resource" id="Resource_1kjkq"]
+script = ExtResource("3_13wt6")
+script_cmd = "GameManager.player.show_flash_light()"
+children = Array[ExtResource("2_gnifo")]([SubResource("Resource_rj48j")])
+node_type = 9
+pos = Vector2(1500, 200)
+
+[sub_resource type="Resource" id="Resource_762q5"]
+script = ExtResource("2_gnifo")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_1kjkq")
+
+[sub_resource type="Resource" id="Resource_uggbc"]
+script = ExtResource("4_iulsf")
+script_cmd = "!is_flash()"
+children = Array[ExtResource("2_gnifo")]([SubResource("Resource_vatem"), SubResource("Resource_762q5")])
+node_type = 17
+pos = Vector2(1020, 200)
+
+[sub_resource type="Resource" id="Resource_joltc"]
+script = ExtResource("2_gnifo")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_uggbc")
+
+[sub_resource type="Resource" id="Resource_dvyo1"]
+script = ExtResource("4_lbb66")
+children = Array[ExtResource("2_gnifo")]([SubResource("Resource_joltc")])
+node_type = 0
+pos = Vector2(820, 280)
+
+[resource]
+script = ExtResource("1_ehgiy")
+title = ""
+is_collsion = false
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_dvyo1")
+map = {}

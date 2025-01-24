@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://del37txe52koe"]
+
+[ext_resource type="Script" path="res://event_editor/nodes/itemlink_node/itemlink_gn.gd" id="1_johar"]
+
+[node name="ItemLinkNode" type="GraphNode"]
+custom_minimum_size = Vector2(180, 120)
+offset_right = 252.0
+offset_bottom = 127.0
+title = "消息Ex - 物品联想"
+slot/0/left_enabled = false
+slot/0/left_type = 1204
+slot/0/left_color = Color(0, 0.670588, 0.65098, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = true
+slot/1/left_type = 1205
+slot/1/left_color = Color(0.223529, 0.560784, 0.141176, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_johar")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="HSplitContainer"]
+layout_mode = 2
+text = "物品key"
+
+[node name="TextEdit" type="TextEdit" parent="HSplitContainer"]
+layout_mode = 2
+placeholder_text = "请输入key"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "匹配成功回调"

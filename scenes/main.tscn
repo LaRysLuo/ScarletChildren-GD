@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=4 uid="uid://d234j5aingqui"]
 
-[ext_resource type="PackedScene" uid="uid://dcpd1u6slvjtw" path="res://scenes/character.tscn" id="1_bafmh"]
+[ext_resource type="PackedScene" uid="uid://dcpd1u6slvjtw" path="res://character/character.tscn" id="1_bafmh"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_n8u8u"]
 [ext_resource type="Texture2D" uid="uid://dciablvswuwic" path="res://assets/tilesets/steampnk_a4.png" id="2_2h1o4"]
 [ext_resource type="Texture2D" uid="uid://14pjr6hwvxbl" path="res://assets/tileset0/steampnk_a2.png" id="2_b6q8i"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://rnp1sqqoi46k" path="res://assets/tilesets/lobby-2.png" id="4_lmwkv"]
 [ext_resource type="Texture2D" uid="uid://3ytacjwl7c61" path="res://assets/tilesets/lobby-3.png" id="5_8hn7w"]
 [ext_resource type="PackedScene" uid="uid://ijj8tcxuhut7" path="res://scenes/door.tscn" id="5_jrfym"]
-[ext_resource type="PackedScene" uid="uid://dar6yiyqmjdvs" path="res://scenes/erin_test.tscn" id="5_vw5fw"]
+[ext_resource type="PackedScene" uid="uid://dar6yiyqmjdvs" path="res://character/character_yui.tscn" id="5_vw5fw"]
 [ext_resource type="Texture2D" uid="uid://gephmp2y8uh5" path="res://assets/tilesets/lobby-20.png" id="6_a7jgb"]
 [ext_resource type="Texture2D" uid="uid://cjbgk70s38yn3" path="res://assets/title_bg.png" id="6_su6dw"]
 [ext_resource type="PackedScene" uid="uid://fwltuxos1oca" path="res://character/player.tscn" id="7_p3jnp"]
@@ -119,8 +119,7 @@ sources/1 = SubResource("TileSetScenesCollectionSource_oyi8h")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_knlkh"]
 resource_name = "测试事件"
-scenes/2/scene = ExtResource("5_vw5fw")
-scenes/4/scene = ExtResource("5_jrfym")
+scenes/1/scene = ExtResource("5_vw5fw")
 scenes/5/scene = ExtResource("7_p3jnp")
 
 [sub_resource type="TileSet" id="TileSet_pnuc7"]
@@ -143,7 +142,7 @@ collision_enabled = false
 [node name="Objects" type="TileMapLayer" parent="."]
 z_index = 1
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAIAAwAAAAAAAAAAgAJABIAAAAAAAAABAAKABIAAAAAAAAABAALAA0AAAAAAAAABQAKABAAAAAAAAAABAAJABAAAAAAAAAABAA=")
+tile_map_data = PackedByteArray("AAALAA0AAAAAAAAABQAKAA0AAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_pnuc7")
 rendering_quadrant_size = 32
 

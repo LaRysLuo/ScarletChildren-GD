@@ -1,0 +1,2 @@
+extends BaseEventNode
+class_name StartData

@@ -1,0 +1,149 @@
+[gd_scene load_steps=17 format=4 uid="uid://caclgjyykjd6u"]
+
+[ext_resource type="Texture2D" uid="uid://b86i12djqnij" path="res://assets/tilesets/wild/wild-0.png" id="1_8fahf"]
+[ext_resource type="TileSet" uid="uid://4h8rsnwtsgr2" path="res://tilesets/main.tres" id="1_mcjfd"]
+[ext_resource type="Script" path="res://scripts/map_config.gd" id="1_mi1u1"]
+[ext_resource type="Texture2D" uid="uid://1jnwrqis61ab" path="res://assets/tilesets/wild/wild-2.png" id="2_crsqv"]
+[ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_xptrn"]
+[ext_resource type="Resource" uid="uid://dbjrw3u8x0jvi" path="res://event_res/野外event(11,-1).tres" id="3_i8y5i"]
+[ext_resource type="Texture2D" uid="uid://dag2ate4at0jj" path="res://assets/effect/raindrop.png" id="4_rnfhj"]
+[ext_resource type="Material" uid="uid://brp2f2281vhhl" path="res://tilesets/rain_bloom_material.tres" id="5_jauo6"]
+[ext_resource type="Texture2D" uid="uid://yuwnrolxiyjx" path="res://assets/effect/rain_bloom.png" id="5_tbm1p"]
+[ext_resource type="AudioStream" uid="uid://bqimi6vrpqtxv" path="res://audio/se/rain.mp3" id="7_8yxpy"]
+
+[sub_resource type="Resource" id="Resource_jbl14"]
+script = ExtResource("2_xptrn")
+pos = Vector2i(11, 0)
+event_res = ExtResource("3_i8y5i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eyksf"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(500, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 298, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6ufpo"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(400, 400, 1)
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="Animation" id="Animation_0p0hf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("闪电闪烁图像:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gm3a3"]
+resource_name = "闪电闪烁"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("闪电闪烁图像:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tg5ew"]
+_data = {
+"RESET": SubResource("Animation_0p0hf"),
+"闪电闪烁": SubResource("Animation_gm3a3")
+}
+
+[node name="野外" type="Node2D"]
+
+[node name="Maps" type="Node2D" parent="."]
+position = Vector2(1, 0)
+script = ExtResource("1_mi1u1")
+bottom_limit = 602.0
+right_limit = 796.0
+event_group = Array[ExtResource("2_xptrn")]([SubResource("Resource_jbl14")])
+
+[node name="0" type="Sprite2D" parent="Maps"]
+position = Vector2(400, 300)
+texture = ExtResource("1_8fahf")
+
+[node name="2" type="Sprite2D" parent="Maps"]
+z_index = 2
+position = Vector2(400, 300)
+texture = ExtResource("2_crsqv")
+
+[node name="Movable" type="TileMapLayer" parent="Maps"]
+visible = false
+tile_map_data = PackedByteArray("AAAJAAQAAgABAAEAAAAKAAQAAgABAAEAAAAKAAMAAgABAAEAAAAKAAIAAgABAAEAAAAKAAEAAgABAAEAAAAKAAAAAgABAAEAAAALAAAAAgABAAEAAAALAAEAAgABAAEAAAALAAIAAgABAAEAAAALAAMAAgABAAEAAAALAAQAAgABAAEAAAAMAAQAAgABAAEAAAAMAAMAAgABAAEAAAAMAAIAAgABAAEAAAAMAAEAAgABAAEAAAAMAAAAAgABAAEAAAANAAMAAgABAAEAAAANAAQAAgABAAEAAAAOAAQAAgABAAEAAAAOAAMAAgABAAEAAAAPAAQAAgABAAEAAAAIAAYAAgABAAEAAAAJAAYAAgABAAEAAAAKAAYAAgABAAEAAAALAAYAAgABAAEAAAAMAAYAAgABAAEAAAANAAYAAgABAAEAAAAOAAYAAgABAAEAAAAPAAYAAgABAAEAAAAQAAYAAgABAAEAAAAQAAcAAgABAAEAAAAQAAgAAgABAAEAAAAPAAgAAgABAAEAAAAOAAgAAgABAAEAAAANAAgAAgABAAEAAAAMAAgAAgABAAEAAAAPAAcAAgABAAEAAAAOAAcAAgABAAEAAAANAAcAAgABAAEAAAAMAAcAAgABAAEAAAALAAcAAgABAAEAAAAKAAcAAgABAAEAAAAJAAcAAgABAAEAAAAIAAcAAgABAAEAAAAJAAgAAgABAAEAAAAKAAgAAgABAAEAAAALAAgAAgABAAEAAAAIAAgAAgABAAEAAAAIAAkAAgABAAEAAAAJAAkAAgABAAEAAAAKAAkAAgABAAEAAAAMAAkAAgABAAEAAAANAAkAAgABAAEAAAAOAAkAAgABAAEAAAAPAAkAAgABAAEAAAAQAAkAAgABAAEAAAARAAkAAgABAAEAAAARAAoAAgABAAEAAAASAAkAAgABAAEAAAASAAoAAgABAAEAAAAQAAoAAgABAAEAAAAPAAoAAgABAAEAAAAOAAoAAgABAAEAAAANAAoAAgABAAEAAAAMAAoAAgABAAEAAAALAAoAAgABAAEAAAAKAAoAAgABAAEAAAAJAAoAAgABAAEAAAAIAAoAAgABAAEAAAAHAAoAAgABAAEAAAAHAAkAAgABAAEAAAAHAAsAAgABAAEAAAAIAAsAAgABAAEAAAAJAAsAAgABAAEAAAAKAAsAAgABAAEAAAALAAsAAgABAAEAAAAMAAsAAgABAAEAAAANAAsAAgABAAEAAAAOAAsAAgABAAEAAAAPAAsAAgABAAEAAAAQAAsAAgABAAEAAAARAAsAAgABAAEAAAAPAAwAAgABAAEAAAAOAAwAAgABAAEAAAANAAwAAgABAAEAAAAMAAwAAgABAAEAAAALAAwAAgABAAEAAAAKAAwAAgABAAEAAAAJAAwAAgABAAEAAAAIAAwAAgABAAEAAAAHAAwAAgABAAEAAAAHAA0AAgABAAEAAAAIAA0AAgABAAEAAAAJAA0AAgABAAEAAAAKAA0AAgABAAEAAAALAA0AAgABAAEAAAAMAA0AAgABAAEAAAANAA0AAgABAAEAAAAOAA0AAgABAAEAAAAPAA0AAgABAAEAAAAIAA4AAgABAAEAAAAJAA4AAgABAAEAAAAKAA4AAgABAAEAAAALAA4AAgABAAEAAAAMAA4AAgABAAEAAAANAA4AAgABAAEAAAAOAA4AAgABAAEAAAAPAA4AAgABAAEAAAAJAAUAAgABAAEAAAA=")
+tile_set = ExtResource("1_mcjfd")
+rendering_quadrant_size = 32
+
+[node name="Objects" type="TileMapLayer" parent="Maps"]
+tile_map_data = PackedByteArray("AAALAAAAAQAAAAAABAALAAMAAQAAAAAAAgA=")
+tile_set = ExtResource("1_mcjfd")
+rendering_quadrant_size = 32
+
+[node name="Rain" type="Node2D" parent="."]
+visible = false
+
+[node name="RainDrop" type="GPUParticles2D" parent="Rain"]
+z_index = 2
+position = Vector2(379, -107)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_eyksf")
+texture = ExtResource("4_rnfhj")
+lifetime = 3.0
+visibility_rect = Rect2(-200, 0, 400, 400)
+
+[node name="RainBloom" type="GPUParticles2D" parent="Rain"]
+self_modulate = Color(1, 1, 1, 0.843137)
+z_index = 2
+material = ExtResource("5_jauo6")
+position = Vector2(390, 244)
+process_material = SubResource("ParticleProcessMaterial_6ufpo")
+texture = ExtResource("5_tbm1p")
+lifetime = 0.6
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Rain"]
+visible = false
+
+[node name="闪电闪烁图像" type="ColorRect" parent="Rain/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Rain/CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_tg5ew")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Rain"]
+position = Vector2(0, -1)
+stream = ExtResource("7_8yxpy")
+volume_db = 1.64
+autoplay = true
+parameters/looping = true
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.392157, 0.764706, 0.968627, 0.756863)
+blend_mode = 2

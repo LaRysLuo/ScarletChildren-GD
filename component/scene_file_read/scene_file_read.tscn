@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=3 uid="uid://cw26b8xyu2fys"]
+
+[ext_resource type="Script" path="res://component/scene_file_read/scene_file_read.gd" id="1_odkht"]
+[ext_resource type="FontFile" uid="uid://mnflroidndvn" path="res://assets/fonts/fusion-pixel-10px-monospaced.otc" id="2_7gca1"]
+[ext_resource type="PackedScene" uid="uid://bwqclo5yw5lri" path="res://component/key_tips_bottom/key_tips_bottom.tscn" id="2_eryyw"]
+[ext_resource type="Script" path="res://component/key_tips_bottom/key_tips_config.gd" id="3_14f1r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gajbg"]
+font = ExtResource("2_7gca1")
+font_size = 24
+
+[sub_resource type="Resource" id="Resource_m3xmx"]
+resource_name = "A键配置"
+script = ExtResource("3_14f1r")
+key_name = &"继续"
+is_show = true
+
+[sub_resource type="Resource" id="Resource_u1vub"]
+resource_name = "B键配置"
+script = ExtResource("3_14f1r")
+key_name = &"关闭"
+is_show = true
+
+[sub_resource type="Resource" id="Resource_s5s7q"]
+resource_name = "X键配置"
+script = ExtResource("3_14f1r")
+key_name = &"功能名称"
+is_show = false
+
+[sub_resource type="Resource" id="Resource_wweks"]
+resource_name = "Y键配置"
+script = ExtResource("3_14f1r")
+key_name = &"功能名称"
+is_show = false
+
+[sub_resource type="Resource" id="Resource_6n8tf"]
+resource_name = "左右键配置"
+script = ExtResource("3_14f1r")
+key_name = &"翻页"
+is_show = true
+
+[node name="SceneFileRead" type="CanvasLayer"]
+script = ExtResource("1_odkht")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 800.0
+offset_bottom = 600.0
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 45
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "文件的标题"
+label_settings = SubResource("LabelSettings_gajbg")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 280)
+layout_mode = 2
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("2_7gca1")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "不知不觉，兄弟俩开始一唱一和编造谎言，
+谎称住在洋馆里的少女是这一带传说的吸血鬼。
+而村民们也被蛊惑，一起跟着浩浩荡荡的上山讨伐吸血鬼。
+兄弟俩依靠模糊的记忆找到了洋馆。"
+scroll_active = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+offset_right = 800.0
+offset_bottom = 600.0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="KeyTipsBottom" parent="MarginContainer2" instance=ExtResource("2_eryyw")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+a_btn = SubResource("Resource_m3xmx")
+b_btn = SubResource("Resource_u1vub")
+x_btn = SubResource("Resource_s5s7q")
+y_btn = SubResource("Resource_wweks")
+arrow_btn = SubResource("Resource_6n8tf")

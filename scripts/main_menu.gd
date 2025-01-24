@@ -1,10 +1,18 @@
-extends Control
+extends CanvasLayer
 
 var itemList:Array[LButton]
 @onready var menuPanel = $MenuPanel
 
 var last := -1
 var index := 0
+
+## 按键handler
+var btn_handler = {
+	"item": _to_item,
+	"lib": _to_lib,
+	"load":null
+}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,6 +22,8 @@ func _ready() -> void:
 	for item in list:
 		if item is LButton: 
 			itemList.append(item)
+			if item.symbol && btn_handler.get(item.symbol):
+				item.lb_submit.connect(btn_handler.get(item.symbol))
 			item.connect("lb_select_changed",on_select)
 	init_window()
 	pass # Replace with function body.
@@ -21,19 +31,22 @@ func _ready() -> void:
 func init_window():
 	AudioManager.play_se("Computer")
 	select(0,true)
-	
+
+
 # 检测输入
 func _input(event: InputEvent) -> void:
+	if !visible:return
+	## 按下取消
 	if event.is_action_pressed("cancel"):
+		get_window().set_input_as_handled()
 		close_window()
 		
 func close_window():
-	get_window().set_input_as_handled()
 	SceneManager.backto()
 	
 
 func on_item_menu():
-	SceneManager.navigate_to("item_panel")
+	SceneManager.navigate_to("scene_item_list")
 	pass
 
 func on_other():
@@ -63,3 +76,11 @@ func on_select(event:int):
 		0:
 			# 向上移动
 			if index < itemList.size() -1: select(index+1)
+
+## 跳转到道具列表
+func _to_item():
+	SceneManager.navigate_to("scene_item_list")
+	
+## 跳转到资料列表
+func _to_lib():
+	SceneManager.navigate_to("scene_lib")

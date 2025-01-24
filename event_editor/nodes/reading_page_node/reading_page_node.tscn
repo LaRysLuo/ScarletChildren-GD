@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://4n106rb1s43v"]
+
+[ext_resource type="StyleBox" uid="uid://bsl01ijdjj0hn" path="res://event_editor/styles/node_style.tres" id="1_0gam3"]
+[ext_resource type="Script" path="res://event_editor/nodes/reading_page_node/reading_page_gn.gd" id="2_vqh53"]
+
+[node name="ReadingPageNode" type="GraphNode"]
+offset_left = 113.0
+offset_top = 262.0
+offset_right = 376.0
+offset_bottom = 536.0
+mouse_filter = 1
+theme_override_colors/resizer_color = Color(0, 0.827451, 0, 1)
+theme_override_constants/separation = 15
+theme_override_styles/titlebar = ExtResource("1_0gam3")
+title = "阅读Ex - 页面"
+ignore_invalid_connection_type = true
+slot/0/left_enabled = true
+slot/0/left_type = 2
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(0.839216, 0.533333, 0.184314, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("2_vqh53")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 40
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+text = "内容"
+
+[node name="TextEdit" type="LineEdit" parent="VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+placeholder_text = "请输入文本键"
+
+[node name="HSplitContainer5" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer5"]
+layout_mode = 2
+text = "文本预览"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer5"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+editable = false
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "下一页"

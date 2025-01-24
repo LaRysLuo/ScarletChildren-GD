@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=4 uid="uid://b6jjywnns5e5l"]
+
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_hlwmp"]
+[ext_resource type="Texture2D" uid="uid://bhk3anbl1vekh" path="res://scenes/maps/蔷薇馆·中厅2F/中厅2F - 1.png" id="2_wox6m"]
+[ext_resource type="Script" path="res://component/event_extend/event_ex_config.gd" id="2_ww07i"]
+[ext_resource type="Texture2D" uid="uid://11nxf2h854eh" path="res://scenes/maps/蔷薇馆·中厅2F/中厅2F - 2.png" id="3_gy3nn"]
+[ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="3_m7c6k"]
+
+[sub_resource type="Resource" id="Resource_pdlmm"]
+script = ExtResource("3_m7c6k")
+scene_path = "res://scenes/maps/map_蔷薇馆·中厅.tscn"
+step1 = 2
+step2 = 1
+target_pos = Vector2i(13, 7)
+target_scene_door = Vector2i(13, 6)
+
+[sub_resource type="Resource" id="Resource_b02yj"]
+script = ExtResource("2_ww07i")
+coord = Vector2i(12, 16)
+event_ex = SubResource("Resource_pdlmm")
+
+[node name="中厅2F" instance=ExtResource("1_hlwmp")]
+
+[node name="Maps" parent="." index="0"]
+event_ex = Array[ExtResource("2_ww07i")]([SubResource("Resource_b02yj")])
+
+[node name="0" parent="Maps" index="0"]
+position = Vector2(401, 300)
+texture = ExtResource("2_wox6m")
+
+[node name="2" parent="Maps" index="1"]
+position = Vector2(401, 300)
+texture = ExtResource("3_gy3nn")
+
+[node name="Objects" parent="Maps" index="2"]
+tile_map_data = PackedByteArray("AAAGAAsAAQAAAAAABAAMABAAAQAAAAAACwA=")
+
+[node name="Movable" parent="Maps" index="3"]
+tile_map_data = PackedByteArray("AAAIAAoAAgABAAEAAAAJAAoAAgABAAEAAAAKAAoAAgABAAEAAAALAAoAAgABAAEAAAALAAsAAgABAAEAAAAMAAsAAgABAAEAAAANAAsAAgABAAEAAAAOAAsAAgABAAEAAAAPAAsAAgABAAEAAAAQAAsAAgABAAEAAAAQAAoAAgABAAEAAAAPAAoAAgABAAEAAAAOAAoAAgABAAEAAAANAAoAAgABAAEAAAAMAAoAAgABAAEAAAAKAAsAAgABAAEAAAAJAAsAAgABAAEAAAAIAAsAAgABAAEAAAAHAAsAAgABAAEAAAAIAAwAAgABAAEAAAAJAAwAAgABAAEAAAAKAAwAAgABAAEAAAALAAwAAgABAAEAAAAMAAwAAgABAAEAAAANAAwAAgABAAEAAAAOAAwAAgABAAEAAAAPAAwAAgABAAEAAAAQAAwAAgABAAEAAAAMAA0AAgABAAEAAAAMAA4AAgABAAEAAAAMAA8AAgABAAEAAAAMABAAAgABAAEAAAAGAAsAAgABAAEAAAA=")
+
+[node name="Black" parent="Maps" index="4"]
+visible = false

@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://q3wpveevi8cl"]
+
+[ext_resource type="StyleBox" uid="uid://bsl01ijdjj0hn" path="res://event_editor/styles/node_style.tres" id="1_smwcx"]
+[ext_resource type="Script" path="res://event_editor/nodes/cinema_node/cinema_mode_gn.gd" id="2_1mfeb"]
+
+[node name="CinemaModeNode" type="GraphNode"]
+offset_left = 113.0
+offset_top = 262.0
+offset_right = 312.0
+offset_bottom = 363.0
+mouse_filter = 1
+theme_override_colors/resizer_color = Color(0, 0.827451, 0, 1)
+theme_override_constants/separation = 15
+theme_override_styles/titlebar = ExtResource("1_smwcx")
+title = "启动剧场模式"
+ignore_invalid_connection_type = true
+slot/0/left_enabled = true
+slot/0/left_type = 2
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(0.839216, 0.533333, 0.184314, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("2_1mfeb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 40
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+text = "场景"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer3/HSplitContainer"]
+layout_mode = 2
+text = "空"
+
+[node name="Button" type="Button" parent="VBoxContainer/HSplitContainer3/HSplitContainer"]
+layout_mode = 2
+text = "选取"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "结束时"

@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=18 format=3 uid="uid://dvtljfhw615ka"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_2x7lk"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_dado6"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_85abu"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_tq7yf"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_80rut"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="4_675tr"]
+
+[sub_resource type="Resource" id="Resource_8s34a"]
+script = ExtResource("3_tq7yf")
+script_cmd = "GameManager.player.show_flash_light()"
+children = Array[ExtResource("2_dado6")]([])
+node_type = 9
+pos = Vector2(1800, 200)
+
+[sub_resource type="Resource" id="Resource_tj7ka"]
+script = ExtResource("2_dado6")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_8s34a")
+
+[sub_resource type="Resource" id="Resource_7raw2"]
+script = ExtResource("3_85abu")
+text = "手电筒打开了"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_dado6")]([SubResource("Resource_tj7ka")])
+node_type = 1
+pos = Vector2(1440, 120)
+
+[sub_resource type="Resource" id="Resource_so1qg"]
+script = ExtResource("2_dado6")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_7raw2")
+
+[sub_resource type="Resource" id="Resource_48x0l"]
+script = ExtResource("3_tq7yf")
+script_cmd = "GameManager.player.hide_flash_light()"
+children = Array[ExtResource("2_dado6")]([])
+node_type = 9
+pos = Vector2(1900, 560)
+
+[sub_resource type="Resource" id="Resource_30178"]
+script = ExtResource("2_dado6")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_48x0l")
+
+[sub_resource type="Resource" id="Resource_xml2g"]
+script = ExtResource("3_85abu")
+text = "手电筒关闭了"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_dado6")]([SubResource("Resource_30178")])
+node_type = 1
+pos = Vector2(1440, 460)
+
+[sub_resource type="Resource" id="Resource_em6at"]
+script = ExtResource("2_dado6")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_xml2g")
+
+[sub_resource type="Resource" id="Resource_o3837"]
+script = ExtResource("4_675tr")
+script_cmd = "!is_flash()"
+children = Array[ExtResource("2_dado6")]([SubResource("Resource_so1qg"), SubResource("Resource_em6at")])
+node_type = 17
+pos = Vector2(1020, 200)
+
+[sub_resource type="Resource" id="Resource_602g5"]
+script = ExtResource("2_dado6")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_o3837")
+
+[sub_resource type="Resource" id="Resource_qvmku"]
+script = ExtResource("4_80rut")
+children = Array[ExtResource("2_dado6")]([SubResource("Resource_602g5")])
+node_type = 0
+pos = Vector2(820, 280)
+
+[resource]
+script = ExtResource("1_2x7lk")
+title = ""
+is_collsion = false
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_qvmku")
+map = {}

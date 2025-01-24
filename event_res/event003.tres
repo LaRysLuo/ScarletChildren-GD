@@ -1,0 +1,137 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=24 format=3 uid="uid://cwgk6ijg08phh"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_js2sr"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_0v7x6"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_3qxga"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_08ygs"]
+[ext_resource type="Script" path="res://event_editor/models/transport_data.gd" id="3_vdwok"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="4_gna4t"]
+[ext_resource type="Script" path="res://event_editor/models/fadein_data.gd" id="4_uvoom"]
+[ext_resource type="Script" path="res://event_editor/models/fadeout_data.gd" id="7_toeok"]
+
+[sub_resource type="Resource" id="Resource_rqy15"]
+script = ExtResource("3_08ygs")
+script_cmd = "AudioManager.stop_se()"
+children = Array[ExtResource("2_0v7x6")]([])
+node_type = 9
+pos = Vector2(4080, 0)
+
+[sub_resource type="Resource" id="Resource_w888f"]
+script = ExtResource("4_uvoom")
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_rqy15")])
+node_type = 5
+pos = Vector2(3920, 40)
+
+[sub_resource type="Resource" id="Resource_ivs5x"]
+script = ExtResource("3_08ygs")
+script_cmd = "GameManager.face_to(Vector2i.UP)"
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_w888f")])
+node_type = 9
+pos = Vector2(3680, 0)
+
+[sub_resource type="Resource" id="Resource_42st4"]
+script = ExtResource("3_vdwok")
+target_map_path = "res://scenes/maps/Map_1号房间.tscn"
+is_move_character = false
+target_coord = Vector2i(0, 0)
+is_fade = false
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_ivs5x")])
+node_type = 8
+pos = Vector2(3340, 0)
+
+[sub_resource type="Resource" id="Resource_mc4de"]
+script = ExtResource("4_gna4t")
+time = 2.5
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_42st4")])
+node_type = 6
+pos = Vector2(3100, 40)
+
+[sub_resource type="Resource" id="Resource_jsduw"]
+script = ExtResource("3_08ygs")
+script_cmd = "AudioManager.play_se(\"alarm\")"
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_mc4de")])
+node_type = 9
+pos = Vector2(2840, -20)
+
+[sub_resource type="Resource" id="Resource_r2b74"]
+script = ExtResource("7_toeok")
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_jsduw")])
+node_type = 4
+pos = Vector2(2660, 40)
+
+[sub_resource type="Resource" id="Resource_wv3aa"]
+script = ExtResource("3_3qxga")
+text = "然而，每次梦醒，脑海里一片空白，什么都想不起来"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_r2b74")])
+node_type = 1
+pos = Vector2(2320, -20)
+
+[sub_resource type="Resource" id="Resource_7swqr"]
+script = ExtResource("3_3qxga")
+text = "有时，却是涌起一股莫名的恐惧，让我心悸"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_wv3aa")])
+node_type = 1
+pos = Vector2(1980, -20)
+
+[sub_resource type="Resource" id="Resource_hhb7x"]
+script = ExtResource("3_3qxga")
+text = "有时，梦里弥漫着温馨，像阳光洒在身上一样温暖"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_7swqr")])
+node_type = 1
+pos = Vector2(1640, -20)
+
+[sub_resource type="Resource" id="Resource_rdyfk"]
+script = ExtResource("3_3qxga")
+text = "那些记忆模糊而遥远，彷佛隔着一层厚厚的雾霭"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_hhb7x")])
+node_type = 1
+pos = Vector2(1300, -20)
+
+[sub_resource type="Resource" id="Resource_aewpq"]
+script = ExtResource("3_3qxga")
+text = "只是常常会梦到小时候的自己"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_rdyfk")])
+node_type = 1
+pos = Vector2(960, -20)
+
+[sub_resource type="Resource" id="Resource_n7fey"]
+script = ExtResource("3_3qxga")
+text = "已经记不得以前的事情了"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_aewpq")])
+node_type = 1
+pos = Vector2(620, -20)
+
+[sub_resource type="Resource" id="Resource_mk73c"]
+script = ExtResource("3_3qxga")
+text = "不知道从什么时候开始"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_n7fey")])
+node_type = 1
+pos = Vector2(280, -20)
+
+[sub_resource type="Resource" id="Resource_wtco2"]
+script = ExtResource("2_0v7x6")
+children = Array[ExtResource("2_0v7x6")]([SubResource("Resource_mk73c")])
+node_type = 0
+pos = Vector2(50, 50)
+
+[resource]
+script = ExtResource("1_js2sr")
+title = "开场"
+is_collsion = true
+trigger_type = 3
+tree = SubResource("Resource_wtco2")
+map = {}

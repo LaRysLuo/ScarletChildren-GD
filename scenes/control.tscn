@@ -16,10 +16,9 @@ script = ExtResource("1_00k6o")
 content = "sassa1233334"
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 1
-offset_right = 300.0
-offset_bottom = 143.0
+offset_right = 162.0
+offset_bottom = 239.0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 clip_contents = true
@@ -31,7 +30,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="Content" type="Label" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
-text = "11111"
+text = "你好呀,我的朋友啊"
 autowrap_mode = 1
 justification_flags = 235
 

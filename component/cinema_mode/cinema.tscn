@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo2y4ypndn04f"]
+
+[ext_resource type="Script" path="res://component/cinema_mode/cinema.gd" id="1_dn2cp"]
+
+[node name="Cinema" type="Node2D"]
+script = ExtResource("1_dn2cp")

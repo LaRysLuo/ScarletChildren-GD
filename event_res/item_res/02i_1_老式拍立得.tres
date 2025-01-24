@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b2boxwndb2deb"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_fw8j7"]
+[ext_resource type="Resource" uid="uid://ckw2i3vln66vi" path="res://event_res/item_res/effect/02i_1_老式拍立得.tres" id="2_ip1ca"]
+
+[resource]
+script = ExtResource("1_fw8j7")
+item_id = &"02i_1_老式拍立得"
+item_name = &"老式拍立得"
+item_catagory = 1
+item_desc = "插着永久相纸，可进行拍照"
+use_event = ExtResource("2_ip1ca")
+err_desc = ""
+relations = Array[ExtResource("1_fw8j7")]([])

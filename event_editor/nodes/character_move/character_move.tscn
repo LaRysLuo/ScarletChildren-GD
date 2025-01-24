@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk76be3kcry37"]
+
+[ext_resource type="StyleBox" uid="uid://bsl01ijdjj0hn" path="res://event_editor/styles/node_style.tres" id="1_1mfgk"]
+[ext_resource type="Script" path="res://event_editor/nodes/character_move/character_move_gn.gd" id="1_m4a6r"]
+
+[node name="CharacterMove" type="GraphNode"]
+offset_left = 106.0
+offset_top = 213.0
+offset_right = 417.0
+offset_bottom = 408.0
+mouse_filter = 1
+theme_override_styles/titlebar = ExtResource("1_1mfgk")
+position_offset = Vector2(-671, -413)
+title = "角色移动"
+ignore_invalid_connection_type = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_m4a6r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 385
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "移动类型"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+selected = 0
+item_count = 6
+popup/item_0/text = "向前移动"
+popup/item_1/text = "向后移动"
+popup/item_1/id = 1
+popup/item_2/text = "向下移动"
+popup/item_2/id = 2
+popup/item_3/text = "向左移动"
+popup/item_3/id = 3
+popup/item_4/text = "向右移动"
+popup/item_4/id = 4
+popup/item_5/text = "向上移动"
+popup/item_5/id = 5
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 385
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+text = "目标角色"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HSplitContainer2"]
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "自己"
+popup/item_1/text = "玩家"
+popup/item_1/id = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HSplitContainer2/HBoxContainer"]
+layout_mode = 2
+text = "选择"
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 385
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+text = "步数"
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HSplitContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 20.0
+
+[node name="HSplitContainer5" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 385
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer5"]
+layout_mode = 2
+text = "速度百分比"
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HSplitContainer5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="HSplitContainer4" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 385
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer4"]
+layout_mode = 2
+text = "等待结束"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HSplitContainer4"]
+layout_mode = 2

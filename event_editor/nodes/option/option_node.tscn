@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg6o6kld6uxtd"]
+
+[ext_resource type="Script" path="res://event_editor/nodes/option/scripts/option_gn.gd" id="1_spkp8"]
+
+[node name="ConditionNode" type="GraphNode"]
+custom_minimum_size = Vector2(0, 120)
+offset_right = 252.0
+offset_bottom = 127.0
+title = "选项"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_spkp8")

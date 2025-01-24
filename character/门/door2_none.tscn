@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhjuj5bar1qrh"]
+
+[ext_resource type="Script" path="res://character/门/door1.gd" id="1_kwh3t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yogc0"]
+
+[node name="门1" type="Node2D" groups=["events"]]
+z_index = 1
+z_as_relative = false
+position = Vector2(0, 1)
+script = ExtResource("1_kwh3t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 99
+shape = SubResource("RectangleShape2D_yogc0")
+debug_color = Color(0.961249, 0, 0.511433, 0.42)
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -17)

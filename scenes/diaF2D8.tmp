@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtjn8c2ay15xk"]
+
+[ext_resource type="Script" path="res://scripts/dialogue_system.gd" id="1_dckcq"]
+[ext_resource type="Texture2D" uid="uid://bq1fb8i7vtves" path="res://assets/resu_menu.png" id="2_0j14e"]
+[ext_resource type="PackedScene" uid="uid://bn73yc4lc33tk" path="res://component/options/options.tscn" id="3_ym6pg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rbe6h"]
+font_color = Color(0.92475, 0.574947, 0.209639, 1)
+
+[node name="DialogueSystem" type="CanvasLayer"]
+process_priority = 10
+script = ExtResource("1_dckcq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_left = 33.0
+offset_top = 135.0
+offset_right = 290.481
+offset_bottom = 594.0
+texture = ExtResource("2_0j14e")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="DialogueBox" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 448.0
+offset_right = -24.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogueBox/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="DialogueBox/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="DialogueBox/MarginContainer/HBoxContainer/Control"]
+custom_minimum_size = Vector2(-3.275, 0)
+layout_mode = 2
+offset_left = 4.0
+offset_right = 104.0
+offset_bottom = 23.0
+text = "礼诗"
+label_settings = SubResource("LabelSettings_rbe6h")
+
+[node name="ContentLabel" type="Label" parent="DialogueBox/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "礼诗要说的话显示在这里xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx礼诗要说的话显示在这里xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx礼诗要说的话显示在这里xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx礼诗要说的话显示在这里xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+autowrap_mode = 1
+clip_text = true
+
+[node name="Options" parent="." instance=ExtResource("3_ym6pg")]
+offset_left = 618.0
+offset_top = 347.0
+offset_right = 774.0
+offset_bottom = 433.0

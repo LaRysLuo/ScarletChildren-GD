@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhytfmcjfyao"]
+
+[ext_resource type="Texture2D" uid="uid://6ft35a7csyv7" path="res://assets/down_arrow.png" id="1_3g1f3"]
+[ext_resource type="Script" path="res://component/pop_message/pop_message.gd" id="1_75f1j"]
+
+[node name="PopMessage" type="Control" node_paths=PackedStringArray("label", "container", "arrow")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 194.0
+offset_bottom = 25.0
+script = ExtResource("1_75f1j")
+text = "你好呀，我的朋友"
+label = NodePath("CenterContainer/MarginContainer/HBoxContainer/Label")
+container = NodePath("CenterContainer")
+arrow = NodePath("TextureRect")
+
+[node name="CenterContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_right = 21.0
+offset_bottom = 23.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "你好呀，我的朋友"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = 20.5
+offset_right = 15.0
+offset_bottom = 43.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3g1f3")

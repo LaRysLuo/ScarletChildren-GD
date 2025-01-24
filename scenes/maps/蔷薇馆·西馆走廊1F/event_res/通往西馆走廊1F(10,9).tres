@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=8 format=3 uid="uid://3lalkfx681a"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_28rlo"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_eu1mm"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_yc0y7"]
+[ext_resource type="Script" path="res://event_editor/models/transport_data.gd" id="3_jewrh"]
+
+[sub_resource type="Resource" id="Resource_xowce"]
+script = ExtResource("3_jewrh")
+target_map_path = "res://scenes/maps/蔷薇馆·西馆走廊1F/map_蔷薇馆·西馆走廊1f.tscn"
+is_move_character = true
+target_coord = Vector2i(17, 14)
+is_fade = true
+children = Array[ExtResource("2_yc0y7")]([])
+node_type = 8
+pos = Vector2(2880, 200)
+
+[sub_resource type="Resource" id="Resource_1jbkb"]
+script = ExtResource("2_yc0y7")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_xowce")
+
+[sub_resource type="Resource" id="Resource_1bpfi"]
+script = ExtResource("2_eu1mm")
+children = Array[ExtResource("2_yc0y7")]([SubResource("Resource_1jbkb")])
+node_type = 0
+pos = Vector2(2660, 280)
+
+[resource]
+script = ExtResource("1_28rlo")
+title = "通往西馆走廊1F(10,9)"
+is_collsion = true
+trigger_type = 2
+one_shot = false
+tree = SubResource("Resource_1bpfi")
+map = {}

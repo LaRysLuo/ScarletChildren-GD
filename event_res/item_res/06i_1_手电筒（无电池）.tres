@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cwk15eq4krnfa"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_ili57"]
+
+[resource]
+script = ExtResource("1_ili57")
+item_id = &"06i_1_手电筒（无电池）"
+item_name = &"手电筒"
+item_catagory = 1
+item_desc = "缺少了电池，无法打开"
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_ili57")]([])

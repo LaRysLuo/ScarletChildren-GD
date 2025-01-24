@@ -1,0 +1,197 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3pt8tx6bgdhn"]
+
+[ext_resource type="Script" path="res://event_editor/event_editor.gd" id="1_6dp6w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwaxp"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_mpcnw"]
+
+[node name="EventEditor" type="Control" node_paths=PackedStringArray("save_btn", "clear_btn", "node_parent", "popup_menu", "popup_menu2", "res_name_label", "tip_label", "add_menu")]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6dp6w")
+save_btn = NodePath("Box/VBoxContainer/Line1/HBoxContainer/SaveBtn")
+clear_btn = NodePath("Box/VBoxContainer/Line1/HBoxContainer/ClearBtn")
+node_parent = NodePath("Box/GraphEdit")
+popup_menu = NodePath("PopupMenu")
+popup_menu2 = NodePath("AddNodeMenuPanel")
+res_name_label = NodePath("Box/VBoxContainer/Line1/Label")
+tip_label = NodePath("History/Label")
+add_menu = NodePath("Box/VBoxContainer/Line2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Box" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+collapsed = true
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Box"]
+layout_mode = 2
+
+[node name="Line1" type="HSplitContainer" parent="Box/VBoxContainer"]
+layout_mode = 2
+split_offset = 1680
+
+[node name="Label" type="Label" parent="Box/VBoxContainer/Line1"]
+layout_mode = 2
+text = "当前文件:  无"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Box/VBoxContainer/Line1"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="ClearBtn" type="Button" parent="Box/VBoxContainer/Line1/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qwaxp")
+disabled = true
+text = "清除"
+
+[node name="SaveBtn" type="Button" parent="Box/VBoxContainer/Line1/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qwaxp")
+disabled = true
+text = "保存"
+
+[node name="Line2" type="HBoxContainer" parent="Box/VBoxContainer"]
+layout_mode = 2
+
+[node name="GraphEdit" type="GraphEdit" parent="Box"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+right_disconnects = true
+show_menu = false
+show_zoom_buttons = false
+
+[node name="GraphEdit2" type="GraphEdit" parent="Box"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+right_disconnects = true
+show_menu = false
+show_zoom_buttons = false
+
+[node name="History" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 72.0
+offset_bottom = 95.0
+grow_horizontal = 2
+ratio = 0.001
+alignment_horizontal = 2
+
+[node name="Label" type="Label" parent="History"]
+visible = false
+layout_mode = 2
+text = "11111111111"
+label_settings = SubResource("LabelSettings_mpcnw")
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+auto_translate_mode = 2
+title = "删除菜单"
+auto_translate = false
+hide_on_state_item_selection = true
+allow_search = false
+prefer_native_menu = true
+item_count = 2
+item_0/text = "删除"
+item_1/text = "取消"
+item_1/id = 1
+
+[node name="AddNodeMenuPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 64.0
+offset_top = 150.0
+offset_right = 282.0
+offset_bottom = 407.0
+
+[node name="MarginContainer" type="MarginContainer" parent="AddNodeMenuPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HSplitContainer" type="HSplitContainer" parent="AddNodeMenuPanel/MarginContainer"]
+layout_mode = 2
+split_offset = 350
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "显示消息"
+
+[node name="Button4" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "角色 - 向上移动"
+
+[node name="Button5" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "角色 - 向下移动"
+
+[node name="Button6" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "角色 - 向左移动"
+
+[node name="Button7" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "角色 - 向右移动"
+
+[node name="Button2" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "角色 - 向前移动"
+
+[node name="Button3" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "角色 - 向后移动"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+text = "画面淡入"
+
+[node name="Button2" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+text = "画面淡出"
+
+[node name="Button3" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+text = "等待"
+
+[node name="Button4" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+text = "   "
+
+[node name="Button5" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+text = "   "
+
+[node name="Button6" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+text = "   "
+
+[node name="Button7" type="Button" parent="AddNodeMenuPanel/MarginContainer/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+text = "   "

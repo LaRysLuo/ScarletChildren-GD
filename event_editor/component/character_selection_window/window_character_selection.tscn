@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://mfanmjsc3x8q"]
+
+[ext_resource type="Script" path="res://event_editor/component/character_selection_window/window_character_selection.gd" id="1_7e1x3"]
+
+[node name="Window_CharacterSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7e1x3")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "当前场景：1111"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "resu(10,0)"
+
+[node name="MenuBar" type="MenuBar" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="OptionItem" type="HSplitContainer" parent="VBoxContainer/MenuBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 865
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/MenuBar/OptionItem"]
+layout_mode = 2
+text = "Resu(12,3)"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/MenuBar/OptionItem"]
+layout_mode = 2
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/HSplitContainer2"]
+visible = false
+layout_mode = 2
+text = "确认选择"

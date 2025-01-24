@@ -1,0 +1,493 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=76 format=3 uid="uid://ckg4sokx7yvr0"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_8rjlv"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_5didf"]
+[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="3_dhh7u"]
+[ext_resource type="Script" path="res://event_editor/models/keyword_data.gd" id="3_vxdl6"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_ynrot"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_eckf2"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="5_k3iq1"]
+[ext_resource type="Script" path="res://event_editor/models/itemlink_data.gd" id="5_otrmq"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="5_vlvxf"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="6_s1dgb"]
+
+[sub_resource type="Resource" id="Resource_ycmix"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_04"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(2640, -1420)
+
+[sub_resource type="Resource" id="Resource_3pfdt"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ycmix")
+
+[sub_resource type="Resource" id="Resource_tsugk"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_14"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(3040, -1280)
+
+[sub_resource type="Resource" id="Resource_a5gjq"]
+script = ExtResource("2_5didf")
+from_port_index = 2
+to_port_index = 0
+child = SubResource("Resource_tsugk")
+
+[sub_resource type="Resource" id="Resource_c7n74"]
+script = ExtResource("3_vxdl6")
+keyword = "zawuhourse_03_keyword01"
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_3pfdt"), SubResource("Resource_a5gjq")])
+node_type = 12
+pos = Vector2(2340, -1120)
+
+[sub_resource type="Resource" id="Resource_m35vp"]
+script = ExtResource("2_5didf")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_c7n74")
+
+[sub_resource type="Resource" id="Resource_urlfl"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_05"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(2660, -1000)
+
+[sub_resource type="Resource" id="Resource_0gqge"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_urlfl")
+
+[sub_resource type="Resource" id="Resource_mx8yd"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_14"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(3020, -780)
+
+[sub_resource type="Resource" id="Resource_kuyay"]
+script = ExtResource("2_5didf")
+from_port_index = 2
+to_port_index = 0
+child = SubResource("Resource_mx8yd")
+
+[sub_resource type="Resource" id="Resource_fsjjv"]
+script = ExtResource("3_vxdl6")
+keyword = "zawuhourse_03_keyword02"
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_0gqge"), SubResource("Resource_kuyay")])
+node_type = 12
+pos = Vector2(2340, -840)
+
+[sub_resource type="Resource" id="Resource_y3ff2"]
+script = ExtResource("2_5didf")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_fsjjv")
+
+[sub_resource type="Resource" id="Resource_7l56c"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_10"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(2980, -440)
+
+[sub_resource type="Resource" id="Resource_euxrf"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_7l56c")
+
+[sub_resource type="Resource" id="Resource_ctj3g"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_09"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_euxrf")])
+node_type = 1
+pos = Vector2(2640, -440)
+
+[sub_resource type="Resource" id="Resource_dfxmf"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ctj3g")
+
+[sub_resource type="Resource" id="Resource_rgoi7"]
+script = ExtResource("5_vlvxf")
+script_cmd = "GameManager.data_player.gain_item(\"102i_0_螺丝刀\")"
+children = Array[ExtResource("2_5didf")]([])
+node_type = 9
+pos = Vector2(3380, -80)
+
+[sub_resource type="Resource" id="Resource_x2iij"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_rgoi7")
+
+[sub_resource type="Resource" id="Resource_rxjba"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_15"
+role = ExtResource("5_k3iq1")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_x2iij")])
+node_type = 1
+pos = Vector2(3000, -120)
+
+[sub_resource type="Resource" id="Resource_t1ieq"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_rxjba")
+
+[sub_resource type="Resource" id="Resource_8ml6v"]
+script = ExtResource("5_otrmq")
+item_id = "201c_1_餐厅的八音盒"
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_t1ieq")])
+node_type = 13
+pos = Vector2(2680, -120)
+
+[sub_resource type="Resource" id="Resource_6001u"]
+script = ExtResource("2_5didf")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_8ml6v")
+
+[sub_resource type="Resource" id="Resource_absmb"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_14"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(2660, 40)
+
+[sub_resource type="Resource" id="Resource_xemgd"]
+script = ExtResource("2_5didf")
+from_port_index = 2
+to_port_index = 0
+child = SubResource("Resource_absmb")
+
+[sub_resource type="Resource" id="Resource_jfhgt"]
+script = ExtResource("3_vxdl6")
+keyword = "zawuhourse_03_keyword03"
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_dfxmf"), SubResource("Resource_6001u"), SubResource("Resource_xemgd")])
+node_type = 12
+pos = Vector2(2340, -300)
+
+[sub_resource type="Resource" id="Resource_m6jds"]
+script = ExtResource("2_5didf")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_jfhgt")
+
+[sub_resource type="Resource" id="Resource_v24cc"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_08"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(3340, 360)
+
+[sub_resource type="Resource" id="Resource_twkte"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_v24cc")
+
+[sub_resource type="Resource" id="Resource_k20pb"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_07"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_twkte")])
+node_type = 1
+pos = Vector2(3000, 360)
+
+[sub_resource type="Resource" id="Resource_2oisn"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_k20pb")
+
+[sub_resource type="Resource" id="Resource_wobee"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_06"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_2oisn")])
+node_type = 1
+pos = Vector2(2660, 360)
+
+[sub_resource type="Resource" id="Resource_tbrwk"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wobee")
+
+[sub_resource type="Resource" id="Resource_76evi"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_14"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(2660, 680)
+
+[sub_resource type="Resource" id="Resource_uo56g"]
+script = ExtResource("2_5didf")
+from_port_index = 2
+to_port_index = 0
+child = SubResource("Resource_76evi")
+
+[sub_resource type="Resource" id="Resource_ep17t"]
+script = ExtResource("3_vxdl6")
+keyword = "zawuhourse_03_keyword04"
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_tbrwk"), SubResource("Resource_uo56g")])
+node_type = 12
+pos = Vector2(2320, 320)
+
+[sub_resource type="Resource" id="Resource_whnie"]
+script = ExtResource("2_5didf")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_ep17t")
+
+[sub_resource type="Resource" id="Resource_2ynpt"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_12"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(3040, 920)
+
+[sub_resource type="Resource" id="Resource_pqii6"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_2ynpt")
+
+[sub_resource type="Resource" id="Resource_2n3e8"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_14"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(2640, 1080)
+
+[sub_resource type="Resource" id="Resource_5wbxl"]
+script = ExtResource("2_5didf")
+from_port_index = 2
+to_port_index = 0
+child = SubResource("Resource_2n3e8")
+
+[sub_resource type="Resource" id="Resource_xadlm"]
+script = ExtResource("3_vxdl6")
+keyword = "zawuhourse_03_keyword05"
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_pqii6"), SubResource("Resource_5wbxl")])
+node_type = 12
+pos = Vector2(2340, 880)
+
+[sub_resource type="Resource" id="Resource_wj1o4"]
+script = ExtResource("2_5didf")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_xadlm")
+
+[sub_resource type="Resource" id="Resource_5e8br"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_11"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(2640, 1420)
+
+[sub_resource type="Resource" id="Resource_vi3o7"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_5e8br")
+
+[sub_resource type="Resource" id="Resource_mt2fd"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_13"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(2980, 1700)
+
+[sub_resource type="Resource" id="Resource_vl8oy"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_mt2fd")
+
+[sub_resource type="Resource" id="Resource_h7k1u"]
+script = ExtResource("5_otrmq")
+item_id = "06i_1_手电筒（无电池）"
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_vl8oy")])
+node_type = 13
+pos = Vector2(2640, 1740)
+
+[sub_resource type="Resource" id="Resource_jbyxs"]
+script = ExtResource("2_5didf")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_h7k1u")
+
+[sub_resource type="Resource" id="Resource_538ui"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_14"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(2640, 1880)
+
+[sub_resource type="Resource" id="Resource_014ka"]
+script = ExtResource("2_5didf")
+from_port_index = 2
+to_port_index = 0
+child = SubResource("Resource_538ui")
+
+[sub_resource type="Resource" id="Resource_m7a6c"]
+script = ExtResource("3_vxdl6")
+keyword = "zawuhourse_03_keyword06"
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_vi3o7"), SubResource("Resource_jbyxs"), SubResource("Resource_014ka")])
+node_type = 12
+pos = Vector2(2320, 1200)
+
+[sub_resource type="Resource" id="Resource_nu4hq"]
+script = ExtResource("2_5didf")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_m7a6c")
+
+[sub_resource type="Resource" id="Resource_6jytc"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_03"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_m35vp"), SubResource("Resource_y3ff2"), SubResource("Resource_m6jds"), SubResource("Resource_whnie"), SubResource("Resource_wj1o4"), SubResource("Resource_nu4hq")])
+node_type = 1
+pos = Vector2(1880, -180)
+
+[sub_resource type="Resource" id="Resource_8h5mm"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_6jytc")
+
+[sub_resource type="Resource" id="Resource_pno6e"]
+script = ExtResource("3_dhh7u")
+options = Array[Dictionary]([{
+"child_index": 0,
+"id": 0,
+"name": "zawuhourse_02"
+}, {
+"child_index": -1,
+"id": 1,
+"name": "test06"
+}])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_8h5mm")])
+node_type = 2
+pos = Vector2(1400, -120)
+
+[sub_resource type="Resource" id="Resource_nbrn1"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_pno6e")
+
+[sub_resource type="Resource" id="Resource_5bbmu"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_16"
+role = ExtResource("5_k3iq1")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(1380, 180)
+
+[sub_resource type="Resource" id="Resource_aaqbh"]
+script = ExtResource("2_5didf")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_5bbmu")
+
+[sub_resource type="Resource" id="Resource_ao4sf"]
+script = ExtResource("6_s1dgb")
+script_cmd = "!has_item(\"102i_0_螺丝刀\")"
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_nbrn1"), SubResource("Resource_aaqbh")])
+node_type = 17
+pos = Vector2(980, -60)
+
+[sub_resource type="Resource" id="Resource_411mp"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ao4sf")
+
+[sub_resource type="Resource" id="Resource_xxnny"]
+script = ExtResource("6_s1dgb")
+script_cmd = "has_item(\"06i_1_手电筒（无电池）\",true)"
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_411mp")])
+node_type = 17
+pos = Vector2(580, -100)
+
+[sub_resource type="Resource" id="Resource_nxuoa"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_xxnny")
+
+[sub_resource type="Resource" id="Resource_fesia"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_01"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_nxuoa")])
+node_type = 1
+pos = Vector2(220, -180)
+
+[sub_resource type="Resource" id="Resource_swcae"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_fesia")
+
+[sub_resource type="Resource" id="Resource_fo0os"]
+script = ExtResource("4_eckf2")
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_swcae")])
+node_type = 0
+pos = Vector2(0, -60)
+
+[resource]
+script = ExtResource("1_8rjlv")
+title = "工具箱"
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_fo0os")
+map = {}

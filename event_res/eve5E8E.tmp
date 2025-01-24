@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=7 format=3 uid="uid://gjerq73qb2mh"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_631r0"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_0v7x6"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_3qxga"]
+
+[sub_resource type="Resource" id="Resource_al06a"]
+script = ExtResource("3_3qxga")
+text = "d1"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_0v7x6")]([])
+node_type = 1
+pos = Vector2(-500, -360)
+
+[sub_resource type="GDScript" id="GDScript_p5e61"]
+script/source = "extends Resource
+class_name BaseEventNode
+
+const Start = 0 ## 开始节点
+const Message = 1 ##显示消息
+const Option = 2 ##分支选项
+const CharacterMove = 3 ## 角色移动
+const Fadeout = 4 ## 画面淡出
+const Fadein = 5 ## 画面导入
+const Wait = 6 ## 等待
+const FaceDir = 7 ## 面向朝向
+const Transport = 8 ## 场景移动
+const Scripts = 9 ##脚本
+
+## graph节点
+
+## 子节点
+@export var children:Array[BaseEventNode] = []
+
+## 节点类型
+@export var node_type:int
+
+## 位置
+@export var pos:Vector2
+
+## 初始化
+func _init(node_type:int = 0,pos:Vector2 = Vector2.ZERO,children:Array[BaseEventNode] = []) -> void:
+	self.node_type = node_type
+	self.pos = pos
+	self.children = children
+
+## 找到下一个子节点
+func next() -> BaseEventNode:
+	if !children || children.is_empty(): return null
+	return children[0]
+
+## 查看语句数量，未完善
+func size() -> int:
+	var count:int = 1
+	var node = self
+	while(true):
+		node = next() ## 获得下一个
+		if node: count+=1
+		else: break
+	return count
+	pass
+
+## 在游戏中执行事件
+func _execute(event):
+	printerr(\"没有重写%s游戏内逻辑\" %node_type)
+	pass
+"
+
+[sub_resource type="Resource" id="Resource_coq2s"]
+script = SubResource("GDScript_p5e61")
+children = [SubResource("Resource_al06a")]
+node_type = 0
+pos = Vector2(-820, -300)
+
+[resource]
+script = ExtResource("1_631r0")
+title = "001"
+is_collsion = true
+trigger_type = 1
+tree = SubResource("Resource_coq2s")
+map = {}

@@ -1,0 +1,626 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=85 format=3 uid="uid://clh33vmicpe3q"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_motmo"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_yohem"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="3_4kurt"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="4_frwca"]
+[ext_resource type="Script" path="res://event_editor/models/sub_thread_data .gd" id="5_gjwes"]
+[ext_resource type="Resource" uid="uid://cwiipdxbnn31l" path="res://config/role_data/女孩子.tres" id="6_1bgmg"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="7_15r2l"]
+[ext_resource type="Resource" uid="uid://mtwr4hdh14u6" path="res://config/role_data/男孩子.tres" id="8_ukapt"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="9_hxqri"]
+[ext_resource type="Script" path="res://event_editor/models/fadein_data.gd" id="10_hrf6w"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="11_cqvvj"]
+
+[sub_resource type="Resource" id="Resource_qv0uc"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_16"
+role = ExtResource("8_ukapt")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([])
+node_type = 1
+pos = Vector2(10460, 40)
+
+[sub_resource type="Resource" id="Resource_h0amv"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_qv0uc")
+
+[sub_resource type="Resource" id="Resource_jfrw0"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_11"
+role = ExtResource("8_ukapt")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_h0amv")])
+node_type = 1
+pos = Vector2(10100, 40)
+
+[sub_resource type="Resource" id="Resource_nkk37"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_jfrw0")
+
+[sub_resource type="Resource" id="Resource_qp52s"]
+script = ExtResource("3_4kurt")
+move_type = 2
+target_char = {
+"coord": Vector2i(21, 7),
+"label": "resuchild"
+}
+step_count = 4
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_nkk37")])
+node_type = 3
+pos = Vector2(9740, 60)
+
+[sub_resource type="Resource" id="Resource_p0j2a"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_qp52s")
+
+[sub_resource type="Resource" id="Resource_wr5lr"]
+script = ExtResource("3_4kurt")
+move_type = 4
+target_char = {
+"coord": Vector2i(21, 7),
+"label": "resuchild"
+}
+step_count = 2
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_p0j2a")])
+node_type = 3
+pos = Vector2(9400, 60)
+
+[sub_resource type="Resource" id="Resource_dg3ca"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wr5lr")
+
+[sub_resource type="Resource" id="Resource_p7itv"]
+script = ExtResource("3_4kurt")
+move_type = 2
+target_char = {
+"coord": Vector2i(21, 7),
+"label": "resuchild"
+}
+step_count = 6
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_dg3ca")])
+node_type = 3
+pos = Vector2(9040, 60)
+
+[sub_resource type="Resource" id="Resource_v72y3"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_p7itv")
+
+[sub_resource type="Resource" id="Resource_nc45a"]
+script = ExtResource("3_4kurt")
+move_type = 2
+target_char = {
+"coord": Vector2i(21, 15),
+"label": "resuzero"
+}
+step_count = 0
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([])
+node_type = 3
+pos = Vector2(9340, 320)
+
+[sub_resource type="Resource" id="Resource_snkij"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_nc45a")
+
+[sub_resource type="Resource" id="Resource_wa0pk"]
+script = ExtResource("4_frwca")
+time = 0.5
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_snkij")])
+node_type = 6
+pos = Vector2(9080, 380)
+
+[sub_resource type="Resource" id="Resource_a5qha"]
+script = ExtResource("2_yohem")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_wa0pk")
+
+[sub_resource type="Resource" id="Resource_7deo3"]
+script = ExtResource("5_gjwes")
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_v72y3"), SubResource("Resource_a5qha")])
+node_type = 10
+pos = Vector2(8900, 180)
+
+[sub_resource type="Resource" id="Resource_brrxg"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_7deo3")
+
+[sub_resource type="Resource" id="Resource_pgss1"]
+script = ExtResource("3_4kurt")
+move_type = 3
+target_char = {
+"coord": Vector2i(21, 7),
+"label": "resuchild"
+}
+step_count = 1
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_brrxg")])
+node_type = 3
+pos = Vector2(8540, 120)
+
+[sub_resource type="Resource" id="Resource_e7jj6"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_pgss1")
+
+[sub_resource type="Resource" id="Resource_8oudb"]
+script = ExtResource("3_4kurt")
+move_type = 4
+target_char = {
+"coord": Vector2i(21, 15),
+"label": "resuzero"
+}
+step_count = 0
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_e7jj6")])
+node_type = 3
+pos = Vector2(8200, 120)
+
+[sub_resource type="Resource" id="Resource_hoeag"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_8oudb")
+
+[sub_resource type="Resource" id="Resource_44ev2"]
+script = ExtResource("3_4kurt")
+move_type = 3
+target_char = {
+"coord": Vector2i(21, 15),
+"label": "resuzero"
+}
+step_count = 1
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_hoeag")])
+node_type = 3
+pos = Vector2(7860, 120)
+
+[sub_resource type="Resource" id="Resource_lla7y"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_44ev2")
+
+[sub_resource type="Resource" id="Resource_mpcel"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_15"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_lla7y")])
+node_type = 1
+pos = Vector2(7540, 80)
+
+[sub_resource type="Resource" id="Resource_fh77b"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_mpcel")
+
+[sub_resource type="Resource" id="Resource_rckbi"]
+script = ExtResource("3_4kurt")
+move_type = 3
+target_char = {
+"coord": Vector2i(21, 7),
+"label": "resuchild"
+}
+step_count = 1
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_fh77b")])
+node_type = 3
+pos = Vector2(7180, 120)
+
+[sub_resource type="Resource" id="Resource_fcbxo"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_rckbi")
+
+[sub_resource type="Resource" id="Resource_x6mvf"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_13"
+role = ExtResource("6_1bgmg")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_fcbxo")])
+node_type = 1
+pos = Vector2(6800, 80)
+
+[sub_resource type="Resource" id="Resource_sjlmw"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_x6mvf")
+
+[sub_resource type="Resource" id="Resource_mdtoi"]
+script = ExtResource("3_4kurt")
+move_type = 3
+target_char = {
+"coord": Vector2i(21, 7),
+"label": "resuchild"
+}
+step_count = 0
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_sjlmw")])
+node_type = 3
+pos = Vector2(6440, 120)
+
+[sub_resource type="Resource" id="Resource_m5kxi"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_mdtoi")
+
+[sub_resource type="Resource" id="Resource_07ikc"]
+script = ExtResource("11_cqvvj")
+script_cmd = "SceneManager.hide_cg()"
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_m5kxi")])
+node_type = 9
+pos = Vector2(6180, 120)
+
+[sub_resource type="Resource" id="Resource_ebl5k"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_07ikc")
+
+[sub_resource type="Resource" id="Resource_vpc5w"]
+script = ExtResource("11_cqvvj")
+script_cmd = "GameManager.set_event_visible(Vector2i(21,5),true)"
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_ebl5k")])
+node_type = 9
+pos = Vector2(5920, 120)
+
+[sub_resource type="Resource" id="Resource_s1gog"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_vpc5w")
+
+[sub_resource type="Resource" id="Resource_5ahgp"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_14"
+role = ExtResource("8_ukapt")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_s1gog")])
+node_type = 1
+pos = Vector2(5580, 80)
+
+[sub_resource type="Resource" id="Resource_vhb0g"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_5ahgp")
+
+[sub_resource type="Resource" id="Resource_dl51w"]
+script = ExtResource("11_cqvvj")
+script_cmd = "SceneManager.show_cg(\"res://scenes/other/回忆1：图书室/cg/cg占位03.png\")"
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_vhb0g")])
+node_type = 9
+pos = Vector2(5340, 120)
+
+[sub_resource type="Resource" id="Resource_kpojf"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_dl51w")
+
+[sub_resource type="Resource" id="Resource_i2b3o"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_10"
+role = ExtResource("8_ukapt")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_kpojf")])
+node_type = 1
+pos = Vector2(5000, 80)
+
+[sub_resource type="Resource" id="Resource_qxl7h"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_i2b3o")
+
+[sub_resource type="Resource" id="Resource_5plds"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_04"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_qxl7h")])
+node_type = 1
+pos = Vector2(4660, 80)
+
+[sub_resource type="Resource" id="Resource_v6qlw"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_5plds")
+
+[sub_resource type="Resource" id="Resource_ahcg6"]
+script = ExtResource("11_cqvvj")
+script_cmd = "SceneManager.show_cg(\"res://scenes/other/回忆1：图书室/cg/cg占位02.png\")"
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_v6qlw")])
+node_type = 9
+pos = Vector2(4420, 140)
+
+[sub_resource type="Resource" id="Resource_x1svw"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ahcg6")
+
+[sub_resource type="Resource" id="Resource_4wspd"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_06"
+role = ExtResource("8_ukapt")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_x1svw")])
+node_type = 1
+pos = Vector2(4080, 100)
+
+[sub_resource type="Resource" id="Resource_02dp7"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_4wspd")
+
+[sub_resource type="Resource" id="Resource_x8gir"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_05"
+role = ExtResource("6_1bgmg")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_02dp7")])
+node_type = 1
+pos = Vector2(3740, 100)
+
+[sub_resource type="Resource" id="Resource_cprsd"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_x8gir")
+
+[sub_resource type="Resource" id="Resource_qnr3b"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_03"
+role = ExtResource("8_ukapt")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_cprsd")])
+node_type = 1
+pos = Vector2(3380, 100)
+
+[sub_resource type="Resource" id="Resource_ntf8s"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_qnr3b")
+
+[sub_resource type="Resource" id="Resource_o8veu"]
+script = ExtResource("11_cqvvj")
+script_cmd = "SceneManager.show_cg(\"res://scenes/other/回忆1：图书室/cg/cg占位01.png\")"
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_ntf8s")])
+node_type = 9
+pos = Vector2(3140, 140)
+
+[sub_resource type="Resource" id="Resource_i8pd1"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_o8veu")
+
+[sub_resource type="Resource" id="Resource_02kmt"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_02"
+role = ExtResource("6_1bgmg")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_i8pd1")])
+node_type = 1
+pos = Vector2(2800, 100)
+
+[sub_resource type="Resource" id="Resource_g44uo"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_02kmt")
+
+[sub_resource type="Resource" id="Resource_yufet"]
+script = ExtResource("7_15r2l")
+text = "memory1_chat_01"
+role = ExtResource("8_ukapt")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_g44uo")])
+node_type = 1
+pos = Vector2(2460, 100)
+
+[sub_resource type="Resource" id="Resource_87xmn"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_yufet")
+
+[sub_resource type="Resource" id="Resource_nv6p8"]
+script = ExtResource("3_4kurt")
+move_type = 4
+target_char = {
+"coord": Vector2i(21, 15),
+"label": "resuzero"
+}
+step_count = 0
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_87xmn")])
+node_type = 3
+pos = Vector2(2120, 120)
+
+[sub_resource type="Resource" id="Resource_2w8xr"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_nv6p8")
+
+[sub_resource type="Resource" id="Resource_kw4oj"]
+script = ExtResource("3_4kurt")
+move_type = 5
+target_char = {
+"coord": Vector2i(21, 15),
+"label": "resuzero"
+}
+step_count = 5
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_2w8xr")])
+node_type = 3
+pos = Vector2(1780, 120)
+
+[sub_resource type="Resource" id="Resource_rtff0"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_kw4oj")
+
+[sub_resource type="Resource" id="Resource_gsdwn"]
+script = ExtResource("3_4kurt")
+move_type = 3
+target_char = {
+"coord": Vector2i(21, 15),
+"label": "resuzero"
+}
+step_count = 2
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_rtff0")])
+node_type = 3
+pos = Vector2(1440, 120)
+
+[sub_resource type="Resource" id="Resource_h2i6m"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_gsdwn")
+
+[sub_resource type="Resource" id="Resource_fv7fi"]
+script = ExtResource("3_4kurt")
+move_type = 5
+target_char = {
+"coord": Vector2i(21, 15),
+"label": "resuzero"
+}
+step_count = 3
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_h2i6m")])
+node_type = 3
+pos = Vector2(1100, 120)
+
+[sub_resource type="Resource" id="Resource_8kj3k"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_fv7fi")
+
+[sub_resource type="Resource" id="Resource_d2e2l"]
+script = ExtResource("10_hrf6w")
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_8kj3k")])
+node_type = 5
+pos = Vector2(960, 180)
+
+[sub_resource type="Resource" id="Resource_my8yg"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_d2e2l")
+
+[sub_resource type="Resource" id="Resource_bfc8e"]
+script = ExtResource("4_frwca")
+time = 0.5
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_my8yg")])
+node_type = 6
+pos = Vector2(720, 180)
+
+[sub_resource type="Resource" id="Resource_v52q2"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_bfc8e")
+
+[sub_resource type="Resource" id="Resource_fam05"]
+script = ExtResource("3_4kurt")
+move_type = 5
+target_char = {
+"coord": Vector2i(21, 7),
+"label": "resuchild"
+}
+step_count = 0
+speed_factor = 1.0
+wait_finished = false
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_v52q2")])
+node_type = 3
+pos = Vector2(380, 120)
+
+[sub_resource type="Resource" id="Resource_0hd7o"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_fam05")
+
+[sub_resource type="Resource" id="Resource_vrgst"]
+script = ExtResource("11_cqvvj")
+script_cmd = "GameManager.set_screen_color(ColorScreen.BLACK)"
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_0hd7o")])
+node_type = 9
+pos = Vector2(140, 140)
+
+[sub_resource type="Resource" id="Resource_j1a3f"]
+script = ExtResource("2_yohem")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_vrgst")
+
+[sub_resource type="Resource" id="Resource_enkrd"]
+script = ExtResource("9_hxqri")
+children = Array[ExtResource("2_yohem")]([SubResource("Resource_j1a3f")])
+node_type = 0
+pos = Vector2(-60, 200)
+
+[resource]
+script = ExtResource("1_motmo")
+title = "演出开始"
+is_collsion = false
+trigger_type = 3
+one_shot = false
+tree = SubResource("Resource_enkrd")
+map = {}

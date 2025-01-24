@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqnej4871jknn"]
+
+[ext_resource type="StyleBox" uid="uid://bsl01ijdjj0hn" path="res://event_editor/styles/node_style.tres" id="1_h8ei0"]
+[ext_resource type="Script" path="res://event_editor/nodes/fadeout/fadeout_gn.gd" id="2_5dlry"]
+
+[node name="FadeoutNode" type="GraphNode"]
+offset_left = 113.0
+offset_top = 262.0
+offset_right = 239.0
+offset_bottom = 363.0
+mouse_filter = 1
+theme_override_colors/resizer_color = Color(0, 0.827451, 0, 1)
+theme_override_styles/titlebar = ExtResource("1_h8ei0")
+title = "淡出画面"
+ignore_invalid_connection_type = true
+slot/0/left_enabled = true
+slot/0/left_type = 2
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("2_5dlry")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+alignment = 1

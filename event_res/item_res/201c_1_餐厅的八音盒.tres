@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://c7e36am78q4gi"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_q1fk7"]
+
+[resource]
+script = ExtResource("1_q1fk7")
+item_id = &"201c_1_餐厅的八音盒"
+item_name = &"餐厅的八音盒"
+item_catagory = 2
+item_desc = "八音盒的底部有一个电池盒，上面固定着四颗十字螺丝"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_q1fk7")]([])

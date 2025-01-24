@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://be8jn8j2sd1cd"]
+
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_m1u7b"]
+[ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_lxpab"]
+[ext_resource type="Resource" uid="uid://c3jwfeslnm1b3" path="res://event_res/e05-restart.tres" id="3_h01no"]
+
+[sub_resource type="Resource" id="Resource_7c7o8"]
+script = ExtResource("2_lxpab")
+pos = Vector2i(12, 9)
+event_res = ExtResource("3_h01no")
+
+[node name="Map_Start" instance=ExtResource("1_m1u7b")]
+
+[node name="Maps" parent="." index="0"]
+event_group = Array[ExtResource("2_lxpab")]([SubResource("Resource_7c7o8")])
+
+[node name="Objects" parent="Maps" index="2"]
+tile_map_data = PackedByteArray(0, 0, 12, 0, 9, 0, 1, 0, 0, 0, 0, 0, 4, 0)

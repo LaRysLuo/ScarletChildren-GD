@@ -3,11 +3,17 @@ extends Node2D
 class_name CharacterBase
 
 var tween:Tween
-var dir = Vector2i.DOWN # 面朝方向
+@export var dir:Vector2i = Vector2i.DOWN: # 面朝方向
+	set(val):
+		dir = val
+		dir_changed.emit(dir)
 var dir_input = Vector2i.ZERO #输入方向
 var is_moving:bool = false # 是否正在移动
 var cell_list:Array[MoveRoute] #移动的队列
+const MOVE_SPEED = 3.0
+var speed_factor:float = 1.0
 
+## 角色主精灵图
 @export var sprite : Texture2D:
 	set(new):
 		if not Engine.is_editor_hint(): return
@@ -15,26 +21,37 @@ var cell_list:Array[MoveRoute] #移动的队列
 		print("图片被更换，刷新一下")
 		init_animation()
 
+
+
 @export_range(0,10) var h : int = 3
 @export_range(0,10) var v : int = 4
+
+## 待机精灵图
+@export var idle_ext : Texture2D = null
 
 @onready var map:TileMapLayer = get_parent()
 @onready var cell_pos:Vector2i = map.local_to_map(position)
 @onready var playerAnim:AnimatedSprite2D = $AnimatedSprite2D2
-@onready var map_base: TileMapLayer = get_node("../../Movable") # 暂时这么使用，应该要放在GamePlay的配置中
+var map_base: TileMapLayer:
+	get(): return get_node("../../Movable") # 暂时这么使用，应该要放在GamePlay的配置中
 
 
 # 信号
 # 有可交互事件存在
+signal start_pos_changed
 signal pos_changed
 signal event_clashed #碰触到可交互的事件
+signal dir_changed #当方向变了的话
 
+func _init() -> void:
+	
+	pass
 
 func _ready() -> void:
+	execute_animation()
+	
 	pass
-	#print("脚本正在运行",playerAnim)
-	#if not Engine.is_editor_hint():
-		#init_animation()
+
 
 func move_to(dir:Vector2i):
 	# 计算出目标点的
@@ -52,6 +69,12 @@ func move_to_by_route(route:MoveRoute):
 	if !(tween && tween.is_running()): # 判断目标是否已经移动队列里了
 		_next()
 	
+func set_pos(coord:Vector2i):
+	var pos = self.map.map_to_local(coord)
+	print("位置=",pos)
+
+	self.position = pos
+	self.cell_pos = coord
 
 func move_event_pos(event:Node2D):
 	var map = event.get_parent()
@@ -73,10 +96,14 @@ func  move_to_target(route:MoveRoute):
 	else: move_target = route.target
 	# 移动到目标点
 	cell_pos = move_target
+	start_pos_changed.emit()
 	if tween: tween.kill()
 	tween = create_tween()
 	#tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(self,"position",map.map_to_local(move_target),0.3)
+	#var speed_factor = 0.5 ## 表示移动速度为原来的50%
+	var time:float = 1 / (MOVE_SPEED * speed_factor)
+	#print("移动时间为",time)
+	tween.tween_property(self,"position",map.map_to_local(move_target),time)
 	tween.finished.connect(_next)
 	
 # TODO 需要判断这个目标点是否可移动
@@ -88,10 +115,11 @@ func _movable(route:MoveRoute) -> bool:
 	if !(cell_data && cell_data.get_custom_data("movable")): # 如果不可移动则返回
 		return false
 	var event:Event = _get_event(route.target)
-	# 判断事件是否会不会触发
-	event_clashed.emit(event)
+
 	# 如果event是碰撞体才返回
-	if event && event.is_collsion :  
+	if event && event.visible && !event.ingore_collsion :  
+		# 判断事件是否会不会触发
+		event_clashed.emit(event)
 		return false
 	return true
 	
@@ -166,6 +194,19 @@ func init_character_animation() -> SpriteFrames:
 		frames.set_animation_loop(str2,true)	
 		var frame1 := get_tex(1,y,sprite_size)
 		frames.add_frame(str2,frame1)
+	
+	if idle_ext:
+		frames.add_animation("idle_ext")
+		frames.set_animation_loop("idle_ext",true)
+		var frame1 := get_tex(1,0,sprite_size)
+		var frame2 := get_tex(2,0,sprite_size)
+		var frame3 := get_tex(3,0,sprite_size)
+		var frame4 := get_tex(4,0,sprite_size)
+		frames.add_frame("idle_ext",frame4)
+		frames.add_frame("idle_ext",frame1)
+		frames.add_frame("idle_ext",frame2)
+		frames.add_frame("idle_ext",frame3)
+		frames.add_frame("idle_ext",frame4)
 	return frames
 	
 func get_tex(x:int,y:int,sprite_size:Vector2) -> AtlasTexture:
@@ -178,17 +219,29 @@ func get_tex(x:int,y:int,sprite_size:Vector2) -> AtlasTexture:
 func execute_animation(dir:Vector2i = Vector2i.ZERO):
 	# 处理面朝方向
 	if dir != Vector2i.ZERO || tween && tween.is_running():
+		#printerr("播放动画中",speed_factor)
 		if dir == Vector2i.DOWN:
-			playerAnim.play("move_down")
+			playerAnim.play("move_down",speed_factor)
 		if dir == Vector2i.LEFT:
-			playerAnim.play("move_left")
+			playerAnim.play("move_left",speed_factor)
 		if dir == Vector2i.RIGHT:
-			playerAnim.play("move_right")
+			playerAnim.play("move_right",speed_factor)
 		if dir == Vector2i.UP:
-			playerAnim.play("move_up")
+			playerAnim.play("move_up",speed_factor)
 	else:
 		match self.dir:
 			Vector2i.DOWN:	playerAnim.play("idle_down")
 			Vector2i.LEFT: playerAnim.play("idle_left")
 			Vector2i.RIGHT:playerAnim.play("idle_right")
 			Vector2i.UP: playerAnim.play("idle_up")
+#region 显示表情
+@onready var balloon_sprite: AnimatedSprite2D = $BalloonSprite
+
+## 显示表情
+func play_balloon(balloon_name:StringName):
+	balloon_sprite.show()
+	balloon_sprite.play(balloon_name)
+	await  balloon_sprite.animation_finished
+	balloon_sprite.animation = "default"
+	print("动画结束")
+#endregion

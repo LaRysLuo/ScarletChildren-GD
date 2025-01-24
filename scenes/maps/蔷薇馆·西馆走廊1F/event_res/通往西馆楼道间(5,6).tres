@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=5 format=3 uid="uid://ci8pvq5tyv4hx"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_cs5mj"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_mhl3k"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_oe77n"]
+
+[sub_resource type="Resource" id="Resource_rn10a"]
+script = ExtResource("2_oe77n")
+children = Array[ExtResource("2_mhl3k")]([])
+node_type = 0
+pos = Vector2(2820, 300)
+
+[resource]
+script = ExtResource("1_cs5mj")
+title = ""
+is_collsion = true
+trigger_type = 2
+one_shot = false
+tree = SubResource("Resource_rn10a")
+map = {}

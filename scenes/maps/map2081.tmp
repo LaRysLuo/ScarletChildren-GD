@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsngf2cq03ja4"]
+
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_5m73w"]
+[ext_resource type="Texture2D" uid="uid://qaxyjn27qtf6" path="res://assets/tilesets/不知名隧道前/不知名隧道前 - 1.png" id="2_6mpdd"]
+[ext_resource type="Script" path="res://scenes/maps/map_不知名隧道前.gd" id="2_c8xc6"]
+[ext_resource type="Script" path="res://event_editor/event_config.gd" id="3_0d3wm"]
+[ext_resource type="Texture2D" uid="uid://bqsa5q1xsdae7" path="res://assets/tilesets/不知名隧道前/不知名隧道前 - 2.png" id="3_qka0l"]
+[ext_resource type="Resource" uid="uid://qre1sw5fpytu" path="res://event_res/e07.tres" id="4_qp0id"]
+
+[sub_resource type="Resource" id="Resource_sf5g1"]
+script = ExtResource("3_0d3wm")
+pos = Vector2i(0, 0)
+event_res = ExtResource("4_qp0id")
+
+[node name="不知名隧道前" instance=ExtResource("1_5m73w")]
+script = ExtResource("2_c8xc6")
+
+[node name="Maps" parent="." index="0"]
+event_group = Array[ExtResource("3_0d3wm")]([SubResource("Resource_sf5g1")])
+
+[node name="0" parent="Maps" index="0"]
+position = Vector2(401, 300)
+texture = ExtResource("2_6mpdd")
+
+[node name="2" parent="Maps" index="1"]
+position = Vector2(401, 300)
+texture = ExtResource("3_qka0l")
+
+[node name="Objects" parent="Maps" index="2"]
+tile_map_data = PackedByteArray(0, 0, 11, 0, 5, 0, 1, 0, 0, 0, 0, 0, 6, 0, 14, 0, 5, 0, 1, 0, 0, 0, 0, 0, 5, 0, 12, 0, 4, 0, 1, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0, 12, 0, 7, 0, 1, 0, 0, 0, 0, 0, 7, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." index="1"]
+z_index = 99
+position = Vector2(393, 200)
+zoom = Vector2(1.5, 1.5)

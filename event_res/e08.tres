@@ -1,0 +1,171 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=25 format=3 uid="uid://cp1dpu3axpya1"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_h8ysh"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_jsyh2"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_1n8r6"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="3_8leis"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="3_idl44"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_a7rhm"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="4_i5i6y"]
+
+[sub_resource type="Resource" id="Resource_ewy81"]
+script = ExtResource("4_a7rhm")
+text = "喂..."
+role = ExtResource("3_idl44")
+type = 1
+wait_time = 1000
+children = Array[ExtResource("2_jsyh2")]([])
+node_type = 1
+pos = Vector2(5480, 120)
+
+[sub_resource type="Resource" id="Resource_hko7m"]
+script = ExtResource("4_a7rhm")
+text = "大家都不在吗？"
+role = ExtResource("3_idl44")
+type = 1
+wait_time = 1000
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_ewy81")])
+node_type = 1
+pos = Vector2(5120, 120)
+
+[sub_resource type="Resource" id="Resource_ot5io"]
+script = ExtResource("3_8leis")
+time = 1.0
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_hko7m")])
+node_type = 6
+pos = Vector2(4880, 200)
+
+[sub_resource type="Resource" id="Resource_5yels"]
+script = ExtResource("4_a7rhm")
+text = "你们有听到我说话吗？"
+role = ExtResource("3_idl44")
+type = 1
+wait_time = 1000
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_ot5io")])
+node_type = 1
+pos = Vector2(4520, 120)
+
+[sub_resource type="Resource" id="Resource_liu04"]
+script = ExtResource("4_a7rhm")
+text = "羽新？"
+role = ExtResource("3_idl44")
+type = 1
+wait_time = 1000
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_5yels")])
+node_type = 1
+pos = Vector2(4180, 120)
+
+[sub_resource type="Resource" id="Resource_qdb1i"]
+script = ExtResource("4_a7rhm")
+text = "小爱？"
+role = ExtResource("3_idl44")
+type = 1
+wait_time = 1000
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_liu04")])
+node_type = 1
+pos = Vector2(3840, 120)
+
+[sub_resource type="Resource" id="Resource_w6vtc"]
+script = ExtResource("3_8leis")
+time = 1.0
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_qdb1i")])
+node_type = 6
+pos = Vector2(3600, 200)
+
+[sub_resource type="Resource" id="Resource_2mce6"]
+script = ExtResource("4_a7rhm")
+text = "有没有感觉这边的空气
+有点窒息呀"
+role = ExtResource("3_idl44")
+type = 1
+wait_time = 1000
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_w6vtc")])
+node_type = 1
+pos = Vector2(3260, 120)
+
+[sub_resource type="Resource" id="Resource_rcq7t"]
+script = ExtResource("4_a7rhm")
+text = "唯音，你们在吗？"
+role = ExtResource("3_idl44")
+type = 1
+wait_time = 1000
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_2mce6")])
+node_type = 1
+pos = Vector2(2900, 120)
+
+[sub_resource type="Resource" id="Resource_ggtn1"]
+script = ExtResource("3_8leis")
+time = 1.5
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_rcq7t")])
+node_type = 6
+pos = Vector2(2660, 200)
+
+[sub_resource type="Resource" id="Resource_gs61s"]
+script = ExtResource("4_a7rhm")
+text = "这洞里全是叶子
+什么都看不清"
+role = ExtResource("3_idl44")
+type = 1
+wait_time = 1000
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_ggtn1")])
+node_type = 1
+pos = Vector2(2295.56, 131.2)
+
+[sub_resource type="Resource" id="Resource_1ftdb"]
+script = ExtResource("4_a7rhm")
+text = "唔——"
+role = ExtResource("3_idl44")
+type = 1
+wait_time = 1000
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_gs61s")])
+node_type = 1
+pos = Vector2(1940, 120)
+
+[sub_resource type="Resource" id="Resource_ja83x"]
+script = ExtResource("3_1n8r6")
+script_cmd = "GameManager.fadeout()"
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_1ftdb")])
+node_type = 9
+pos = Vector2(1700, 140)
+
+[sub_resource type="Resource" id="Resource_jnc2v"]
+script = ExtResource("3_8leis")
+time = 0.1
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_ja83x")])
+node_type = 6
+pos = Vector2(1440, 200)
+
+[sub_resource type="Resource" id="Resource_ggnwc"]
+script = ExtResource("4_i5i6y")
+move_type = 5
+target_char = {
+"coord": Vector2i(12, 37),
+"label": "resu"
+}
+step_count = 20
+speed_factor = 0.5
+wait_finished = false
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_jnc2v")])
+node_type = 3
+pos = Vector2(1060, 140)
+
+[sub_resource type="Resource" id="Resource_mlgjs"]
+script = ExtResource("3_1n8r6")
+script_cmd = "GameManager.set_screen_color(ColorScreen.BLACK)"
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_ggnwc")])
+node_type = 9
+pos = Vector2(780, 140)
+
+[sub_resource type="Resource" id="Resource_tp0c8"]
+script = ExtResource("2_jsyh2")
+children = Array[ExtResource("2_jsyh2")]([SubResource("Resource_mlgjs")])
+node_type = 0
+pos = Vector2(500, 200)
+
+[resource]
+script = ExtResource("1_h8ysh")
+title = "不知名隧道里"
+is_collsion = false
+trigger_type = 3
+tree = SubResource("Resource_tp0c8")
+map = {}

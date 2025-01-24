@@ -1,0 +1,116 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=21 format=3 uid="uid://ckw2i3vln66vi"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_jdpsh"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_u8dpi"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_w1t8c"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="3_4jwbn"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_i4a4x"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_tabeg"]
+[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="4_xa1j6"]
+
+[sub_resource type="Resource" id="Resource_lcvv3"]
+script = ExtResource("3_i4a4x")
+text = "camera01"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_u8dpi")]([])
+node_type = 1
+pos = Vector2(3240, -240)
+
+[sub_resource type="Resource" id="Resource_6r477"]
+script = ExtResource("2_u8dpi")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_lcvv3")
+
+[sub_resource type="Resource" id="Resource_crkf6"]
+script = ExtResource("3_i4a4x")
+text = "camera05_succuss"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_u8dpi")]([])
+node_type = 1
+pos = Vector2(4300, 100)
+
+[sub_resource type="Resource" id="Resource_mwe7k"]
+script = ExtResource("2_u8dpi")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_crkf6")
+
+[sub_resource type="Resource" id="Resource_u0s70"]
+script = ExtResource("3_tabeg")
+script_cmd = "await  AudioManager.play_se(\"camera2\")"
+children = Array[ExtResource("2_u8dpi")]([SubResource("Resource_mwe7k")])
+node_type = 9
+pos = Vector2(3980, 160)
+
+[sub_resource type="Resource" id="Resource_7n24w"]
+script = ExtResource("2_u8dpi")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_u0s70")
+
+[sub_resource type="Resource" id="Resource_7q374"]
+script = ExtResource("4_xa1j6")
+options = Array[Dictionary]([{
+"child_index": 0,
+"id": 0,
+"name": "camera03_confirm"
+}, {
+"child_index": -1,
+"id": 1,
+"name": "camera04_cancel"
+}])
+children = Array[ExtResource("2_u8dpi")]([SubResource("Resource_7n24w")])
+node_type = 2
+pos = Vector2(3620, 120)
+
+[sub_resource type="Resource" id="Resource_i1mdh"]
+script = ExtResource("2_u8dpi")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_7q374")
+
+[sub_resource type="Resource" id="Resource_c7dkq"]
+script = ExtResource("3_i4a4x")
+text = "camera02"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_u8dpi")]([SubResource("Resource_i1mdh")])
+node_type = 1
+pos = Vector2(3240, 80)
+
+[sub_resource type="Resource" id="Resource_kuxbm"]
+script = ExtResource("2_u8dpi")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_c7dkq")
+
+[sub_resource type="Resource" id="Resource_kkhb5"]
+script = ExtResource("3_4jwbn")
+script_cmd = "not in_group(interObj,\"save_point\")"
+children = Array[ExtResource("2_u8dpi")]([SubResource("Resource_6r477"), SubResource("Resource_kuxbm")])
+node_type = 17
+pos = Vector2(2840, -60)
+
+[sub_resource type="Resource" id="Resource_v0fko"]
+script = ExtResource("2_u8dpi")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_kkhb5")
+
+[sub_resource type="Resource" id="Resource_yhq47"]
+script = ExtResource("2_w1t8c")
+children = Array[ExtResource("2_u8dpi")]([SubResource("Resource_v0fko")])
+node_type = 0
+pos = Vector2(2600, -20)
+
+[resource]
+script = ExtResource("1_jdpsh")
+title = "02i_1_老式拍立得"
+is_collsion = false
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_yhq47")
+map = {}

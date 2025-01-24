@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=6 format=3 uid="uid://c3dlgb1mv3cv7"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_s2k2j"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_d4byw"]
+[ext_resource type="Script" path="res://event_editor/models/transport_data.gd" id="3_3sbnu"]
+
+[sub_resource type="Resource" id="Resource_kpuf6"]
+script = ExtResource("3_3sbnu")
+target_map_path = "res://scenes/maps/Map_wild.tscn"
+is_move_character = true
+target_coord = Vector2i(11, 1)
+is_fade = true
+children = Array[ExtResource("2_d4byw")]([])
+node_type = 8
+pos = Vector2(620, -80)
+
+[sub_resource type="Resource" id="Resource_vig13"]
+script = ExtResource("2_d4byw")
+children = Array[ExtResource("2_d4byw")]([SubResource("Resource_kpuf6")])
+node_type = 0
+pos = Vector2(280, -20)
+
+[resource]
+script = ExtResource("1_s2k2j")
+title = "event(12,24)"
+is_collsion = true
+trigger_type = 2
+one_shot = false
+tree = SubResource("Resource_vig13")
+map = {}

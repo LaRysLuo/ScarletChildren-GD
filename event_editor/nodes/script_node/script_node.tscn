@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqnej4871jknn"]
+
+[ext_resource type="StyleBox" uid="uid://bsl01ijdjj0hn" path="res://event_editor/styles/node_style.tres" id="1_s4im5"]
+[ext_resource type="Script" path="res://event_editor/nodes/script_node/script_gn.gd" id="2_mknev"]
+
+[node name="Script" type="GraphNode"]
+offset_left = 113.0
+offset_top = 262.0
+offset_right = 326.0
+offset_bottom = 460.0
+mouse_filter = 1
+theme_override_colors/resizer_color = Color(0, 0.827451, 0, 1)
+theme_override_styles/titlebar = ExtResource("1_s4im5")
+title = "运行脚本"
+ignore_invalid_connection_type = true
+slot/0/left_enabled = true
+slot/0/left_type = 2
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("2_mknev")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+
+[node name="HSplitContainer" type="SplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+vertical = true
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "显示类型"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+placeholder_text = "请输入GDScripts语句，只支持单语句"
+wrap_mode = 1

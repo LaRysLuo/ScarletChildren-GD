@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3vlp56ap1q4m"]
+
+[ext_resource type="Script" path="res://timer_bar.gd" id="1_3ojm4"]
+[ext_resource type="Texture2D" uid="uid://dyyer0b3b4ddm" path="res://assets/system/bar_bg.png" id="2_cjto5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uduei"]
+
+[node name="TimerBar" type="Control"]
+clip_contents = true
+layout_direction = 2
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 63.0
+grow_horizontal = 2
+script = ExtResource("1_3ojm4")
+color1 = Color(0.424035, 0.681789, 0.289252, 1)
+color2 = Color(0.9825, 0, 0.40751, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 30.0
+step = 0.01
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("2_cjto5")
+texture_progress = ExtResource("2_cjto5")
+tint_under = Color(0.446777, 0.446777, 0.446777, 1)
+tint_progress = Color(0.262806, 0.760383, 0.648392, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "读题时间还剩：20秒"
+label_settings = SubResource("LabelSettings_uduei")
+
+[node name="Timer" type="Timer" parent="."]

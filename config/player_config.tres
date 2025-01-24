@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PlayerConfig" load_steps=2 format=3 uid="uid://d2b5u8skan5k0"]
+
+[ext_resource type="Script" path="res://component/game_config/player_config.gd" id="1_ysvgx"]
+
+[resource]
+script = ExtResource("1_ysvgx")
+vision_range = 15

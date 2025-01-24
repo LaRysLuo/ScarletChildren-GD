@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Role" load_steps=3 format=3 uid="uid://dsgx32uy2556n"]
+
+[ext_resource type="Script" path="res://component/role_manager/role.gd" id="1_ddgin"]
+[ext_resource type="Texture2D" uid="uid://bt3abmngdwykg" path="res://assets/tachie/hasin.png" id="2_vm6mq"]
+
+[resource]
+script = ExtResource("1_ddgin")
+role_name = "羽新"
+theme_color = Color(0.741176, 0.054902, 0.137255, 1)
+tachie = ExtResource("2_vm6mq")
+desc = ""

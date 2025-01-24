@@ -1,0 +1,104 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=18 format=3 uid="uid://6yj7sumkqosf"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_r2ywb"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_xwm45"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="3_dsbx0"]
+[ext_resource type="Script" path="res://event_editor/models/playanim_data.gd" id="3_y7rhq"]
+[ext_resource type="Script" path="res://event_editor/models/transport_data.gd" id="4_1h7we"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="5_8v5jj"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="5_s0oti"]
+
+[sub_resource type="Resource" id="Resource_g4sm6"]
+script = ExtResource("5_8v5jj")
+script_cmd = "await GameManager.fadein()"
+children = Array[ExtResource("2_xwm45")]([])
+node_type = 9
+pos = Vector2(3280, 160)
+
+[sub_resource type="Resource" id="Resource_7yjp2"]
+script = ExtResource("3_dsbx0")
+move_type = 0
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 1
+speed_factor = 1.0
+wait_finished = false
+children = Array[ExtResource("2_xwm45")]([SubResource("Resource_g4sm6")])
+node_type = 3
+pos = Vector2(2920, 160)
+
+[sub_resource type="Resource" id="Resource_62iyx"]
+script = ExtResource("5_s0oti")
+time = 0.2
+children = Array[ExtResource("2_xwm45")]([SubResource("Resource_7yjp2")])
+node_type = 6
+pos = Vector2(2660, 220)
+
+[sub_resource type="Resource" id="Resource_vpqh6"]
+script = ExtResource("4_1h7we")
+target_map_path = "res://scenes/maps/蔷薇馆.图书室1F/map_蔷薇馆.图书室1F.tscn"
+is_move_character = true
+target_coord = Vector2i(21, 15)
+is_fade = false
+children = Array[ExtResource("2_xwm45")]([SubResource("Resource_62iyx")])
+node_type = 8
+pos = Vector2(2180, 160)
+
+[sub_resource type="Resource" id="Resource_iagjp"]
+script = ExtResource("5_8v5jj")
+script_cmd = "await GameManager.fadeout_black(0.5)"
+children = Array[ExtResource("2_xwm45")]([SubResource("Resource_vpqh6")])
+node_type = 9
+pos = Vector2(1940, 180)
+
+[sub_resource type="Resource" id="Resource_gjekk"]
+script = ExtResource("3_dsbx0")
+move_type = 0
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 2
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_xwm45")]([SubResource("Resource_iagjp")])
+node_type = 3
+pos = Vector2(1600, 160)
+
+[sub_resource type="Resource" id="Resource_rkdjh"]
+script = ExtResource("3_y7rhq")
+anim_name = "opened"
+children = Array[ExtResource("2_xwm45")]([SubResource("Resource_gjekk")])
+node_type = 11
+pos = Vector2(1280, 220)
+
+[sub_resource type="Resource" id="Resource_muceq"]
+script = ExtResource("5_s0oti")
+time = 0.0
+children = Array[ExtResource("2_xwm45")]([SubResource("Resource_rkdjh")])
+node_type = 6
+pos = Vector2(1040, 240)
+
+[sub_resource type="Resource" id="Resource_g7sc8"]
+script = ExtResource("3_y7rhq")
+anim_name = "open"
+children = Array[ExtResource("2_xwm45")]([SubResource("Resource_muceq")])
+node_type = 11
+pos = Vector2(740, 220)
+
+[sub_resource type="Resource" id="Resource_8ums8"]
+script = ExtResource("2_xwm45")
+children = Array[ExtResource("2_xwm45")]([SubResource("Resource_g7sc8")])
+node_type = 0
+pos = Vector2(526.039, 240.381)
+
+[resource]
+script = ExtResource("1_r2ywb")
+title = ""
+is_collsion = false
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_8ums8")
+map = {}

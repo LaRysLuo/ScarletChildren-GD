@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cx1dkpdrbmi2a"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_su70t"]
+
+[resource]
+script = ExtResource("1_su70t")
+item_id = &"06i_0_手电筒（疑问）"
+item_name = &"手电筒"
+item_catagory = 1
+item_desc = "从书架上找到的手电筒"
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_su70t")]([])

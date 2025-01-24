@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnra6wm13v5hu"]
+
+[ext_resource type="StyleBox" uid="uid://bsl01ijdjj0hn" path="res://event_editor/styles/node_style.tres" id="1_h8ei0"]
+[ext_resource type="Script" path="res://event_editor/nodes/sub_thread/sub_thread_gn.gd" id="2_0bfnb"]
+
+[node name="SubThreadNode" type="GraphNode"]
+offset_left = 113.0
+offset_top = 262.0
+offset_right = 239.0
+offset_bottom = 363.0
+mouse_filter = 1
+theme_override_colors/resizer_color = Color(0, 0.827451, 0, 1)
+theme_override_styles/titlebar = ExtResource("1_h8ei0")
+title = "并行分支"
+ignore_invalid_connection_type = true
+slot/0/left_enabled = true
+slot/0/left_type = 2
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(2.11775e-06, 0.379974, 0.944978, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(0, 0.380392, 0.945098, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("2_0bfnb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+alignment = 1
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 385
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+text = "输入"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+text = "输出1"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+alignment = 1
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+split_offset = 385
+
+[node name="Label" type="Label" parent="VBoxContainer2/HSplitContainer3"]
+layout_mode = 2
+text = "输出2"

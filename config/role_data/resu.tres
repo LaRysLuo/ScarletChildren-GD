@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Role" load_steps=3 format=3 uid="uid://bwhg086isf8w5"]
+
+[ext_resource type="Script" path="res://component/role_manager/role.gd" id="1_8m6s4"]
+[ext_resource type="Texture2D" uid="uid://brh3hkvfxetia" path="res://assets/tachie/resu.png" id="2_oxfpy"]
+
+[resource]
+script = ExtResource("1_8m6s4")
+role_name = "礼诗"
+theme_color = Color(1, 0.780392, 0.513726, 1)
+tachie = ExtResource("2_oxfpy")
+desc = ""
