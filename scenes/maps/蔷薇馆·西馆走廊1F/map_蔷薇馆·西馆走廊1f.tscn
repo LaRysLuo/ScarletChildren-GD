@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=4 uid="uid://d2kd4isfhvejs"]
 
-[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_ngkv1"]
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_gj6mg"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_22cdf"]
 [ext_resource type="Texture2D" uid="uid://cu6mil8k4b1vg" path="res://assets/tilesets/蔷薇馆·西馆走廊1F/西馆走廊1F - 1.png" id="2_d0cb8"]
 [ext_resource type="Texture2D" uid="uid://bpldvmx2eua1l" path="res://assets/tilesets/蔷薇馆·西馆走廊1F/西馆走廊1F - 2.png" id="3_8yomd"]
@@ -111,7 +111,7 @@ script = ExtResource("6_0okvc")
 coord = Vector2i(5, 7)
 event_ex = SubResource("Resource_rvtld")
 
-[node name="蔷薇馆·西馆走廊1F" instance=ExtResource("1_ngkv1")]
+[node name="蔷薇馆·西馆走廊1F" instance=ExtResource("1_gj6mg")]
 
 [node name="Maps" parent="." index="0"]
 right_limit = 800.0
@@ -122,18 +122,14 @@ event_ex = Array[ExtResource("6_0okvc")]([SubResource("Resource_778qi"), SubReso
 position = Vector2(401, 320)
 texture = ExtResource("2_d0cb8")
 
-[node name="2" parent="Maps" index="2"]
+[node name="2" parent="Maps" index="1"]
 position = Vector2(401, 320)
 texture = ExtResource("3_8yomd")
 
-[node name="Lighting" parent="Maps" index="3"]
-visible = false
-z_index = 100
-
-[node name="Objects" parent="Maps" index="4"]
+[node name="Objects" parent="Maps" index="2"]
 z_index = 1
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAATAAoAAQAAAAAACgARAAoAAQAAAAAACQAIAAoAAQAAAAAACQAIAA8AAQAAAAAACwARAA8AAQAAAAAACwAFAAgAAQAAAAAABAAFAAcAAQAAAAAACwA=")
 
-[node name="Movable" parent="Maps" index="5"]
+[node name="Movable" parent="Maps" index="3"]
 tile_map_data = PackedByteArray("AAAIAAoAAgABAAEAAAAIAAkAAgABAAEAAAAIAAgAAgABAAEAAAAIAAcAAgABAAEAAAAIAAYAAgABAAEAAAAFAAkAAgABAAEAAAAFAAoAAgABAAEAAAAGAAwAAgABAAEAAAAHAAsAAgABAAEAAAANAAsAAgABAAEAAAAOAAsAAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAAKAAsAAgABAAEAAAAKAAwAAgABAAEAAAALAAwAAgABAAEAAAAMAA0AAgABAAEAAAALAA0AAgABAAEAAAAMAA4AAgABAAEAAAANAA4AAgABAAEAAAAOAA0AAgABAAEAAAAOAAwAAgABAAEAAAAMAAwAAgABAAEAAAAFAAwAAgABAAEAAAAFAA0AAgABAAEAAAAGAA0AAgABAAEAAAAHAA0AAgABAAEAAAAHAAwAAgABAAEAAAAIAAwAAgABAAEAAAAJAAwAAgABAAEAAAAEAAwAAgABAAEAAAAPAAsAAgABAAEAAAATAA0AAgABAAEAAAATAAwAAgABAAEAAAATAAsAAgABAAEAAAARAAkAAgABAAEAAAARAAgAAgABAAEAAAARAAcAAgABAAEAAAAEAA0AAgABAAEAAAAEAA4AAgABAAEAAAAFAA4AAgABAAEAAAAGAA4AAgABAAEAAAAHAA4AAgABAAEAAAAIAA0AAgABAAEAAAAIAA4AAgABAAEAAAAJAA0AAgABAAEAAAAJAA4AAgABAAEAAAAKAA0AAgABAAEAAAAKAA4AAgABAAEAAAALAA4AAgABAAEAAAAOAA4AAgABAAEAAAAPAAwAAgABAAEAAAAPAA0AAgABAAEAAAAPAA4AAgABAAEAAAAQAAwAAgABAAEAAAAQAA0AAgABAAEAAAAQAA4AAgABAAEAAAARAAwAAgABAAEAAAARAA0AAgABAAEAAAARAA4AAgABAAEAAAAIAAsAAgABAAEAAAAJAAsAAgABAAEAAAALAAsAAgABAAEAAAAMAAsAAgABAAEAAAAQAAsAAgABAAEAAAARAAsAAgABAAEAAAAFAAsAAgABAAEAAAAFAAgAAgABAAEAAAAFAAcAAgABAAEAAAAFAAYAAgABAAEAAAASAA0AAgABAAEAAAATAA4AAgABAAEAAAASAA4AAgABAAEAAAASAAsAAgABAAEAAAASAAwAAgABAAEAAAARAA8AAgABAAEAAAAIAA8AAgABAAEAAAARAAYAAgABAAEAAAARAAoAAgABAAEAAAARABAAAgABAAEAAAAIABAAAgABAAEAAAA=")

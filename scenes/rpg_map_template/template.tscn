@@ -1,25 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://6exey0lurxl0"]
+[gd_scene load_steps=4 format=4 uid="uid://6exey0lurxl0"]
 
 [ext_resource type="Script" path="res://scripts/map_config.gd" id="1_h0v84"]
-[ext_resource type="Shader" path="res://component/lighting/lighting.gdshader" id="3_w4rtv"]
-[ext_resource type="Script" path="res://scenes/rpg_map_template/lighting.gd" id="4_51rwr"]
+[ext_resource type="Texture2D" uid="uid://c06wfx6ssyllv" path="res://assets/light/light_tex.tres" id="5_tvvqe"]
 [ext_resource type="TileSet" uid="uid://4h8rsnwtsgr2" path="res://tilesets/main.tres" id="6_lfsu3"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ydra"]
-shader = ExtResource("3_w4rtv")
-shader_parameter/fog_color = Color(0, 0, 0, 0.929412)
-
-[sub_resource type="Gradient" id="Gradient_phsyb"]
-offsets = PackedFloat32Array(0.811359, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pjfwc"]
-gradient = SubResource("Gradient_phsyb")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
 
 [node name="示例地图场景" type="Node2D"]
 metadata/_edit_vertical_guides_ = [-20.0]
@@ -33,16 +16,9 @@ right_limit = 639.0
 [node name="0" type="Sprite2D" parent="Maps"]
 position = Vector2(320, 320)
 
-[node name="1" type="Sprite2D" parent="Maps"]
-
 [node name="2" type="Sprite2D" parent="Maps"]
 z_index = 12
 position = Vector2(320, 320)
-
-[node name="Lighting" type="Sprite2D" parent="Maps"]
-material = SubResource("ShaderMaterial_3ydra")
-script = ExtResource("4_51rwr")
-light_texture = SubResource("GradientTexture2D_pjfwc")
 
 [node name="Objects" type="TileMapLayer" parent="Maps"]
 z_index = 10
@@ -56,3 +32,15 @@ z_index = 100
 tile_map_data = PackedByteArray("AAAIAAoAAgABAAEAAAAIAAkAAgABAAEAAAAIAAgAAgABAAEAAAAIAAcAAgABAAEAAAAIAAYAAgABAAEAAAAJAAYAAgABAAEAAAAJAAcAAgABAAEAAAAJAAgAAgABAAEAAAAJAAkAAgABAAEAAAAJAAoAAgABAAEAAAAHAAkAAgABAAEAAAAGAAkAAgABAAEAAAAGAAgAAgABAAEAAAAFAAkAAgABAAEAAAAFAAoAAgABAAEAAAAEAAoAAgABAAEAAAADAAoAAgABAAEAAAAGAAoAAgABAAEAAAAGAAsAAgABAAEAAAAGAAwAAgABAAEAAAAHAAsAAgABAAEAAAAHAAoAAgABAAEAAAA=")
 tile_set = ExtResource("6_lfsu3")
 rendering_quadrant_size = 32
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Lights"]
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+position = Vector2(407, 549)
+scale = Vector2(0.742571, 0.720044)
+energy = 0.57
+texture = ExtResource("5_tvvqe")
+texture_scale = 8.15

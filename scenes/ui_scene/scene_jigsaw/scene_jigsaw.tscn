@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmmg1anhhihqi"]
+
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_jigsaw/scene_jigsaw.gd" id="1_nl8if"]
+[ext_resource type="PackedScene" uid="uid://bg24btm0pqcba" path="res://scenes/ui_scene/scene_jigsaw/conponents/puzzle_unit.tscn" id="2_tra1n"]
+
+[node name="SceneJigsaw" type="CanvasLayer"]
+script = ExtResource("1_nl8if")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="PuzzleUnit" parent="HBoxContainer/GridContainer" instance=ExtResource("2_tra1n")]
+layout_mode = 2
+
+[node name="PuzzleUnit2" parent="HBoxContainer/GridContainer" instance=ExtResource("2_tra1n")]
+layout_mode = 2
+
+[node name="PuzzleUnit3" parent="HBoxContainer/GridContainer" instance=ExtResource("2_tra1n")]
+layout_mode = 2
+
+[node name="PuzzleUnit4" parent="HBoxContainer/GridContainer" instance=ExtResource("2_tra1n")]
+layout_mode = 2
+
+[node name="PuzzleUnit5" parent="HBoxContainer/GridContainer" instance=ExtResource("2_tra1n")]
+layout_mode = 2
+
+[node name="PuzzleUnit6" parent="HBoxContainer/GridContainer" instance=ExtResource("2_tra1n")]
+layout_mode = 2
+
+[node name="PuzzleUnit7" parent="HBoxContainer/GridContainer" instance=ExtResource("2_tra1n")]
+layout_mode = 2
+
+[node name="PuzzleUnit8" parent="HBoxContainer/GridContainer" instance=ExtResource("2_tra1n")]
+layout_mode = 2
+
+[node name="PuzzleUnit9" parent="HBoxContainer/GridContainer" instance=ExtResource("2_tra1n")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "移动步数：0"

@@ -116,6 +116,7 @@ func move(path:String,coord:Vector2i,with_fade:bool = true,move_player:bool = fa
 	if GameManager.player:
 		GameManager.player.map.remove_child(GameManager.player)	
 		GameManager.add_child(GameManager.player)
+	print("执行path=",path)
 	var err =	get_tree().change_scene_to_file(path) #跳转到新场景
 	if err != 0:
 		printerr("跳转新场景失败")

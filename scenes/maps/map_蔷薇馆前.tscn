@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=4 uid="uid://ckmjy1djdlpg2"]
 
-[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/maps/Map_1号房间.tscn" id="1_2i3u6"]
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/maps/2蔷薇馆2F - 201室/map_1号房间.tscn" id="1_2i3u6"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_2ojb8"]
 [ext_resource type="Texture2D" uid="uid://bqhc2tp6g3383" path="res://assets/tilesets/蔷薇馆前/蔷薇馆前.png" id="2_o1tyt"]
 [ext_resource type="Resource" uid="uid://t71ho7t7lcof" path="res://event_res/event004.tres" id="3_ked3u"]

@@ -68,7 +68,7 @@ func _ready() -> void:
 	on_event_trigger_end.connect(_event_trigger_end)
 	
 	## 载入游戏数据 TODO 实际不能在这里调用
-	#return
+	return
 
 	await  SaveManager.load_data()
 	await get_tree().create_timer(0.5).timeout
@@ -254,8 +254,8 @@ func instance_player(map:Node2D,vec:Vector2):
 	player.start_pos_changed.connect(update_fog)
 	map.add_child(player)
 	movable = map.get_parent().get_node("./Movable")
-	block_map = map.get_parent().get_node("./Black")
-	call_deferred("update_fog") 
+	#block_map = map.get_parent().get_node("./Black")
+	#call_deferred("update_fog") 
 
 ## 临时在这个类里先写地图管理类
 ## 1. 首先获得玩家类

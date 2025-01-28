@@ -1,47 +1,12 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=9 format=3 uid="uid://t71ho7t7lcof"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=5 format=3 uid="uid://t71ho7t7lcof"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_uoccs"]
 [ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_5i2rt"]
-[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="3_1yyn2"]
-[ext_resource type="Script" path="res://event_editor/models/sub_thread_data .gd" id="4_21xuj"]
-
-[sub_resource type="Resource" id="Resource_b4xeb"]
-script = ExtResource("3_1yyn2")
-move_type = 2
-target_char = {
-"coord": Vector2i(11, 5),
-"label": "ai"
-}
-step_count = 3
-speed_factor = 0.0
-wait_finished = true
-children = Array[ExtResource("2_5i2rt")]([])
-node_type = 3
-pos = Vector2(200, -60)
-
-[sub_resource type="Resource" id="Resource_22bmq"]
-script = ExtResource("3_1yyn2")
-move_type = 2
-target_char = {
-"coord": Vector2i(12, 7),
-"label": "resu"
-}
-step_count = 3
-speed_factor = 0.0
-wait_finished = true
-children = Array[ExtResource("2_5i2rt")]([])
-node_type = 3
-pos = Vector2(200, 160)
-
-[sub_resource type="Resource" id="Resource_7j7hi"]
-script = ExtResource("4_21xuj")
-children = Array[ExtResource("2_5i2rt")]([SubResource("Resource_b4xeb"), SubResource("Resource_22bmq")])
-node_type = 10
-pos = Vector2(-20, 60)
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_yjo2i"]
 
 [sub_resource type="Resource" id="Resource_j0qlf"]
 script = ExtResource("2_5i2rt")
-children = Array[ExtResource("2_5i2rt")]([SubResource("Resource_7j7hi")])
+children = Array[ExtResource("2_yjo2i")]([])
 node_type = 0
 pos = Vector2(-260, 60)
 

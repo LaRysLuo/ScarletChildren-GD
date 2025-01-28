@@ -26,9 +26,10 @@ func  _init(cmd:int = BaseEventNode.Transport,pos:Vector2 = Vector2.ZERO,target_
 		self.target_coord = target_coord
 	self.is_fade = is_fade
 
-func _execute(ent):
+func _execute(ent:Event):
 	## TODO 场景移动的逻辑
 	# 场景移动前要把触发事件保护起来
+	ent.hide()
 	ent.get_parent().remove_child(ent)
 	GameManager.add_child(ent)
 	SceneManager.move(target_map_path,target_coord,is_fade,is_move_character) #传送到目标场合
@@ -37,6 +38,7 @@ func _execute(ent):
 	if ent is Event:
 		ent.event_finish.connect(func():
 			GameManager.remove_child(ent)
+			ent.show()
 		)
 	
 	

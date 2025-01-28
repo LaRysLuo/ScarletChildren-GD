@@ -3,6 +3,12 @@ class_name SaveManage
 
 ## SaveData 存档文件
 
+# 
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_F1:
+			save_data()
+
 ## 保存数据
 func save_data():
 	var save_file = SaveData.new()

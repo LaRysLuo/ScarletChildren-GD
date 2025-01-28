@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://k17354wt144h"]
 
-[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_vvauf"]
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/maps/2蔷薇馆2F - 201室/map_1号房间.tscn" id="1_vvauf"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_jbhra"]
 [ext_resource type="Resource" uid="uid://cp1dpu3axpya1" path="res://event_res/e08.tres" id="2_xhm3h"]
 [ext_resource type="Texture2D" uid="uid://del6m104mg6v7" path="res://assets/tilesets/不知名隧道/不知名隧道里 - 0.png" id="4_urgqu"]

@@ -15,7 +15,7 @@ class_name MapConfig
 @export var map_pre_event:Events_Res
 
 
-var tile_black:TileMapLayer
+#var tile_black:TileMapLayer
 
 func _ready() -> void:
 	
@@ -23,10 +23,10 @@ func _ready() -> void:
 	## 增加一个画面显示前的处理
 	await  _map_show_pre()
 	self.show()
-	tile_black = $Black
-	if tile_black: tile_black.show()
-	if SceneManager.is_running:
-		await SceneManager.move_finished
+	#tile_black = $Black
+	#if tile_black: tile_black.show()
+	#if SceneManager.is_running:
+		#await SceneManager.move_finished
 	call_deferred("auto_event_trigger")
 
 ## 增加一个游戏初始化前

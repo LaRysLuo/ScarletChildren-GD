@@ -1,10 +1,11 @@
-[gd_scene load_steps=112 format=3 uid="uid://fwltuxos1oca"]
+[gd_scene load_steps=113 format=3 uid="uid://fwltuxos1oca"]
 
 [ext_resource type="Texture2D" uid="uid://c7kc2k8pcpqs7" path="res://assets/tileset0/111.png" id="1_cnw4s"]
 [ext_resource type="Script" path="res://scripts/player_new.gd" id="1_oobjn"]
 [ext_resource type="Texture2D" uid="uid://docn0pvrh3ot" path="res://assets/characters/$resu v3.1.png" id="2_hsl5x"]
 [ext_resource type="Texture2D" uid="uid://b3vo7lgy8et3l" path="res://assets/characters/$礼诗原地待机.png" id="4_j3qap"]
 [ext_resource type="Texture2D" uid="uid://5usglxkqlipg" path="res://assets/system/Balloon.png" id="5_c51be"]
+[ext_resource type="Texture2D" uid="uid://c06wfx6ssyllv" path="res://assets/light/light_tex.tres" id="6_8oerm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2bg8n"]
 atlas = ExtResource("5_c51be")
@@ -886,3 +887,21 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="Attach" type="Node2D" parent="."]
+
+[node name="Lighting" type="Node2D" parent="."]
+
+[node name="SelfLight" type="PointLight2D" parent="Lighting"]
+light_mask = 0
+position = Vector2(0, 9)
+color = Color(0.999789, 0.920349, 0.887377, 1)
+energy = 0.63
+range_item_cull_mask = 2
+texture = ExtResource("6_8oerm")
+texture_scale = 0.87
+height = 230.0
+
+[node name="EnvironmentLight" type="PointLight2D" parent="Lighting"]
+energy = 0.26
+texture = ExtResource("6_8oerm")
+texture_scale = 2.58
+height = 330.0

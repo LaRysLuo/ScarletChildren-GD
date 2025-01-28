@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=4 uid="uid://8i35ycuw4ytf"]
 
-[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_c5h05"]
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/maps/2蔷薇馆2F - 201室/map_1号房间.tscn" id="1_c5h05"]
 [ext_resource type="Script" path="res://component/event_extend/event_ex_config.gd" id="2_0xmqw"]
 [ext_resource type="Texture2D" uid="uid://bredxx2rynypw" path="res://scenes/maps/蔷薇馆1F~杂物间/tileset/杂物间 - 1.png" id="2_eqgky"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_utoo4"]
@@ -38,13 +38,13 @@ event_ex = Array[ExtResource("2_0xmqw")]([SubResource("Resource_3f3md")])
 position = Vector2(401, 288)
 texture = ExtResource("2_eqgky")
 
-[node name="2" parent="Maps" index="1"]
+[node name="2" parent="Maps" index="2"]
 position = Vector2(401, 304)
 texture = ExtResource("3_c0jv8")
 
-[node name="Objects" parent="Maps" index="2"]
+[node name="Objects" parent="Maps" index="3"]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAALAAcAAQAAAAAACQAHAAgAAQAAAAAABAA=")
 
-[node name="Movable" parent="Maps" index="3"]
+[node name="Movable" parent="Maps" index="4"]
 tile_map_data = PackedByteArray("AAAIAAoAAgABAAEAAAAIAAkAAgABAAEAAAAJAAkAAgABAAEAAAAJAAoAAgABAAEAAAAHAAkAAgABAAEAAAAHAAoAAgABAAEAAAAKAAkAAgABAAEAAAAKAAoAAgABAAEAAAALAAoAAgABAAEAAAAMAAoAAgABAAEAAAAMAAkAAgABAAEAAAALAAkAAgABAAEAAAAMAAgAAgABAAEAAAALAAgAAgABAAEAAAALAAcAAgABAAEAAAALAAYAAgABAAEAAAALAAUAAgABAAEAAAA=")

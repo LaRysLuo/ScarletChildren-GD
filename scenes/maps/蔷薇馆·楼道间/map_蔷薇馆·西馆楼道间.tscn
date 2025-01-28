@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=4 uid="uid://qxpaebn2n8aa"]
 
-[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_t86k8"]
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/maps/2蔷薇馆2F - 201室/map_1号房间.tscn" id="1_t86k8"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_4qgpp"]
 [ext_resource type="Texture2D" uid="uid://d3h35b67jw6o7" path="res://scenes/maps/蔷薇馆·楼道间/tileset/西馆楼道间 -1.png" id="2_xc8x5"]
 [ext_resource type="Resource" uid="uid://bsdrqrmmyea86" path="res://scenes/maps/蔷薇馆·楼道间/event/通往西馆走廊1F(4,12).tres" id="3_e3pov"]
@@ -39,8 +39,8 @@ script = ExtResource("6_rb3wv")
 scene_path = "res://scenes/maps/蔷薇馆·西馆走廊2F/map_蔷薇馆·西馆走廊2f.tscn"
 step1 = 2
 step2 = 2
-target_pos = Vector2i(6, 7)
-target_scene_door = Vector2i(6, 8)
+target_pos = Vector2i(6, 10)
+target_scene_door = Vector2i(6, 11)
 
 [sub_resource type="Resource" id="Resource_xw0xq"]
 script = ExtResource("5_7ml3q")
