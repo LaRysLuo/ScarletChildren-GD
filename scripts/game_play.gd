@@ -68,7 +68,12 @@ func _ready() -> void:
 	on_event_trigger_end.connect(_event_trigger_end)
 	
 	## 载入游戏数据 TODO 实际不能在这里调用
-	#return
+	## TEST
+	## 跳转到对应场景
+	
+	SceneManager.move("res://scenes/maps/蔷薇馆·西馆走廊2F/map_蔷薇馆·西馆走廊2f.tscn",Vector2i(10,13),true,true)
+	set_game_state_normal()
+	return
 
 	await  SaveManager.load_data()
 	await get_tree().create_timer(0.5).timeout
