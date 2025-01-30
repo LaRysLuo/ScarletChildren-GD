@@ -20,6 +20,8 @@ class_name MapConfig
 func _ready() -> void:
 	
 	self.hide()
+	
+	#_init_scene_event()
 	## 增加一个画面显示前的处理
 	await  _map_show_pre()
 	self.show()
@@ -27,7 +29,20 @@ func _ready() -> void:
 	#if tile_black: tile_black.show()
 	#if SceneManager.is_running:
 		#await SceneManager.move_finished
+	## 做本场景的事件初始化
+	call_deferred("_init_scene_event")
 	call_deferred("auto_event_trigger")
+
+## 初始化地图的事件
+func _init_scene_event():
+	pass
+	#var all_events = get_tree().get_nodes_in_group("events")
+	#for event:Event in all_events:
+		#var config = get_event(event.cell_pos)
+		#if !config || !config.event_res:
+			#printerr("有事件没有配置event_res:%s，坐标是：%s" % [event.name,event.cell_pos])
+			#continue
+		#event.ingore_collsion = !config.event_res.is_collsion
 
 ## 增加一个游戏初始化前
 func _map_show_pre():
@@ -76,6 +91,10 @@ func get_event(coord:Vector2i) -> EventConfig:
 	## 没有配置任何事件的情况
 	if event_group.is_empty():
 		return null
-	var filter = event_group.filter(func(item:EventConfig): return item.pos == coord)
+	var filter = event_group.filter(
+		func(item:EventConfig): 
+			return item.pos == coord && (item.condition && item.condition._get_result())
+	)
+	print("filters=",filter.size())
 	if filter.is_empty():return null
 	return filter.front()

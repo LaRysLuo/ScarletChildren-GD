@@ -21,6 +21,7 @@ var tool_scenes:Dictionary = {
 	"scene_main_menu":"res://scenes/ui_scene/main_menu.tscn",
 	"scene_item_list":"res://scenes/ui_scene/scene_item/neo_item_list.tscn",
 	"scene_reading_mode":"res://component/scene_file_read/scene_file_read.tscn",
+	"scene_star_fish":"res://scenes/ui_scene/scene_jigsaw/scene_jigsaw.tscn"
 	
 }
 
@@ -42,6 +43,18 @@ func _ready() -> void:
 	self.hide()
 	cg_rect.hide()
 	color_rect.hide()
+	
+## 开始解谜
+# SceneManager.to_starfish()
+func to_starfish():
+	var star_fish:SceneJigsaw = await navigate_to("scene_star_fish")
+	var is_finished = has_item("202c_0_星鱼拼图完成",true)
+	if is_finished: star_fish.set_complete()
+	else: star_fish.on_succuss.connect(
+			func(): GameManager.data_player.gain_item("202c_0_星鱼拼图完成",false)
+		)
+	await  star_fish.on_finish
+	
 
 # 跳转到下一个场景
 func goto(path,with_fade:bool = true):

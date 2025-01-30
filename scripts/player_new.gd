@@ -39,6 +39,7 @@ func _ready() -> void:
 	
 func _init_player() -> void:
 	call_deferred("_has_interact_event")
+	# 重新载入地图事件
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -102,7 +103,7 @@ func _has_interact_event(state:int = 1):
 	#if event: print("存在可触发的event=",event.interactable())
 	if event && event.interactable() && !is_action: 
 		_set_interact_with(event,state)
-		print("检查到有X事件")
+		#print("检查到有X事件")
 	else: _set_interact_with(null,state)
 
 # 设置可交互对象
@@ -125,6 +126,7 @@ func _get_event_font() -> Event:
 	var target_pos = cell_pos + dir
 	for event in events:
 		if event is Event: #首先判断event是否为Event类型
+			event._load_event_config()
 			if event.cell_pos == target_pos:
 				return event
 	return null		# 什么都没找到，返回空

@@ -12,6 +12,9 @@ signal se_finish
 func play_musicalbox():
 	start_music("musical_box")
 	
+func play_puzzle_complete():
+	play_se("putting1")
+	
 ## 播放光标移动
 func play_cursor_move():
 	play_se("Cursor1")

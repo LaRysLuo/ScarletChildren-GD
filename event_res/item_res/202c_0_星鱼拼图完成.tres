@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cestl8db0hcoi"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_ncum1"]
+
+[resource]
+script = ExtResource("1_ncum1")
+item_id = &"202c_0_星鱼拼图完成"
+item_name = &"星鱼拼图完成"
+item_catagory = 2
+item_desc = ""
+is_finished = true
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_ncum1")]([])

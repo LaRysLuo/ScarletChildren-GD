@@ -12,6 +12,10 @@ class_name EventConfig
 ## 事件条件：设置条件后，只会在指定条件时才会触发该事件
 @export var condition:EventCondition
 
+## 动画帧索引
+@export var frame_index:int
+
+
 # 为了绑定对应的事件点
 ## 坐标位置
 @export var pos:Vector2i

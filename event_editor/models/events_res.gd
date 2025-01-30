@@ -20,7 +20,7 @@ enum TriggerType {
 @export var title:String = ""
 
 ## 是否为障碍物,表示该事件是否可穿透
-@export var is_collsion:bool = false
+@export var is_collsion:bool = true
 
 ## 触发方式
 @export var trigger_type:TriggerType = TriggerType.None无 

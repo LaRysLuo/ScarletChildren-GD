@@ -12,12 +12,14 @@
 [sub_resource type="Resource" id="Resource_bdfs2"]
 script = ExtResource("2_soxkc")
 is_show = true
+frame_index = 0
 pos = Vector2i(13, 17)
 event_res = ExtResource("4_8wdld")
 
 [sub_resource type="Resource" id="Resource_8glv3"]
 script = ExtResource("2_soxkc")
 is_show = true
+frame_index = 0
 pos = Vector2i(16, 15)
 event_res = ExtResource("5_cqj17")
 

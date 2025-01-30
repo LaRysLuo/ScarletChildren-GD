@@ -1,12 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmmg1anhhihqi"]
+[gd_scene load_steps=10 format=3 uid="uid://bmmg1anhhihqi"]
 
 [ext_resource type="Script" path="res://scenes/ui_scene/scene_jigsaw/scene_jigsaw.gd" id="1_nl8if"]
 [ext_resource type="PackedScene" uid="uid://bg24btm0pqcba" path="res://scenes/ui_scene/scene_jigsaw/conponents/puzzle_unit.tscn" id="2_tra1n"]
+[ext_resource type="PackedScene" uid="uid://bwqclo5yw5lri" path="res://component/key_tips_bottom/key_tips_bottom.tscn" id="3_gi76r"]
+[ext_resource type="Script" path="res://component/key_tips_bottom/key_tips_config.gd" id="4_2auhr"]
+
+[sub_resource type="Resource" id="Resource_14480"]
+script = ExtResource("4_2auhr")
+key_name = &"拼图"
+is_show = true
+
+[sub_resource type="Resource" id="Resource_rjwvr"]
+script = ExtResource("4_2auhr")
+key_name = &"取消"
+is_show = true
+
+[sub_resource type="Resource" id="Resource_fd6sd"]
+script = ExtResource("4_2auhr")
+key_name = &"功能名称"
+is_show = false
+
+[sub_resource type="Resource" id="Resource_wrqhe"]
+script = ExtResource("4_2auhr")
+key_name = &"功能名称"
+is_show = false
+
+[sub_resource type="Resource" id="Resource_me047"]
+script = ExtResource("4_2auhr")
+key_name = &"移动光标"
+is_show = true
 
 [node name="SceneJigsaw" type="CanvasLayer"]
 script = ExtResource("1_nl8if")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -64,3 +91,17 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 size_flags_vertical = 0
 text = "移动步数：0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="KeyTipsBottom" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_gi76r")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+a_btn = SubResource("Resource_14480")
+b_btn = SubResource("Resource_rjwvr")
+x_btn = SubResource("Resource_fd6sd")
+y_btn = SubResource("Resource_wrqhe")
+arrow_btn = SubResource("Resource_me047")

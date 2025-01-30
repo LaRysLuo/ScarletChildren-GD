@@ -10,11 +10,15 @@ class_name Event
 var ingore_collsion:bool = false
 var is_running := false
 
+
+
 ## 信号
 signal  event_finish # 事件交互结束
 
 
-
+## 引用组件
+var animated_sprite:AnimatedSprite2D:
+	get(): return get_node("AnimatedSprite2D2")
 
 
 ## 事件NPC的实现：方案1，在Event_Res上增加一个行走图的选择
@@ -27,12 +31,31 @@ signal  event_finish # 事件交互结束
 func _ready() -> void:
 	GameManager.data_player.on_player_item_changed.connect(_refresh_event_state)
 	#_refresh_event_state()
+	_load_event_config()
+	
+## 载入事件config
+func _load_event_config():
+	var config:EventConfig = get_event_config()
+	if !config: return 
+	# 载入 ingore_collsion
+	self.ingore_collsion = !config.event_res.is_collsion
+	_refresh_sprite_frame(config.frame_index)
+
+## 刷新精灵图
+func _refresh_sprite_frame(frame_index:int):
+	animated_sprite.frame = frame_index
+	pass
 
 ## 连接信号使用，当或许的条件变化时，刷新事件
 func _refresh_event_state(item_name:StringName = "",state:int = 0):
-	#print("test条件变化了%s,%s" % [self.name,activable(get_event_config())])
+	## 需要等待场景
 	var config = get_event_config()
-	if config: config.is_show = activable(config)
+	print("test条件变化了%s,%s" % [self.name,config])
+	if config: 
+		config.is_show = activable(config)
+		print("test条件变化了%s,%s" % [self.name,config.frame_index])
+	# 更新 动画帧
+		_refresh_sprite_frame(config.frame_index)
 	#print("test当前透明度",self.visible)
 
 ## 交互函数
@@ -115,6 +138,7 @@ func get_event_config() -> EventConfig:
 	var map_config:MapConfig = GameManager.get_map_config()
 	if !map_config: return null
 	var event_config:EventConfig =	map_config.get_event(cell_pos)
+	print("test000=",event_config)
 	if !event_config:
 		printerr("该事件没有配置Event_RES")
 	return event_config

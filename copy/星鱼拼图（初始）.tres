@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=8 format=3 uid="uid://cy2h0akfo1dqq"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_0mtep"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_gequt"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_k05du"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_73fhp"]
+
+[sub_resource type="Resource" id="Resource_ir83t"]
+script = ExtResource("3_k05du")
+script_cmd = "SceneManager.to_starfish()"
+children = Array[ExtResource("2_gequt")]([])
+node_type = 9
+pos = Vector2(160, 60)
+
+[sub_resource type="Resource" id="Resource_5wjcm"]
+script = ExtResource("2_gequt")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ir83t")
+
+[sub_resource type="Resource" id="Resource_4l7gr"]
+script = ExtResource("4_73fhp")
+children = Array[ExtResource("2_gequt")]([SubResource("Resource_5wjcm")])
+node_type = 0
+pos = Vector2(-80, 120)
+
+[resource]
+script = ExtResource("1_0mtep")
+title = "星鱼拼图（初始）"
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_4l7gr")
+map = {}

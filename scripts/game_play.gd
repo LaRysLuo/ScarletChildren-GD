@@ -68,7 +68,7 @@ func _ready() -> void:
 	on_event_trigger_end.connect(_event_trigger_end)
 	
 	## 载入游戏数据 TODO 实际不能在这里调用
-	return
+	#return
 
 	await  SaveManager.load_data()
 	await get_tree().create_timer(0.5).timeout

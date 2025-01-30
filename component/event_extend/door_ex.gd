@@ -48,5 +48,6 @@ func _make_event_res() ->Events_Res:
 	script_node_09.children.append(ChildrenNodeConfig.new(0,0,playanim_node_11))
 	playanim_node_11.children.append(ChildrenNodeConfig.new(0,0,playanim_node_12))
 	var event_res = Events_Res.new(start)
+	event_res.is_collsion = true
 	return event_res
 	

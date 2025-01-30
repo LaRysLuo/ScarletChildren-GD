@@ -2,7 +2,8 @@ extends CanvasLayer
 class_name SceneJigsaw
 
 ## 信号
-signal on_finish
+signal on_finish # 场景结束了，取消或者完成拼图都会触发 
+signal on_succuss  # 只有成功会触发
 
 ## 引用组件
 var grid:GridContainer:
@@ -10,6 +11,9 @@ var grid:GridContainer:
 
 var move_count_label:Label:
 	get():return get_node("MarginContainer/Label")
+
+var key_tips:KeyTipsBottom:
+	get():return get_node("MarginContainer/HBoxContainer/KeyTipsBottom")
 
 
 ## 属性
@@ -33,9 +37,12 @@ var dirs = [
 	Vector2i.UP
 ]
 
-var random_index_gp = ["0", "2", "1", "6", "4", "5", "3", "7", "-1"]
+#var random_index_gp = ["0", "2", "1", "6", "4", "5", "3", "7", "-1"]
+var random_index_gp = ["0","1","2","3","4","5","6","-1","7"]
 var finish_index_gp = ["0","1","2","3","4","5","6","7","-1"]
 
+
+var is_complete:bool = false
 
 var last_index:int = -1
 var select_index:int = 0:
@@ -53,7 +60,7 @@ var move_count:int = 0:
 
 
 func _ready() -> void:
-	_init_all()
+	call_deferred("_init_all")
 
 ## 初始化图案
 func _init_all():
@@ -70,19 +77,27 @@ func _init_all():
 		else: 
 			unit.name = "-1"
 			break
-	_random_piece()
-
+	if !is_complete: 
+		_random_piece()
+	else:
+		key_tips.disable_key(KeyTipsBottom.keyType.key_a)
 	# 聚焦第一个元素
 	focus(0)
 
+## 刷新拼图块
 func _refresh_children():
 	puzzle_units.clear()
 	# 获取所有的Unit
 	for child in grid.get_children():
 		puzzle_units.append(child)
 
+## 刷新移动步数
 func _refresh_move_count():
 	move_count_label.text = "移动步数：%s" % move_count
+	
+## 【对外调用】 设置谜题为已完成
+func set_complete():
+	self.is_complete = true
 	
 ## 打乱碎片
 func _random_piece():
@@ -116,6 +131,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right")  && _cursor_right_enable() : _cursor_right()
 	if event.is_action_pressed("up") && _cursor_up_enable() : _cursor_up()
 	if event.is_action_pressed("submit"):_move()
+	if event.is_action_pressed("cancel"):_back()
 	
 ## 判断是否可移动的
 func movable(index:int) -> bool:
@@ -157,6 +173,7 @@ func _cursor_up():
 
 ## 移动拼图
 func _move():
+	if is_complete: return
 	var block = _find_empty()
 	# 没有找到空位，不能移动
 	if !block:
@@ -169,13 +186,28 @@ func _move():
 	self.is_buszing = true
 	piece.move(block)
 	await  piece.move_finished
-	self.is_buszing = false
+	
 	grid.move_child(piece,block_index)
 	grid.move_child(block,piece_index)
 	_refresh_children()
 	self.select_index = block_index
 	self.move_count +=1
+	await  get_tree().create_timer(0.3).timeout
+	# 检查是否结束
+	if _check_finish():
+		AudioManager.play_puzzle_complete()
+		on_succuss.emit()
+		await  get_tree().create_timer(0.5).timeout
+		_back()
+		#on_finish.emit()
+		return
+	self.is_buszing = false
 	
+## 返回上一层
+func _back():
+	SceneManager.backall()
+	on_finish.emit()
+
 ## 找到拼图碎片
 func _find_piece() -> PuzzleUnit:
 	var unit:PuzzleUnit = puzzle_units[select_index]
@@ -200,5 +232,14 @@ func _find_empty() -> PuzzleUnit:
 	return null
 
 ## 检查拼图是否完成
-func _check_finish():
-	pass
+func _check_finish() -> bool:
+	var index:int = 0
+	for child:String in finish_index_gp:
+		var unit = puzzle_units[index]
+		if !unit: 
+			return false
+		if unit.name != child:
+			return false
+		index+=1
+	print("拼图已完成")
+	return true

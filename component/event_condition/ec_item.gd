@@ -13,4 +13,4 @@ class_name ECItem
 ## 重写父类的事件
 func _get_result() -> bool:
 	## 判断玩家背包中的道具 
-	return game.data_player.has_item(item_id) == value
+	return game.data_player.has_item(item_id,true) == value

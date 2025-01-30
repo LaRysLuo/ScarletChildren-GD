@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=20 format=3 uid="uid://4h8rsnwtsgr2"]
+[gd_resource type="TileSet" load_steps=21 format=3 uid="uid://4h8rsnwtsgr2"]
 
 [ext_resource type="PackedScene" uid="uid://fwltuxos1oca" path="res://character/player.tscn" id="1_ho40l"]
 [ext_resource type="Texture2D" uid="uid://cgush3j2h8fuv" path="res://assets/tileset0/movable.png" id="2_j3we6"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cn8uj6p4knkbx" path="res://scenes/other/回忆1：图书室/character/book2.tscn" id="6_b88eo"]
 [ext_resource type="PackedScene" uid="uid://exbg842i4m50" path="res://character/character_ai.tscn" id="6_n3j8b"]
 [ext_resource type="PackedScene" uid="uid://dx3214wvnoucx" path="res://character/character_resu.tscn" id="7_kg74u"]
+[ext_resource type="PackedScene" uid="uid://bhyfv7set5e8n" path="res://character/拼图谜题/星鱼谜题.tscn" id="7_kkqhy"]
 [ext_resource type="PackedScene" uid="uid://cpg5lyxhtln3v" path="res://character/存档点事件/save_point.tscn" id="8_d7cv0"]
 [ext_resource type="PackedScene" uid="uid://bnvpecscbbl2q" path="res://character/门/door1.tscn" id="10_fjxm1"]
 [ext_resource type="PackedScene" uid="uid://cy5ta007sskun" path="res://scenes/maps/蔷薇馆.图书室1F/character/book.tscn" id="10_fteqk"]
@@ -38,6 +39,7 @@ scenes/11/scene = ExtResource("3_2p6jg")
 scenes/12/scene = ExtResource("4_fk7gj")
 scenes/13/scene = ExtResource("5_ogsk2")
 scenes/14/scene = ExtResource("6_b88eo")
+scenes/15/scene = ExtResource("7_kkqhy")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wmd5j"]
 texture = ExtResource("2_j3we6")

@@ -115,9 +115,13 @@ func _movable(route:MoveRoute) -> bool:
 	if !(cell_data && cell_data.get_custom_data("movable")): # 如果不可移动则返回
 		return false
 	var event:Event = _get_event(route.target)
+	var map_config:MapConfig = get_parent().get_parent()
+	var event_config:EventConfig = map_config.get_event(route.target)
+	var event_res:Events_Res = null
+	if event_config: event_res = event_config.event_res
 
 	# 如果event是碰撞体才返回
-	if event && event.visible && !event.ingore_collsion :  
+	if event && event.visible && !event.ingore_collsion:  
 		# 判断事件是否会不会触发
 		event_clashed.emit(event)
 		return false

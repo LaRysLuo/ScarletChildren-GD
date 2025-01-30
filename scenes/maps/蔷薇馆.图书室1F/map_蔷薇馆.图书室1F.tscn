@@ -23,6 +23,7 @@ type = -1
 script = ExtResource("2_jirnr")
 is_show = true
 condition = SubResource("Resource_2h1ax")
+frame_index = 0
 pos = Vector2i(21, 7)
 event_res = ExtResource("3_ipf6b")
 
@@ -36,6 +37,7 @@ type = -1
 script = ExtResource("2_jirnr")
 is_show = true
 condition = SubResource("Resource_mio5f")
+frame_index = 0
 pos = Vector2i(21, 6)
 event_res = ExtResource("5_xq6hr")
 
