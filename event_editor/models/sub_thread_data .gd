@@ -11,7 +11,7 @@ func next_sub() -> BaseEventNode:
 	return super.next(1)
 	
 ## 重写父类虚方法
-func _execute(ent:Event):
+func _execute(ent:Event,args):
 	print_rich("[color=#B94D61]- 正在执行《分支线程》[/color]")
 	# 运行子线程
 	var sub_event:BaseEventNode = next_sub()
@@ -19,7 +19,7 @@ func _execute(ent:Event):
 	sub_start.children.append(ChildrenNodeConfig.new(0,0,sub_event))
 
 	var et = EventThread.new()
-	et.trigger_event(sub_start,ent)
+	et.trigger_event(sub_start,ent,{})
 	et.on_complete.connect(_sub_event_execute_complete.bind(et))
 	return 
 

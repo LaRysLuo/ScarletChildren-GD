@@ -10,7 +10,7 @@ func _init(node_type:int = 0,pos:Vector2 = Vector2.ZERO,cinema_scene_path="") ->
 	self.cinema_scene_path = cinema_scene_path
 
 ## 重写执行方法
-func _execute(event):
+func _execute(event,agrs):
 	## 获取演出场景
 	var cinema = load(cinema_scene_path) as PackedScene
 	## 跳转到演出场景

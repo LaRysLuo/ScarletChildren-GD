@@ -21,5 +21,5 @@ func get_next_page(result:Array[ReadingPageData]):
 		printerr("出错了，连接的节点不对")
 
 ## 重写虚方法
-func _execute(ent:Event):
+func _execute(ent:Event,args):
 	pass

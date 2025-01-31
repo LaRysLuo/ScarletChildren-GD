@@ -1,0 +1,206 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=36 format=3 uid="uid://c8xxs20nd307i"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_ekhxx"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_hcay1"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_3wtna"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="3_oxv1h"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_w8g2w"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="5_5dypm"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="6_yg2nb"]
+[ext_resource type="Script" path="res://event_editor/models/sub_thread_data .gd" id="7_be60f"]
+
+[sub_resource type="Resource" id="Resource_cpttg"]
+script = ExtResource("5_5dypm")
+script_cmd = "GameManager.data_player.gain_item(\"103i_0_5号电池\")"
+children = Array[ExtResource("2_hcay1")]([])
+node_type = 9
+pos = Vector2(3120, 220)
+
+[sub_resource type="Resource" id="Resource_6b804"]
+script = ExtResource("2_hcay1")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_cpttg")
+
+[sub_resource type="Resource" id="Resource_alprn"]
+script = ExtResource("3_3wtna")
+text = "room203_gift_05"
+role = ExtResource("3_oxv1h")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_hcay1")]([SubResource("Resource_6b804")])
+node_type = 1
+pos = Vector2(2700, 160)
+
+[sub_resource type="Resource" id="Resource_p11rc"]
+script = ExtResource("2_hcay1")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_alprn")
+
+[sub_resource type="Resource" id="Resource_rmu8k"]
+script = ExtResource("6_yg2nb")
+script_cmd = "!has_item(\"103i_0_5号电池\",true)"
+children = Array[ExtResource("2_hcay1")]([SubResource("Resource_p11rc")])
+node_type = 17
+pos = Vector2(2320, 180)
+
+[sub_resource type="Resource" id="Resource_2rwco"]
+script = ExtResource("2_hcay1")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_rmu8k")
+
+[sub_resource type="Resource" id="Resource_k2rqi"]
+script = ExtResource("3_3wtna")
+text = "room203_gift_04"
+role = ExtResource("3_oxv1h")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_hcay1")]([SubResource("Resource_2rwco")])
+node_type = 1
+pos = Vector2(1960, 120)
+
+[sub_resource type="Resource" id="Resource_kcirk"]
+script = ExtResource("2_hcay1")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_k2rqi")
+
+[sub_resource type="Resource" id="Resource_qyaru"]
+script = ExtResource("5_5dypm")
+script_cmd = "GameManager.data_player.update_item(\"06i_1_手电筒（无电池）\",\"06i_3_手电筒（魔法灯）\")"
+children = Array[ExtResource("2_hcay1")]([])
+node_type = 9
+pos = Vector2(2860, 480)
+
+[sub_resource type="Resource" id="Resource_tajrg"]
+script = ExtResource("2_hcay1")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_qyaru")
+
+[sub_resource type="Resource" id="Resource_3s268"]
+script = ExtResource("5_5dypm")
+script_cmd = "GameManager.data_player.update_item(\"06i_0_手电筒（疑问）\",\"06i_3_手电筒（魔法灯）\")"
+children = Array[ExtResource("2_hcay1")]([])
+node_type = 9
+pos = Vector2(3120, 740)
+
+[sub_resource type="Resource" id="Resource_eodef"]
+script = ExtResource("2_hcay1")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_3s268")
+
+[sub_resource type="Resource" id="Resource_x68wh"]
+script = ExtResource("6_yg2nb")
+script_cmd = "has_item(\"06i_0_手电筒（疑问）\")"
+children = Array[ExtResource("2_hcay1")]([SubResource("Resource_eodef")])
+node_type = 17
+pos = Vector2(2720, 720)
+
+[sub_resource type="Resource" id="Resource_5ayov"]
+script = ExtResource("2_hcay1")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_x68wh")
+
+[sub_resource type="Resource" id="Resource_akvre"]
+script = ExtResource("6_yg2nb")
+script_cmd = "has_item(\"06i_1_手电筒（无电池）\")"
+children = Array[ExtResource("2_hcay1")]([SubResource("Resource_tajrg"), SubResource("Resource_5ayov")])
+node_type = 17
+pos = Vector2(2340, 460)
+
+[sub_resource type="Resource" id="Resource_3s8ti"]
+script = ExtResource("2_hcay1")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_akvre")
+
+[sub_resource type="Resource" id="Resource_kyh7p"]
+script = ExtResource("6_yg2nb")
+script_cmd = "!has_item(\"06i_3_手电筒（魔法灯）\",true)"
+children = Array[ExtResource("2_hcay1")]([SubResource("Resource_3s8ti")])
+node_type = 17
+pos = Vector2(1960, 460)
+
+[sub_resource type="Resource" id="Resource_d1jua"]
+script = ExtResource("2_hcay1")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_kyh7p")
+
+[sub_resource type="Resource" id="Resource_hhiai"]
+script = ExtResource("7_be60f")
+children = Array[ExtResource("2_hcay1")]([SubResource("Resource_kcirk"), SubResource("Resource_d1jua")])
+node_type = 10
+pos = Vector2(1660, 240)
+
+[sub_resource type="Resource" id="Resource_j78ki"]
+script = ExtResource("2_hcay1")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_hhiai")
+
+[sub_resource type="Resource" id="Resource_uagtf"]
+script = ExtResource("3_3wtna")
+text = "room203_gift_03"
+role = ExtResource("3_oxv1h")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_hcay1")]([SubResource("Resource_j78ki")])
+node_type = 1
+pos = Vector2(1260, 160)
+
+[sub_resource type="Resource" id="Resource_3gjpn"]
+script = ExtResource("2_hcay1")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_uagtf")
+
+[sub_resource type="Resource" id="Resource_cnu0p"]
+script = ExtResource("3_3wtna")
+text = "room203_gift_02"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_hcay1")]([SubResource("Resource_3gjpn")])
+node_type = 1
+pos = Vector2(900, 160)
+
+[sub_resource type="Resource" id="Resource_yjue1"]
+script = ExtResource("2_hcay1")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_cnu0p")
+
+[sub_resource type="Resource" id="Resource_1ydh6"]
+script = ExtResource("3_3wtna")
+text = "room203_gift_01"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_hcay1")]([SubResource("Resource_yjue1")])
+node_type = 1
+pos = Vector2(540, 160)
+
+[sub_resource type="Resource" id="Resource_e2vis"]
+script = ExtResource("2_hcay1")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_1ydh6")
+
+[sub_resource type="Resource" id="Resource_v8u1i"]
+script = ExtResource("4_w8g2w")
+children = Array[ExtResource("2_hcay1")]([SubResource("Resource_e2vis")])
+node_type = 0
+pos = Vector2(320, 260)
+
+[resource]
+script = ExtResource("1_ekhxx")
+title = "魔法灯包装盒"
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_v8u1i")
+map = {}

@@ -58,6 +58,6 @@ func size() -> int:
 	pass
 
 ## 在游戏中执行事件
-func _execute(event):
+func _execute(event,args):
 	printerr("没有重写%s游戏内逻辑" %node_type)
 	pass

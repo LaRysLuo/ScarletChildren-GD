@@ -1,0 +1,127 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=23 format=3 uid="uid://ddcrrcplr520x"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_f2lfr"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_f24c4"]
+[ext_resource type="Script" path="res://event_editor/models/reading_page_data.gd" id="3_kpsmh"]
+[ext_resource type="Script" path="res://event_editor/models/reading_data.gd" id="4_7i6ax"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="5_oy6bv"]
+
+[sub_resource type="Resource" id="Resource_8vfx7"]
+script = ExtResource("3_kpsmh")
+content = "room201_diary_07"
+children = Array[ExtResource("2_f24c4")]([])
+node_type = 15
+pos = Vector2(2720, 260)
+
+[sub_resource type="Resource" id="Resource_u2a2h"]
+script = ExtResource("2_f24c4")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_8vfx7")
+
+[sub_resource type="Resource" id="Resource_jwj7b"]
+script = ExtResource("3_kpsmh")
+content = "room201_diary_06"
+children = Array[ExtResource("2_f24c4")]([SubResource("Resource_u2a2h")])
+node_type = 15
+pos = Vector2(2420, 260)
+
+[sub_resource type="Resource" id="Resource_t750s"]
+script = ExtResource("2_f24c4")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_jwj7b")
+
+[sub_resource type="Resource" id="Resource_mm2u5"]
+script = ExtResource("3_kpsmh")
+content = "room201_diary_05"
+children = Array[ExtResource("2_f24c4")]([SubResource("Resource_t750s")])
+node_type = 15
+pos = Vector2(2120, 260)
+
+[sub_resource type="Resource" id="Resource_rpxk1"]
+script = ExtResource("2_f24c4")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_mm2u5")
+
+[sub_resource type="Resource" id="Resource_vhjgg"]
+script = ExtResource("3_kpsmh")
+content = "room201_diary_04"
+children = Array[ExtResource("2_f24c4")]([SubResource("Resource_rpxk1")])
+node_type = 15
+pos = Vector2(1820, 260)
+
+[sub_resource type="Resource" id="Resource_ym08s"]
+script = ExtResource("2_f24c4")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_vhjgg")
+
+[sub_resource type="Resource" id="Resource_elqud"]
+script = ExtResource("3_kpsmh")
+content = "room201_diary_03"
+children = Array[ExtResource("2_f24c4")]([SubResource("Resource_ym08s")])
+node_type = 15
+pos = Vector2(1480, 260)
+
+[sub_resource type="Resource" id="Resource_r3mb3"]
+script = ExtResource("2_f24c4")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_elqud")
+
+[sub_resource type="Resource" id="Resource_rpaj7"]
+script = ExtResource("3_kpsmh")
+content = "room201_diary_02"
+children = Array[ExtResource("2_f24c4")]([SubResource("Resource_r3mb3")])
+node_type = 15
+pos = Vector2(1180, 260)
+
+[sub_resource type="Resource" id="Resource_0u0os"]
+script = ExtResource("2_f24c4")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_rpaj7")
+
+[sub_resource type="Resource" id="Resource_p6yh8"]
+script = ExtResource("3_kpsmh")
+content = "room201_diary_01"
+children = Array[ExtResource("2_f24c4")]([SubResource("Resource_0u0os")])
+node_type = 15
+pos = Vector2(880, 260)
+
+[sub_resource type="Resource" id="Resource_cen7d"]
+script = ExtResource("2_f24c4")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_p6yh8")
+
+[sub_resource type="Resource" id="Resource_bv5xl"]
+script = ExtResource("4_7i6ax")
+title = "room201_diary_title"
+close_any_time = true
+children = Array[ExtResource("2_f24c4")]([SubResource("Resource_cen7d")])
+node_type = 14
+pos = Vector2(620, 180)
+
+[sub_resource type="Resource" id="Resource_04146"]
+script = ExtResource("2_f24c4")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_bv5xl")
+
+[sub_resource type="Resource" id="Resource_7bk5b"]
+script = ExtResource("5_oy6bv")
+children = Array[ExtResource("2_f24c4")]([SubResource("Resource_04146")])
+node_type = 0
+pos = Vector2(400, 240)
+
+[resource]
+script = ExtResource("1_f2lfr")
+title = ""
+is_collsion = true
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_7bk5b")
+map = {}

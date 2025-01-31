@@ -19,7 +19,7 @@ func  _init(cmd:int = BaseEventNode.CharacterMove,pos:Vector2 = Vector2.ZERO,mov
 
 
 ## 重写父类虚方法
-func _execute(ent):
+func _execute(ent,agrs):
 	## TODO 角色移动在游戏中的实现
 	print_rich("- 正在执行《角色行走》")
 	# 从当前场景中找到对应角色名的事件	

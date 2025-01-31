@@ -98,9 +98,10 @@ func _init_cam_limit():
 #region 玩家交互
 # 交互 - 角色移动后会触发信号，目标方向存在可交互事件
 func _has_interact_event(state:int = 1):
+	print("移动后的触发")
 	if !GameManager.is_normal_state:return
 	var event = _get_event_font() # 判断前方是否有可交互事件
-	#if event: print("存在可触发的event=",event.interactable())
+	if event: print("存在可触发的event=",event)
 	if event && event.interactable() && !is_action: 
 		_set_interact_with(event,state)
 		#print("检查到有X事件")
@@ -126,6 +127,7 @@ func _get_event_font() -> Event:
 	var target_pos = cell_pos + dir
 	for event in events:
 		if event is Event: #首先判断event是否为Event类型
+			# WARNING 这里对于开销来说可能不是很合适，最好能放在别的地方一次性调用，比如场景调用时
 			event._load_event_config()
 			if event.cell_pos == target_pos:
 				return event

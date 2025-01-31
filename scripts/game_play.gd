@@ -68,16 +68,12 @@ func _ready() -> void:
 	on_event_trigger_end.connect(_event_trigger_end)
 	
 	## 载入游戏数据 TODO 实际不能在这里调用
-	## TEST
-	## 跳转到对应场景
-	
-	SceneManager.move("res://scenes/maps/蔷薇馆·西馆走廊2F/map_蔷薇馆·西馆走廊2f.tscn",Vector2i(10,13),true,true)
-	set_game_state_normal()
-	return
+	#SceneManager.move("res://scenes/maps/蔷薇馆·西馆走廊2F/map_蔷薇馆·西馆走廊2f.tscn",Vector2i(8,12),true,true)
+	##return
 
 	await  SaveManager.load_data()
 	await get_tree().create_timer(0.5).timeout
-	GameManager.data_player.gain_item("06i_2_手电筒（有电池）")
+	GameManager.data_player.gain_item("06i_1_手电筒（无电池）")
 	set_game_state_normal()
 
 func _event_trigger_start():
@@ -364,7 +360,7 @@ func get_black(coord:Vector2i) -> Black:
 	return null
 	 
 ## 触发事件的封装
-func trigger_event_res(event_res:Events_Res,trigger_self:Event = null):
+func trigger_event_res(event_res:Events_Res,trigger_self:Event = null,args= {}):
 	on_event_trigger_start.emit()
 	var event:BaseEventNode = event_res.tree
 	## WARNING 事件处理主逻辑
@@ -372,9 +368,7 @@ func trigger_event_res(event_res:Events_Res,trigger_self:Event = null):
 	#await trigger_event(event,trigger_self)
 	## 新建一个自定义的事件线程（不是真的线程，可以叫协程或者序列）来处理所有事件，并等待处理完成
 	var et = EventThread.new()
-	print("333")
-	await et.trigger_event(event,trigger_self).on_complete
-	print("111")
+	await et.trigger_event(event,trigger_self,args).on_complete
 	set_game_state_normal()
 	on_event_trigger_end.emit()
 
@@ -386,5 +380,5 @@ func trigger_event(event:BaseEventNode,trigger_self:Event):
 		if !event: 
 			print("循环结束")
 			break
-		await event._execute(trigger_self) # 执行事件节点的逻辑
+		await event._execute(trigger_self,null) # 执行事件节点的逻辑
 	

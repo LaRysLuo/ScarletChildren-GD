@@ -1,6 +1,60 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=2 format=3 uid="uid://db7p7m15ldjuk"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=12 format=3 uid="uid://db7p7m15ldjuk"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_dhp3e"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_8pmbq"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_23ihc"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_ryeja"]
+
+[sub_resource type="Resource" id="Resource_1a7qv"]
+script = ExtResource("3_23ihc")
+text = "room202_03"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_8pmbq")]([])
+node_type = 1
+pos = Vector2(1580, 260)
+
+[sub_resource type="Resource" id="Resource_uqqau"]
+script = ExtResource("2_8pmbq")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_1a7qv")
+
+[sub_resource type="Resource" id="Resource_mpufp"]
+script = ExtResource("3_23ihc")
+text = "room202_02"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_8pmbq")]([SubResource("Resource_uqqau")])
+node_type = 1
+pos = Vector2(1240, 260)
+
+[sub_resource type="Resource" id="Resource_rah03"]
+script = ExtResource("2_8pmbq")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_mpufp")
+
+[sub_resource type="Resource" id="Resource_vsqd8"]
+script = ExtResource("3_23ihc")
+text = "room202_01"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_8pmbq")]([SubResource("Resource_rah03")])
+node_type = 1
+pos = Vector2(900, 260)
+
+[sub_resource type="Resource" id="Resource_t66n0"]
+script = ExtResource("2_8pmbq")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_vsqd8")
+
+[sub_resource type="Resource" id="Resource_l3fqt"]
+script = ExtResource("4_ryeja")
+children = Array[ExtResource("2_8pmbq")]([SubResource("Resource_t66n0")])
+node_type = 0
+pos = Vector2(684.938, 365.647)
 
 [resource]
 script = ExtResource("1_dhp3e")
@@ -8,4 +62,5 @@ title = "蔷薇合照"
 is_collsion = true
 trigger_type = 1
 one_shot = false
+tree = SubResource("Resource_l3fqt")
 map = {}

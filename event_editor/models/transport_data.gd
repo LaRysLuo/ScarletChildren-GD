@@ -26,7 +26,7 @@ func  _init(cmd:int = BaseEventNode.Transport,pos:Vector2 = Vector2.ZERO,target_
 		self.target_coord = target_coord
 	self.is_fade = is_fade
 
-func _execute(ent:Event):
+func _execute(ent:Event,args):
 	## TODO 场景移动的逻辑
 	# 场景移动前要把触发事件保护起来
 	ent.hide()

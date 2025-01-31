@@ -21,6 +21,8 @@ var animated_sprite:AnimatedSprite2D:
 	get(): return get_node("AnimatedSprite2D2")
 
 
+
+
 ## 事件NPC的实现：方案1，在Event_Res上增加一个行走图的选择
 ## 当事件被激活时，使该行走图人物被渲染出来显示。
 ## 事件的tres要是一个可控制的角色
@@ -28,10 +30,26 @@ var animated_sprite:AnimatedSprite2D:
 ## 事件NPC的实现：方案2，每个NPC都制作一个独特的预制体，放入到场景内
 ## 并根据EventConfig联系两个元素
 
+#func _enter_tree() -> void:
+	#_show_editor_coord_hint()
+
 func _ready() -> void:
+	if Engine.is_editor_hint():return
 	GameManager.data_player.on_player_item_changed.connect(_refresh_event_state)
 	#_refresh_event_state()
 	_load_event_config()
+	
+## 显示编辑器坐标提示
+#func _show_editor_coord_hint():
+	
+	#if !coord_hint_label: return
+	
+	#coord_hint_label.hide()
+	#if !Engine.is_editor_hint():return
+	#coord_hint_label.text = "%s,%s" % [cell_pos.x,cell_pos.y]
+	#
+	##coord_hint_label.show()
+	#print("更新编辑器=",coord_hint_label.visible)
 	
 ## 载入事件config
 func _load_event_config():
@@ -98,7 +116,6 @@ func activable(event:EventConfig) -> bool:
 func interactable() -> bool:
 	var event = get_event_config()
 	if event and event.event_res:
-		print("ac=",activable(event))
 		return activable(event) && event.event_res.trigger_type == Events_Res.TriggerType.Interact交互
 	return false
 	
@@ -138,9 +155,9 @@ func get_event_config() -> EventConfig:
 	var map_config:MapConfig = GameManager.get_map_config()
 	if !map_config: return null
 	var event_config:EventConfig =	map_config.get_event(cell_pos)
-	print("test000=",event_config)
+	#print("test000=%s,pos=%s" % [event_config,cell_pos])
 	if !event_config:
-		printerr("该事件没有配置Event_RES")
+		printerr("该事件%s没有配置Event_RES" % cell_pos )
 	return event_config
 
 ## WARNING 已弃用，迁移到对应的NODE（DATA）里

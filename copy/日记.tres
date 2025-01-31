@@ -1,0 +1,122 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=23 format=3 uid="uid://lafetwtu3hpq"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_dqq2s"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_kj7vq"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="3_4ydkh"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_lseal"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_mkq7d"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="5_lpd31"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="6_jjq2g"]
+
+[sub_resource type="Resource" id="Resource_ek0uq"]
+script = ExtResource("3_lseal")
+script_cmd = "GameManager.data_player.gain_item(\"301f_0_羽新的日记\")"
+children = Array[ExtResource("2_kj7vq")]([])
+node_type = 9
+pos = Vector2(1740, 160)
+
+[sub_resource type="Resource" id="Resource_k1rda"]
+script = ExtResource("2_kj7vq")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ek0uq")
+
+[sub_resource type="Resource" id="Resource_byx45"]
+script = ExtResource("3_lseal")
+script_cmd = "await GameManager.data_player.trigger_item(\"301f_0_羽新的日记\",true)"
+children = Array[ExtResource("2_kj7vq")]([SubResource("Resource_k1rda")])
+node_type = 9
+pos = Vector2(1500, 160)
+
+[sub_resource type="Resource" id="Resource_woy1f"]
+script = ExtResource("2_kj7vq")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_byx45")
+
+[sub_resource type="Resource" id="Resource_mjbvx"]
+script = ExtResource("4_mkq7d")
+text = "room201_00_2"
+role = ExtResource("3_4ydkh")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_kj7vq")]([SubResource("Resource_woy1f")])
+node_type = 1
+pos = Vector2(1120, 120)
+
+[sub_resource type="Resource" id="Resource_ka5r7"]
+script = ExtResource("2_kj7vq")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_mjbvx")
+
+[sub_resource type="Resource" id="Resource_c154x"]
+script = ExtResource("3_lseal")
+script_cmd = "await GameManager.data_player.trigger_item(\"301f_0_羽新的日记\",false)"
+children = Array[ExtResource("2_kj7vq")]([])
+node_type = 9
+pos = Vector2(1500, 480)
+
+[sub_resource type="Resource" id="Resource_qaf2y"]
+script = ExtResource("2_kj7vq")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_c154x")
+
+[sub_resource type="Resource" id="Resource_clp85"]
+script = ExtResource("4_mkq7d")
+text = "room201_00_3"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_kj7vq")]([SubResource("Resource_qaf2y")])
+node_type = 1
+pos = Vector2(1140, 440)
+
+[sub_resource type="Resource" id="Resource_f16u6"]
+script = ExtResource("2_kj7vq")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_clp85")
+
+[sub_resource type="Resource" id="Resource_sn8h0"]
+script = ExtResource("6_jjq2g")
+script_cmd = "!has_item(\"301f_0_羽新的日记\")"
+children = Array[ExtResource("2_kj7vq")]([SubResource("Resource_ka5r7"), SubResource("Resource_f16u6")])
+node_type = 17
+pos = Vector2(720, 180)
+
+[sub_resource type="Resource" id="Resource_by6qx"]
+script = ExtResource("2_kj7vq")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_sn8h0")
+
+[sub_resource type="Resource" id="Resource_24cdb"]
+script = ExtResource("4_mkq7d")
+text = "room201_00_1"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_kj7vq")]([SubResource("Resource_by6qx")])
+node_type = 1
+pos = Vector2(360, 120)
+
+[sub_resource type="Resource" id="Resource_n3i33"]
+script = ExtResource("2_kj7vq")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_24cdb")
+
+[sub_resource type="Resource" id="Resource_m2hyu"]
+script = ExtResource("5_lpd31")
+children = Array[ExtResource("2_kj7vq")]([SubResource("Resource_n3i33")])
+node_type = 0
+pos = Vector2(140, 220)
+
+[resource]
+script = ExtResource("1_dqq2s")
+title = "日记"
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_m2hyu")
+map = {}

@@ -14,7 +14,7 @@ func next(index:int=0) -> BaseEventNode:
 	return super.next(condition_result)
 
 ## 在游戏中执行事件
-func _execute(event):
+func _execute(event,agrs):
 	var condition =  await SceneManager.condition_eval(script_cmd)
 	print("condition=",condition)
 	condition_result = 0 if condition else 1

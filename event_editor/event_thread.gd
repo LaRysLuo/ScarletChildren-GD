@@ -4,12 +4,15 @@ class_name EventThread
 
 signal on_complete
 
+var args:Dictionary
+
 ## 构造函数
 func _init() -> void:
 	pass
 
 ## 触发事件封装
-func trigger_event(event:BaseEventNode,trigger_self:Event):
+func trigger_event(event:BaseEventNode,trigger_self:Event,args = {}):
+	self.args = args
 	_do_next(event,trigger_self)
 	return self
 
@@ -24,6 +27,6 @@ func _do_next(event:BaseEventNode,trigger_self:Event):
 		print("事件全部执行结束")
 		return
 	## 执行事件的逻辑
-	await event._execute(trigger_self) 
+	await event._execute(trigger_self,self.args)
 	## 继续判断下一个
 	_do_next(event,trigger_self)

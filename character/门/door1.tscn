@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnvpecscbbl2q"]
+[gd_scene load_steps=18 format=3 uid="uid://bnvpecscbbl2q"]
 
 [ext_resource type="Script" path="res://character/门/door1.gd" id="1_sx0sr"]
 [ext_resource type="Texture2D" uid="uid://c5uiupvmxp3hc" path="res://character/门/e_t04_ドア外装.png" id="3_gxgwn"]
 [ext_resource type="Texture2D" uid="uid://x5pgo7ppn2ut" path="res://assets/tilesets/others/door_empty.png" id="4_k25tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yogc0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n05by"]
+font_size = 12
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vr448"]
 atlas = ExtResource("4_k25tw")
@@ -119,6 +122,21 @@ script = ExtResource("1_sx0sr")
 z_index = 99
 shape = SubResource("RectangleShape2D_yogc0")
 debug_color = Color(0.961249, 0, 0.511433, 0.42)
+
+[node name="Label" type="Label" parent="CollisionShape2D"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -11.0
+offset_right = 8.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "4,3"
+label_settings = SubResource("LabelSettings_n05by")
+vertical_alignment = 1
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true

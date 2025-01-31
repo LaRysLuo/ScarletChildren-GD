@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=17 format=3 uid="uid://c4jcv3yg4wvpu"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_rrgao"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_vre4q"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="3_e8fgt"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_8jjeh"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="5_hcm0n"]
+
+[sub_resource type="Resource" id="Resource_7yitb"]
+script = ExtResource("4_8jjeh")
+text = "yushi05"
+role = ExtResource("3_e8fgt")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_vre4q")]([])
+node_type = 1
+pos = Vector2(1000, 220)
+
+[sub_resource type="Resource" id="Resource_jakx3"]
+script = ExtResource("2_vre4q")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_7yitb")
+
+[sub_resource type="Resource" id="Resource_6gwgd"]
+script = ExtResource("4_8jjeh")
+text = "yushi04"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_vre4q")]([SubResource("Resource_jakx3")])
+node_type = 1
+pos = Vector2(660, 220)
+
+[sub_resource type="Resource" id="Resource_cb6hd"]
+script = ExtResource("2_vre4q")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_6gwgd")
+
+[sub_resource type="Resource" id="Resource_tylb2"]
+script = ExtResource("4_8jjeh")
+text = "yushi03"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_vre4q")]([SubResource("Resource_cb6hd")])
+node_type = 1
+pos = Vector2(320, 220)
+
+[sub_resource type="Resource" id="Resource_bnbrv"]
+script = ExtResource("2_vre4q")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_tylb2")
+
+[sub_resource type="Resource" id="Resource_f0ehl"]
+script = ExtResource("4_8jjeh")
+text = "yushi02"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_vre4q")]([SubResource("Resource_bnbrv")])
+node_type = 1
+pos = Vector2(-20, 220)
+
+[sub_resource type="Resource" id="Resource_30lw1"]
+script = ExtResource("2_vre4q")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_f0ehl")
+
+[sub_resource type="Resource" id="Resource_xngvt"]
+script = ExtResource("4_8jjeh")
+text = "yushi01"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_vre4q")]([SubResource("Resource_30lw1")])
+node_type = 1
+pos = Vector2(-360, 220)
+
+[sub_resource type="Resource" id="Resource_mnxa6"]
+script = ExtResource("2_vre4q")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_xngvt")
+
+[sub_resource type="Resource" id="Resource_4f8yj"]
+script = ExtResource("5_hcm0n")
+children = Array[ExtResource("2_vre4q")]([SubResource("Resource_mnxa6")])
+node_type = 0
+pos = Vector2(-582.204, 325.556)
+
+[resource]
+script = ExtResource("1_rrgao")
+title = ""
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_4f8yj")
+map = {}

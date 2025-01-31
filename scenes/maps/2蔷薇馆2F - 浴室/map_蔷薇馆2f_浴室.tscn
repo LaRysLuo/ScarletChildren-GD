@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://402ugo2qbiok"]
+[gd_scene load_steps=17 format=4 uid="uid://402ugo2qbiok"]
 
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_woawi"]
 [ext_resource type="Texture2D" uid="uid://b7iw6on4p5g45" path="res://scenes/maps/2蔷薇馆2F - 浴室/tileset/卫生间2F - 1.png" id="2_3hwwy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="3_6hiug"]
 [ext_resource type="Script" path="res://component/event_condition/ec_item.gd" id="3_13wer"]
 [ext_resource type="Resource" uid="uid://c4rvejxn88r4i" path="res://scenes/maps/2蔷薇馆2F - 浴室/event/星鱼拼图（初始）.tres" id="3_yp4gc"]
+[ext_resource type="Resource" uid="uid://c4jcv3yg4wvpu" path="res://scenes/maps/2蔷薇馆2F - 浴室/event/献给礼诗的诗歌.tres" id="5_6d7oy"]
 
 [sub_resource type="Resource" id="Resource_aba5n"]
 script = ExtResource("3_13wer")
@@ -16,6 +17,7 @@ value = false
 type = -1
 
 [sub_resource type="Resource" id="Resource_rc3pg"]
+resource_name = "(9,13)"
 script = ExtResource("2_5rvok")
 is_show = true
 condition = SubResource("Resource_aba5n")
@@ -30,12 +32,21 @@ value = true
 type = -1
 
 [sub_resource type="Resource" id="Resource_8cnu2"]
+resource_name = "(9,13)"
 script = ExtResource("2_5rvok")
 is_show = true
 condition = SubResource("Resource_kg30j")
 frame_index = 2
 pos = Vector2i(9, 13)
 event_res = ExtResource("3_yp4gc")
+
+[sub_resource type="Resource" id="Resource_h3ipb"]
+resource_name = "(8,9)"
+script = ExtResource("2_5rvok")
+is_show = true
+frame_index = 0
+pos = Vector2i(8, 9)
+event_res = ExtResource("5_6d7oy")
 
 [sub_resource type="Resource" id="Resource_hy1ky"]
 script = ExtResource("3_6hiug")
@@ -54,7 +65,7 @@ event_ex = SubResource("Resource_hy1ky")
 
 [node name="Maps" parent="." index="0"]
 right_limit = 800.0
-event_group = Array[ExtResource("2_5rvok")]([SubResource("Resource_rc3pg"), SubResource("Resource_8cnu2")])
+event_group = Array[ExtResource("2_5rvok")]([SubResource("Resource_rc3pg"), SubResource("Resource_8cnu2"), SubResource("Resource_h3ipb")])
 event_ex = Array[ExtResource("2_14eoh")]([SubResource("Resource_tgoi2")])
 
 [node name="0" parent="Maps" index="0"]
@@ -69,7 +80,7 @@ texture = ExtResource("3_4ryy7")
 z_index = 0
 z_as_relative = false
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAANAAkAAQAAAAAACQAJAA0AAQAAAAAADwA=")
+tile_map_data = PackedByteArray("AAANAAkAAQAAAAAACQAJAA0AAQAAAAAADwAIAAkAAQAAAAAABAA=")
 
 [node name="Movable" parent="Maps" index="3"]
 tile_map_data = PackedByteArray("AAAIAAoAAgABAAEAAAAGAAwAAgABAAEAAAAIAAsAAgABAAEAAAAHAAwAAgABAAEAAAAIAAwAAgABAAEAAAAIAA0AAgABAAEAAAAJAA0AAgABAAEAAAAJAAwAAgABAAEAAAAJAAsAAgABAAEAAAAKAAsAAgABAAEAAAALAAsAAgABAAEAAAAMAAwAAgABAAEAAAAMAAsAAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAANAAsAAgABAAEAAAANAAoAAgABAAEAAAANAAkAAgABAAEAAAANAAgAAgABAAEAAAANAAcAAgABAAEAAAANAAYAAgABAAEAAAA=")

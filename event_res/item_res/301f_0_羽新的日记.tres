@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ccl55m1euw0yb"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_m0m67"]
+[ext_resource type="Resource" uid="uid://ddcrrcplr520x" path="res://event_res/item_res/effect/301f_0_羽新的日记.tres" id="2_pogjo"]
+
+[resource]
+script = ExtResource("1_m0m67")
+item_id = &"301f_0_羽新的日记"
+item_name = &"??的日记"
+item_catagory = 3
+item_desc = "不知道是谁的日记"
+is_finished = false
+use_event = Callable()
+use_event_new = ExtResource("2_pogjo")
+err_desc = ""
+relations = Array[ExtResource("1_m0m67")]([])

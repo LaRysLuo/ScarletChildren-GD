@@ -9,6 +9,6 @@ func _init(cmd:int = BaseEventNode.Wait,pos:Vector2 = Vector2.ZERO,time:float =0
 	self.time = time
 
 ## 重写父类虚方法
-func _execute(ent:Event):
+func _execute(ent:Event,args):
 	var timer = GameManager.get_tree().create_timer(time)
 	await timer.timeout

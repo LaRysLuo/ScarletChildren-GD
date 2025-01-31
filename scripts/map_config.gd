@@ -14,13 +14,16 @@ class_name MapConfig
 
 @export var map_pre_event:Events_Res
 
+## 获得移动层
+var movable:TileMapLayer:
+	get():return get_node("Movable")
 
 #var tile_black:TileMapLayer
 
 func _ready() -> void:
 	
 	self.hide()
-	
+	movable.hide()
 	#_init_scene_event()
 	## 增加一个画面显示前的处理
 	await  _map_show_pre()
@@ -32,6 +35,7 @@ func _ready() -> void:
 	## 做本场景的事件初始化
 	call_deferred("_init_scene_event")
 	call_deferred("auto_event_trigger")
+
 
 ## 初始化地图的事件
 func _init_scene_event():
@@ -93,8 +97,13 @@ func get_event(coord:Vector2i) -> EventConfig:
 		return null
 	var filter = event_group.filter(
 		func(item:EventConfig): 
-			return item.pos == coord && (item.condition && item.condition._get_result())
+			return item.pos == coord && get_condition_result(item)
 	)
 	print("filters=",filter.size())
 	if filter.is_empty():return null
 	return filter.front()
+	
+func get_condition_result(item:EventConfig) -> bool:
+	if item.condition:
+		return item.condition._get_result()
+	return true

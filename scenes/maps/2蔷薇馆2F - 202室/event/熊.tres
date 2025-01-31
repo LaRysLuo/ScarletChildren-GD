@@ -1,11 +1,36 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=2 format=3 uid="uid://r3oagck0cufr"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=8 format=3 uid="uid://r3oagck0cufr"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_0wc1a"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_fuk2t"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_m1bph"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_588l5"]
+
+[sub_resource type="Resource" id="Resource_ydfn8"]
+script = ExtResource("3_m1bph")
+text = "room202_04"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_fuk2t")]([])
+node_type = 1
+pos = Vector2(1100, 200)
+
+[sub_resource type="Resource" id="Resource_qioo3"]
+script = ExtResource("2_fuk2t")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ydfn8")
+
+[sub_resource type="Resource" id="Resource_br4bb"]
+script = ExtResource("4_588l5")
+children = Array[ExtResource("2_fuk2t")]([SubResource("Resource_qioo3")])
+node_type = 0
+pos = Vector2(820, 340)
 
 [resource]
 script = ExtResource("1_0wc1a")
-title = ""
+title = "熊"
 is_collsion = true
-trigger_type = 0
+trigger_type = 1
 one_shot = false
+tree = SubResource("Resource_br4bb")
 map = {}

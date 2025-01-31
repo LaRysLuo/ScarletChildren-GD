@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=2 format=3 uid="uid://bqefouc8mf014"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_xpw6x"]
+
+[resource]
+script = ExtResource("1_xpw6x")
+title = "熊"
+is_collsion = true
+trigger_type = 1
+one_shot = false
+map = {}

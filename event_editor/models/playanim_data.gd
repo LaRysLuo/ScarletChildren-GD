@@ -18,7 +18,7 @@ func _init(cmd:int = BaseEventNode.Scripts,pos:Vector2 = Vector2.ZERO,anim_name:
 	self.event_type = event_type
 	self.event_coord = event_coord
 
-func _execute(event):
+func _execute(event,args):
 	var target_event
 	match event_type:
 		"self":target_event = event

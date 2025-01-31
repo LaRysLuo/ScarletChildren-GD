@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=4 uid="uid://d2cb35vt5q6gq"]
 
-[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_byall"]
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/maps/2蔷薇馆2F - 201室/map_1号房间.tscn" id="1_byall"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_soxkc"]
 [ext_resource type="Texture2D" uid="uid://dmb3ybxtuex71" path="res://assets/tilesets/蔷薇馆·大厅/lobby-1.png" id="2_tkvfi"]
 [ext_resource type="Texture2D" uid="uid://cxlv2ymhs8q22" path="res://assets/tilesets/蔷薇馆·大厅/lobby-3.png" id="3_tpedq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="7_ug2ad"]
 
 [sub_resource type="Resource" id="Resource_bdfs2"]
+resource_name = "(13,17)"
 script = ExtResource("2_soxkc")
 is_show = true
 frame_index = 0
@@ -17,6 +18,7 @@ pos = Vector2i(13, 17)
 event_res = ExtResource("4_8wdld")
 
 [sub_resource type="Resource" id="Resource_8glv3"]
+resource_name = "(16,15)"
 script = ExtResource("2_soxkc")
 is_show = true
 frame_index = 0

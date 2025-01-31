@@ -1,36 +1,38 @@
-[gd_scene load_steps=16 format=4 uid="uid://cl4lgywesg2yu"]
+[gd_scene load_steps=15 format=4 uid="uid://cl4lgywesg2yu"]
 
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_k6pjl"]
 [ext_resource type="Texture2D" uid="uid://boq4ailli6c45" path="res://scenes/maps/2蔷薇馆2F - 202室/tileset/2号房间2F - 1.png" id="2_26dgi"]
-[ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_pdo82"]
+[ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_o3r61"]
 [ext_resource type="Script" path="res://component/event_extend/event_ex_config.gd" id="2_yyvh2"]
+[ext_resource type="Resource" uid="uid://r3oagck0cufr" path="res://scenes/maps/2蔷薇馆2F - 202室/event/熊.tres" id="3_4ncca"]
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="3_8tk25"]
-[ext_resource type="Resource" uid="uid://db7p7m15ldjuk" path="res://scenes/maps/2蔷薇馆2F - 202室/event/蔷薇合照.tres" id="3_2403y"]
 [ext_resource type="Texture2D" uid="uid://yi5ji4n0wfyu" path="res://scenes/maps/2蔷薇馆2F - 202室/tileset/2号房间2F - 2.png" id="3_jok56"]
-[ext_resource type="Resource" uid="uid://b3id24m8m6dew" path="res://scenes/maps/2蔷薇馆2F - 202室/event/huaping.tres" id="4_5yjj4"]
-[ext_resource type="Resource" uid="uid://r3oagck0cufr" path="res://scenes/maps/2蔷薇馆2F - 202室/event/熊.tres" id="5_8fh7e"]
+[ext_resource type="Resource" uid="uid://db7p7m15ldjuk" path="res://scenes/maps/2蔷薇馆2F - 202室/event/蔷薇合照.tres" id="4_a5rnl"]
 [ext_resource type="Texture2D" uid="uid://c06wfx6ssyllv" path="res://assets/light/light_tex.tres" id="6_7pp4o"]
 
-[sub_resource type="Resource" id="Resource_nogjv"]
-script = ExtResource("2_pdo82")
-is_show = true
-frame_index = 0
-pos = Vector2i(5, 10)
-event_res = ExtResource("3_2403y")
-
-[sub_resource type="Resource" id="Resource_7vkd3"]
-script = ExtResource("2_pdo82")
+[sub_resource type="Resource" id="Resource_7dmx5"]
+resource_name = "(4,10)"
+script = ExtResource("2_o3r61")
 is_show = true
 frame_index = 0
 pos = Vector2i(4, 10)
-event_res = ExtResource("4_5yjj4")
+event_res = ExtResource("3_4ncca")
 
-[sub_resource type="Resource" id="Resource_cmbai"]
-script = ExtResource("2_pdo82")
+[sub_resource type="Resource" id="Resource_0ufuc"]
+resource_name = "(5,10)"
+script = ExtResource("2_o3r61")
+is_show = true
+frame_index = 0
+pos = Vector2i(5, 10)
+event_res = ExtResource("4_a5rnl")
+
+[sub_resource type="Resource" id="Resource_lha8u"]
+resource_name = "(8,12)"
+script = ExtResource("2_o3r61")
 is_show = true
 frame_index = 0
 pos = Vector2i(8, 12)
-event_res = ExtResource("5_8fh7e")
+event_res = ExtResource("3_4ncca")
 
 [sub_resource type="Resource" id="Resource_34gla"]
 script = ExtResource("3_8tk25")
@@ -49,7 +51,7 @@ event_ex = SubResource("Resource_34gla")
 
 [node name="Maps" parent="." index="0"]
 right_limit = 800.0
-event_group = Array[ExtResource("2_pdo82")]([SubResource("Resource_nogjv"), SubResource("Resource_7vkd3"), SubResource("Resource_cmbai")])
+event_group = Array[ExtResource("2_o3r61")]([SubResource("Resource_7dmx5"), SubResource("Resource_0ufuc"), SubResource("Resource_lha8u")])
 event_ex = Array[ExtResource("2_yyvh2")]([SubResource("Resource_jf865")])
 
 [node name="0" parent="Maps" index="0"]
@@ -62,7 +64,7 @@ texture = ExtResource("3_jok56")
 
 [node name="Objects" parent="Maps" index="2"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAACAAoAAQAAAAAACQAIAAwAAQAAAAAABAAFAAoAAQAAAAAABAAEAAoAAQAAAAAABAA=")
+tile_map_data = PackedByteArray("AAACAAoAAQAAAAAACQAFAAoAAQAAAAAABAAEAAoAAQAAAAAABAAIAAwAAQAAAAAABAA=")
 
 [node name="Movable" parent="Maps" index="3"]
 tile_map_data = PackedByteArray("AAAIAAYAAgABAAEAAAAJAAYAAgABAAEAAAAGAAwAAgABAAEAAAACAAsAAgABAAEAAAADAAsAAgABAAEAAAACAAwAAgABAAEAAAADAAwAAgABAAEAAAAEAAwAAgABAAEAAAAFAAwAAgABAAEAAAAFAA0AAgABAAEAAAAEAA0AAgABAAEAAAADAA0AAgABAAEAAAACAA0AAgABAAEAAAACAA4AAgABAAEAAAADAA4AAgABAAEAAAAEAA4AAgABAAEAAAAFAA4AAgABAAEAAAAGAA4AAgABAAEAAAAHAA4AAgABAAEAAAAIAA4AAgABAAEAAAAIAA0AAgABAAEAAAAHAA0AAgABAAEAAAAGAA0AAgABAAEAAAAHAAwAAgABAAEAAAACAAoAAgABAAEAAAACAAkAAgABAAEAAAACAAgAAgABAAEAAAACAAcAAgABAAEAAAAEAAsAAgABAAEAAAAFAAsAAgABAAEAAAA=")

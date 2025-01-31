@@ -179,6 +179,17 @@ func get_use_callback(item:Item):
 	var filter_item:Item = filters[0]
 	return filter_item.use_event_new #已改为EventRes
 
+## 触发物品效果
+func trigger_item(item_key:StringName,first_read:bool):
+	var item = find_item_from_raw(item_key)
+	var event_res = self.get_use_callback(item)
+	if !event_res:
+		printerr("event_res没有配置")
+		return
+	await GameManager.trigger_event_res(event_res,null,{
+		"close_any":!first_read
+	})
+
 ## 移出物品 将物品隐藏
 func complete_item(item_key:String,ingore_notify:bool = false) -> String:
 	var item:Item = find_item(item_key)
@@ -189,6 +200,7 @@ func complete_item(item_key:String,ingore_notify:bool = false) -> String:
 	if ingore_notify: return item_name
 	on_player_item_changed.emit(item_name,0)
 	return item_name
+
 
 ## 找到物品
 func find_item(item_key:String) -> Item:

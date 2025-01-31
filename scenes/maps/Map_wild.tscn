@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bqimi6vrpqtxv" path="res://audio/se/rain.mp3" id="7_8yxpy"]
 
 [sub_resource type="Resource" id="Resource_jbl14"]
+resource_name = "(11,0)"
 script = ExtResource("2_xptrn")
 is_show = true
 frame_index = 0

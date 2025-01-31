@@ -1,11 +1,21 @@
-[gd_scene load_steps=9 format=4 uid="uid://d0lk1ltx1y0rl"]
+[gd_scene load_steps=12 format=4 uid="uid://d0lk1ltx1y0rl"]
 
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_ctr6i"]
 [ext_resource type="Texture2D" uid="uid://bcc7m3jkrq2po" path="res://scenes/maps/2蔷薇馆2F - 203室/tileset/3号房间2F - 1.png" id="2_72m00"]
 [ext_resource type="Script" path="res://component/event_extend/event_ex_config.gd" id="2_eys7s"]
+[ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_nqiji"]
+[ext_resource type="Resource" uid="uid://c8xxs20nd307i" path="res://scenes/maps/2蔷薇馆2F - 203室/event/魔法灯包装盒.tres" id="3_gr28g"]
 [ext_resource type="Texture2D" uid="uid://ckfduco3x3gl5" path="res://scenes/maps/2蔷薇馆2F - 203室/tileset/3号房间2F - 2.png" id="3_irvk2"]
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="3_wseiv"]
 [ext_resource type="Texture2D" uid="uid://c06wfx6ssyllv" path="res://assets/light/light_tex.tres" id="4_jep3h"]
+
+[sub_resource type="Resource" id="Resource_hm01a"]
+resource_name = "(16,8)"
+script = ExtResource("2_nqiji")
+is_show = true
+frame_index = 0
+pos = Vector2i(16, 8)
+event_res = ExtResource("3_gr28g")
 
 [sub_resource type="Resource" id="Resource_s6iqj"]
 script = ExtResource("3_wseiv")
@@ -17,29 +27,30 @@ target_scene_door = Vector2i(15, 11)
 
 [sub_resource type="Resource" id="Resource_pflk0"]
 script = ExtResource("2_eys7s")
-coord = Vector2i(13, 13)
+coord = Vector2i(15, 13)
 event_ex = SubResource("Resource_s6iqj")
 
 [node name="203室" instance=ExtResource("1_ctr6i")]
 
 [node name="Maps" parent="." index="0"]
 right_limit = 800.0
+event_group = Array[ExtResource("2_nqiji")]([SubResource("Resource_hm01a")])
 event_ex = Array[ExtResource("2_eys7s")]([SubResource("Resource_pflk0")])
 
 [node name="0" parent="Maps" index="0"]
-position = Vector2(321, 320)
+position = Vector2(401, 320)
 texture = ExtResource("2_72m00")
 
 [node name="2" parent="Maps" index="1"]
-position = Vector2(321, 320)
+position = Vector2(401, 320)
 texture = ExtResource("3_irvk2")
 
 [node name="Objects" parent="Maps" index="2"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAANAA0AAQAAAAAACwA=")
+tile_map_data = PackedByteArray("AAAQAAgAAQAAAAAABAAPAA0AAQAAAAAACwA=")
 
 [node name="Movable" parent="Maps" index="3"]
-tile_map_data = PackedByteArray("AAALAAoAAgABAAEAAAAMAAoAAgABAAEAAAANAAoAAgABAAEAAAAOAAoAAgABAAEAAAAOAAsAAgABAAEAAAANAAsAAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAANAA4AAgABAAEAAAANAAkAAgABAAEAAAANAAgAAgABAAEAAAAOAAkAAgABAAEAAAA=")
+tile_map_data = PackedByteArray("AAANAAoAAgABAAEAAAAOAAoAAgABAAEAAAAOAAsAAgABAAEAAAANAAsAAgABAAEAAAAPAAoAAgABAAEAAAAQAAoAAgABAAEAAAAQAAsAAgABAAEAAAAPAAsAAgABAAEAAAAPAAwAAgABAAEAAAAPAA0AAgABAAEAAAAPAA4AAgABAAEAAAAPAAkAAgABAAEAAAAQAAkAAgABAAEAAAAPAAgAAgABAAEAAAA=")
 
 [node name="PointLight2D" parent="Lights" index="1"]
 position = Vector2(390, 161)

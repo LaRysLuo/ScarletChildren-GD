@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=8 format=3 uid="uid://b3id24m8m6dew"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_goxng"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_lyamu"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_1iflt"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_h0g7s"]
+
+[sub_resource type="Resource" id="Resource_53p27"]
+script = ExtResource("3_1iflt")
+text = "room202_06"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_lyamu")]([])
+node_type = 1
+pos = Vector2(1140, 240)
+
+[sub_resource type="Resource" id="Resource_h71tr"]
+script = ExtResource("2_lyamu")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_53p27")
+
+[sub_resource type="Resource" id="Resource_7ryal"]
+script = ExtResource("4_h0g7s")
+children = Array[ExtResource("2_lyamu")]([SubResource("Resource_h71tr")])
+node_type = 0
+pos = Vector2(900, 340)
+
+[resource]
+script = ExtResource("1_goxng")
+title = ""
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_7ryal")
+map = {}

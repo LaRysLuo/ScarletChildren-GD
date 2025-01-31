@@ -50,7 +50,7 @@ func _get_keyword() -> Array[KeywordData]:
 	return keywords
 
 ## 重写父类虚方法
-func _execute(event):
+func _execute(event,args):
 	#print("开始显示信息，新逻辑执行成功，完美！")
 	result = -1
 	var keywords = _get_keyword()

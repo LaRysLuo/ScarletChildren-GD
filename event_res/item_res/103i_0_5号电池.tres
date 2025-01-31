@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://hg60c6bx12uk"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_njval"]
+
+[resource]
+script = ExtResource("1_njval")
+item_id = &"103i_0_5号电池"
+item_name = &"5号电池"
+item_catagory = 1
+item_desc = "5号电池，应该可以用在紫外线灯上"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_njval")]([])

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://d0p01kjs7fjur"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_kb5fe"]
+
+[resource]
+script = ExtResource("1_kb5fe")
+item_id = &"06i_4_手电筒（魔法灯有电池）"
+item_name = &"手电筒？"
+item_catagory = 1
+item_desc = "已组装电池，原以为是手电筒，实际上它是一个紫外线灯"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_kb5fe")]([])

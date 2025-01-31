@@ -35,7 +35,7 @@ func next(index:int = 0) -> BaseEventNode:
 
 
 ## TODO 待写OPTION的逻辑
-func _execute(ent):
+func _execute(ent,args):
 	DialogueManager.show_options(options)
 	result = await DialogueManager.options_finish
 	

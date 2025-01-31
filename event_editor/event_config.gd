@@ -1,3 +1,4 @@
+@tool
 extends Resource
 class_name EventConfig
 
@@ -18,7 +19,10 @@ class_name EventConfig
 
 # 为了绑定对应的事件点
 ## 坐标位置
-@export var pos:Vector2i
+@export var pos:Vector2i:
+	set(val):
+		pos = val
+		if Engine.is_editor_hint(): self.resource_name = "(%s,%s)" % [pos.x,pos.y]
 
 # 
 ## 事件资源
