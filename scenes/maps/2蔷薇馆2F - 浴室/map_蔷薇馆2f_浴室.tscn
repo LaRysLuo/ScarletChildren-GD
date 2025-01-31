@@ -14,6 +14,7 @@
 script = ExtResource("3_13wer")
 item_id = &"202c_0_星鱼拼图完成"
 value = false
+is_all = false
 type = -1
 
 [sub_resource type="Resource" id="Resource_rc3pg"]
@@ -29,6 +30,7 @@ event_res = ExtResource("3_yp4gc")
 script = ExtResource("3_13wer")
 item_id = &"202c_0_星鱼拼图完成"
 value = true
+is_all = false
 type = -1
 
 [sub_resource type="Resource" id="Resource_8cnu2"]
@@ -44,6 +46,7 @@ event_res = ExtResource("3_yp4gc")
 resource_name = "(8,9)"
 script = ExtResource("2_5rvok")
 is_show = true
+condition = null
 frame_index = 0
 pos = Vector2i(8, 9)
 event_res = ExtResource("5_6d7oy")

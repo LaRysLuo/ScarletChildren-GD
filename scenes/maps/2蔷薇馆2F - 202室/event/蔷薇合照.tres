@@ -1,58 +1,86 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=12 format=3 uid="uid://db7p7m15ldjuk"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=18 format=3 uid="uid://db7p7m15ldjuk"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_dhp3e"]
 [ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_8pmbq"]
 [ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_23ihc"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_gc2xr"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="4_0yy6l"]
 [ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_ryeja"]
 
-[sub_resource type="Resource" id="Resource_1a7qv"]
+[sub_resource type="Resource" id="Resource_oamo3"]
+script = ExtResource("3_gc2xr")
+script_cmd = "GameManager.data_player.gain_item(\"203c_0_隐藏蔷薇合照已调查\",true)"
+children = Array[ExtResource("2_8pmbq")]([])
+node_type = 9
+pos = Vector2(2300, 300)
+
+[sub_resource type="Resource" id="Resource_eiqxx"]
+script = ExtResource("2_8pmbq")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_oamo3")
+
+[sub_resource type="Resource" id="Resource_3j5oy"]
+script = ExtResource("4_0yy6l")
+script_cmd = "!has_item(\"203c_0_隐藏蔷薇合照已调查\",true)"
+children = Array[ExtResource("2_8pmbq")]([SubResource("Resource_eiqxx")])
+node_type = 17
+pos = Vector2(1920, 320)
+
+[sub_resource type="Resource" id="Resource_0kt44"]
+script = ExtResource("2_8pmbq")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_3j5oy")
+
+[sub_resource type="Resource" id="Resource_k75ul"]
 script = ExtResource("3_23ihc")
 text = "room202_03"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_8pmbq")]([])
+children = Array[ExtResource("2_8pmbq")]([SubResource("Resource_0kt44")])
 node_type = 1
 pos = Vector2(1580, 260)
 
-[sub_resource type="Resource" id="Resource_uqqau"]
+[sub_resource type="Resource" id="Resource_m2md8"]
 script = ExtResource("2_8pmbq")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_1a7qv")
+child = SubResource("Resource_k75ul")
 
-[sub_resource type="Resource" id="Resource_mpufp"]
+[sub_resource type="Resource" id="Resource_6y32v"]
 script = ExtResource("3_23ihc")
 text = "room202_02"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_8pmbq")]([SubResource("Resource_uqqau")])
+children = Array[ExtResource("2_8pmbq")]([SubResource("Resource_m2md8")])
 node_type = 1
 pos = Vector2(1240, 260)
 
-[sub_resource type="Resource" id="Resource_rah03"]
+[sub_resource type="Resource" id="Resource_ft0yv"]
 script = ExtResource("2_8pmbq")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_mpufp")
+child = SubResource("Resource_6y32v")
 
-[sub_resource type="Resource" id="Resource_vsqd8"]
+[sub_resource type="Resource" id="Resource_x5of6"]
 script = ExtResource("3_23ihc")
 text = "room202_01"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_8pmbq")]([SubResource("Resource_rah03")])
+children = Array[ExtResource("2_8pmbq")]([SubResource("Resource_ft0yv")])
 node_type = 1
 pos = Vector2(900, 260)
 
-[sub_resource type="Resource" id="Resource_t66n0"]
+[sub_resource type="Resource" id="Resource_arggh"]
 script = ExtResource("2_8pmbq")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_vsqd8")
+child = SubResource("Resource_x5of6")
 
-[sub_resource type="Resource" id="Resource_l3fqt"]
+[sub_resource type="Resource" id="Resource_uitd8"]
 script = ExtResource("4_ryeja")
-children = Array[ExtResource("2_8pmbq")]([SubResource("Resource_t66n0")])
+children = Array[ExtResource("2_8pmbq")]([SubResource("Resource_arggh")])
 node_type = 0
 pos = Vector2(684.938, 365.647)
 
@@ -62,5 +90,5 @@ title = "蔷薇合照"
 is_collsion = true
 trigger_type = 1
 one_shot = false
-tree = SubResource("Resource_l3fqt")
+tree = SubResource("Resource_uitd8")
 map = {}

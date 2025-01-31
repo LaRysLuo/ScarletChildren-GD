@@ -13,6 +13,7 @@
 resource_name = "(16,8)"
 script = ExtResource("2_nqiji")
 is_show = true
+condition = null
 frame_index = 0
 pos = Vector2i(16, 8)
 event_res = ExtResource("3_gr28g")

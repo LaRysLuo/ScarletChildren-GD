@@ -10,8 +10,9 @@ class_name EventConfig
 		is_show = val
 		event_visible_changed.emit(is_show)
 
+## INFO 2025.1.31修改 将condition改为数组
 ## 事件条件：设置条件后，只会在指定条件时才会触发该事件
-@export var condition:EventCondition
+@export var condition:Array[EventCondition]
 
 ## 动画帧索引
 @export var frame_index:int
@@ -29,3 +30,9 @@ class_name EventConfig
 @export var event_res:Events_Res
 	
 signal event_visible_changed(is_show:bool)
+
+## INFO 2025.1.31修改 - 改为复数条件
+## 获得条件的结算结果
+func get_condition_result() -> bool:
+	## 判断条件是否全部满足，如果全部符合条件则返回true
+	return condition.all(func(condi:EventCondition): return condi._get_result())

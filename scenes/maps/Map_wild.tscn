@@ -15,6 +15,7 @@
 resource_name = "(11,0)"
 script = ExtResource("2_xptrn")
 is_show = true
+condition = null
 frame_index = 0
 pos = Vector2i(11, 0)
 event_res = ExtResource("3_i8y5i")

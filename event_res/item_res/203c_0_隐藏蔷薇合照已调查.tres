@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://hatwiuwom4te"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_smcgf"]
+
+[resource]
+script = ExtResource("1_smcgf")
+item_id = &"203c_0_隐藏蔷薇合照已调查"
+item_name = &"隐藏蔷薇合照已调查"
+item_catagory = 3
+item_desc = ""
+is_finished = true
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_smcgf")]([])

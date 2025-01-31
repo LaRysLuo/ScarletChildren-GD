@@ -55,6 +55,7 @@ func _ready() -> void:
 func _load_event_config():
 	var config:EventConfig = get_event_config()
 	if !config: return 
+	if !config.event_res:return
 	# 载入 ingore_collsion
 	self.ingore_collsion = !config.event_res.is_collsion
 	_refresh_sprite_frame(config.frame_index)
@@ -69,7 +70,7 @@ func _refresh_event_state(item_name:StringName = "",state:int = 0):
 	## 需要等待场景
 	var config = get_event_config()
 	print("test条件变化了%s,%s" % [self.name,config])
-	if config: 
+	if config && !activable(config): 
 		config.is_show = activable(config)
 		print("test条件变化了%s,%s" % [self.name,config.frame_index])
 	# 更新 动画帧
@@ -129,11 +130,9 @@ func can_auto_trigger() -> bool:
 	var event = get_event_config()
 	
 	if event and event.event_res:
+		print("该事件坐标（%s,%s）是否可自动运行%s",[cell_pos.x,cell_pos.y,one_shot_valid(event) && event.event_res.trigger_type == Events_Res.TriggerType.Auto自动触发])
 		#var event_id = event.event_res.resource_path
 		### 如果事件仅限执行一次，并且已执行过，则返回false
-		#print("是否可执行该事件：",GameManager.data_variable.get_event_switch(event_id))
-		#if	event.event_res.one_shot && GameManager.data_variable.get_event_switch(event_id):
-			#return false
 		return  one_shot_valid(event) && event.event_res.trigger_type == Events_Res.TriggerType.Auto自动触发
 	return false
 
@@ -147,17 +146,17 @@ func one_shot_valid(event:EventConfig) -> bool:
 ## 是否满足事件条件
 func _condition_valid(event:EventConfig) -> bool:
 	## 当有事件条件时，返回该条件的判定结果
-	if event.condition: return event.condition._get_result()
-	return true
+	return event.get_condition_result()
+	#return true
 
 func get_event_config() -> EventConfig:
 	## 从MapConfig中找到该事件坐标的EventConfig
 	var map_config:MapConfig = GameManager.get_map_config()
 	if !map_config: return null
-	var event_config:EventConfig =	map_config.get_event(cell_pos)
+	var event_config:EventConfig =	map_config.get_event(ori_cell_pos)
 	#print("test000=%s,pos=%s" % [event_config,cell_pos])
 	if !event_config:
-		printerr("该事件%s没有配置Event_RES" % cell_pos )
+		printerr("该事件原坐标%s没有配置Event_RES" % ori_cell_pos )
 	return event_config
 
 ## WARNING 已弃用，迁移到对应的NODE（DATA）里

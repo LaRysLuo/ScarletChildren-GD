@@ -165,7 +165,8 @@ func _event_trigger_start():
 	tip.hide()
 	
 func _event_trigger_end():
-	_has_interact_event(1)
+	call_deferred("_has_interact_event",1)
+	#_has_interact_event(1)
 
 # 判断碰撞的单位触发类型是Touch
 func _has_event_clashed(event:Event) -> void:

@@ -38,7 +38,7 @@ func _load_eventres_from_config():
 
 ## 寻找EventExConfig
 func _get_eventex_config(coord:Vector2i) -> EventEx:
-	var map_config:MapConfig = get_parent().get_parent() as MapConfig
+	var map_config:MapConfig = get_parent().get_parent()
 	var filters = map_config.event_ex.filter(func(item:EventExConfig):return item.coord == coord)
 	if filters.is_empty():
 		return null

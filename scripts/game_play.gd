@@ -22,6 +22,7 @@ var color_screen_pre:PackedScene
 signal on_event_trigger_start
 signal on_event_trigger_end
 
+
 ## 玩家场景
 
 
@@ -204,7 +205,11 @@ func set_event_visible(coord:Vector2i,is_show:bool):
 	var map_config:MapConfig = get_map_config()
 	print("map_config=",map_config)
 	map_config.set_event_visible(coord,is_show)
-	
+
+## 通过事件的名称设置事件可视状态
+func set_ent_visible(char_name:StringName,is_show:bool):
+	var map_config:MapConfig = get_map_config()
+	map_config.set_event_visible_by_name(char_name,is_show)
 
 
 ## 解析名字为事件实例

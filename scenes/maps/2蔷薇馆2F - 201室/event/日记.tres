@@ -9,90 +9,90 @@
 [ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="6_ed6tk"]
 [ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="7_t56oo"]
 
-[sub_resource type="Resource" id="Resource_tq1ir"]
+[sub_resource type="Resource" id="Resource_oae67"]
 script = ExtResource("3_f7b6s")
 script_cmd = "GameManager.data_player.gain_item(\"301f_0_羽新的日记\")"
 children = Array[ExtResource("2_yso1s")]([])
 node_type = 9
 pos = Vector2(2060, 160)
 
-[sub_resource type="Resource" id="Resource_k8eqa"]
+[sub_resource type="Resource" id="Resource_ghwhs"]
 script = ExtResource("2_yso1s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_tq1ir")
+child = SubResource("Resource_oae67")
 
-[sub_resource type="Resource" id="Resource_uuo1e"]
+[sub_resource type="Resource" id="Resource_jki4g"]
 script = ExtResource("3_f7b6s")
 script_cmd = "await GameManager.data_player.trigger_item(\"301f_0_羽新的日记\",true)"
-children = Array[ExtResource("2_yso1s")]([SubResource("Resource_k8eqa")])
+children = Array[ExtResource("2_yso1s")]([SubResource("Resource_ghwhs")])
 node_type = 9
 pos = Vector2(1820, 160)
 
-[sub_resource type="Resource" id="Resource_cj3s6"]
+[sub_resource type="Resource" id="Resource_2etle"]
 script = ExtResource("2_yso1s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_uuo1e")
+child = SubResource("Resource_jki4g")
 
-[sub_resource type="Resource" id="Resource_fvwki"]
+[sub_resource type="Resource" id="Resource_0hy8k"]
 script = ExtResource("4_5525n")
 text = "room201_00_2"
 role = ExtResource("3_cnqwn")
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yso1s")]([SubResource("Resource_cj3s6")])
+children = Array[ExtResource("2_yso1s")]([SubResource("Resource_2etle")])
 node_type = 1
 pos = Vector2(1440, 120)
 
-[sub_resource type="Resource" id="Resource_o82od"]
+[sub_resource type="Resource" id="Resource_pmpcn"]
 script = ExtResource("2_yso1s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_fvwki")
+child = SubResource("Resource_0hy8k")
 
-[sub_resource type="Resource" id="Resource_da27g"]
+[sub_resource type="Resource" id="Resource_gxdln"]
 script = ExtResource("3_f7b6s")
 script_cmd = "await GameManager.data_player.trigger_item(\"301f_0_羽新的日记\",false)"
 children = Array[ExtResource("2_yso1s")]([])
 node_type = 9
 pos = Vector2(1820, 480)
 
-[sub_resource type="Resource" id="Resource_xmetr"]
+[sub_resource type="Resource" id="Resource_uygfo"]
 script = ExtResource("2_yso1s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_da27g")
+child = SubResource("Resource_gxdln")
 
-[sub_resource type="Resource" id="Resource_2qdyl"]
+[sub_resource type="Resource" id="Resource_0iolw"]
 script = ExtResource("4_5525n")
 text = "room201_00_3"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yso1s")]([SubResource("Resource_xmetr")])
+children = Array[ExtResource("2_yso1s")]([SubResource("Resource_uygfo")])
 node_type = 1
 pos = Vector2(1460, 440)
 
-[sub_resource type="Resource" id="Resource_7eous"]
+[sub_resource type="Resource" id="Resource_3rbc3"]
 script = ExtResource("2_yso1s")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_2qdyl")
+child = SubResource("Resource_0iolw")
 
-[sub_resource type="Resource" id="Resource_pwk7u"]
+[sub_resource type="Resource" id="Resource_jigo5"]
 script = ExtResource("6_ed6tk")
-script_cmd = "!has_item(\"301f_0_羽新的日记\")"
-children = Array[ExtResource("2_yso1s")]([SubResource("Resource_o82od"), SubResource("Resource_7eous")])
+script_cmd = "!has_item(\"301f_0_羽新的日记\",true)"
+children = Array[ExtResource("2_yso1s")]([SubResource("Resource_pmpcn"), SubResource("Resource_3rbc3")])
 node_type = 17
 pos = Vector2(1040, 180)
 
-[sub_resource type="Resource" id="Resource_ol3pc"]
+[sub_resource type="Resource" id="Resource_i8lgk"]
 script = ExtResource("2_yso1s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_pwk7u")
+child = SubResource("Resource_jigo5")
 
-[sub_resource type="Resource" id="Resource_q8m64"]
+[sub_resource type="Resource" id="Resource_1oyij"]
 script = ExtResource("7_t56oo")
 options = Array[Dictionary]([{
 "child_index": 0,
@@ -103,34 +103,34 @@ options = Array[Dictionary]([{
 "id": 1,
 "name": "test06"
 }])
-children = Array[ExtResource("2_yso1s")]([SubResource("Resource_ol3pc")])
+children = Array[ExtResource("2_yso1s")]([SubResource("Resource_i8lgk")])
 node_type = 2
 pos = Vector2(700, 180)
 
-[sub_resource type="Resource" id="Resource_fb8ki"]
+[sub_resource type="Resource" id="Resource_kj2yq"]
 script = ExtResource("2_yso1s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_q8m64")
+child = SubResource("Resource_1oyij")
 
-[sub_resource type="Resource" id="Resource_p83pa"]
+[sub_resource type="Resource" id="Resource_cfyn4"]
 script = ExtResource("4_5525n")
 text = "room201_00_1"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yso1s")]([SubResource("Resource_fb8ki")])
+children = Array[ExtResource("2_yso1s")]([SubResource("Resource_kj2yq")])
 node_type = 1
 pos = Vector2(360, 120)
 
-[sub_resource type="Resource" id="Resource_tbr8d"]
+[sub_resource type="Resource" id="Resource_7y2dc"]
 script = ExtResource("2_yso1s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_p83pa")
+child = SubResource("Resource_cfyn4")
 
-[sub_resource type="Resource" id="Resource_y0duf"]
+[sub_resource type="Resource" id="Resource_egm6o"]
 script = ExtResource("5_tamd6")
-children = Array[ExtResource("2_yso1s")]([SubResource("Resource_tbr8d")])
+children = Array[ExtResource("2_yso1s")]([SubResource("Resource_7y2dc")])
 node_type = 0
 pos = Vector2(140, 220)
 
@@ -140,5 +140,5 @@ title = "日记"
 is_collsion = true
 trigger_type = 1
 one_shot = false
-tree = SubResource("Resource_y0duf")
+tree = SubResource("Resource_egm6o")
 map = {}

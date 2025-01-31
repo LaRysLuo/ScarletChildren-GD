@@ -19,6 +19,9 @@ func play_puzzle_complete():
 func play_cursor_move():
 	play_se("Cursor1")
 	
+func play_glass_down():
+	play_se("putting_a_glass1")
+	
 func play_buzzle():
 	play_se("blip03")
 	

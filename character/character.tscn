@@ -1,7 +1,6 @@
-[gd_scene load_steps=109 format=3 uid="uid://dcpd1u6slvjtw"]
+[gd_scene load_steps=108 format=3 uid="uid://dcpd1u6slvjtw"]
 
-[ext_resource type="Script" path="res://scripts/player_new.gd" id="1_dvio0"]
-[ext_resource type="Texture2D" uid="uid://bvcd4sha5v0tm" path="res://assets/$Resu.png" id="2_s2r5d"]
+[ext_resource type="Script" path="res://scripts/event.gd" id="1_g6s5o"]
 [ext_resource type="Texture2D" uid="uid://c7kc2k8pcpqs7" path="res://assets/tileset0/111.png" id="3_fmdky"]
 [ext_resource type="Texture2D" uid="uid://5usglxkqlipg" path="res://assets/system/Balloon.png" id="4_eulij"]
 [ext_resource type="Texture2D" uid="uid://dbrwuidst0q71" path="res://assets/$艾琳.png" id="5_m386q"]
@@ -811,8 +810,7 @@ animations = [{
 
 [node name="Character" type="CharacterBody2D"]
 z_index = 1
-script = ExtResource("1_dvio0")
-sprite = ExtResource("2_s2r5d")
+script = ExtResource("1_g6s5o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

@@ -1,10 +1,62 @@
-[gd_scene load_steps=18 format=4 uid="uid://b60mofd4l5vef"]
+[gd_scene load_steps=29 format=4 uid="uid://b60mofd4l5vef"]
 
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_04qiw"]
 [ext_resource type="Script" path="res://component/event_extend/event_ex_config.gd" id="2_dkwef"]
+[ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_j38w7"]
+[ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="3_bmgry"]
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="3_khvt7"]
+[ext_resource type="Script" path="res://component/event_condition/ec_item.gd" id="3_v11ph"]
 [ext_resource type="Texture2D" uid="uid://crjgji8lq6e7j" path="res://scenes/maps/蔷薇馆·西馆走廊2F/tileset/西馆走廊2F - 1.png" id="4_kchyc"]
+[ext_resource type="Resource" uid="uid://dxatlgdnns3ft" path="res://scenes/maps/蔷薇馆·西馆走廊2F/event_res/完成三个调查内容.tres" id="4_qyf1m"]
 [ext_resource type="Texture2D" uid="uid://6efvn07wjwi2" path="res://scenes/maps/蔷薇馆·西馆走廊2F/tileset/西馆走廊2F - 2.png" id="5_7supa"]
+[ext_resource type="Resource" uid="uid://310fi85akdo3" path="res://scenes/maps/蔷薇馆·西馆走廊2F/event_res/光珠.tres" id="6_ufa1a"]
+
+[sub_resource type="Resource" id="Resource_icj5u"]
+script = ExtResource("3_v11ph")
+item_id = &"301f_0_羽新的日记"
+value = true
+is_all = true
+type = -1
+
+[sub_resource type="Resource" id="Resource_7mnv3"]
+script = ExtResource("3_v11ph")
+item_id = &"203c_0_隐藏蔷薇合照已调查"
+value = true
+is_all = true
+type = -1
+
+[sub_resource type="Resource" id="Resource_0i0qn"]
+script = ExtResource("3_v11ph")
+item_id = &"06i_3_手电筒（魔法灯）"
+value = true
+is_all = true
+type = -1
+
+[sub_resource type="Resource" id="Resource_bpvme"]
+resource_name = "(1,1)"
+script = ExtResource("2_j38w7")
+is_show = true
+condition = Array[ExtResource("3_bmgry")]([SubResource("Resource_icj5u"), SubResource("Resource_7mnv3"), SubResource("Resource_0i0qn")])
+frame_index = 0
+pos = Vector2i(1, 1)
+event_res = ExtResource("4_qyf1m")
+
+[sub_resource type="Resource" id="Resource_hnvel"]
+resource_name = "(15,13)"
+script = ExtResource("2_j38w7")
+is_show = false
+condition = Array[ExtResource("3_bmgry")]([])
+frame_index = 0
+pos = Vector2i(15, 13)
+
+[sub_resource type="Resource" id="Resource_1w174"]
+resource_name = "(15,14)"
+script = ExtResource("2_j38w7")
+is_show = false
+condition = Array[ExtResource("3_bmgry")]([])
+frame_index = 0
+pos = Vector2i(15, 14)
+event_res = ExtResource("6_ufa1a")
 
 [sub_resource type="Resource" id="Resource_deu2x"]
 script = ExtResource("3_khvt7")
@@ -88,6 +140,7 @@ event_ex = SubResource("Resource_6d08o")
 
 [node name="Maps" parent="." index="0"]
 right_limit = 800.0
+event_group = Array[ExtResource("2_j38w7")]([SubResource("Resource_bpvme"), SubResource("Resource_hnvel"), SubResource("Resource_1w174")])
 event_ex = Array[ExtResource("2_dkwef")]([SubResource("Resource_g8kao"), SubResource("Resource_w76nr"), SubResource("Resource_augdw"), SubResource("Resource_xukeu"), SubResource("Resource_tnebg"), SubResource("Resource_wsno7")])
 
 [node name="0" parent="Maps" index="0"]
@@ -100,7 +153,7 @@ texture = ExtResource("5_7supa")
 
 [node name="Objects" parent="Maps" index="2"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAKAAsAAQAAAAAACQAPAAsAAQAAAAAACQAGAAsAAQAAAAAACwAEABAAAQAAAAAACwAPABAAAQAAAAAACwATAA0AAQAAAAAACwA=")
+tile_map_data = PackedByteArray("AAAKAAsAAQAAAAAACQAPAAsAAQAAAAAACQAGAAsAAQAAAAAACwAEABAAAQAAAAAACwAPABAAAQAAAAAACwATAA0AAQAAAAAACwABAAEAAQAAAAAABAAPAA0AAAAAAAAAAQAPAA4AAQAAAAAAEAA=")
 
 [node name="Movable" parent="Maps" index="3"]
 tile_map_data = PackedByteArray("AAAGAAkAAgABAAEAAAAGAAgAAgABAAEAAAAGAAoAAgABAAEAAAAGAAsAAgABAAEAAAAGAAwAAgABAAEAAAACAAwAAgABAAEAAAACAA0AAgABAAEAAAACAA4AAgABAAEAAAADAAwAAgABAAEAAAADAA0AAgABAAEAAAADAA4AAgABAAEAAAAEAAwAAgABAAEAAAAEAA0AAgABAAEAAAAEAA4AAgABAAEAAAAFAAwAAgABAAEAAAAFAA0AAgABAAEAAAAFAA4AAgABAAEAAAAGAA0AAgABAAEAAAAGAA4AAgABAAEAAAAHAAwAAgABAAEAAAAHAA0AAgABAAEAAAAHAA4AAgABAAEAAAAIAAwAAgABAAEAAAAIAA0AAgABAAEAAAAIAA4AAgABAAEAAAAJAAwAAgABAAEAAAAJAA0AAgABAAEAAAAJAA4AAgABAAEAAAAKAAwAAgABAAEAAAAKAA0AAgABAAEAAAAKAA4AAgABAAEAAAALAAwAAgABAAEAAAALAA0AAgABAAEAAAALAA4AAgABAAEAAAAMAAwAAgABAAEAAAAMAA0AAgABAAEAAAAMAA4AAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAANAA4AAgABAAEAAAAOAAwAAgABAAEAAAAOAA0AAgABAAEAAAAOAA4AAgABAAEAAAAPAAwAAgABAAEAAAAPAA0AAgABAAEAAAAPAA4AAgABAAEAAAAQAAwAAgABAAEAAAAQAA0AAgABAAEAAAAQAA4AAgABAAEAAAARAAwAAgABAAEAAAARAA0AAgABAAEAAAARAA4AAgABAAEAAAAEAA8AAgABAAEAAAAEABAAAgABAAEAAAAPABAAAgABAAEAAAAPAA8AAgABAAEAAAAPAAsAAgABAAEAAAAPAAoAAgABAAEAAAAPAAkAAgABAAEAAAAPAAgAAgABAAEAAAAKAAgAAgABAAEAAAAKAAkAAgABAAEAAAAKAAoAAgABAAEAAAAKAAsAAgABAAEAAAASAA0AAgABAAEAAAAEABEAAgABAAEAAAAEABIAAgABAAEAAAAPABEAAgABAAEAAAAPABIAAgABAAEAAAA=")

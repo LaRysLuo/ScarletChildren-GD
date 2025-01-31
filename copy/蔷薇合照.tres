@@ -1,11 +1,94 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=2 format=3 uid="uid://cbkgi6uc7owrl"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=18 format=3 uid="uid://cbkgi6uc7owrl"]
 
-[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_6oh84"]
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_a8hqq"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_rf3so"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_qp0vh"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_v1lo4"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_836ig"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="4_u8qt6"]
+
+[sub_resource type="Resource" id="Resource_kinua"]
+script = ExtResource("3_qp0vh")
+script_cmd = "GameManager.data_player.gain_item(\"203c_0_隐藏蔷薇合照已调查\")"
+children = Array[ExtResource("2_rf3so")]([])
+node_type = 9
+pos = Vector2(2300, 300)
+
+[sub_resource type="Resource" id="Resource_iam6x"]
+script = ExtResource("2_rf3so")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_kinua")
+
+[sub_resource type="Resource" id="Resource_ny5vi"]
+script = ExtResource("4_u8qt6")
+script_cmd = "!has_item(\"203c_0_隐藏蔷薇合照已调查\",true)"
+children = Array[ExtResource("2_rf3so")]([SubResource("Resource_iam6x")])
+node_type = 17
+pos = Vector2(1920, 320)
+
+[sub_resource type="Resource" id="Resource_pbk8u"]
+script = ExtResource("2_rf3so")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ny5vi")
+
+[sub_resource type="Resource" id="Resource_cycl4"]
+script = ExtResource("3_v1lo4")
+text = "room202_03"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_rf3so")]([SubResource("Resource_pbk8u")])
+node_type = 1
+pos = Vector2(1580, 260)
+
+[sub_resource type="Resource" id="Resource_jvw7w"]
+script = ExtResource("2_rf3so")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_cycl4")
+
+[sub_resource type="Resource" id="Resource_nxtnv"]
+script = ExtResource("3_v1lo4")
+text = "room202_02"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_rf3so")]([SubResource("Resource_jvw7w")])
+node_type = 1
+pos = Vector2(1240, 260)
+
+[sub_resource type="Resource" id="Resource_1v0kr"]
+script = ExtResource("2_rf3so")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_nxtnv")
+
+[sub_resource type="Resource" id="Resource_qj1ud"]
+script = ExtResource("3_v1lo4")
+text = "room202_01"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_rf3so")]([SubResource("Resource_1v0kr")])
+node_type = 1
+pos = Vector2(900, 260)
+
+[sub_resource type="Resource" id="Resource_q0dr2"]
+script = ExtResource("2_rf3so")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_qj1ud")
+
+[sub_resource type="Resource" id="Resource_kgb0c"]
+script = ExtResource("4_836ig")
+children = Array[ExtResource("2_rf3so")]([SubResource("Resource_q0dr2")])
+node_type = 0
+pos = Vector2(684.938, 365.647)
 
 [resource]
-script = ExtResource("1_6oh84")
+script = ExtResource("1_a8hqq")
 title = "蔷薇合照"
 is_collsion = true
 trigger_type = 1
 one_shot = false
+tree = SubResource("Resource_kgb0c")
 map = {}

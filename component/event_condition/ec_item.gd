@@ -10,7 +10,10 @@ class_name ECItem
 ## 该参数的true还是false 
 @export var value:bool
 
+## 包含隐藏道具
+@export_custom(PROPERTY_USAGE_STORAGE,"包含隐藏道具") var is_all:bool = false
+
 ## 重写父类的事件
 func _get_result() -> bool:
 	## 判断玩家背包中的道具 
-	return game.data_player.has_item(item_id,true) == value
+	return game.data_player.has_item(item_id,is_all) == value

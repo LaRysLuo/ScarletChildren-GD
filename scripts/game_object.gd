@@ -30,6 +30,7 @@ var speed_factor:float = 1.0
 @export var idle_ext : Texture2D = null
 
 @onready var map:TileMapLayer = get_parent()
+@onready var ori_cell_pos:Vector2i = map.local_to_map(position)
 @onready var cell_pos:Vector2i = map.local_to_map(position)
 @onready var playerAnim:AnimatedSprite2D = $AnimatedSprite2D2
 var map_base: TileMapLayer:

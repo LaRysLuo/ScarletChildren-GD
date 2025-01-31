@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=2 format=3 uid="uid://d17upidchw82h"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_paph3"]
+
+[resource]
+script = ExtResource("1_paph3")
+title = "光珠"
+is_collsion = false
+trigger_type = 1
+one_shot = true
+map = {}
