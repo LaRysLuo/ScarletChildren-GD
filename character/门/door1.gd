@@ -14,19 +14,24 @@ class_name Door1
 #var event_res:Events_Res
 
 @export var event_res:Events_Res
-
+@export var event_config:EventConfig
 
 ## 组件引用
 var anim:AnimatedSprite2D:
 	get(): return get_node("./AnimatedSprite2D2")
 
 func _ready() -> void:
+	super._ready()
 	#GameManager.player.on_interact_changed.connect(change_person_shadow)
 	#self.event_res = _load_eventres_from_config()
 	pass
 
 ## 从配置文件载入event资源
+# 1 优先获取event_config
+# 2 如果没有event_config就获取ex_config
 func _load_eventres_from_config():
+	event_config = get_event_config()
+	if event_config: return
 	var eec = _get_eventex_config(cell_pos)
 	if !eec: return null
 	if eec is DoorEx:
@@ -46,23 +51,32 @@ func _get_eventex_config(coord:Vector2i) -> EventEx:
 
 ## 重写交互逻辑
 func interact():
-	event_res = _load_eventres_from_config()
-	#push_warning("生成的event_res:",event_res.tree)
-	if !event_res:
-		event_finish.emit()
-		return
-	await  _parse_event_config(event_res)
-	print("X事件交互完成")
+	if event_config:
+		super.interact()
+	else:
+		event_res = _load_eventres_from_config()
+		#push_warning("生成的event_res:",event_res.tree)
+		if !event_res:
+			event_finish.emit()
+			return
+		await  _parse_event_config(event_res)
+		print("X事件交互完成")
 
 func interactable() -> bool:
-	var config = _load_eventres_from_config()
-	if !config:return false
-	return true
+	if event_config:
+		return super.interactable()
+	else:
+		var config = _load_eventres_from_config()
+		if !config:return false
+		return true
 	
 func touchable() -> bool:
-	var config = _load_eventres_from_config()
-	if !config:return false
-	return true
+	if event_config:
+		return super.touchable()
+	else:
+		var config = _load_eventres_from_config()
+		if !config:return false
+		return true
 
 ## 播放事件动画
 func play_anim(anim_name:String):

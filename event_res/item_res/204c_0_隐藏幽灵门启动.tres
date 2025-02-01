@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://c0a47p0ci2ha4"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_n1dgj"]
+
+[resource]
+script = ExtResource("1_n1dgj")
+item_id = &"204c_0_隐藏幽灵门启动"
+item_name = &"隐藏幽灵门启动"
+item_catagory = 2
+item_desc = ""
+is_finished = true
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_n1dgj")]([])

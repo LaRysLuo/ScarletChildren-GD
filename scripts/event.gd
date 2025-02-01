@@ -60,7 +60,7 @@ func _ready() -> void:
 ## 载入事件config
 func _load_event_config():
 	var config:EventConfig = get_event_config()
-	if !config: return 
+	if !config: return
 	if config.event_res: self.ingore_collsion = !config.event_res.is_collsion
 	# 刷新精灵图
 	_refresh_sprite_frame(config.frame_index,config)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://402ugo2qbiok"]
+[gd_scene load_steps=23 format=4 uid="uid://402ugo2qbiok"]
 
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_woawi"]
 [ext_resource type="Texture2D" uid="uid://b7iw6on4p5g45" path="res://scenes/maps/2蔷薇馆2F - 浴室/tileset/卫生间2F - 1.png" id="2_3hwwy"]
@@ -59,12 +59,19 @@ frame_index = 2
 pos = Vector2i(9, 13)
 event_res = ExtResource("3_yp4gc")
 
+[sub_resource type="Resource" id="Resource_14c7o"]
+script = ExtResource("3_13wer")
+item_id = &"204c_0_隐藏幽灵门启动"
+value = false
+is_all = true
+type = -1
+
 [sub_resource type="Resource" id="Resource_h3ipb"]
 resource_name = "(8,9)"
 script = ExtResource("2_5rvok")
 is_show = true
-condition = null
-frame_index = 0
+condition = Array[ExtResource("3_7xd4i")]([SubResource("Resource_14c7o")])
+frame_index = 1
 pos = Vector2i(8, 9)
 event_res = ExtResource("5_6d7oy")
 
@@ -81,12 +88,26 @@ script = ExtResource("2_14eoh")
 coord = Vector2i(13, 9)
 event_ex = SubResource("Resource_hy1ky")
 
+[sub_resource type="Resource" id="Resource_gpaan"]
+script = ExtResource("3_6hiug")
+scene_path = "res://scenes/maps/2蔷薇馆2F - 幽灵空间/map_幽灵空间.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(12, 14)
+target_scene_door = Vector2i(12, 13)
+
+[sub_resource type="Resource" id="Resource_a440m"]
+script = ExtResource("2_14eoh")
+coord = Vector2i(8, 9)
+event_ex = SubResource("Resource_gpaan")
+
 [node name="浴室" instance=ExtResource("1_woawi")]
 
 [node name="Maps" parent="." index="0"]
+bottom_limit = 600.0
 right_limit = 800.0
 event_group = Array[ExtResource("2_5rvok")]([SubResource("Resource_x04dr"), SubResource("Resource_rc3pg"), SubResource("Resource_8cnu2"), SubResource("Resource_h3ipb")])
-event_ex = Array[ExtResource("2_14eoh")]([SubResource("Resource_tgoi2")])
+event_ex = Array[ExtResource("2_14eoh")]([SubResource("Resource_tgoi2"), SubResource("Resource_a440m")])
 
 [node name="0" parent="Maps" index="0"]
 position = Vector2(401, 320)
@@ -100,10 +121,10 @@ texture = ExtResource("3_4ryy7")
 z_index = 0
 z_as_relative = false
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAANAAkAAQAAAAAACQAJAA0AAQAAAAAADwAIAAkAAQAAAAAABAA=")
+tile_map_data = PackedByteArray("AAANAAkAAQAAAAAACQAJAA0AAQAAAAAADwAIAAkAAwAAAAAAAQA=")
 
 [node name="Movable" parent="Maps" index="3"]
-tile_map_data = PackedByteArray("AAAIAAoAAgABAAEAAAAGAAwAAgABAAEAAAAIAAsAAgABAAEAAAAHAAwAAgABAAEAAAAIAAwAAgABAAEAAAAIAA0AAgABAAEAAAAJAA0AAgABAAEAAAAJAAwAAgABAAEAAAAJAAsAAgABAAEAAAAKAAsAAgABAAEAAAALAAsAAgABAAEAAAAMAAwAAgABAAEAAAAMAAsAAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAANAAsAAgABAAEAAAANAAoAAgABAAEAAAANAAkAAgABAAEAAAANAAgAAgABAAEAAAANAAcAAgABAAEAAAANAAYAAgABAAEAAAA=")
+tile_map_data = PackedByteArray("AAAIAAoAAgABAAEAAAAGAAwAAgABAAEAAAAIAAsAAgABAAEAAAAHAAwAAgABAAEAAAAIAAwAAgABAAEAAAAIAA0AAgABAAEAAAAJAA0AAgABAAEAAAAJAAwAAgABAAEAAAAJAAsAAgABAAEAAAAKAAsAAgABAAEAAAALAAsAAgABAAEAAAAMAAwAAgABAAEAAAAMAAsAAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAANAAsAAgABAAEAAAANAAoAAgABAAEAAAANAAkAAgABAAEAAAANAAgAAgABAAEAAAANAAcAAgABAAEAAAANAAYAAgABAAEAAAAIAAkAAgABAAEAAAAIAAgAAgABAAEAAAAIAAcAAgABAAEAAAAIAAYAAgABAAEAAAA=")
 
 [node name="PointLight2D" parent="Lights" index="1"]
 position = Vector2(236, 567)
