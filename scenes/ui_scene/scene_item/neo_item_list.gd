@@ -63,7 +63,8 @@ func _ready() -> void:
 	item_list.on_changed.connect(_on_item_changed)	
 	item_list.on_cancel.connect(_on_item_list_cancel)
 	item_list.on_submit.connect(_use_item)
-
+	
+	data_player.on_bag_item_changed.connect(_on_catagory_changed.bind(catagory_index))
 
 	catagory_bar.active()
 
@@ -124,6 +125,7 @@ func _on_item_changed(index:int):
 		item_help_label.set_info("")
 		return
 	var items = get_items(catagory_index)
+	#if index >= items.size():index = items.size() -1
 	var item = items[index]
 	print("选择有变化",item.item_name)
 	if item && item is Item:

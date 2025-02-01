@@ -40,6 +40,7 @@ func _ready() -> void:
 func _init_player() -> void:
 	call_deferred("_has_interact_event")
 	# 重新载入地图事件
+	
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint(): return

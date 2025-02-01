@@ -299,6 +299,13 @@ func has_item(item_key:String,is_all:bool = false):
 	
 func is_flash() -> bool:
 	return GameManager.player.get_light_switch()
+
+## 查看前方事件是否是对应事件
+# event_name为Event.event_name的值
+func with_event(event_name:StringName) -> bool:
+	var with:Event = GameManager.player.interact_with
+	if !with: return false
+	return with.event_name == event_name
 	
 
 func condition_eval(code:String):

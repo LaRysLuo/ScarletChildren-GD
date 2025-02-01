@@ -34,6 +34,7 @@ animations = [{
 
 [node name="星鱼谜题" instance=ExtResource("1_6pc3o")]
 z_index = 0
+event_name = "星鱼谜题"
 
 [node name="AnimatedSprite2D2" parent="." index="1"]
 position = Vector2(-23, -24)

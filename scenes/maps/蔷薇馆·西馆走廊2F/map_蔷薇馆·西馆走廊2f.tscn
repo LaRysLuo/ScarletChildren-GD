@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://crjgji8lq6e7j" path="res://scenes/maps/蔷薇馆·西馆走廊2F/tileset/西馆走廊2F - 1.png" id="4_kchyc"]
 [ext_resource type="Resource" uid="uid://dxatlgdnns3ft" path="res://scenes/maps/蔷薇馆·西馆走廊2F/event_res/完成三个调查内容.tres" id="4_qyf1m"]
 [ext_resource type="Texture2D" uid="uid://6efvn07wjwi2" path="res://scenes/maps/蔷薇馆·西馆走廊2F/tileset/西馆走廊2F - 2.png" id="5_7supa"]
-[ext_resource type="Resource" uid="uid://310fi85akdo3" path="res://scenes/maps/蔷薇馆·西馆走廊2F/event_res/光珠.tres" id="6_ufa1a"]
+[ext_resource type="Resource" uid="uid://310fi85akdo3" path="res://scenes/maps/蔷薇馆·西馆走廊2F/event_res/掉落的5号电池.tres" id="6_ufa1a"]
 
 [sub_resource type="Resource" id="Resource_icj5u"]
 script = ExtResource("3_v11ph")

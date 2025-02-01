@@ -37,6 +37,7 @@ func _ready() -> void:
 	## 做本场景的事件初始化
 	#call_deferred("_init_scene_event")
 	call_deferred("auto_event_trigger")
+	visibility_changed.connect(_reload_event_config)
 
 #func _exit_tree() -> void:
 	#print("TEST 开始断开信号")
@@ -58,6 +59,14 @@ func _ready() -> void:
 			#print("事件可视化为%s,坐标(%s,%s)" % [is_show,event.ori_cell_pos.x,event.ori_cell_pos.y])
 			#refresh_event_visible(is_show,event)
 			#config.event_visible_changed.connect(refresh_event_visible.bind(event))
+
+## 重新加载事件配置
+func _reload_event_config():
+	if !get_parent().visible: return
+	print("重新加载了事件配置=",get_parent().name)
+	for ent:Event in all_events:
+		ent._load_event_config()
+	pass
 
 ## 增加一个游戏初始化前
 func _map_show_pre():

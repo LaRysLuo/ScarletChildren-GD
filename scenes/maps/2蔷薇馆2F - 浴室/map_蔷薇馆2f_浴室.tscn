@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://402ugo2qbiok"]
+[gd_scene load_steps=20 format=4 uid="uid://402ugo2qbiok"]
 
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_woawi"]
 [ext_resource type="Texture2D" uid="uid://b7iw6on4p5g45" path="res://scenes/maps/2蔷薇馆2F - 浴室/tileset/卫生间2F - 1.png" id="2_3hwwy"]
@@ -6,38 +6,55 @@
 [ext_resource type="Script" path="res://component/event_extend/event_ex_config.gd" id="2_14eoh"]
 [ext_resource type="Texture2D" uid="uid://c05pic1sewpct" path="res://scenes/maps/2蔷薇馆2F - 浴室/tileset/卫生间2F - 2.png" id="3_4ryy7"]
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="3_6hiug"]
+[ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="3_7xd4i"]
 [ext_resource type="Script" path="res://component/event_condition/ec_item.gd" id="3_13wer"]
 [ext_resource type="Resource" uid="uid://c4rvejxn88r4i" path="res://scenes/maps/2蔷薇馆2F - 浴室/event/星鱼拼图（初始）.tres" id="3_yp4gc"]
 [ext_resource type="Resource" uid="uid://c4jcv3yg4wvpu" path="res://scenes/maps/2蔷薇馆2F - 浴室/event/献给礼诗的诗歌.tres" id="5_6d7oy"]
 
-[sub_resource type="Resource" id="Resource_aba5n"]
+[sub_resource type="Resource" id="Resource_emleh"]
 script = ExtResource("3_13wer")
-item_id = &"202c_0_星鱼拼图完成"
+item_id = &"202c_1_星鱼拼图浮现"
 value = false
-is_all = false
+is_all = true
+type = -1
+
+[sub_resource type="Resource" id="Resource_x04dr"]
+resource_name = "(9,13)"
+script = ExtResource("2_5rvok")
+is_show = true
+condition = Array[ExtResource("3_7xd4i")]([SubResource("Resource_emleh")])
+frame_index = 0
+pos = Vector2i(9, 13)
+event_res = ExtResource("3_yp4gc")
+
+[sub_resource type="Resource" id="Resource_o32nw"]
+script = ExtResource("3_13wer")
+item_id = &"202c_2_星鱼拼图完成"
+value = false
+is_all = true
 type = -1
 
 [sub_resource type="Resource" id="Resource_rc3pg"]
 resource_name = "(9,13)"
 script = ExtResource("2_5rvok")
 is_show = true
-condition = SubResource("Resource_aba5n")
+condition = Array[ExtResource("3_7xd4i")]([SubResource("Resource_o32nw")])
 frame_index = 1
 pos = Vector2i(9, 13)
 event_res = ExtResource("3_yp4gc")
 
-[sub_resource type="Resource" id="Resource_kg30j"]
+[sub_resource type="Resource" id="Resource_hamgl"]
 script = ExtResource("3_13wer")
-item_id = &"202c_0_星鱼拼图完成"
+item_id = &"202c_2_星鱼拼图完成"
 value = true
-is_all = false
+is_all = true
 type = -1
 
 [sub_resource type="Resource" id="Resource_8cnu2"]
 resource_name = "(9,13)"
 script = ExtResource("2_5rvok")
 is_show = true
-condition = SubResource("Resource_kg30j")
+condition = Array[ExtResource("3_7xd4i")]([SubResource("Resource_hamgl")])
 frame_index = 2
 pos = Vector2i(9, 13)
 event_res = ExtResource("3_yp4gc")
@@ -68,7 +85,7 @@ event_ex = SubResource("Resource_hy1ky")
 
 [node name="Maps" parent="." index="0"]
 right_limit = 800.0
-event_group = Array[ExtResource("2_5rvok")]([SubResource("Resource_rc3pg"), SubResource("Resource_8cnu2"), SubResource("Resource_h3ipb")])
+event_group = Array[ExtResource("2_5rvok")]([SubResource("Resource_x04dr"), SubResource("Resource_rc3pg"), SubResource("Resource_8cnu2"), SubResource("Resource_h3ipb")])
 event_ex = Array[ExtResource("2_14eoh")]([SubResource("Resource_tgoi2")])
 
 [node name="0" parent="Maps" index="0"]

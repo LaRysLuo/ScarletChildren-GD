@@ -1,26 +1,56 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=8 format=3 uid="uid://c4rvejxn88r4i"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=14 format=3 uid="uid://c4rvejxn88r4i"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_1nh1l"]
 [ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_kjmhu"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_jmx8q"]
 [ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_utkmg"]
 [ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_r4lmp"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="5_dx1bp"]
 
-[sub_resource type="Resource" id="Resource_5jqb0"]
+[sub_resource type="Resource" id="Resource_347xc"]
+script = ExtResource("3_jmx8q")
+text = "yushi06"
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_kjmhu")]([])
+node_type = 1
+pos = Vector2(560, -100)
+
+[sub_resource type="Resource" id="Resource_mvfi3"]
+script = ExtResource("2_kjmhu")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_347xc")
+
+[sub_resource type="Resource" id="Resource_e8p3p"]
 script = ExtResource("3_utkmg")
 script_cmd = "await SceneManager.to_starfish()"
 children = Array[ExtResource("2_kjmhu")]([])
 node_type = 9
-pos = Vector2(160, 60)
+pos = Vector2(560, 260)
 
-[sub_resource type="Resource" id="Resource_unxyq"]
+[sub_resource type="Resource" id="Resource_ymvp5"]
+script = ExtResource("2_kjmhu")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_e8p3p")
+
+[sub_resource type="Resource" id="Resource_a43nu"]
+script = ExtResource("5_dx1bp")
+script_cmd = "!has_item(\"202c_1_星鱼拼图浮现\",true)"
+children = Array[ExtResource("2_kjmhu")]([SubResource("Resource_mvfi3"), SubResource("Resource_ymvp5")])
+node_type = 17
+pos = Vector2(140, 60)
+
+[sub_resource type="Resource" id="Resource_wdtxu"]
 script = ExtResource("2_kjmhu")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_5jqb0")
+child = SubResource("Resource_a43nu")
 
-[sub_resource type="Resource" id="Resource_6i5pr"]
+[sub_resource type="Resource" id="Resource_yqett"]
 script = ExtResource("4_r4lmp")
-children = Array[ExtResource("2_kjmhu")]([SubResource("Resource_unxyq")])
+children = Array[ExtResource("2_kjmhu")]([SubResource("Resource_wdtxu")])
 node_type = 0
 pos = Vector2(-80, 120)
 
@@ -30,5 +60,5 @@ title = "星鱼拼图（初始）"
 is_collsion = true
 trigger_type = 1
 one_shot = false
-tree = SubResource("Resource_6i5pr")
+tree = SubResource("Resource_yqett")
 map = {}

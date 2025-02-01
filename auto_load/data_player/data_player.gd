@@ -15,7 +15,9 @@ var items_raw:Array[Item]
 
 ## SIGNAL 
 ## 当玩家的道具变化时 1表示获得 0表示失去 2表示更新
+# 这个用于通知
 signal on_player_item_changed(item_name:StringName,state:int)
+signal on_bag_item_changed
 
 
 const path = "res://event_res/item_res"
@@ -105,9 +107,9 @@ var recipes:Dictionary = {
 		complete_item(craft_list[1])
 		update_item(craft_list[0],"02i_1_老式拍立得")
 		gain_item_array(["04i_一次性相纸"]),
-	["06i_1_手电筒（无电池）","101i_0_电池"]:func(craft_list):
+	["06i_3_手电筒（魔法灯）","103i_0_5号电池"]:func(craft_list):
 		complete_item(craft_list[1])
-		update_item(craft_list[0],"06i_2_手电筒（有电池）")
+		update_item(craft_list[0],"06i_4_手电筒（魔法灯有电池）")
 }
 
 
@@ -199,6 +201,7 @@ func complete_item(item_key:String,ingore_notify:bool = false) -> String:
 	item.is_finished = true
 	if ingore_notify: return item_name
 	on_player_item_changed.emit(item_name,0)
+	on_bag_item_changed.emit()
 	return item_name
 
 
@@ -227,9 +230,8 @@ func remove_item_array(items:Array[Item]):
 func gain_item(item_key:String,ingore_notify:bool = false):
 	var entity = get_item_in_raw_list(item_key)
 	items.append(entity.duplicate())
-	if !ingore_notify:on_player_item_changed.emit(entity.item_name,1)
-	
-	
+	if !ingore_notify: on_player_item_changed.emit(entity.item_name,1)
+	on_bag_item_changed.emit()
 
 ## 更新道具
 # item_lose表示从背包里失去的道具
@@ -239,6 +241,7 @@ func update_item(to_lose:String,to_gain:String):
 	var item_name:String = complete_item(to_lose,true)
 	gain_item_array([to_gain],true)
 	on_player_item_changed.emit(item_name,2)
+	on_bag_item_changed.emit()
 
 func gain_item_array(item_key_list:Array[String],ingore_notify:bool = false):
 	var item_list:Array[Item]

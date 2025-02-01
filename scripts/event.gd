@@ -59,7 +59,7 @@ func _ready() -> void:
 	
 ## 载入事件config
 func _load_event_config():
-	var config:EventConfig = get_event_config(true)
+	var config:EventConfig = get_event_config()
 	if !config: return 
 	if config.event_res: self.ingore_collsion = !config.event_res.is_collsion
 	# 刷新精灵图
@@ -92,13 +92,15 @@ func _refresh_event_visible(is_show:bool,config:EventConfig):
 ## 连接信号使用，当或许的条件变化时，刷新事件
 func _refresh_event_state(item_name:StringName = "",state:int = 0):
 	## 需要等待场景
-	var config = get_event_config()
-	print("test条件变化了%s,%s" % [self.name,config])
-	if config && !activable(config): 
-		config.is_show = activable(config)
-		print("test条件变化了%s,%s" % [self.name,config.frame_index])
+	print("重新加载事件配置")
+	_load_event_config()
+	#var config = get_event_config()
+	#print("test条件变化了%s,%s" % [self.name,config])
+	#if config && !activable(config): 
+		#config.is_show = activable(config)
+		#print("test条件变化了%s,%s" % [self.name,config.frame_index])
 	# 更新 动画帧
-		_refresh_sprite_frame(config.frame_index,config)
+		#_refresh_sprite_frame(config.frame_index,config)
 	#print("test当前透明度",self.visible)
 
 ## 交互函数
@@ -137,7 +139,7 @@ func _parse_event_config(event_res):
 func activable(event:EventConfig) -> bool:
 	if event and event.event_res:
 		## INFO 增加可视化的条件判断
-		return one_shot_valid(event) && _condition_valid(event) && visible
+		return one_shot_valid(event) && _condition_valid(event) 
 	return true
 
 ## 是否可交互
@@ -145,13 +147,13 @@ func interactable() -> bool:
 	var event = get_event_config()
 	if event and event.event_res:
 		print("可交互事件状态为：",activable(event))
-		return activable(event) && event.event_res.trigger_type == Events_Res.TriggerType.Interact交互
+		return activable(event) &&  visible && event.event_res.trigger_type == Events_Res.TriggerType.Interact交互
 	return false
 	
 func touchable() -> bool:
 	var event = get_event_config()
 	if event and event.event_res:
-		return activable(event) && event.event_res.trigger_type == Events_Res.TriggerType.Touch触碰
+		return activable(event) &&  visible  && event.event_res.trigger_type == Events_Res.TriggerType.Touch触碰
 	return false
 
 func can_auto_trigger() -> bool:
@@ -161,7 +163,7 @@ func can_auto_trigger() -> bool:
 		print("该事件坐标（%s,%s）是否可自动运行%s",[cell_pos.x,cell_pos.y,one_shot_valid(event) && event.event_res.trigger_type == Events_Res.TriggerType.Auto自动触发])
 		#var event_id = event.event_res.resource_path
 		### 如果事件仅限执行一次，并且已执行过，则返回false
-		return  one_shot_valid(event) && event.event_res.trigger_type == Events_Res.TriggerType.Auto自动触发
+		return  one_shot_valid(event) &&  visible && event.event_res.trigger_type == Events_Res.TriggerType.Auto自动触发
 	return false
 
 ## 是否仅限一次

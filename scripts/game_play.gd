@@ -69,12 +69,14 @@ func _ready() -> void:
 	on_event_trigger_end.connect(_event_trigger_end)
 	
 	## 载入游戏数据 TODO 实际不能在这里调用
-	#SceneManager.move("res://scenes/maps/蔷薇馆·西馆走廊2F/map_蔷薇馆·西馆走廊2f.tscn",Vector2i(8,12),true,true)
+	SceneManager.move("res://scenes/maps/蔷薇馆·西馆走廊2F/map_蔷薇馆·西馆走廊2f.tscn",Vector2i(8,12),true,true)
 	##return
 
-	await  SaveManager.load_data()
+	#await  SaveManager.load_data()
 	await get_tree().create_timer(0.5).timeout
-	GameManager.data_player.gain_item("06i_1_手电筒（无电池）")
+	GameManager.data_player.gain_item("06i_3_手电筒（魔法灯）")
+	GameManager.data_player.gain_item("103i_0_5号电池")
+	#GameManager.data_player.gain_item("203c_0_隐藏蔷薇合照已调查")
 	set_game_state_normal()
 
 func _event_trigger_start():

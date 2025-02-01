@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bhjfqie8q63ui"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_ehg85"]
+
+[resource]
+script = ExtResource("1_ehg85")
+item_id = &"202c_1_星鱼拼图浮现"
+item_name = &"星鱼拼图浮现"
+item_catagory = 2
+item_desc = ""
+is_finished = true
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_ehg85")]([])

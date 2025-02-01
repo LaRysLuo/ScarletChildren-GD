@@ -75,6 +75,7 @@ region = Rect2(160, 0, 32, 32)
 
 [node name="DialogueSystem" type="CanvasLayer" node_paths=PackedStringArray("nextable_sign_tr")]
 process_priority = 10
+layer = 11
 script = ExtResource("1_dckcq")
 nextable_sign_tr = NodePath("DialogueBox/MarginContainer/VBoxContainer/Control2")
 

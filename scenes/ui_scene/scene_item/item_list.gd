@@ -52,8 +52,9 @@ func set_info(list:Array[Item],data_player:DataPlayer):
 
 ## 刷新组件
 func refresh(ingore_clear_data:bool = false):
+	print("TEST 页面刷新了")
 	clear_item_list(ingore_clear_data)
-	self.data_player = data_player
+	#self.data_player = data_player
 	## 根据数据刷新整个页面
 	for item in self.item_list:
 		var lbtn = lbtn_res.instantiate()
@@ -195,6 +196,7 @@ func _end_craft_item():
 		## 移出对应元素
 		AudioManager.play_se("button03a")
 		data_player.recipes.get(key).call(key)
+		
 		print("物品组合了")
 	else:
 		AudioManager.play_buzzle()

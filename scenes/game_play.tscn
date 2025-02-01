@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://scripts/game_play.gd" id="1_lrmgu"]
 
 [node name="GamePlay" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_lrmgu")

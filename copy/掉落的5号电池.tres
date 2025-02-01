@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=14 format=3 uid="uid://cdo77t3d35s3t"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_hah1s"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_pqiqu"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_7dveb"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_7x1ih"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="4_3qecp"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_vhykq"]
+
+[sub_resource type="Resource" id="Resource_esnbj"]
+script = ExtResource("3_7x1ih")
+script_cmd = "GameManager.data_player.gain_item(\"103i_0_5号电池\")"
+children = Array[ExtResource("2_pqiqu")]([])
+node_type = 9
+pos = Vector2(1200, 200)
+
+[sub_resource type="Resource" id="Resource_emsas"]
+script = ExtResource("2_pqiqu")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_esnbj")
+
+[sub_resource type="Resource" id="Resource_4o4fh"]
+script = ExtResource("3_7dveb")
+text = "event_phantom_08"
+role = ExtResource("4_3qecp")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_pqiqu")]([SubResource("Resource_emsas")])
+node_type = 1
+pos = Vector2(840, 160)
+
+[sub_resource type="Resource" id="Resource_jtqq3"]
+script = ExtResource("2_pqiqu")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_4o4fh")
+
+[sub_resource type="Resource" id="Resource_dgp2f"]
+script = ExtResource("3_7dveb")
+text = "event_phantom_07"
+role = ExtResource("4_3qecp")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_pqiqu")]([SubResource("Resource_jtqq3")])
+node_type = 1
+pos = Vector2(480, 160)
+
+[sub_resource type="Resource" id="Resource_3of54"]
+script = ExtResource("2_pqiqu")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_dgp2f")
+
+[sub_resource type="Resource" id="Resource_drtf5"]
+script = ExtResource("4_vhykq")
+children = Array[ExtResource("2_pqiqu")]([SubResource("Resource_3of54")])
+node_type = 0
+pos = Vector2(240, 260)
+
+[resource]
+script = ExtResource("1_hah1s")
+title = "光珠"
+is_collsion = true
+trigger_type = 1
+one_shot = true
+tree = SubResource("Resource_drtf5")
+map = {}
