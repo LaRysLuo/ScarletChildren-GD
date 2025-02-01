@@ -10,6 +10,7 @@ class_name Event
 var ingore_collsion:bool = false
 var is_running := false
 
+var need_reload:bool = false
 
 
 ## 信号
@@ -38,7 +39,12 @@ func _ready() -> void:
 	GameManager.data_player.on_player_item_changed.connect(_refresh_event_state)
 	#_refresh_event_state()
 	_load_event_config()
-	
+
+#func _exit_tree() -> void:
+	#var config:EventConfig = get_event_config(true)
+	#if !config: return 
+	#config.event_visible_changed.disconnect(_refresh_event_visible)
+
 ## 显示编辑器坐标提示
 #func _show_editor_coord_hint():
 	
@@ -53,17 +59,35 @@ func _ready() -> void:
 	
 ## 载入事件config
 func _load_event_config():
-	var config:EventConfig = get_event_config()
+	var config:EventConfig = get_event_config(true)
 	if !config: return 
-	if !config.event_res:return
-	# 载入 ingore_collsion
-	self.ingore_collsion = !config.event_res.is_collsion
-	_refresh_sprite_frame(config.frame_index)
+	if config.event_res: self.ingore_collsion = !config.event_res.is_collsion
+	# 刷新精灵图
+	_refresh_sprite_frame(config.frame_index,config)
+	# 刷新可视化
+	_init_event_visible(config)
+	
 
 ## 刷新精灵图
-func _refresh_sprite_frame(frame_index:int):
+func _refresh_sprite_frame(frame_index:int,config:EventConfig):
+	if !config.need_refresh: return
+	config.need_refresh = false
 	animated_sprite.frame = frame_index
 	pass
+
+## 初始化事件可视化
+func _init_event_visible(config:EventConfig):
+	var is_show:bool = config.is_show && self.activable(config)
+	_refresh_event_visible(is_show,config)
+	if config.event_visible_changed.is_connected(_refresh_event_visible.bind(config)):
+		print("TEST 该信号已被此事件连接")
+		config.event_visible_changed.disconnect(_refresh_event_visible.bind(config))
+	config.event_visible_changed.connect(_refresh_event_visible.bind(config))
+
+## 刷新事件可视化状态
+func _refresh_event_visible(is_show:bool,config:EventConfig):
+	#print("TEST 事件（%s,%s)可视化状态为=%s" % [config.pos.x,config.pos.y,is_show] )
+	self.visible = is_show && activable(config)
 
 ## 连接信号使用，当或许的条件变化时，刷新事件
 func _refresh_event_state(item_name:StringName = "",state:int = 0):
@@ -74,7 +98,7 @@ func _refresh_event_state(item_name:StringName = "",state:int = 0):
 		config.is_show = activable(config)
 		print("test条件变化了%s,%s" % [self.name,config.frame_index])
 	# 更新 动画帧
-		_refresh_sprite_frame(config.frame_index)
+		_refresh_sprite_frame(config.frame_index,config)
 	#print("test当前透明度",self.visible)
 
 ## 交互函数
@@ -99,12 +123,14 @@ func _parse_event_config(event_res):
 	if event_res.one_shot:
 		var event_id:String = event_res.resource_path
 		GameManager.data_variable.set_switch(event_id,true)
+		self.need_reload = true
+		
 	await GameManager.trigger_event_res(event_res,self)
 	is_running = false
-	print("X事件执行结束")
-	#清除该节点
-	#if !self.map: queue_free()
-	#else: self.map.add_child(self) # TODO 这里可能会有问题
+	print("事件执行结束")
+	if need_reload: 
+		_load_event_config()
+		need_reload = false
 	event_finish.emit()
 
 ## 判断是否激活
@@ -149,12 +175,11 @@ func _condition_valid(event:EventConfig) -> bool:
 	return event.get_condition_result()
 	#return true
 
-func get_event_config() -> EventConfig:
+func get_event_config(ingore_condition:bool = false) -> EventConfig:
 	## 从MapConfig中找到该事件坐标的EventConfig
 	var map_config:MapConfig = GameManager.get_map_config()
 	if !map_config: return null
-	var event_config:EventConfig =	map_config.get_event(ori_cell_pos)
-	#print("test000=%s,pos=%s" % [event_config,cell_pos])
+	var event_config:EventConfig =	map_config.get_event(ori_cell_pos,ingore_condition)
 	if !event_config:
 		printerr("该事件原坐标%s没有配置Event_RES" % ori_cell_pos )
 	return event_config

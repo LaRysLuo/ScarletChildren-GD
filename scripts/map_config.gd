@@ -14,7 +14,7 @@ class_name MapConfig
 
 @export var map_pre_event:Events_Res
 
-var all_events:Array[Node] 
+var all_events:Array[Node]  = []
 
 ## 获得移动层
 var movable:TileMapLayer:
@@ -35,23 +35,29 @@ func _ready() -> void:
 	#if SceneManager.is_running:
 		#await SceneManager.move_finished
 	## 做本场景的事件初始化
-	call_deferred("_init_scene_event")
+	#call_deferred("_init_scene_event")
 	call_deferred("auto_event_trigger")
 
+#func _exit_tree() -> void:
+	#print("TEST 开始断开信号")
+	#if all_events.is_empty():return 
+	#for event:Event in all_events:
+		#var config:EventConfig = get_event(event.ori_cell_pos,true)
+		#if config: config.event_visible_changed.disconnect(refresh_event_visible.bind(event))
 
 ## 初始化地图的事件
-func _init_scene_event():
-	all_events  = get_tree().get_nodes_in_group("events")
-		## 同时进行可视度的判断,将当前不可视的隐藏
-		## 并且连接信号
-	for event:Event in all_events:
-		var config:EventConfig = get_event(event.ori_cell_pos)
-		#print("config=",conf)
-		if config:
-			var is_show:bool = config.is_show && event.activable(config)
-			print("is_show111=",is_show)
-			refresh_event_visible(is_show,event)
-			config.event_visible_changed.connect(refresh_event_visible.bind(event))
+#func _init_scene_event():
+	#print("TEST 开始连接信号")
+	#all_events  = get_tree().get_nodes_in_group("events")
+		### 同时进行可视度的判断,将当前不可视的隐藏
+		### 并且连接信号
+	#for event:Event in all_events:
+		#var config:EventConfig = get_event(event.ori_cell_pos,true)
+		#if config:
+			#var is_show:bool = config.is_show && event.activable(config)
+			#print("事件可视化为%s,坐标(%s,%s)" % [is_show,event.ori_cell_pos.x,event.ori_cell_pos.y])
+			#refresh_event_visible(is_show,event)
+			#config.event_visible_changed.connect(refresh_event_visible.bind(event))
 
 ## 增加一个游戏初始化前
 func _map_show_pre():
@@ -69,7 +75,7 @@ func auto_event_trigger():
 		await  GameManager.on_event_trigger_end
 		await  get_tree().create_timer(0.6).timeout
 	print("正在执行自动事件")
-	#print("all_events=",all_events)
+	if all_events.is_empty(): all_events = get_tree().get_nodes_in_group("events")
 	# 筛选出地图上的event
 	var auto_events:Array[Node] = all_events.filter(func(event:Event):return event.can_auto_trigger())
 	print("自动执行事件数量：",auto_events.size())
@@ -97,18 +103,19 @@ func set_event_visible_by_name(char_name:StringName,is_show:bool):
 	config.is_show = is_show
 
 ## 刷新event的可视状态
-func refresh_event_visible(is_show:bool,event:Event):
-	print("event的状态变化了",is_show)
-	event.visible = is_show
+#func refresh_event_visible(is_show:bool,event:Event):
+	#var _is_show:bool = is_show && event.activable(event.get_event_config())
+	#event.visible = _is_show
 
 ## 传入坐标获取事件
-func get_event(coord:Vector2i) -> EventConfig:
+func get_event(coord:Vector2i,ingore_condition:bool = false) -> EventConfig:
 	## 没有配置任何事件的情况
 	if event_group.is_empty():
 		return null
+
 	var filter = event_group.filter(
 		func(item:EventConfig): 
-			return item.pos == coord && get_condition_result(item)
+			return item.pos == coord && (get_condition_result(item) || ingore_condition)
 	)
 	print("filters=",filter.size())
 	if filter.is_empty():return null

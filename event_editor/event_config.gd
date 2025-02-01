@@ -15,8 +15,12 @@ class_name EventConfig
 @export var condition:Array[EventCondition]
 
 ## 动画帧索引
-@export var frame_index:int
-
+@export var frame_index:int:
+	set(val):
+		frame_index = val
+		need_refresh = true
+		
+var need_refresh:bool = false
 
 # 为了绑定对应的事件点
 ## 坐标位置

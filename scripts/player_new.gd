@@ -128,7 +128,8 @@ func _get_event_font() -> Event:
 	for event in events:
 		if event is Event: #首先判断event是否为Event类型
 			# WARNING 这里对于开销来说可能不是很合适，最好能放在别的地方一次性调用，比如场景调用时
-			event._load_event_config()
+			# 暂时停用
+			#event._load_event_config()
 			if event.cell_pos == target_pos:
 				return event
 	return null		# 什么都没找到，返回空

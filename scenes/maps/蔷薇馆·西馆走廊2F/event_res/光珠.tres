@@ -29,7 +29,7 @@ pos = Vector2(240, 260)
 [resource]
 script = ExtResource("1_wj0i3")
 title = "光珠"
-is_collsion = false
+is_collsion = true
 trigger_type = 1
 one_shot = true
 tree = SubResource("Resource_01rr0")

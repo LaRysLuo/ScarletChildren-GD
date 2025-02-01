@@ -21,7 +21,7 @@ var color_screen_pre:PackedScene
 ## 信号
 signal on_event_trigger_start
 signal on_event_trigger_end
-
+signal on_event_reload(event:Event) # 重载入事件状态
 
 ## 玩家场景
 
