@@ -136,13 +136,15 @@ func _parse_event_config(event_res):
 ## 判断是否激活
 func activable(event:EventConfig) -> bool:
 	if event and event.event_res:
-		return one_shot_valid(event) && _condition_valid(event) 
+		## INFO 增加可视化的条件判断
+		return one_shot_valid(event) && _condition_valid(event) && visible
 	return true
 
 ## 是否可交互
 func interactable() -> bool:
 	var event = get_event_config()
 	if event and event.event_res:
+		print("可交互事件状态为：",activable(event))
 		return activable(event) && event.event_res.trigger_type == Events_Res.TriggerType.Interact交互
 	return false
 	
