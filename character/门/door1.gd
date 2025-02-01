@@ -22,15 +22,25 @@ var anim:AnimatedSprite2D:
 
 func _ready() -> void:
 	super._ready()
+	event_config = get_event_config()
+	
 	#GameManager.player.on_interact_changed.connect(change_person_shadow)
 	#self.event_res = _load_eventres_from_config()
 	pass
+
+func _refresh_event_state(item_name:StringName = "",state:int = 0):
+	await  super._refresh_event_state()
+	event_config = get_event_config()
+	
+	if self.ori_cell_pos == Vector2i(8,9):
+		print("事件(%s,%s)重新刷新后的event_config为%s" % [ori_cell_pos.x,ori_cell_pos.y,event_config])
+	if !event_config: _refresh_sprite_frame(0) # 将精灵图变回默认
+		
 
 ## 从配置文件载入event资源
 # 1 优先获取event_config
 # 2 如果没有event_config就获取ex_config
 func _load_eventres_from_config():
-	event_config = get_event_config()
 	if event_config: return
 	var eec = _get_eventex_config(cell_pos)
 	if !eec: return null

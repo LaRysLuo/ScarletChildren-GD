@@ -36,7 +36,7 @@ var animated_sprite:AnimatedSprite2D:
 
 func _ready() -> void:
 	if Engine.is_editor_hint():return
-	GameManager.data_player.on_player_item_changed.connect(_refresh_event_state)
+	GameManager.data_player.on_bag_item_changed.connect(_refresh_event_state)
 	#_refresh_event_state()
 	_load_event_config()
 
@@ -69,9 +69,10 @@ func _load_event_config():
 	
 
 ## 刷新精灵图
-func _refresh_sprite_frame(frame_index:int,config:EventConfig):
-	if !config.need_refresh: return
-	config.need_refresh = false
+func _refresh_sprite_frame(frame_index:int,config:EventConfig = null):
+	if config:
+		if !config.need_refresh: return
+		config.need_refresh = false
 	animated_sprite.frame = frame_index
 	pass
 
@@ -92,7 +93,12 @@ func _refresh_event_visible(is_show:bool,config:EventConfig):
 ## 连接信号使用，当或许的条件变化时，刷新事件
 func _refresh_event_state(item_name:StringName = "",state:int = 0):
 	## 需要等待场景
-	print("重新加载事件配置")
+	print("事件(%s,%s):触发玩家物品变化的回调函数" % [ori_cell_pos.x,ori_cell_pos.y])
+	if SceneManager.is_ui_visible():
+		print("事件(%s,%s):正在忙碌，等待忙碌结束"  % [ori_cell_pos.x,ori_cell_pos.y])
+		await  SceneManager.on_map_available
+		print("事件(%s,%s):忙碌结束"  % [ori_cell_pos.x,ori_cell_pos.y])
+	print("事件(%s,%s):处理物品变化的回调"  % [ori_cell_pos.x,ori_cell_pos.y])
 	_load_event_config()
 	#var config = get_event_config()
 	#print("test条件变化了%s,%s" % [self.name,config])
@@ -184,6 +190,7 @@ func get_event_config(ingore_condition:bool = false) -> EventConfig:
 	var map_config:MapConfig = GameManager.get_map_config()
 	if !map_config: return null
 	var event_config:EventConfig =	map_config.get_event(ori_cell_pos,ingore_condition)
+	print("该事件坐标为:(%s,%s)" % [ori_cell_pos.x,ori_cell_pos.y])
 	if !event_config:
 		printerr("该事件原坐标%s没有配置Event_RES" % ori_cell_pos )
 	return event_config

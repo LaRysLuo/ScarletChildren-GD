@@ -52,7 +52,6 @@ func set_info(list:Array[Item],data_player:DataPlayer):
 
 ## 刷新组件
 func refresh(ingore_clear_data:bool = false):
-	print("TEST 页面刷新了")
 	clear_item_list(ingore_clear_data)
 	#self.data_player = data_player
 	## 根据数据刷新整个页面

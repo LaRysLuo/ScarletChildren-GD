@@ -77,8 +77,8 @@ func _ready() -> void:
 	#GameManager.data_player.gain_item("06i_3_手电筒（魔法灯）")
 	#GameManager.data_player.gain_item("103i_0_5号电池")
 	#GameManager.data_player.gain_item("203c_0_隐藏蔷薇合照已调查")
-	#GameManager.data_player.gain_item("06i_4_手电筒（魔法灯有电池）")
-	GameManager.data_player.gain_item("204c_0_隐藏幽灵门启动")
+	GameManager.data_player.gain_item("06i_4_手电筒（魔法灯有电池）")
+	#GameManager.data_player.gain_item("204c_0_隐藏幽灵门启动")
 	
 	set_game_state_normal()
 

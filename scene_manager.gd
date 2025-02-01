@@ -16,6 +16,7 @@ var is_running:bool = false
 ## 信号
 signal move_finished
 signal reading_mode_close
+signal on_map_available
 
 var tool_scenes:Dictionary = {
 	"scene_main_menu":"res://scenes/ui_scene/main_menu.tscn",
@@ -54,6 +55,9 @@ func to_starfish():
 		GameManager.data_player.gain_item("202c_2_星鱼拼图完成",false)
 	)
 	await  star_fish.on_finish
+	
+func is_ui_visible() -> bool:
+	return !scene_list.is_empty()
 	
 
 # 跳转到下一个场景
@@ -214,6 +218,7 @@ func backto(callback = null):
 			GameManager.player._init_player()
 			if callback && callback is Signal: callback.emit()
 			SceneManager.reading_mode_close.emit()
+			on_map_available.emit()
 			GameManager.clear_screen()
 	lasted.queue_free()
 
@@ -237,6 +242,7 @@ func backall():
 	for scene:Node in other_scenes:
 		scene.queue_free()
 	scene_list.clear()
+	on_map_available.emit()
 	print("当前场景队列中剩余的场景2：",scene_list)
 
 func reload_scene(last_scene):
