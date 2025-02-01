@@ -74,9 +74,10 @@ func _ready() -> void:
 
 	#await  SaveManager.load_data()
 	await get_tree().create_timer(0.5).timeout
-	GameManager.data_player.gain_item("06i_3_手电筒（魔法灯）")
-	GameManager.data_player.gain_item("103i_0_5号电池")
+	#GameManager.data_player.gain_item("06i_3_手电筒（魔法灯）")
+	#GameManager.data_player.gain_item("103i_0_5号电池")
 	#GameManager.data_player.gain_item("203c_0_隐藏蔷薇合照已调查")
+	GameManager.data_player.gain_item("06i_4_手电筒（魔法灯有电池）")
 	set_game_state_normal()
 
 func _event_trigger_start():

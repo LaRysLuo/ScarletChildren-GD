@@ -48,11 +48,11 @@ func _ready() -> void:
 # SceneManager.to_starfish()
 func to_starfish():
 	var star_fish:SceneJigsaw = await navigate_to("scene_star_fish")
-	var is_finished = has_item("202c_0_星鱼拼图完成",true)
+	var is_finished = has_item("202c_2_星鱼拼图完成",true)
 	if is_finished: star_fish.set_complete()
-	else: star_fish.on_succuss.connect(
-			func(): GameManager.data_player.gain_item("202c_0_星鱼拼图完成",false)
-		)
+	else: star_fish.on_succuss.connect(func(): 
+		GameManager.data_player.gain_item("202c_2_星鱼拼图完成",false)
+	)
 	await  star_fish.on_finish
 	
 

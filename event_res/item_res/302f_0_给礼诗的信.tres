@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cwixurac6epaw"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_dptqe"]
+[ext_resource type="Resource" uid="uid://dsqv277wdspq3" path="res://event_res/item_res/effect/302f_0_给礼诗的信.tres" id="2_yumwg"]
+
+[resource]
+script = ExtResource("1_dptqe")
+item_id = &"302f_0_给礼诗的信"
+item_name = &"给礼诗的信"
+item_catagory = 3
+item_desc = "从浴室的瓷砖缝隙里找到的信"
+is_finished = false
+use_event = Callable()
+use_event_new = ExtResource("2_yumwg")
+err_desc = ""
+relations = Array[ExtResource("1_dptqe")]([])
