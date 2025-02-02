@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=2 format=3 uid="uid://bd4vpltc8qnxm"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_gf7qf"]
+
+[resource]
+script = ExtResource("1_gf7qf")
+title = ""
+is_collsion = true
+trigger_type = 0
+one_shot = false
+map = {}

@@ -3,6 +3,8 @@
 extends GraphNode
 class_name BaseGN
 
+@export var ori_id = null
+
 ## 这里是信号
 # 当值改变时发出信号
 signal  on_value_changed

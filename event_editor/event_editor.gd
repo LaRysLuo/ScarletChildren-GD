@@ -348,24 +348,35 @@ func _create_child_graph_node(from:BaseEventNode):
 	
 	## 遍历当前节点的所有子类
 	if from.children.size() > 0:
-		#var index:int = 0
+		var child_nodes:Array[BaseGN] = []
 		for nodeConfig:ChildrenNodeConfig in from.children:
-			var child = await _create_child_graph_node(nodeConfig.child)
-			if child:
-				var from_name = node_parent.get_path_to(result).get_name(0)
-				var to_name = node_parent.get_path_to(child).get_name(0)
-				print("from_name=",from_name)
-				var from_port = nodeConfig.from_port_index
-				var to_port = nodeConfig.to_port_index
-				#if from is OptionData:
-					#var opt_data:OptionData = from as OptionData
-					#print("opt_data=",opt_data.get_opt_index(index))
-					#var port = from.get_opt_index(index)
-					#if port != -1: from_port = port
-				#if from is SubThreadData:from_port = index
-				node_parent.connect_node(from_name,from_port,to_name,to_port)
-			#index += 1
+			var child_data:BaseEventNode = nodeConfig.child
+			var child:BaseGN = await  _get_child_graph_node(child_data,child_nodes)
+			# 判断nodeConfig中的child是否已创建过
+			if child: _connect_node(result,nodeConfig,child)
 	return result
+
+func _get_child_graph_node(child_data:BaseEventNode,child_nodes:Array[BaseGN]) -> BaseGN:
+	var child:BaseGN
+	if !child_nodes.is_empty():
+		child = _find_node_by_id(child_data.resource_scene_unique_id,child_nodes)
+	if !child: 
+		child = await _create_child_graph_node(child_data)
+		if child: child_nodes.append(child)
+	return child
+
+## 用id找出gn
+func _find_node_by_id(ori_id:StringName,group:Array[BaseGN]):
+	var filters = group.filter(func(item:BaseGN):return item.ori_id == ori_id)
+	if filters.is_empty():return null
+	return filters.front()
+
+func _connect_node(result,node_config:ChildrenNodeConfig,child:BaseGN):
+	var from_name = node_parent.get_path_to(result).get_name(0)
+	var to_name = node_parent.get_path_to(child).get_name(0)
+	var from_port = node_config.from_port_index
+	var to_port = node_config.to_port_index
+	node_parent.connect_node(from_name,from_port,to_name,to_port)
 
 ## 获得菜单配置
 func _get_menu_config(id:int):
@@ -423,7 +434,9 @@ func _create_node(res:Resource,from:BaseEventNode) -> BaseGN:
 	else:pos = Vector2.ZERO
 	
 	var node:BaseGN =  res.instantiate()
+	node.ori_id = from.resource_scene_unique_id
 	#var config = _get_menu_config(node.node_type)
+	
 	node.gui_input.connect(_on_node_click.bind(node))
 	if node is MessageGN: node.on_value_changed.connect(_on_changed)
 	if pos != Vector2.ZERO:
