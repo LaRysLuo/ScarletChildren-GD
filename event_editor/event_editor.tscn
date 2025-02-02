@@ -26,7 +26,7 @@ popup_menu = NodePath("PopupMenu")
 popup_menu2 = NodePath("AddNodeMenuPanel")
 res_name_label = NodePath("Box/VBoxContainer/Line1/Label")
 tip_label = NodePath("History/Label")
-add_menu = NodePath("Box/VBoxContainer/Line2")
+add_menu = NodePath("")
 metadata/_edit_use_anchors_ = true
 
 [node name="Box" type="VSplitContainer" parent="."]
@@ -70,12 +70,15 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_qwaxp")
 disabled = true
 text = "保存"
 
-[node name="Line2" type="HBoxContainer" parent="Box/VBoxContainer"]
+[node name="Line2" type="FlowContainer" parent="Box/VBoxContainer"]
 layout_mode = 2
+last_wrap_alignment = 1
+vertical = true
 
 [node name="GraphEdit" type="GraphEdit" parent="Box"]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
+scroll_offset = Vector2(-559, -22)
 right_disconnects = true
 show_menu = false
 show_zoom_buttons = false

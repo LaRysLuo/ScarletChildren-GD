@@ -179,6 +179,7 @@ locale/language_filter=[null]
 
 [layer_names]
 
+2d_render/layer_2="玩家"
 2d_physics/layer_1="Environment"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Charactor"

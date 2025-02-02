@@ -72,9 +72,11 @@ func _ready() -> void:
 	SceneManager.move("res://scenes/maps/蔷薇馆·西馆走廊2F/map_蔷薇馆·西馆走廊2f.tscn",Vector2i(8,12),true,true)
 	##return
 
+	
 	#await  SaveManager.load_data()
 	await get_tree().create_timer(0.5).timeout
 	#GameManager.data_player.gain_item("06i_3_手电筒（魔法灯）")
+	#GameManager.data_player.gain_item("301f_0_羽新的日记")
 	#GameManager.data_player.gain_item("103i_0_5号电池")
 	#GameManager.data_player.gain_item("203c_0_隐藏蔷薇合照已调查")
 	GameManager.data_player.gain_item("06i_4_手电筒（魔法灯有电池）")
@@ -151,6 +153,7 @@ func create_notify() -> MainNotify:
 
 func show_item_notify(item_name,state):
 	create_notify().add_item_notify(item_name,state)
+
 
 
 ## 设置屏幕颜色

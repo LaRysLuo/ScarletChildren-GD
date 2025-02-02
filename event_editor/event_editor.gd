@@ -69,13 +69,13 @@ var MENU_SETTING = [
 		## 画面淡出
 		"id" = 	BaseEventNode.Fadeout,
 		"name" = "淡出画面",
-		"callback" = func(from = null): return _create_node(FADEOUT_RES,from)
+		"callback" = func(from = null): return _create_node(FADEOUT_RES,from).from_data(from)
 	},
 	{
 		## 画面淡入
 		"id" = 	BaseEventNode.Fadein,
 		"name" = "淡入画面",
-		"callback" = func(from = null): return _create_node(FADEIN_RES,from)
+		"callback" = func(from = null): return _create_node(FADEIN_RES,from).from_data(from)
 	},
 	{
 		## 等待

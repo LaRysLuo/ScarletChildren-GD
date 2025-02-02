@@ -15,6 +15,10 @@ func play_musicalbox():
 func play_puzzle_complete():
 	play_se("putting1")
 	
+## 播放"颠倒" 音效
+func play_terror():
+	play_se("terror")
+
 ## 播放光标移动
 func play_cursor_move():
 	play_se("Cursor1")

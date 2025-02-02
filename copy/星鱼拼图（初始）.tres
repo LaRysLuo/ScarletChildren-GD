@@ -1,15 +1,17 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=32 format=3 uid="uid://cy2h0akfo1dqq"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=42 format=3 uid="uid://cy2h0akfo1dqq"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_vfxi3"]
 [ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_kqg4h"]
 [ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_6qw4i"]
 [ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_ljcpj"]
+[ext_resource type="Script" path="res://event_editor/models/fadein_data.gd" id="4_alpd6"]
 [ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_go1ei"]
 [ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="4_lvk3d"]
 [ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="5_hsd3b"]
 [ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="5_jwyqk"]
+[ext_resource type="Script" path="res://event_editor/models/fadeout_data.gd" id="7_3wsqj"]
 
-[sub_resource type="Resource" id="Resource_vqf42"]
+[sub_resource type="Resource" id="Resource_6cur0"]
 script = ExtResource("3_ljcpj")
 text = "yushi06"
 type = 0
@@ -18,153 +20,205 @@ children = Array[ExtResource("2_kqg4h")]([])
 node_type = 1
 pos = Vector2(560, -100)
 
-[sub_resource type="Resource" id="Resource_nfixu"]
+[sub_resource type="Resource" id="Resource_0h412"]
 script = ExtResource("2_kqg4h")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_vqf42")
+child = SubResource("Resource_6cur0")
 
-[sub_resource type="Resource" id="Resource_4u50d"]
+[sub_resource type="Resource" id="Resource_1r0y1"]
+script = ExtResource("4_alpd6")
+time = 0.2
+children = Array[ExtResource("2_kqg4h")]([])
+node_type = 5
+pos = Vector2(4260, 340)
+
+[sub_resource type="Resource" id="Resource_j0s4i"]
+script = ExtResource("2_kqg4h")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_1r0y1")
+
+[sub_resource type="Resource" id="Resource_wd2de"]
+script = ExtResource("3_6qw4i")
+script_cmd = "GameManager.data_player.gain_item(\"204c_0_隐藏幽灵门启动\",true)"
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_j0s4i")])
+node_type = 9
+pos = Vector2(4000, 280)
+
+[sub_resource type="Resource" id="Resource_aulbb"]
+script = ExtResource("2_kqg4h")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wd2de")
+
+[sub_resource type="Resource" id="Resource_m7pkd"]
+script = ExtResource("7_3wsqj")
+time = 0.2
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_aulbb")])
+node_type = 4
+pos = Vector2(3800, 340)
+
+[sub_resource type="Resource" id="Resource_ih5t8"]
+script = ExtResource("2_kqg4h")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_m7pkd")
+
+[sub_resource type="Resource" id="Resource_vou6x"]
+script = ExtResource("3_6qw4i")
+script_cmd = "AudioManager.play_se(\"fault\")"
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_ih5t8")])
+node_type = 9
+pos = Vector2(3560, 280)
+
+[sub_resource type="Resource" id="Resource_rw8ko"]
+script = ExtResource("2_kqg4h")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_vou6x")
+
+[sub_resource type="Resource" id="Resource_3glee"]
 script = ExtResource("3_ljcpj")
 text = "yushi09"
 role = ExtResource("4_lvk3d")
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_kqg4h")]([])
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_rw8ko")])
 node_type = 1
 pos = Vector2(3200, 240)
 
-[sub_resource type="Resource" id="Resource_plkdi"]
+[sub_resource type="Resource" id="Resource_urtwk"]
 script = ExtResource("2_kqg4h")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_4u50d")
+child = SubResource("Resource_3glee")
 
-[sub_resource type="Resource" id="Resource_ff7sj"]
+[sub_resource type="Resource" id="Resource_ee5m6"]
 script = ExtResource("3_ljcpj")
 text = "yushi08"
 role = ExtResource("4_lvk3d")
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_plkdi")])
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_urtwk")])
 node_type = 1
 pos = Vector2(2840, 220)
 
-[sub_resource type="Resource" id="Resource_1dwqx"]
+[sub_resource type="Resource" id="Resource_pm03h"]
 script = ExtResource("2_kqg4h")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_ff7sj")
+child = SubResource("Resource_ee5m6")
 
-[sub_resource type="Resource" id="Resource_gd0mp"]
+[sub_resource type="Resource" id="Resource_v5eac"]
 script = ExtResource("5_hsd3b")
 time = 0.3
-children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_1dwqx")])
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_pm03h")])
 node_type = 6
 pos = Vector2(2580, 320)
 
-[sub_resource type="Resource" id="Resource_5ihac"]
+[sub_resource type="Resource" id="Resource_jq6ha"]
 script = ExtResource("2_kqg4h")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_gd0mp")
+child = SubResource("Resource_v5eac")
 
-[sub_resource type="Resource" id="Resource_bpw72"]
+[sub_resource type="Resource" id="Resource_vqgdf"]
 script = ExtResource("3_6qw4i")
 script_cmd = "await GameManager.data_player.trigger_item(\"302f_0_给礼诗的信\",true)"
-children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_5ihac")])
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_jq6ha")])
 node_type = 9
 pos = Vector2(2340, 280)
 
-[sub_resource type="Resource" id="Resource_tiqtb"]
+[sub_resource type="Resource" id="Resource_nou51"]
 script = ExtResource("2_kqg4h")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_bpw72")
+child = SubResource("Resource_vqgdf")
 
-[sub_resource type="Resource" id="Resource_uwho0"]
+[sub_resource type="Resource" id="Resource_2r458"]
 script = ExtResource("3_6qw4i")
 script_cmd = "GameManager.data_player.gain_item(\"302f_0_给礼诗的信\")"
-children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_tiqtb")])
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_nou51")])
 node_type = 9
 pos = Vector2(2040, 300)
 
-[sub_resource type="Resource" id="Resource_oi2r4"]
+[sub_resource type="Resource" id="Resource_gpdoi"]
 script = ExtResource("2_kqg4h")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_uwho0")
+child = SubResource("Resource_2r458")
 
-[sub_resource type="Resource" id="Resource_25ewv"]
+[sub_resource type="Resource" id="Resource_7nlfg"]
 script = ExtResource("3_ljcpj")
 text = "yushi07"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_oi2r4")])
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_gpdoi")])
 node_type = 1
 pos = Vector2(1680, 240)
 
-[sub_resource type="Resource" id="Resource_aisgn"]
+[sub_resource type="Resource" id="Resource_38ltq"]
 script = ExtResource("2_kqg4h")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_25ewv")
+child = SubResource("Resource_7nlfg")
 
-[sub_resource type="Resource" id="Resource_v52yo"]
+[sub_resource type="Resource" id="Resource_p76rb"]
 script = ExtResource("5_jwyqk")
 script_cmd = "!has_item(\"302f_0_给礼诗的信\",true)"
-children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_aisgn")])
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_38ltq")])
 node_type = 17
 pos = Vector2(1300, 280)
 
-[sub_resource type="Resource" id="Resource_5v7hi"]
+[sub_resource type="Resource" id="Resource_0725m"]
 script = ExtResource("2_kqg4h")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_v52yo")
+child = SubResource("Resource_p76rb")
 
-[sub_resource type="Resource" id="Resource_y5c01"]
+[sub_resource type="Resource" id="Resource_b0qtm"]
 script = ExtResource("5_jwyqk")
 script_cmd = "has_item(\"202c_2_星鱼拼图完成\",true)"
-children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_5v7hi")])
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_0725m")])
 node_type = 17
 pos = Vector2(840, 280)
 
-[sub_resource type="Resource" id="Resource_agpq8"]
+[sub_resource type="Resource" id="Resource_yd3cb"]
 script = ExtResource("2_kqg4h")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_y5c01")
+child = SubResource("Resource_b0qtm")
 
-[sub_resource type="Resource" id="Resource_strsa"]
+[sub_resource type="Resource" id="Resource_t8hom"]
 script = ExtResource("3_6qw4i")
 script_cmd = "await SceneManager.to_starfish()"
-children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_agpq8")])
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_yd3cb")])
 node_type = 9
 pos = Vector2(560, 260)
 
-[sub_resource type="Resource" id="Resource_cqiqk"]
+[sub_resource type="Resource" id="Resource_xdwwb"]
 script = ExtResource("2_kqg4h")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_strsa")
+child = SubResource("Resource_t8hom")
 
-[sub_resource type="Resource" id="Resource_sq4af"]
+[sub_resource type="Resource" id="Resource_ehwqb"]
 script = ExtResource("5_jwyqk")
 script_cmd = "!has_item(\"202c_1_星鱼拼图浮现\",true)"
-children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_nfixu"), SubResource("Resource_cqiqk")])
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_0h412"), SubResource("Resource_xdwwb")])
 node_type = 17
 pos = Vector2(140, 60)
 
-[sub_resource type="Resource" id="Resource_6jxgt"]
+[sub_resource type="Resource" id="Resource_a0p2k"]
 script = ExtResource("2_kqg4h")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_sq4af")
+child = SubResource("Resource_ehwqb")
 
-[sub_resource type="Resource" id="Resource_wbwd4"]
+[sub_resource type="Resource" id="Resource_wereq"]
 script = ExtResource("4_go1ei")
-children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_6jxgt")])
+children = Array[ExtResource("2_kqg4h")]([SubResource("Resource_a0p2k")])
 node_type = 0
 pos = Vector2(-80, 120)
 
@@ -174,5 +228,5 @@ title = "星鱼拼图（初始）"
 is_collsion = true
 trigger_type = 1
 one_shot = false
-tree = SubResource("Resource_wbwd4")
+tree = SubResource("Resource_wereq")
 map = {}

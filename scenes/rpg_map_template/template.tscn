@@ -36,6 +36,7 @@ rendering_quadrant_size = 32
 [node name="Lights" type="Node2D" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Lights"]
+visible = false
 color = Color(0.196078, 0.196078, 0.196078, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="Lights"]
@@ -44,3 +45,8 @@ scale = Vector2(0.742571, 0.720044)
 energy = 0.57
 texture = ExtResource("5_tvvqe")
 texture_scale = 8.15
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lights"]
+energy = 0.8
+blend_mode = 1
+height = 0.18

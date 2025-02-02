@@ -28,3 +28,18 @@ script = ExtResource("2_5dlry")
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+collapsed = true
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "时间"
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+step = 0.1
+value = 0.5
+alignment = 2
+suffix = "秒"

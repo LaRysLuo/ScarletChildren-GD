@@ -1,7 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://exbg842i4m50"]
+[gd_scene load_steps=24 format=3 uid="uid://exbg842i4m50"]
 
 [ext_resource type="PackedScene" uid="uid://dcpd1u6slvjtw" path="res://character/character.tscn" id="1_lagak"]
-[ext_resource type="Script" path="res://scripts/event.gd" id="2_wvtcd"]
 [ext_resource type="Texture2D" uid="uid://dx8va0cl6v42h" path="res://assets/characters/$东方爱.png" id="3_k2xu2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrrhy"]
@@ -188,7 +187,6 @@ animations = [{
 }]
 
 [node name="CharacterAi" groups=["characters", "events"] instance=ExtResource("1_lagak")]
-script = ExtResource("2_wvtcd")
 event_name = "ai"
 sprite = ExtResource("3_k2xu2")
 
