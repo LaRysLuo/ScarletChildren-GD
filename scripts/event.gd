@@ -1,5 +1,5 @@
 @tool
-extends "res://scripts/game_object.gd"
+extends CharacterBase
 class_name Event
 
 

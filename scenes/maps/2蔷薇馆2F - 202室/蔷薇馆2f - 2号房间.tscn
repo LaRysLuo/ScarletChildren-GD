@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cl4lgywesg2yu"]
+[gd_scene load_steps=16 format=4 uid="uid://cl4lgywesg2yu"]
 
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_k6pjl"]
 [ext_resource type="Texture2D" uid="uid://boq4ailli6c45" path="res://scenes/maps/2蔷薇馆2F - 202室/tileset/2号房间2F - 1.png" id="2_26dgi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://r3oagck0cufr" path="res://scenes/maps/2蔷薇馆2F - 202室/event/熊.tres" id="3_4ncca"]
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="3_8tk25"]
 [ext_resource type="Texture2D" uid="uid://yi5ji4n0wfyu" path="res://scenes/maps/2蔷薇馆2F - 202室/tileset/2号房间2F - 2.png" id="3_jok56"]
+[ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="3_v7hei"]
 [ext_resource type="Resource" uid="uid://db7p7m15ldjuk" path="res://scenes/maps/2蔷薇馆2F - 202室/event/蔷薇合照.tres" id="4_a5rnl"]
 [ext_resource type="Texture2D" uid="uid://c06wfx6ssyllv" path="res://assets/light/light_tex.tres" id="6_7pp4o"]
 
@@ -14,7 +15,7 @@
 resource_name = "(4,10)"
 script = ExtResource("2_o3r61")
 is_show = true
-condition = null
+condition = Array[ExtResource("3_v7hei")]([])
 frame_index = 0
 pos = Vector2i(4, 10)
 event_res = ExtResource("3_4ncca")
@@ -23,7 +24,7 @@ event_res = ExtResource("3_4ncca")
 resource_name = "(5,10)"
 script = ExtResource("2_o3r61")
 is_show = true
-condition = null
+condition = Array[ExtResource("3_v7hei")]([])
 frame_index = 0
 pos = Vector2i(5, 10)
 event_res = ExtResource("4_a5rnl")
@@ -32,7 +33,7 @@ event_res = ExtResource("4_a5rnl")
 resource_name = "(8,12)"
 script = ExtResource("2_o3r61")
 is_show = true
-condition = null
+condition = Array[ExtResource("3_v7hei")]([])
 frame_index = 0
 pos = Vector2i(8, 12)
 event_res = ExtResource("3_4ncca")

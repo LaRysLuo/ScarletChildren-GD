@@ -250,3 +250,55 @@ func play_balloon(balloon_name:StringName):
 	balloon_sprite.animation = "default"
 	print("动画结束")
 #endregion
+
+#region 特殊效果
+
+var effect_tween:Tween
+signal effect_finished
+
+var glitch_shader = preload("res://shaders/sfx_glitch.gdshader")
+## 显示故障效果
+func show_glitch(time,dur_time:float = 0.3):
+	## 判断是否传入正确的参数
+	var show_time:float = 0
+	if time && typeof(time) == TYPE_FLOAT:
+		show_time = time
+	print("TX111 : show_time=",show_time)
+	var material:ShaderMaterial = playerAnim.material
+	material.shader = glitch_shader
+	## 显示故障效果
+	effect_tween = get_tree().create_tween()
+	effect_tween.set_loops(1)
+	material.set_shader_parameter("glitch_enabled",0)
+	effect_tween.tween_property(material,"shader_parameter/glitch_enabled",1,dur_time)
+	## 等待tween结束
+	await  effect_tween.finished
+	print("准备倒计时=",show_time)
+	## 如果有show_time时，等待一段事件后
+	if show_time > 0: 
+		print("开始倒计时")
+		var timer:SceneTreeTimer =get_tree().create_timer(show_time)
+		timer.timeout.connect(
+			func():
+				print("倒计时结束了")
+				effect_tween = null
+				effect_finished.emit()
+		)
+	await  effect_finished
+	## 隐藏动画效果
+	effect_tween = get_tree().create_tween()
+	effect_tween.tween_property(material,"shader_parameter/glitch_enabled",0,dur_time)
+	await  effect_tween.finished
+	material.shader = null
+	
+
+func hide_glitch():
+	if effect_tween:
+		effect_tween.stop()
+		effect_tween = null
+	effect_finished.emit()
+	
+
+
+
+#endregion 

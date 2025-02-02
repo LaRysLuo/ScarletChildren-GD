@@ -116,7 +116,7 @@ func set_event_visible_by_name(char_name:StringName,is_show:bool):
 	#var _is_show:bool = is_show && event.activable(event.get_event_config())
 	#event.visible = _is_show
 
-## 传入坐标获取事件
+## 传入坐标获取事件配置
 func get_event(coord:Vector2i,ingore_condition:bool = false) -> EventConfig:
 	## 没有配置任何事件的情况
 	if event_group.is_empty():
@@ -129,6 +129,13 @@ func get_event(coord:Vector2i,ingore_condition:bool = false) -> EventConfig:
 	print("filters=",filter.size())
 	if filter.is_empty():return null
 	return filter.front()
+	
+## 获得对应名称的的Event
+func get_event_by_name(char_name:StringName) -> Event:
+	if all_events.is_empty():return null
+	var filters =  all_events.filter(func(item:Event): return "characters" in item.get_groups() && item.event_name == char_name)
+	if filters.is_empty():return null
+	return filters.front()
 	
 ## 传入角色名称获取角色
 func get_event_coord_by_name(char_name:StringName) -> Vector2i:

@@ -26,7 +26,7 @@ popup_menu = NodePath("PopupMenu")
 popup_menu2 = NodePath("AddNodeMenuPanel")
 res_name_label = NodePath("Box/VBoxContainer/Line1/Label")
 tip_label = NodePath("History/Label")
-add_menu = NodePath("")
+add_menu = NodePath("Box/VBoxContainer/Line2")
 metadata/_edit_use_anchors_ = true
 
 [node name="Box" type="VSplitContainer" parent="."]
@@ -78,7 +78,6 @@ vertical = true
 [node name="GraphEdit" type="GraphEdit" parent="Box"]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
-scroll_offset = Vector2(-559, -22)
 right_disconnects = true
 show_menu = false
 show_zoom_buttons = false

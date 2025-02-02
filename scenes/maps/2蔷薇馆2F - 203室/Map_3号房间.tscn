@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://d0lk1ltx1y0rl"]
+[gd_scene load_steps=13 format=4 uid="uid://d0lk1ltx1y0rl"]
 
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_ctr6i"]
 [ext_resource type="Texture2D" uid="uid://bcc7m3jkrq2po" path="res://scenes/maps/2蔷薇馆2F - 203室/tileset/3号房间2F - 1.png" id="2_72m00"]
 [ext_resource type="Script" path="res://component/event_extend/event_ex_config.gd" id="2_eys7s"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_nqiji"]
+[ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="3_2ifdv"]
 [ext_resource type="Resource" uid="uid://c8xxs20nd307i" path="res://scenes/maps/2蔷薇馆2F - 203室/event/魔法灯包装盒.tres" id="3_gr28g"]
 [ext_resource type="Texture2D" uid="uid://ckfduco3x3gl5" path="res://scenes/maps/2蔷薇馆2F - 203室/tileset/3号房间2F - 2.png" id="3_irvk2"]
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="3_wseiv"]
@@ -13,7 +14,7 @@
 resource_name = "(16,8)"
 script = ExtResource("2_nqiji")
 is_show = true
-condition = null
+condition = Array[ExtResource("3_2ifdv")]([])
 frame_index = 0
 pos = Vector2i(16, 8)
 event_res = ExtResource("3_gr28g")

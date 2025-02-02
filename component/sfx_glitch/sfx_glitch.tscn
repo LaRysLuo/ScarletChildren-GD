@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c05wa5j54imkp"]
+
+[ext_resource type="Shader" path="res://shaders/sfx_glitch.gdshader" id="1_ell1e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_piq0p"]
+shader = ExtResource("1_ell1e")
+shader_parameter/glitch_enabled = 1.0
+shader_parameter/glitch_strength = 0.3
+shader_parameter/glitch_speed = 0.5
+shader_parameter/flicker_speed = 0.5
+shader_parameter/flicker_intensity = 0.5
+
+[node name="SfxGlitch" type="ColorRect"]
+material = SubResource("ShaderMaterial_piq0p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)

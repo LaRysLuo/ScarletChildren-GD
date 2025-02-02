@@ -79,8 +79,8 @@ func _ready() -> void:
 	#GameManager.data_player.gain_item("301f_0_羽新的日记")
 	#GameManager.data_player.gain_item("103i_0_5号电池")
 	#GameManager.data_player.gain_item("203c_0_隐藏蔷薇合照已调查")
-	GameManager.data_player.gain_item("06i_4_手电筒（魔法灯有电池）")
-	#GameManager.data_player.gain_item("204c_0_隐藏幽灵门启动")
+	#GameManager.data_player.gain_item("06i_4_手电筒（魔法灯有电池）")
+	GameManager.data_player.gain_item("204c_0_隐藏幽灵门启动")
 	
 	set_game_state_normal()
 
@@ -205,9 +205,28 @@ func hide_event(event_name:StringName):
 		return
 	event.hide()
 
+## 显示角色的故障效果
+func char_show_glitch(char_name:StringName,time = 0.1,dur_time:float = 0.01):
+	var character = get_character(char_name)
+	if !character:return
+	AudioManager.play_fault()
+	await  character.show_glitch(time,dur_time)
+
+func char_hide_effect(char_name:StringName):
+	var character = get_character(char_name)
+	if !character:return
+	character.hide_glitch()
+
+func get_character(char_name:StringName):
+	var map_config:MapConfig = get_map_config()
+	if !map_config:return null
+	var ent:Event = map_config.get_event_by_name(char_name)
+	return ent
+	
+	
+
 ## 设置事件的可视状态
 func set_event_visible(coord:Vector2i,is_show:bool):
-	
 	#GameManager.set_event_visible(Vector2i(21,5),true)
 	## 先找出当前场景的MapConfig
 	var map_config:MapConfig = get_map_config()

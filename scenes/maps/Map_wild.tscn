@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://caclgjyykjd6u"]
+[gd_scene load_steps=18 format=4 uid="uid://caclgjyykjd6u"]
 
 [ext_resource type="Texture2D" uid="uid://b86i12djqnij" path="res://assets/tilesets/wild/wild-0.png" id="1_8fahf"]
 [ext_resource type="TileSet" uid="uid://4h8rsnwtsgr2" path="res://tilesets/main.tres" id="1_mcjfd"]
 [ext_resource type="Script" path="res://scripts/map_config.gd" id="1_mi1u1"]
 [ext_resource type="Texture2D" uid="uid://1jnwrqis61ab" path="res://assets/tilesets/wild/wild-2.png" id="2_crsqv"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_xptrn"]
+[ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="3_gx0m3"]
 [ext_resource type="Resource" uid="uid://dbjrw3u8x0jvi" path="res://event_res/野外event(11,-1).tres" id="3_i8y5i"]
 [ext_resource type="Texture2D" uid="uid://dag2ate4at0jj" path="res://assets/effect/raindrop.png" id="4_rnfhj"]
 [ext_resource type="Material" uid="uid://brp2f2281vhhl" path="res://tilesets/rain_bloom_material.tres" id="5_jauo6"]
@@ -15,7 +16,7 @@
 resource_name = "(11,0)"
 script = ExtResource("2_xptrn")
 is_show = true
-condition = null
+condition = Array[ExtResource("3_gx0m3")]([])
 frame_index = 0
 pos = Vector2i(11, 0)
 event_res = ExtResource("3_i8y5i")

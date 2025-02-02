@@ -1,7 +1,16 @@
-[gd_scene load_steps=24 format=3 uid="uid://dmc6ubt05cnnh"]
+[gd_scene load_steps=26 format=3 uid="uid://dmc6ubt05cnnh"]
 
 [ext_resource type="PackedScene" uid="uid://dcpd1u6slvjtw" path="res://character/character.tscn" id="1_3klrs"]
+[ext_resource type="Shader" path="res://shaders/sfx_glitch.gdshader" id="2_56u2o"]
 [ext_resource type="Texture2D" uid="uid://dm6idyh6sifpl" path="res://assets/characters/$幽灵晓翼（代用）.png" id="2_a2iqv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eherb"]
+shader = ExtResource("2_56u2o")
+shader_parameter/glitch_enabled = 0.0
+shader_parameter/glitch_strength = 0.005
+shader_parameter/glitch_speed = 0.967
+shader_parameter/flicker_speed = 0.5
+shader_parameter/flicker_intensity = 0.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mja3w"]
 atlas = ExtResource("2_a2iqv")
@@ -191,5 +200,6 @@ event_name = "phantom"
 sprite = ExtResource("2_a2iqv")
 
 [node name="AnimatedSprite2D2" parent="." index="4"]
+material = SubResource("ShaderMaterial_eherb")
 sprite_frames = SubResource("SpriteFrames_dj8i1")
 animation = &"idle_down"

@@ -434,7 +434,7 @@ func _create_node(res:Resource,from:BaseEventNode) -> BaseGN:
 	else:pos = Vector2.ZERO
 	
 	var node:BaseGN =  res.instantiate()
-	node.ori_id = from.resource_scene_unique_id
+	if from: node.ori_id = from.resource_scene_unique_id
 	#var config = _get_menu_config(node.node_type)
 	
 	node.gui_input.connect(_on_node_click.bind(node))

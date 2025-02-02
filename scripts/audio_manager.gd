@@ -19,6 +19,10 @@ func play_puzzle_complete():
 func play_terror():
 	play_se("terror")
 
+## 播放“故障”音效
+func play_fault():
+	play_se("fault")
+
 ## 播放光标移动
 func play_cursor_move():
 	play_se("Cursor1")
@@ -28,6 +32,7 @@ func play_glass_down():
 	
 func play_buzzle():
 	play_se("blip03")
+	
 	
 func play_turnpage():
 	play_se("page")

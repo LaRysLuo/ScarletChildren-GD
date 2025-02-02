@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bjpm3sq4kg67"]
+[gd_scene load_steps=12 format=4 uid="uid://bjpm3sq4kg67"]
 
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_pgqhh"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_1lm1o"]
@@ -7,14 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://c7oxic5yibywp" path="res://scenes/maps/2蔷薇馆2F - 幽灵空间/assets/幽灵空间 - 2.png" id="3_li3cx"]
 [ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="3_mvsfk"]
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="3_ui8tk"]
+[ext_resource type="Resource" uid="uid://bbmnt1k13lqkp" path="res://scenes/maps/2蔷薇馆2F - 幽灵空间/event/幽灵.tres" id="4_v7pgy"]
 
 [sub_resource type="Resource" id="Resource_63nbv"]
-resource_name = "(12,8)"
+resource_name = "(12,7)"
 script = ExtResource("2_1lm1o")
 is_show = true
 condition = Array[ExtResource("3_mvsfk")]([])
 frame_index = 0
-pos = Vector2i(12, 8)
+pos = Vector2i(12, 7)
+event_res = ExtResource("4_v7pgy")
 
 [sub_resource type="Resource" id="Resource_r6gio"]
 script = ExtResource("3_ui8tk")
@@ -48,7 +50,7 @@ texture = ExtResource("3_li3cx")
 [node name="Objects" parent="Maps" index="2"]
 z_index = 0
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAMAAgAAAAAAAAAAQAMAA0AAQAAAAAACwA=")
+tile_map_data = PackedByteArray("AAAMAA0AAQAAAAAACwAMAAcAAAAAAAAAAQA=")
 
 [node name="Movable" parent="Maps" index="3"]
 tile_map_data = PackedByteArray("AAAKAAcAAgABAAEAAAALAAgAAgABAAEAAAAMAAgAAgABAAEAAAAMAAcAAgABAAEAAAALAAcAAgABAAEAAAANAAcAAgABAAEAAAAOAAcAAgABAAEAAAAOAAgAAgABAAEAAAANAAgAAgABAAEAAAAOAAkAAgABAAEAAAANAAkAAgABAAEAAAAMAAkAAgABAAEAAAALAAkAAgABAAEAAAAKAAkAAgABAAEAAAAKAAgAAgABAAEAAAAKAAoAAgABAAEAAAALAAoAAgABAAEAAAAMAAoAAgABAAEAAAANAAoAAgABAAEAAAAOAAoAAgABAAEAAAAOAAsAAgABAAEAAAANAAsAAgABAAEAAAAMAAsAAgABAAEAAAALAAsAAgABAAEAAAAKAAsAAgABAAEAAAAMAAwAAgABAAEAAAAMAA0AAgABAAEAAAAMAA4AAgABAAEAAAAMAA8AAgABAAEAAAA=")
