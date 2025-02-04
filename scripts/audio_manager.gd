@@ -23,6 +23,9 @@ func play_terror():
 func play_fault():
 	play_se("fault")
 
+func play_damage4():
+	play_se("damage4")
+
 ## 播放光标移动
 func play_cursor_move():
 	play_se("Cursor1")

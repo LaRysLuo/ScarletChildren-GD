@@ -36,8 +36,8 @@ func _make_event_res() ->Events_Res:
 	## START节点
 	
 	start.children.append(ChildrenNodeConfig.new(0,0,playanim_node_01))
-	playanim_node_01.children.append(ChildrenNodeConfig.new(0,0,wait_node_02)) ## 播放门动画
-	wait_node_02.children.append(ChildrenNodeConfig.new(0,0,playanim_ndoe_03)) ## 等待
+	playanim_node_01.children.append(ChildrenNodeConfig.new(0,0,playanim_ndoe_03)) ## 播放门动画
+	#wait_node_02.children.append(ChildrenNodeConfig.new(0,0,playanim_ndoe_03)) ## 等待
 	playanim_ndoe_03.children.append(ChildrenNodeConfig.new(0,0,charmove_node_04)) ## 切换门动画为开启
 	charmove_node_04.children.append(ChildrenNodeConfig.new(0,0,script_node_05)) ## 向前移动2步
 	script_node_05.children.append(ChildrenNodeConfig.new(0,0,transport_node_06)) ## 淡出

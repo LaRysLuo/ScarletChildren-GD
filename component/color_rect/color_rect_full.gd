@@ -4,7 +4,9 @@ class_name ColorScreen
 const WHITE = Color.WHITE
 const BLACK = Color.BLACK
 
-@export var color_rect:ColorRect
+@export var color_rect:ColorRect:
+	get():return get_node("ColorRect")
+
 
 signal  fade_finished
 

@@ -94,6 +94,7 @@ func _event_trigger_end():
 func _process(delta: float) -> void:
 	pass
 
+
 func play_typing_se():
 	AudioManager.play_se("pushing_a_key")
 	pass
@@ -217,13 +218,19 @@ func char_hide_effect(char_name:StringName):
 	if !character:return
 	character.hide_glitch()
 
+
+
 func get_character(char_name:StringName):
 	var map_config:MapConfig = get_map_config()
 	if !map_config:return null
 	var ent:Event = map_config.get_event_by_name(char_name)
 	return ent
 	
-	
+
+## 移动事件去pos
+func move_event_to(char_name:StringName,target_pos:Vector2i):
+	var ent = get_character(char_name)
+	if ent: ent.set_pos(target_pos)
 
 ## 设置事件的可视状态
 func set_event_visible(coord:Vector2i,is_show:bool):
@@ -258,21 +265,6 @@ func parse_event_name(event_name:StringName) :
 func face_to(dir:Vector2i):
 	self.player.dir = dir
 	self.player.execute_animation()
-
-#func _get_event(label) -> CharacterBase:
-	#var tilemaplayer:TileMapLayer = ent.get_parent()
-	#
-	#var value = target_char['coord']
-	#var label = target_char['label']
-	#if typeof(value) == TYPE_STRING: 
-		#if value == "this": return ent ## 当目标角色是0时，表示事件自己
-		#if value ==  "player": return GameManager.player as CharacterBase ## 当目标角色是1时，表示玩家
-	#if typeof(value) == TYPE_VECTOR2I:
-		#var group = tilemaplayer.get_tree().get_nodes_in_group("events")
-		#var filters = group.filter(func(item:Event):return item.event_name == label)
-		#if filters.is_empty():return null
-		#return filters[0]
-	#return null
 
 ## 获得当前场景的地图
 func get_map_config() -> MapConfig:
@@ -393,6 +385,7 @@ func get_black(coord:Vector2i) -> Black:
 	 
 ## 触发事件的封装
 func trigger_event_res(event_res:Events_Res,trigger_self:Event = null,args= {}):
+	if !GameManager.is_normal_state: return
 	on_event_trigger_start.emit()
 	var event:BaseEventNode = event_res.tree
 	## WARNING 事件处理主逻辑
@@ -401,7 +394,7 @@ func trigger_event_res(event_res:Events_Res,trigger_self:Event = null,args= {}):
 	## 新建一个自定义的事件线程（不是真的线程，可以叫协程或者序列）来处理所有事件，并等待处理完成
 	var et = EventThread.new()
 	await et.trigger_event(event,trigger_self,args).on_complete
-	set_game_state_normal()
+	#set_game_state_normal()
 	on_event_trigger_end.emit()
 
 ## WARNING 已弃用，转为使用自定义事件线程

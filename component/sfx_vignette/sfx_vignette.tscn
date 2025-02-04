@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://blniy4awddvu3"]
+
+[ext_resource type="Shader" path="res://shaders/sfx_vignette.gdshader" id="1_gf2gi"]
+[ext_resource type="Script" path="res://component/sfx_vignette/sfx_vignette.gd" id="1_p1hjh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwwh6"]
+shader = ExtResource("1_gf2gi")
+shader_parameter/animation_range = 1.0
+shader_parameter/vignette_factor = 0.703
+shader_parameter/vignette_strength = 0.406
+shader_parameter/vignette_radius = 0.531
+shader_parameter/vignette_color = Color(0.653889, 1.29953e-06, 0.398491, 1)
+shader_parameter/animation_speed = 0.702
+
+[node name="SfxVignette" type="CanvasLayer"]
+layer = 12
+script = ExtResource("1_p1hjh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+light_mask = 0
+z_index = 99
+z_as_relative = false
+material = SubResource("ShaderMaterial_iwwh6")
+custom_minimum_size = Vector2(800, 600)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

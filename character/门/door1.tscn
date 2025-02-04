@@ -73,7 +73,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"close",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -81,7 +81,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -101,7 +101,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"open",
-"speed": 6.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -109,7 +109,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"opened",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="门1" type="Node2D" groups=["events"]]
@@ -142,4 +142,3 @@ vertical_alignment = 1
 y_sort_enabled = true
 position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_ffnn2")
-animation = &"open"

@@ -10,13 +10,16 @@ class_name PlayAnimData
 
 @export var anim_name:String
 
+@export var wait_time:float
 
-func _init(cmd:int = BaseEventNode.Scripts,pos:Vector2 = Vector2.ZERO,anim_name:String = "",event_type:String = "self",event_coord:Variant = null) -> void:
+
+func _init(cmd:int = BaseEventNode.Scripts,pos:Vector2 = Vector2.ZERO,anim_name:String = "",event_type:String = "self",event_coord:Variant = null,wait_time:float = 0.3) -> void:
 	self.node_type = cmd
 	self.pos = pos
 	self.anim_name = anim_name
 	self.event_type = event_type
 	self.event_coord = event_coord
+	self.wait_time = wait_time
 
 func _execute(event,args):
 	var target_event
@@ -26,7 +29,8 @@ func _execute(event,args):
 		"other": target_event =_get_event_by_coord()
 	#print("event_type=%s,coord=%s,target_event=%s" % [event_type,event_coord,target_event])
 	if target_event is Door1:
-		await  target_event.play_anim(anim_name)
+		await target_event.play_anim(anim_name,1)
+		#await GameManager.wait(wait_time)
 
 ## 从坐标中获得event
 func _get_event_by_coord() -> Event:

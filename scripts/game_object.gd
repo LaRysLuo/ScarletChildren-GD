@@ -11,14 +11,13 @@ var dir_input = Vector2i.ZERO #输入方向
 var is_moving:bool = false # 是否正在移动
 var cell_list:Array[MoveRoute] #移动的队列
 const MOVE_SPEED = 3.0
-var speed_factor:float = 1.0
+@export var speed_factor:float = 1.0
 
 ## 角色主精灵图
 @export var sprite : Texture2D:
 	set(new):
 		if not Engine.is_editor_hint(): return
 		sprite = new
-		print("图片被更换，刷新一下")
 		init_animation()
 
 
@@ -29,13 +28,18 @@ var speed_factor:float = 1.0
 ## 待机精灵图
 @export var idle_ext : Texture2D = null
 
+# 事件层
 @onready var map:TileMapLayer = get_parent()
 @onready var ori_cell_pos:Vector2i = map.local_to_map(position)
 @onready var cell_pos:Vector2i = map.local_to_map(position)
 @onready var playerAnim:AnimatedSprite2D = $AnimatedSprite2D2
+
+const DIRS = [ Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP]
+
+
+# 通行层
 var map_base: TileMapLayer:
 	get(): return get_node("../../Movable") # 暂时这么使用，应该要放在GamePlay的配置中
-
 
 # 信号
 # 有可交互事件存在
@@ -65,17 +69,29 @@ func move_to(dir:Vector2i):
 		cell_list.push_back(route) # 把目标点放入移动队列中
 		_next()
 
+## 移动角色
+# 目标点
+func move(target_pos:Vector2i):
+	var dir:Vector2i = target_pos - cell_pos
+	var route = MoveRoute.new(dir,target_pos)
+	move_to_by_route(route)
+
 func move_to_by_route(route:MoveRoute):
 	cell_list.push_back(route) # 把目标点放入移动队列中
 	if !(tween && tween.is_running()): # 判断目标是否已经移动队列里了
 		_next()
-	
-func set_pos(coord:Vector2i):
-	var pos = self.map.map_to_local(coord)
-	print("位置=",pos)
 
-	self.position = pos
+## 设置位置	
+func set_pos(coord:Vector2i):
 	self.cell_pos = coord
+	print("新的pos是=",coord)
+	self.position =  self.map.map_to_local(coord)
+	print("新的position是=",position)
+	#call_deferred("_pos_changed")
+
+func _pos_changed():
+	pos_changed.emit()
+
 
 func move_event_pos(event:Node2D):
 	var map = event.get_parent()
@@ -93,7 +109,7 @@ func  move_to_target(route:MoveRoute):
 	self.dir = route.dir
 	var move_target
 	# 判断可行性
-	if !_movable(route): move_target = cell_pos
+	if !_movable(route.target): move_target = cell_pos
 	else: move_target = route.target
 	# 移动到目标点
 	cell_pos = move_target
@@ -108,31 +124,48 @@ func  move_to_target(route:MoveRoute):
 	tween.finished.connect(_next)
 	
 # TODO 需要判断这个目标点是否可移动
-func _movable(route:MoveRoute) -> bool:
+func _movable(pos:Vector2i,ingore_event_collsion:bool = false) -> bool:
 	if !map_base:
 		print_debug("没有正确配置通行层")
 		return false
-	var cell_data = map_base.get_cell_tile_data(route.target)
+	## 如果是敌人，检查目标点有没有玩家
+	if !ingore_event_collsion:
+		if is_in_group("enemy") && pos_has_player(pos) :
+			print("怎么了，我为什么不能动")
+			return false
+	var cell_data = map_base.get_cell_tile_data(pos)
 	if !(cell_data && cell_data.get_custom_data("movable")): # 如果不可移动则返回
 		return false
-	var event:Event = _get_event(route.target)
-	var map_config:MapConfig = get_parent().get_parent()
-	var event_config:EventConfig = map_config.get_event(route.target)
-	var event_res:Events_Res = null
-	if event_config: event_res = event_config.event_res
-
-	# 如果event是碰撞体才返回
-	if event && event.visible && !event.ingore_collsion:  
-		# 判断事件是否会不会触发
-		event_clashed.emit(event)
-		return false
+	var event:Event = get_event(pos)
+	if event:
+		## 如果移动目标点有敌人，无法移动
+		#if event != self && event.is_in_group("enemy"):
+			#return false
+		## 如果目标点是door
+		#if self.is_in_group("player") && event._find_around_enemy(pos) &&  !event.touchable():
+			#return false
+		var map_config:MapConfig = get_parent().get_parent()
+		var event_config:EventConfig = map_config.get_event(pos)
+		var event_res:Events_Res = null
+		if event_config: event_res = event_config.event_res
+		if !ingore_event_collsion:
+			# 如果event是碰撞体才返回
+			if event && event.visible && !event.ingore_collsion:  
+				# 判断事件是否会不会触发
+				event_clashed.emit(event)
+				return false
 	return true
+
+func pos_has_player(coord:Vector2i) -> bool:
+	if GameManager.player.cell_pos == coord:
+		return true
+	return false	
 	
 # 寻找事件元素
-func _get_event(cell:Vector2i):
+func get_event(cell:Vector2i) -> CharacterBase:
 	var events := get_tree().get_nodes_in_group("events")
 	for event:CharacterBase in events:
-		if event.cell_pos == cell: return event
+		if event.cell_pos == cell && event.visible: return event
 	return null
 
 func find_last_route() -> MoveRoute:
@@ -147,6 +180,7 @@ func _next():
 		#停止移动
 		pos_changed.emit() #发出移动完成的信号
 		if dir_input == Vector2i.ZERO:execute_animation()
+		is_moving = false
 		return #如果移动队列为空了，跳出移动
 	var route = cell_list.pop_front()
 	move_to_target(route)
@@ -159,7 +193,6 @@ func face_to(dir:Vector2i):
 # 初始化动画
 func init_animation():
 		playerAnim = find_child("AnimatedSprite2D2")
-		print("anim",playerAnim)
 		playerAnim.sprite_frames = null
 		var animation = init_character_animation()
 		playerAnim.sprite_frames = animation
@@ -290,7 +323,6 @@ func show_glitch(time,dur_time:float = 0.3):
 	effect_tween.tween_property(material,"shader_parameter/glitch_enabled",0,dur_time)
 	await  effect_tween.finished
 	material.shader = null
-	
 
 func hide_glitch():
 	if effect_tween:
@@ -298,7 +330,11 @@ func hide_glitch():
 		effect_tween = null
 	effect_finished.emit()
 	
-
+## 切换行走图
+func change_texture(tex_path:String):
+	var tex = load(tex_path)
+	sprite = tex
+	init_animation()
 
 
 #endregion 

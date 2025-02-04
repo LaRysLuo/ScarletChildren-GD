@@ -84,12 +84,23 @@ func touchable() -> bool:
 	if event_config:
 		return super.touchable()
 	else:
+		if _find_around_enemy(cell_pos):
+			return false
 		var config = _load_eventres_from_config()
 		if !config:return false
 		return true
 
+## 打开门
+func open_door():
+	await  play_anim("open")
+	await play_anim("opened")
+
+func close_door():
+	await play_anim("close")
+	await  play_anim("default")
+
 ## 播放事件动画
-func play_anim(anim_name:String):
+func play_anim(anim_name:String,custom_spd:float = 1):
 	if anim_name == "default":
 		self.ingore_collsion = false
 	if anim_name == "opened":
@@ -99,5 +110,5 @@ func play_anim(anim_name:String):
 	if !frames:return
 	## 判断是否存在该动画名称的动画
 	if frames.has_animation(anim_name):
-		anim.play(anim_name)
+		anim.play(anim_name,custom_spd)
 		await anim.animation_finished

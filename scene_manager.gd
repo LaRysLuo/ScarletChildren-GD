@@ -14,7 +14,7 @@ var expression:Expression = Expression.new()
 var is_running:bool = false
 
 ## 信号
-signal move_finished
+
 signal reading_mode_close
 signal on_map_available
 
@@ -22,7 +22,8 @@ var tool_scenes:Dictionary = {
 	"scene_main_menu":"res://scenes/ui_scene/main_menu.tscn",
 	"scene_item_list":"res://scenes/ui_scene/scene_item/neo_item_list.tscn",
 	"scene_reading_mode":"res://component/scene_file_read/scene_file_read.tscn",
-	"scene_star_fish":"res://scenes/ui_scene/scene_jigsaw/scene_jigsaw.tscn"
+	"scene_star_fish":"res://scenes/ui_scene/scene_jigsaw/scene_jigsaw.tscn",
+	"scene_gameover":"res://scenes/ui_scene/scene_gameover/game_over.tscn"
 	
 }
 
@@ -85,6 +86,12 @@ func goto(path,with_fade:bool = true):
 	self.hide()
 	return get_tree().current_scene
 
+
+signal on_player_move_pre #玩家移动前
+signal on_player_moved 
+signal move_finished #玩家移动后
+
+## WARNING(已弃用) 
 # 用于主角角色的场景移动
 func move_by_name(scene_name,event_name,with_fade:bool = true):
 	var full_path = scene_file_root + 'maps/' + scene_name + '.tscn'
@@ -93,6 +100,7 @@ func move_by_name(scene_name,event_name,with_fade:bool = true):
 		anim.play("fade_out")
 		await  anim.animation_finished
 	GameManager.player.map.remove_child(GameManager.player)	# 把玩家脱离出来
+	on_player_move_pre.emit()
 	get_tree().change_scene_to_file(full_path) #跳转到新场景
 	await  get_tree().tree_changed
 	var timer = get_tree().create_timer(0.1)
@@ -116,24 +124,28 @@ func move_by_name(scene_name,event_name,with_fade:bool = true):
 	
 	move_finished.emit()
 
-## 按照路径
-func move_by_path(path:String,coord:Vector2i,with_fade:bool = true):
-	## 通过路径
-	pass
 
 ## 场景移动：地图间的移动
 func move(path:String,coord:Vector2i,with_fade:bool = true,move_player:bool = false):
+	Larik.print_title("函数名：玩家移动/move")
+	
+	var spi_list:PackedStringArray  =	path.get_file().get_basename().split('_')
+	var scene_name = spi_list[-1]
+	Larik.print_content("scene_name:%s" % scene_name)
+	
 	## 淡出画面
 	is_running = true
 	if with_fade:
 		self.show()
+		Larik.print_content("画面淡出")
 		anim.play("fade_out")
 		await  anim.animation_finished
 	## 脱离玩家角色
 	if GameManager.player:
 		GameManager.player.map.remove_child(GameManager.player)	
 		GameManager.add_child(GameManager.player)
-	print("执行path=",path)
+	
+	on_player_move_pre.emit(scene_name)
 	var err =	get_tree().change_scene_to_file(path) #跳转到新场景
 	if err != 0:
 		printerr("跳转新场景失败")
@@ -147,15 +159,16 @@ func move(path:String,coord:Vector2i,with_fade:bool = true,move_player:bool = fa
 		GameManager.remove_child(GameManager.player)
 		obj_maps.add_child(GameManager.player)
 		GameManager.player.map = obj_maps
-	await get_tree().create_timer(0.2).timeout
+	#await get_tree().create_timer(0.2).timeout
 	
 	## 切换到目标点
 	print("角色移动的目标点coord=",coord)
 	if GameManager.player and move_player: await  GameManager.player.set_pos(coord)
-	#await get_tree().create_timer(0.2).timeout
+	on_player_moved.emit(coord)
+	await get_tree().create_timer(0.1).timeout
 	## 淡入画面
 	if with_fade:
-		print("画面淡入")
+		Larik.print_content("画面淡入")
 		anim.play("fade_in")
 		await anim.animation_finished
 		#self.hide()
@@ -163,7 +176,8 @@ func move(path:String,coord:Vector2i,with_fade:bool = true,move_player:bool = fa
 	## 发送移动结束的信号
 	is_running = false
 
-	move_finished.emit()
+	move_finished.emit(coord)
+	Larik.print_title("函数名：玩家移动/move 运行结束")
 	
 
 func find_event_by_name(event_id:int) -> Event:

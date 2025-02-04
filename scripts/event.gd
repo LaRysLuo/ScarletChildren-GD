@@ -148,8 +148,22 @@ func activable(event:EventConfig) -> bool:
 		return one_shot_valid(event) && _condition_valid(event) 
 	return true
 
+func _find_around_enemy(coord:Vector2i) -> ChasingEnemy:
+	print("检查周围是否有敌人")
+	for check_dir in DIRS:
+		var check_pos = coord + check_dir
+		var event:CharacterBase =	get_event(check_pos)
+		print("enemy=",event)
+		if event && event is ChasingEnemy:
+			return event
+	return null
+
 ## 是否可交互
 func interactable() -> bool:
+	
+	## 因为追逐战的关系，添加一项，周围有enemy时，无法交互
+	if _find_around_enemy(cell_pos):
+		return false
 	var event = get_event_config()
 	if event and event.event_res:
 		print("可交互事件状态为：",activable(event))
@@ -157,6 +171,9 @@ func interactable() -> bool:
 	return false
 	
 func touchable() -> bool:
+	if _find_around_enemy(cell_pos):
+		print("有敌人在附近，不能使用")
+		return false
 	var event = get_event_config()
 	if event and event.event_res:
 		return activable(event) &&  visible  && event.event_res.trigger_type == Events_Res.TriggerType.Touch触碰

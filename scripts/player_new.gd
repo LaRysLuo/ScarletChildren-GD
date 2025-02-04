@@ -147,6 +147,7 @@ func _input(event: InputEvent) -> void:
 		SceneManager.navigate_to("scene_main_menu")
 		
 var is_action:bool = false
+
 func _insteract(with:Event):
 	#is_action = true
 	# INFO

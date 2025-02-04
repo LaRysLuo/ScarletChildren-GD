@@ -808,7 +808,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player2" type="Node2D"]
+[node name="Player2" type="Node2D" groups=["player"]]
 light_mask = 2
 z_index = 1
 z_as_relative = false

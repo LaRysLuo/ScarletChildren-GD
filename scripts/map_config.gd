@@ -97,7 +97,6 @@ func auto_event_trigger():
 ## 改变指定坐标的事件状态
 func set_event_visible(coord:Vector2i,is_show:bool):
 	var config  = get_event(coord)
-	print("config=",config)
 	config.is_show = is_show
 	
 func set_event_visible_by_name(char_name:StringName,is_show:bool):

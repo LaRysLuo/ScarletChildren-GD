@@ -83,6 +83,8 @@ blacks=""
 characters=""
 save_point=""
 light=""
+player="玩家角色"
+enemy="敌人"
 
 [input]
 

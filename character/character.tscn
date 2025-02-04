@@ -847,7 +847,7 @@ position = Vector2(0, 0.974998)
 shape = SubResource("CircleShape2D_2d865")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 2.185)
+position = Vector2(0, 7.185)
 sprite_frames = SubResource("SpriteFrames_nurro")
 animation = &"move_up"
 offset = Vector2(0, -20.975)
