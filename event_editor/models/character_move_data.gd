@@ -49,15 +49,21 @@ func _execute(ent,agrs):
 	if step_count > 0:
 		## 调整角色的移动速度值
 		event.speed_factor = speed_factor
+		event.move_speed_factor = speed_factor
 		for n in step_count:
 			target = move_dir + target
 			event.move_to_by_route(MoveRoute.new(move_dir,target))
-			## 重置角色移动速度值
-			event.pos_changed.connect(func():event.speed_factor = 1)
+			event.pos_changed.connect(_reset_spd_factor.bind(event))
+			
 		if wait_finished: await event.pos_changed # 等待全部移动完成
 		
 		
 	else: event.face_to(move_dir)
+
+func _reset_spd_factor(event:CharacterBase):
+	event._reset_speed_factor()
+	event.pos_changed.disconnect(_reset_spd_factor.bind(event))
+	pass
 
 func _get_type():
 	var result = null

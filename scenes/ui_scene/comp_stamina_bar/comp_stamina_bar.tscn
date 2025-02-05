@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://6uslunbaolj1"]
+
+[ext_resource type="Script" path="res://scenes/ui_scene/comp_stamina_bar/comp_stamina_bar.gd" id="1_vci8f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xebk7"]
+bg_color = Color(0.809884, 0.233372, 0.300038, 1)
+
+[node name="ComponetStaminaBar" type="HBoxContainer"]
+custom_minimum_size = Vector2(120, 8)
+script = ExtResource("1_vci8f")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(120, 10)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_xebk7")
+max_value = 1.0
+value = 1.0
+show_percentage = false

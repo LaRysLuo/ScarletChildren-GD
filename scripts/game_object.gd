@@ -12,6 +12,7 @@ var is_moving:bool = false # 是否正在移动
 var cell_list:Array[MoveRoute] #移动的队列
 const MOVE_SPEED = 3.0
 @export var speed_factor:float = 1.0
+@export var move_speed_factor:float = 1.0
 
 ## 角色主精灵图
 @export var sprite : Texture2D:
@@ -89,8 +90,6 @@ func set_pos(coord:Vector2i):
 	print("新的position是=",position)
 	#call_deferred("_pos_changed")
 
-func _pos_changed():
-	pos_changed.emit()
 
 
 func move_event_pos(event:Node2D):
@@ -117,8 +116,8 @@ func  move_to_target(route:MoveRoute):
 	if tween: tween.kill()
 	tween = create_tween()
 	#tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	#var speed_factor = 0.5 ## 表示移动速度为原来的50%
-	var time:float = 1 / (MOVE_SPEED * speed_factor)
+	#var move_speed_factor = 0.5 ## 表示移动速度为原来的50%
+	var time:float = 1 / (MOVE_SPEED * move_speed_factor)
 	#print("移动时间为",time)
 	tween.tween_property(self,"position",map.map_to_local(move_target),time)
 	tween.finished.connect(_next)
@@ -185,6 +184,10 @@ func _next():
 	var route = cell_list.pop_front()
 	move_to_target(route)
 	execute_animation(route.dir)
+
+func _reset_speed_factor():
+	self.speed_factor = 1
+	self.move_speed_factor = 1
 
 func face_to(dir:Vector2i):
 	self.dir = dir

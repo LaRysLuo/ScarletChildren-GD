@@ -2,7 +2,7 @@ extends Node2D
 
 const FILE_TYPES = [ '.ogg','.wav','.mp3']
 @onready var audio_player:AudioStreamPlayer = $MusicPlayer
-@onready var se_player = $SePlayer
+@onready var se_player:AudioStreamPlayer = $SePlayer
 @onready var root_path = "res://audio/bgm/"
 @onready var se_root_path = "res://audio/se/"
 
@@ -29,6 +29,15 @@ func play_damage4():
 ## 怪物笑声
 func play_monster_laughing():
 	play_se("laughing1_fx")
+
+## 开门
+func play_door_open():
+	play_se("room_door_O")
+
+## 关门
+func play_door_close():
+	play_se("room_door_C")	
+
 
 ## 播放光标移动
 func play_cursor_move():
@@ -67,8 +76,12 @@ func start_music(file_name:String,vol:float = 0):
 	pass
 
 # 停止播放
-func stop_music():
+func stop_music(fade:bool=false):
 	print("停止播放")
+	if fade:
+		var tween = create_tween()
+		tween.tween_property(audio_player,"volume_db",-30,0.6)
+		await  tween.finished
 	audio_player.stop()
 	audio_player.stream = null
 	pass
@@ -80,10 +93,10 @@ func play_se(file_name):
 		se_player.play()
 		await  se_player.finished
 		se_finish.emit()
-		pass
 
 func stop_se():
 	print("停止播放")
+
 	se_player.stop()
 	se_player.stream = null
 

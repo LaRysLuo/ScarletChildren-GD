@@ -1,0 +1,112 @@
+[gd_scene load_steps=22 format=4 uid="uid://d2cb35vt5q6gq"]
+
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_byall"]
+[ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_soxkc"]
+[ext_resource type="Texture2D" uid="uid://dmb3ybxtuex71" path="res://assets/tilesets/蔷薇馆·大厅/lobby-1.png" id="2_tkvfi"]
+[ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="3_thxss"]
+[ext_resource type="Texture2D" uid="uid://cxlv2ymhs8q22" path="res://assets/tilesets/蔷薇馆·大厅/lobby-3.png" id="3_tpedq"]
+[ext_resource type="Resource" uid="uid://88ntc6juirf8" path="res://scenes/maps/蔷薇馆·中厅1F/event/蔷薇馆大门(13,17).tres" id="4_8wdld"]
+[ext_resource type="Script" path="res://component/event_condition/ec_item.gd" id="4_otnw1"]
+[ext_resource type="Resource" uid="uid://dqalkgwcdpm8u" path="res://scenes/maps/蔷薇馆·中厅1F/event/存档点测试(16,15).tres" id="5_cqj17"]
+[ext_resource type="Script" path="res://component/event_extend/event_ex_config.gd" id="6_21351"]
+[ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="7_ug2ad"]
+[ext_resource type="Resource" uid="uid://c1dwnkgwbw7ok" path="res://scenes/maps/蔷薇馆·中厅1F/event/欢迎来到蔷薇馆.tres" id="7_vo36w"]
+
+[sub_resource type="Resource" id="Resource_ysf0i"]
+script = ExtResource("4_otnw1")
+item_id = &"206c_0_欢迎来到蔷薇馆"
+value = true
+is_all = true
+type = -1
+
+[sub_resource type="Resource" id="Resource_bdfs2"]
+resource_name = "(13,17)"
+script = ExtResource("2_soxkc")
+is_show = true
+condition = Array[ExtResource("3_thxss")]([SubResource("Resource_ysf0i")])
+frame_index = 0
+pos = Vector2i(13, 17)
+event_res = ExtResource("4_8wdld")
+
+[sub_resource type="Resource" id="Resource_8glv3"]
+resource_name = "(16,15)"
+script = ExtResource("2_soxkc")
+is_show = true
+condition = Array[ExtResource("3_thxss")]([])
+frame_index = 0
+pos = Vector2i(16, 15)
+event_res = ExtResource("5_cqj17")
+
+[sub_resource type="Resource" id="Resource_pe0j0"]
+script = ExtResource("4_otnw1")
+item_id = &"206c_0_欢迎来到蔷薇馆"
+value = false
+is_all = true
+type = -1
+
+[sub_resource type="Resource" id="Resource_mybq3"]
+resource_name = "(1,1)"
+script = ExtResource("2_soxkc")
+is_show = true
+condition = Array[ExtResource("3_thxss")]([SubResource("Resource_pe0j0")])
+frame_index = 0
+pos = Vector2i(1, 1)
+event_res = ExtResource("7_vo36w")
+
+[sub_resource type="Resource" id="Resource_uea0i"]
+resource_name = "(13,11)"
+script = ExtResource("2_soxkc")
+is_show = false
+condition = Array[ExtResource("3_thxss")]([])
+frame_index = 0
+pos = Vector2i(13, 11)
+
+[sub_resource type="Resource" id="Resource_yj26r"]
+script = ExtResource("7_ug2ad")
+scene_path = "res://scenes/maps/蔷薇馆·中厅2F/map_蔷薇馆·中厅2f.tscn"
+step1 = 2
+step2 = 1
+target_pos = Vector2i(12, 15)
+target_scene_door = Vector2i(12, 16)
+
+[sub_resource type="Resource" id="Resource_5wwlb"]
+script = ExtResource("6_21351")
+coord = Vector2i(13, 7)
+event_ex = SubResource("Resource_yj26r")
+
+[sub_resource type="Resource" id="Resource_siepr"]
+script = ExtResource("7_ug2ad")
+scene_path = "res://scenes/maps/蔷薇馆·西馆走廊1F/map_蔷薇馆·西馆走廊1f.tscn"
+step1 = 0
+step2 = 2
+target_pos = Vector2i(17, 16)
+target_scene_door = Vector2i(17, 15)
+
+[sub_resource type="Resource" id="Resource_ne2vs"]
+script = ExtResource("6_21351")
+coord = Vector2i(10, 9)
+event_ex = SubResource("Resource_siepr")
+
+[node name="蔷薇馆·中厅" instance=ExtResource("1_byall")]
+
+[node name="Maps" parent="." index="0"]
+right_limit = 800.0
+event_group = Array[ExtResource("2_soxkc")]([SubResource("Resource_bdfs2"), SubResource("Resource_8glv3"), SubResource("Resource_mybq3"), SubResource("Resource_uea0i")])
+event_ex = Array[ExtResource("6_21351")]([SubResource("Resource_5wwlb"), SubResource("Resource_ne2vs")])
+
+[node name="0" parent="Maps" index="0"]
+position = Vector2(395, 320)
+texture = ExtResource("2_tkvfi")
+
+[node name="2" parent="Maps" index="1"]
+position = Vector2(401, 320)
+texture = ExtResource("3_tpedq")
+
+[node name="Objects" parent="Maps" index="2"]
+tile_map_data = PackedByteArray("AAAQAAkAAQAAAAAABAANAAcAAQAAAAAACwAKAAkAAQAAAAAACwABAAEAAQAAAAAABAANABEAAQAAAAAABAANABIAAQAAAAAAAgANAAsAAAAAAAAAAQA=")
+
+[node name="Movable" parent="Maps" index="3"]
+tile_map_data = PackedByteArray("AAAJAAoAAgABAAEAAAANAAkAAgABAAEAAAANAAoAAgABAAEAAAALAAoAAgABAAEAAAANAAsAAgABAAEAAAAOAAsAAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAAKAAcAAgABAAEAAAAKAAgAAgABAAEAAAAKAAkAAgABAAEAAAAKAAoAAgABAAEAAAAKAAsAAgABAAEAAAAKAAwAAgABAAEAAAALAAwAAgABAAEAAAAMAA0AAgABAAEAAAALAA0AAgABAAEAAAAMAA4AAgABAAEAAAANAA4AAgABAAEAAAAOAA0AAgABAAEAAAAOAAwAAgABAAEAAAAMAAwAAgABAAEAAAAJAAwAAgABAAEAAAAPAAoAAgABAAEAAAAPAAsAAgABAAEAAAAJAAsAAgABAAEAAAAJAA0AAgABAAEAAAAKAA0AAgABAAEAAAALAAsAAgABAAEAAAAKAA4AAgABAAEAAAAKAA8AAgABAAEAAAALAA4AAgABAAEAAAALAA8AAgABAAEAAAAMAA8AAgABAAEAAAANAA8AAgABAAEAAAAOAA4AAgABAAEAAAAOAA8AAgABAAEAAAAPAA4AAgABAAEAAAAPAA8AAgABAAEAAAANABAAAgABAAEAAAAPAAwAAgABAAEAAAAPAA0AAgABAAEAAAAQAAoAAgABAAEAAAAQAAsAAgABAAEAAAAQAAwAAgABAAEAAAAQAA0AAgABAAEAAAARAAoAAgABAAEAAAARAAsAAgABAAEAAAARAAwAAgABAAEAAAARAA0AAgABAAEAAAAMAAsAAgABAAEAAAANAAcAAgABAAEAAAANAAgAAgABAAEAAAAQAA4AAgABAAEAAAAQAAgAAgABAAEAAAAQAAkAAgABAAEAAAAQAAcAAgABAAEAAAAKABAAAgABAAEAAAALABAAAgABAAEAAAAMABAAAgABAAEAAAANABEAAgABAAEAAAAOABAAAgABAAEAAAAPABAAAgABAAEAAAANAAYAAgABAAEAAAANAAUAAgABAAEAAAANABIAAgABAAEAAAA=")
+
+[node name="UI" parent="." index="2" node_paths=PackedStringArray("stamina_bar")]
+stamina_bar = NodePath("ComponetStaminaBar")

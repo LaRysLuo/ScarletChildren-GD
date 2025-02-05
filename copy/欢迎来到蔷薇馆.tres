@@ -1,0 +1,153 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=26 format=3 uid="uid://0fbapropmxta"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_3x367"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_bu6gr"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_jvdm3"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="4_v4tcg"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="5_7irer"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="5_n3gys"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="6_y5kd4"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="7_ryw0f"]
+
+[sub_resource type="Resource" id="Resource_l5kx6"]
+script = ExtResource("3_jvdm3")
+script_cmd = "GameManager.data_player.gain_item(\"206c_0_欢迎来到蔷薇馆\",true)"
+children = Array[ExtResource("2_bu6gr")]([])
+node_type = 9
+pos = Vector2(2720, 140)
+
+[sub_resource type="Resource" id="Resource_5gdaa"]
+script = ExtResource("2_bu6gr")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_l5kx6")
+
+[sub_resource type="Resource" id="Resource_rfgj4"]
+script = ExtResource("3_jvdm3")
+script_cmd = "GameManager.set_ent_visible(\"phantom\",false)"
+children = Array[ExtResource("2_bu6gr")]([SubResource("Resource_5gdaa")])
+node_type = 9
+pos = Vector2(2440, 140)
+
+[sub_resource type="Resource" id="Resource_vgvr3"]
+script = ExtResource("2_bu6gr")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_rfgj4")
+
+[sub_resource type="Resource" id="Resource_l382m"]
+script = ExtResource("6_y5kd4")
+move_type = 5
+target_char = {
+"coord": Vector2i(13, 11),
+"label": "phantom"
+}
+step_count = 1
+speed_factor = 0.7
+wait_finished = true
+children = Array[ExtResource("2_bu6gr")]([SubResource("Resource_vgvr3")])
+node_type = 3
+pos = Vector2(2080, 140)
+
+[sub_resource type="Resource" id="Resource_ux0lk"]
+script = ExtResource("2_bu6gr")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_l382m")
+
+[sub_resource type="Resource" id="Resource_5r7t0"]
+script = ExtResource("6_y5kd4")
+move_type = 3
+target_char = {
+"coord": Vector2i(13, 11),
+"label": "phantom"
+}
+step_count = 3
+speed_factor = 0.7
+wait_finished = true
+children = Array[ExtResource("2_bu6gr")]([SubResource("Resource_ux0lk")])
+node_type = 3
+pos = Vector2(1720, 140)
+
+[sub_resource type="Resource" id="Resource_h2y5p"]
+script = ExtResource("2_bu6gr")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_5r7t0")
+
+[sub_resource type="Resource" id="Resource_l78uv"]
+script = ExtResource("5_7irer")
+time = 1.0
+children = Array[ExtResource("2_bu6gr")]([SubResource("Resource_h2y5p")])
+node_type = 6
+pos = Vector2(1460, 180)
+
+[sub_resource type="Resource" id="Resource_mxsf4"]
+script = ExtResource("2_bu6gr")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_l78uv")
+
+[sub_resource type="Resource" id="Resource_4rwoo"]
+script = ExtResource("3_jvdm3")
+script_cmd = "GameManager.set_ent_visible(\"phantom\",true)"
+children = Array[ExtResource("2_bu6gr")]([SubResource("Resource_mxsf4")])
+node_type = 9
+pos = Vector2(1180, 140)
+
+[sub_resource type="Resource" id="Resource_k3xra"]
+script = ExtResource("2_bu6gr")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_4rwoo")
+
+[sub_resource type="Resource" id="Resource_pqgog"]
+script = ExtResource("5_n3gys")
+text = "……"
+role = ExtResource("4_v4tcg")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_bu6gr")]([SubResource("Resource_k3xra")])
+node_type = 1
+pos = Vector2(780, 80)
+
+[sub_resource type="Resource" id="Resource_iryig"]
+script = ExtResource("2_bu6gr")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_pqgog")
+
+[sub_resource type="Resource" id="Resource_75ko8"]
+script = ExtResource("6_y5kd4")
+move_type = 5
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 3
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_bu6gr")]([SubResource("Resource_iryig")])
+node_type = 3
+pos = Vector2(400, 100)
+
+[sub_resource type="Resource" id="Resource_of6f1"]
+script = ExtResource("2_bu6gr")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_75ko8")
+
+[sub_resource type="Resource" id="Resource_1cx7r"]
+script = ExtResource("7_ryw0f")
+children = Array[ExtResource("2_bu6gr")]([SubResource("Resource_of6f1")])
+node_type = 0
+pos = Vector2(180, 180)
+
+[resource]
+script = ExtResource("1_3x367")
+title = ""
+is_collsion = true
+trigger_type = 3
+one_shot = false
+tree = SubResource("Resource_1cx7r")
+map = {}

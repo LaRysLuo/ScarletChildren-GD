@@ -16,6 +16,7 @@ class_name Door1
 @export var event_res:Events_Res
 @export var event_config:EventConfig
 
+
 ## 组件引用
 var anim:AnimatedSprite2D:
 	get(): return get_node("./AnimatedSprite2D2")
@@ -62,15 +63,17 @@ func _get_eventex_config(coord:Vector2i) -> EventEx:
 ## 重写交互逻辑
 func interact():
 	if event_config:
+		print("开始执行普通事件")
 		super.interact()
 	else:
+		print("开始执行门事件")
 		event_res = _load_eventres_from_config()
 		#push_warning("生成的event_res:",event_res.tree)
 		if !event_res:
 			event_finish.emit()
 			return
 		await  _parse_event_config(event_res)
-		print("X事件交互完成")
+		print("门事件完成")
 
 func interactable() -> bool:
 	if event_config:
@@ -105,7 +108,13 @@ func play_anim(anim_name:String,custom_spd:float = 1):
 		self.ingore_collsion = false
 	if anim_name == "opened":
 		self.ingore_collsion = true
+
 	if !anim:return
+	## 播放开关门声音
+	if anim_name == "open":
+		AudioManager.play_door_open()
+	if anim_name == "close":
+		AudioManager.play_door_close()
 	var frames = anim.sprite_frames
 	if !frames:return
 	## 判断是否存在该动画名称的动画

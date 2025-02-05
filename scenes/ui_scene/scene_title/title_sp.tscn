@@ -1,18 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3iuccgaftfe4"]
+[gd_scene load_steps=15 format=3 uid="uid://b3iuccgaftfe4"]
 
-[ext_resource type="Script" path="res://scripts/title_sp.gd" id="1_jr6gf"]
-[ext_resource type="Texture2D" uid="uid://b3kn60eed3bx0" path="res://assets/system/title_samle.png" id="2_efi7w"]
-[ext_resource type="AudioStream" uid="uid://rq5ueby4cbyh" path="res://audio/bgm/theme.mp3" id="3_nd403"]
-[ext_resource type="Texture2D" uid="uid://di3q84qs54kot" path="res://assets/system/logo.png" id="3_xcbjr"]
-[ext_resource type="Shader" path="res://shaders/fog.gdshader" id="4_ibanr"]
-[ext_resource type="Texture2D" uid="uid://dwpqte5q8j3ql" path="res://icon.svg" id="5_13uft"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_title/title_sp.gd" id="1_ja11u"]
+[ext_resource type="Texture2D" uid="uid://b3kn60eed3bx0" path="res://assets/system/title_samle.png" id="2_ne5yf"]
+[ext_resource type="Shader" path="res://shaders/fog.gdshader" id="3_r0s3q"]
+[ext_resource type="Texture2D" uid="uid://dwpqte5q8j3ql" path="res://icon.svg" id="4_5qs4a"]
+[ext_resource type="Texture2D" uid="uid://di3q84qs54kot" path="res://assets/system/logo.png" id="5_pxcrn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7mw6r"]
 font_size = 150
 font_color = Color(1, 1, 1, 0.352941)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_agldi"]
-shader = ExtResource("4_ibanr")
+shader = ExtResource("3_r0s3q")
 shader_parameter/color = Vector3(1, 1, 1)
 shader_parameter/OCTAVES = 4
 shader_parameter/toumingdu = 0.72
@@ -118,7 +117,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_jr6gf")
+script = ExtResource("1_ja11u")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -131,7 +130,7 @@ offset_right = 8.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_efi7w")
+texture = ExtResource("2_ne5yf")
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
@@ -147,7 +146,7 @@ visible = false
 material = SubResource("ShaderMaterial_agldi")
 position = Vector2(406.5, 287.75)
 scale = Vector2(10, 10)
-texture = ExtResource("5_13uft")
+texture = ExtResource("4_5qs4a")
 
 [node name="UI信息" type="Control" parent="."]
 anchors_preset = 0
@@ -168,7 +167,7 @@ offset_bottom = 581.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("3_xcbjr")
+texture = ExtResource("5_pxcrn")
 
 [node name="开始游戏标识" type="Label" parent="UI信息"]
 self_modulate = Color(1, 1, 1, 0)
@@ -194,8 +193,3 @@ libraries = {
 "": SubResource("AnimationLibrary_bt7bl")
 }
 autoplay = "闪烁"
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_nd403")
-autoplay = true
-bus = &"Music"

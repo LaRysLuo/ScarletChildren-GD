@@ -7,7 +7,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_euvq3"]
 font_size = 12
 
-[node name="门1" type="Node2D" groups=["events"]]
+[node name="门2（无精灵图）" type="Node2D" groups=["events"]]
 z_index = 1
 z_as_relative = false
 position = Vector2(0, 1)

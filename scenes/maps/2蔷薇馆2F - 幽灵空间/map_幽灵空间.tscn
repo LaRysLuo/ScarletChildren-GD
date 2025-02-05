@@ -79,7 +79,9 @@ color = Color(0.0294, 0.23121, 0.42, 1)
 
 [node name="PointLight2D" parent="Lights" index="1"]
 position = Vector2(393, 413)
+range_layer_min = 0
 
 [node name="DirectionalLight2D" parent="Lights" index="2"]
 visible = false
 color = Color(0.638322, 0.717167, 0.91589, 1)
+range_layer_min = 0

@@ -15,7 +15,7 @@ config/name_localized={
 "en": "The Scarlet's Children"
 }
 config/version="0.01"
-run/main_scene="res://scenes/title_sp.tscn"
+run/main_scene="res://scenes/ui_scene/scene_title/title_sp.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/icon/larys.svg"
 

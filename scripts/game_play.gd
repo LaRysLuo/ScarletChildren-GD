@@ -1,6 +1,7 @@
 extends CanvasLayer
 class_name GamePlay
 
+## 枚举
 enum GameState {
 	Normal, #正在运行
 	Buszing, #忙碌的
@@ -10,26 +11,32 @@ enum Balloon{
 	Angry,	
 }
 
-var game_state = GameState.Normal 
-var player_pre:Resource
-var player:Player_v1
+
+## 资源
+var player_pre:Resource = preload("res://character/player.tscn") # 玩家预制体
+var notify_prefab = preload("res://component/main_notify/main_ notify.tscn") # 通知预制体
+var color_screen_pre:PackedScene = preload("res://component/color_rect/color_rect_full.tscn")
 
 var config:PlayerConfig
-var color_screen_pre:PackedScene
 
 
 ## 信号
+signal on_player_loaded # 当玩家实例生成时
 signal on_event_trigger_start
 signal on_event_trigger_end
 signal on_event_reload(event:Event) # 重载入事件状态
 
-## 玩家场景
 
+## 玩家场景
+var game_state = GameState.Normal 
 
 ## 玩家位置
 
-## 预制体
-var notify_prefab = preload("res://component/main_notify/main_ notify.tscn")
+## 属性
+var player:Player_v1:
+	set(val):
+		player = val
+		on_player_loaded.emit()
 
 
 @export var data_variable:DataVariable = preload("res://auto_load/data_variable/data_variable.gd").new()
@@ -47,42 +54,39 @@ func set_game_state_normal():
 	print("游戏状态变为正常")
 
 
-# 记录游戏的状态
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_game_state_buszing()
 	#TranslationServer.set_locale('en')
-	color_screen_pre = preload("res://component/color_rect/color_rect_full.tscn")
-	player_pre = preload("res://character/player.tscn")
 	config = load("res://config/player_config.tres") 
-	#data_variable.game_progress
 	DialogueManager.on_typing.connect(play_typing_se)
+	
+	# 初始化data_player
 	data_player.load_items()
 	data_player.load_items_raw()
-	# 连接道具通知的信号
 	data_player.on_player_item_changed.connect(show_item_notify)
-	#print("data_player=",data_player.items)
 	
+	# 初始化游戏时间
 	add_child(game_time)
 	
+	# 连接信号：这些信号是为了事件触发开始时点和结束时点的信号
 	on_event_trigger_start.connect(_event_trigger_start)
 	on_event_trigger_end.connect(_event_trigger_end)
 	
 	## 载入游戏数据 TODO 实际不能在这里调用
-	SceneManager.move("res://scenes/maps/蔷薇馆·西馆走廊2F/map_蔷薇馆·西馆走廊2f.tscn",Vector2i(8,12),true,true)
+	#SceneManager.move("res://scenes/maps/蔷薇馆·西馆走廊2F/map_蔷薇馆·西馆走廊2f.tscn",Vector2i(8,12),true,true)
 	##return
 
 	
 	#await  SaveManager.load_data()
-	await get_tree().create_timer(0.5).timeout
+	#await get_tree().create_timer(0.5).timeout
 	#GameManager.data_player.gain_item("06i_3_手电筒（魔法灯）")
 	#GameManager.data_player.gain_item("301f_0_羽新的日记")
 	#GameManager.data_player.gain_item("103i_0_5号电池")
 	#GameManager.data_player.gain_item("203c_0_隐藏蔷薇合照已调查")
 	#GameManager.data_player.gain_item("06i_4_手电筒（魔法灯有电池）")
-	GameManager.data_player.gain_item("204c_0_隐藏幽灵门启动")
+	#GameManager.data_player.gain_item("204c_0_隐藏幽灵门启动")
 	
-	set_game_state_normal()
+	#set_game_state_normal()
 
 func _event_trigger_start():
 	set_game_state_buszing()
@@ -279,6 +283,9 @@ func instance_player(map:Node2D,vec:Vector2):
 	player.start_pos_changed.connect(update_fog)
 	map.add_child(player)
 	movable = map.get_parent().get_node("./Movable")
+	
+	# 初始化完毕，使游戏开始运行
+	set_game_state_normal()
 	#block_map = map.get_parent().get_node("./Black")
 	#call_deferred("update_fog") 
 
@@ -395,6 +402,7 @@ func trigger_event_res(event_res:Events_Res,trigger_self:Event = null,args= {}):
 	var et = EventThread.new()
 	await et.trigger_event(event,trigger_self,args).on_complete
 	#set_game_state_normal()
+	_event_trigger_end()
 	on_event_trigger_end.emit()
 
 ## WARNING 已弃用，转为使用自定义事件线程

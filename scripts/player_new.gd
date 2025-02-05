@@ -5,7 +5,10 @@ class_name Player_v1
 var interact_with:Event #可交互对象
 
 # EXPORT
-@export var stamina:float = 1
+@export var stamina:float = 1:
+	set(val):
+		stamina = val
+		on_stamina_changed.emit(stamina,running_mode != -1)
 @export var running_mode:int = 0 # 0 不启动，1 启动,-1 体力耗尽
 @export var count_time:float = 0
 @export var RECOVER_TIME:float:
@@ -22,8 +25,8 @@ const FLASH_LIGHT_RES = preload("res://component/flash_light/flash_light.tscn")
 
 ## SIGNAL
 
-## 当身前可交互状态变更
-signal  on_interact_changed(event:Event,state:int)
+signal  on_interact_changed(event:Event,state:int) ## 当身前可交互状态变更
+signal on_stamina_changed(val:float,is_normal:bool) ## 耐力条变更
 
 
 ## INFO 闲置动画24.10.26添加
@@ -89,9 +92,10 @@ func _running_process(delta:float):
 		else:
 			self.stamina += 0.1
 			if self.stamina >= 1:
+				_recover_run()
 				self.stamina = 1
 				# 恢复奔跑
-				_recover_run()
+				
 
 
 
@@ -142,10 +146,11 @@ func _init_cam_limit():
 #region 玩家交互
 # 交互 - 角色移动后会触发信号，目标方向存在可交互事件
 func _has_interact_event(state:int = 1):
-	print("移动后的触发")
 	if !GameManager.is_normal_state:return
 	var event = _get_event_font() # 判断前方是否有可交互事件
-	if event: print("存在可触发的event=",event)
+	if event: 
+		print("存在可触发的event=",event)
+		print("该事件是否可触发", event.interactable())
 	if event && event.interactable() && !is_action: 
 		_set_interact_with(event,state)
 		#print("检查到有X事件")
@@ -181,16 +186,14 @@ func _get_event_font() -> Event:
 func _input(event: InputEvent) -> void:
 	if !GameManager.is_normal_state: return 
 	if !is_visible_in_tree():return
-	if event.is_action_pressed("submit") && interact_with :
-		#var with = interact_with
-		_insteract(interact_with)
+	if event.is_action_pressed("submit") && interact_with :	_insteract(interact_with)
 	## 打開主菜單
 	if event.is_action_pressed("cancel"):
 		tip.hide()
 		SceneManager.navigate_to("scene_main_menu")
 	## 加速跑
-	if event.is_action_pressed("R1"): _start_run()
-	if event.is_action_released("R1"):_end_run()
+	if event.is_action_pressed("R1") && running_mode == 0: _start_run()
+	if event.is_action_released("R1") && running_mode == 1:_end_run()
 	
 		
 var is_action:bool = false
@@ -203,6 +206,8 @@ func _insteract(with:Event):
 	#_set_interact_with(null) # 先设置可交互对象为空，避免重复交互
 	# 将隐藏tip移动到_event_trigger_start
 	#tip.hide()
+	# 停止奔跑
+	_end_run()
 	with.interact()
 	await with.event_finish # 等待交互结束
 	#is_action = false
@@ -212,21 +217,21 @@ func _insteract(with:Event):
 
 ## 加速奔跑
 func _start_run():
-	running_mode = true
-	speed_factor = 2
+	running_mode = 1
+	self.move_speed_factor = 2
 
 func _exhausted():
 	running_mode = -1
-	speed_factor = 0.5
+	self.move_speed_factor = 0.5
 	
 func _recover_run():
 	running_mode = 0
-	speed_factor = 1
+	self.move_speed_factor = 1
 
 ## 停止奔跑
 func _end_run():
 	running_mode = 0
-	speed_factor = 1
+	self.move_speed_factor = 1
 
 func _event_trigger_start():
 	tip.hide()

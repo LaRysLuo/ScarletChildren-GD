@@ -153,14 +153,12 @@ func _find_around_enemy(coord:Vector2i) -> ChasingEnemy:
 	for check_dir in DIRS:
 		var check_pos = coord + check_dir
 		var event:CharacterBase =	get_event(check_pos)
-		print("enemy=",event)
 		if event && event is ChasingEnemy && event.chasing_enable:
 			return event
 	return null
 
 ## 是否可交互
 func interactable() -> bool:
-	
 	## 因为追逐战的关系，添加一项，周围有enemy时，无法交互
 	if _find_around_enemy(cell_pos):
 		return false
