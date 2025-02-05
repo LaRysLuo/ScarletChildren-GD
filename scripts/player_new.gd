@@ -5,6 +5,13 @@ class_name Player_v1
 var interact_with:Event #可交互对象
 
 # EXPORT
+@export var stamina:float = 1
+@export var running_mode:int = 0 # 0 不启动，1 启动,-1 体力耗尽
+@export var count_time:float = 0
+@export var RECOVER_TIME:float:
+	get(): return 1.0
+@export var MAX_COUNT:float:
+	get(): return 0.1
 
 # ONREADY
 @onready var tip: Sprite2D = $Sprite2D
@@ -43,14 +50,50 @@ func _init_player() -> void:
 	
 
 func _process(delta: float) -> void:
+	# 编辑器模式返回
 	if Engine.is_editor_hint(): return
+	# 不可见时返回
 	if !is_visible_in_tree():return
+	
+	# 跑步处理
+	_running_process(delta)
+	
+	# 输入处理
 	dir_input = Vector2i(Input.get_vector("left","right","up","down").round())
 	if dir_input.x !=0: dir_input.y=0
 	if !GameManager.is_normal_state : dir_input = Vector2i.ZERO #当不是正常游戏状态时，使输入永远为0 
 	if dir_input.x !=0 || dir_input.y != 0:
 		restart_idle_timer() ## 因为输入了，所以清空限制动画计算时间
 	move_to(dir_input)	
+
+## 跑步处理
+func _running_process(delta:float):
+	if running_mode == 0 && self.stamina == 1: return
+	count_time += delta
+	if count_time >= MAX_COUNT:
+		# 将计时归0
+		count_time = 0
+		# 消耗模式
+		if running_mode == 1:
+			# 消耗耐力奔跑
+			self.stamina -= 0.05
+			if self.stamina <= 0:
+				# 进入疲劳模式
+				_exhausted()
+		# 普通恢复模式
+		elif running_mode == 0 && self.stamina < 1.0:
+			self.stamina += 0.05
+			if self.stamina > 1:
+				self.stamina = 1
+		# 强制恢复模式
+		else:
+			self.stamina += 0.1
+			if self.stamina >= 1:
+				self.stamina = 1
+				# 恢复奔跑
+				_recover_run()
+
+
 
 func restart_idle_timer():
 	if !idle_timer: 
@@ -145,6 +188,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel"):
 		tip.hide()
 		SceneManager.navigate_to("scene_main_menu")
+	## 加速跑
+	if event.is_action_pressed("R1"): _start_run()
+	if event.is_action_released("R1"):_end_run()
+	
 		
 var is_action:bool = false
 
@@ -162,7 +209,24 @@ func _insteract(with:Event):
 	#判断是否还有交互目标
 	# INFO 该部分功能移动到_event_trigger_end
 	# 重新检查是否有交互目标
+
+## 加速奔跑
+func _start_run():
+	running_mode = true
+	speed_factor = 2
+
+func _exhausted():
+	running_mode = -1
+	speed_factor = 0.5
 	
+func _recover_run():
+	running_mode = 0
+	speed_factor = 1
+
+## 停止奔跑
+func _end_run():
+	running_mode = 0
+	speed_factor = 1
 
 func _event_trigger_start():
 	tip.hide()

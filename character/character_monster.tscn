@@ -200,12 +200,13 @@ animations = [{
 z_as_relative = false
 script = ExtResource("2_7j0a8")
 chasing_enable = false
-chasing_scene_list = Array[String](["蔷薇馆2f_浴室", "蔷薇馆·西馆走廊2f", "蔷薇馆2f - 2号房间", "1号房间", "3号房间"])
+chasing_scene_list = Array[String](["蔷薇馆2f-浴室", "蔷薇馆·西馆走廊2f", "蔷薇馆2f - 2号房间", "1号房间", "3号房间"])
 point_interval = 1.0
 speed = 0.0
 across_delay_time = 1.0
 across_pause = false
-speed_factor = 1.5
+event_name = "monster"
+speed_factor = 1.3
 
 [node name="CollisionShape2D2" parent="." index="3"]
 z_index = 99

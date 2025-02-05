@@ -385,7 +385,7 @@ func get_black(coord:Vector2i) -> Black:
 	 
 ## 触发事件的封装
 func trigger_event_res(event_res:Events_Res,trigger_self:Event = null,args= {}):
-	if !GameManager.is_normal_state: return
+	#if !GameManager.is_normal_state: return
 	on_event_trigger_start.emit()
 	var event:BaseEventNode = event_res.tree
 	## WARNING 事件处理主逻辑

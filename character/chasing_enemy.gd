@@ -33,7 +33,7 @@ class_name ChasingEnemy
 func _ready() -> void:
 	update_astar_points()
 	player.pos_changed.connect(_update_path)
-	start_chasing()
+	#start_chasing()
 
 func _process(delta: float) -> void:
 	#if !GameManager.is_normal_state:return
@@ -41,10 +41,14 @@ func _process(delta: float) -> void:
 
 ## 开启追逐战
 func start_chasing():
-	chasing_enable = true
-	#AudioManager.start_music("")
-	await SceneManager.move_finished
+	print("追逐战1开始")
+	
+	#await SceneManager.move_finished
+	AudioManager.play_monster_laughing()
+	## 应用暗角效果
 	SFXVignette.get_sfx().apply_vignette(0.5)
+	await  GameManager.wait(across_delay_time)
+	chasing_enable = true
 	if !chasing_scene_list.is_empty(): 
 		SceneManager.on_player_move_pre.connect(_across_scene)
 		SceneManager.on_player_moved.connect(_across_restart)
@@ -105,7 +109,7 @@ func _attack(target:Vector2i):
 	var d = target - self.cell_pos
 	face_to(d)
 	print("门门门 - 准备攻击",)
-	await  GameManager.wait(0.1)
+	await  GameManager.wait(0.05)
 	if player.cell_pos == target && GameManager.is_normal_state:
 		complete_chasing()
 		return

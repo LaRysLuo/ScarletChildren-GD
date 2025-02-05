@@ -86,7 +86,7 @@ event_ex = SubResource("Resource_lnndi")
 
 [sub_resource type="Resource" id="Resource_72m2x"]
 script = ExtResource("3_khvt7")
-scene_path = "res://scenes/maps/2蔷薇馆2F - 浴室/map_蔷薇馆2f_浴室.tscn"
+scene_path = "res://scenes/maps/2蔷薇馆2F - 浴室/map_蔷薇馆2f-浴室.tscn"
 step1 = 2
 step2 = 2
 target_pos = Vector2i(13, 8)

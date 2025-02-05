@@ -813,6 +813,11 @@ light_mask = 2
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_oobjn")
+stamina = null
+running_mode = null
+count_time = null
+RECOVER_TIME = 1.0
+MAX_COUNT = 0.1
 sprite = ExtResource("2_genh3")
 idle_ext = ExtResource("4_j3qap")
 

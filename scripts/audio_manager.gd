@@ -26,6 +26,10 @@ func play_fault():
 func play_damage4():
 	play_se("damage4")
 
+## 怪物笑声
+func play_monster_laughing():
+	play_se("laughing1_fx")
+
 ## 播放光标移动
 func play_cursor_move():
 	play_se("Cursor1")

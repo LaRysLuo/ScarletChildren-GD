@@ -1,439 +1,478 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=78 format=3 uid="uid://p3dyvgl4q2bl"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=92 format=3 uid="uid://g8o4jgp8ly6e"]
 
-[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_xkvkh"]
-[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_yp317"]
-[ext_resource type="Script" path="res://event_editor/models/fadeout_data.gd" id="3_61doh"]
-[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_dhep5"]
-[ext_resource type="Script" path="res://event_editor/models/fadein_data.gd" id="4_fb4uq"]
-[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="4_y3cww"]
-[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="5_rc1ba"]
-[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="5_t3ill"]
-[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="6_07lfs"]
-[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="6_th5af"]
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_qhloc"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_8xj8a"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_oldma"]
+[ext_resource type="Script" path="res://event_editor/models/fadein_data.gd" id="4_k4vbk"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="5_iorsk"]
+[ext_resource type="Script" path="res://event_editor/models/fadeout_data.gd" id="6_f73y2"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="7_xgoch"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="8_g082e"]
+[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="9_uu8pr"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="10_bkxqs"]
 
-[sub_resource type="Resource" id="Resource_7frng"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_ywfbb"]
+script = ExtResource("5_iorsk")
+script_cmd = "GameManager.get_character(\"monster\").start_chasing()"
+children = Array[ExtResource("2_8xj8a")]([])
+node_type = 9
+pos = Vector2(10360, 40)
+
+[sub_resource type="Resource" id="Resource_5vf68"]
+script = ExtResource("2_8xj8a")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ywfbb")
+
+[sub_resource type="Resource" id="Resource_ok78m"]
+script = ExtResource("5_iorsk")
+script_cmd = ""
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_5vf68")])
+node_type = 9
+pos = Vector2(10040, 40)
+
+[sub_resource type="Resource" id="Resource_g7k4a"]
+script = ExtResource("2_8xj8a")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ok78m")
+
+[sub_resource type="Resource" id="Resource_otcqf"]
+script = ExtResource("3_oldma")
 text = "phantom_13"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_g7k4a")])
 node_type = 1
-pos = Vector2(9420, -20)
+pos = Vector2(9660, 0)
 
-[sub_resource type="Resource" id="Resource_u418e"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_5fngk"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_7frng")
+child = SubResource("Resource_otcqf")
 
-[sub_resource type="Resource" id="Resource_sydc0"]
-script = ExtResource("4_fb4uq")
+[sub_resource type="Resource" id="Resource_v4nrx"]
+script = ExtResource("4_k4vbk")
 time = 0.5
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_u418e")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_5fngk")])
 node_type = 5
-pos = Vector2(9160, 80)
+pos = Vector2(9460, 100)
 
-[sub_resource type="Resource" id="Resource_c5rkq"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_6un0v"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_sydc0")
+child = SubResource("Resource_v4nrx")
 
-[sub_resource type="Resource" id="Resource_oe8fw"]
-script = ExtResource("5_t3ill")
+[sub_resource type="Resource" id="Resource_tnwvq"]
+script = ExtResource("5_iorsk")
 script_cmd = "GameManager.move_event_to(\"monster\",Vector2i(12,7))"
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_c5rkq")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_6un0v")])
 node_type = 9
-pos = Vector2(8920, 40)
+pos = Vector2(9220, 60)
 
-[sub_resource type="Resource" id="Resource_ighoe"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_kx3rf"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_oe8fw")
+child = SubResource("Resource_tnwvq")
 
-[sub_resource type="Resource" id="Resource_x2r5l"]
-script = ExtResource("5_t3ill")
-script_cmd = "GameManager.set_event_visible(Vector2i(12,7),false)"
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_ighoe")])
+[sub_resource type="Resource" id="Resource_sa8eh"]
+script = ExtResource("8_g082e")
+time = 0.1
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_kx3rf")])
+node_type = 6
+pos = Vector2(8940, 100)
+
+[sub_resource type="Resource" id="Resource_gks53"]
+script = ExtResource("2_8xj8a")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_sa8eh")
+
+[sub_resource type="Resource" id="Resource_mpqad"]
+script = ExtResource("5_iorsk")
+script_cmd = "GameManager.move_event_to(\"phantom\",Vector2i(3,0))"
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_gks53")])
 node_type = 9
 pos = Vector2(8680, 40)
 
-[sub_resource type="Resource" id="Resource_st7em"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_x2c8q"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_x2r5l")
+child = SubResource("Resource_mpqad")
 
-[sub_resource type="Resource" id="Resource_d5nui"]
-script = ExtResource("3_61doh")
+[sub_resource type="Resource" id="Resource_ycvmf"]
+script = ExtResource("6_f73y2")
 time = 2.0
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_st7em")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_x2c8q")])
 node_type = 4
 pos = Vector2(8500, 80)
 
-[sub_resource type="Resource" id="Resource_7t0od"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_bns0j"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_d5nui")
+child = SubResource("Resource_ycvmf")
 
-[sub_resource type="Resource" id="Resource_csdui"]
-script = ExtResource("5_t3ill")
+[sub_resource type="Resource" id="Resource_ea5mf"]
+script = ExtResource("5_iorsk")
 script_cmd = "GameManager.char_show_glitch(\"phantom\",null)"
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_7t0od")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_bns0j")])
 node_type = 9
 pos = Vector2(8220, 20)
 
-[sub_resource type="Resource" id="Resource_s7pjh"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_popk7"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_csdui")
+child = SubResource("Resource_ea5mf")
 
-[sub_resource type="Resource" id="Resource_msieh"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_8agtg"]
+script = ExtResource("3_oldma")
 text = "phantom_12"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_s7pjh")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_popk7")])
 node_type = 1
 pos = Vector2(7840, -40)
 
-[sub_resource type="Resource" id="Resource_4vki0"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_d4mkh"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_msieh")
+child = SubResource("Resource_8agtg")
 
-[sub_resource type="Resource" id="Resource_l0gij"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_433yc"]
+script = ExtResource("3_oldma")
 text = "phantom_11"
-role = ExtResource("4_y3cww")
+role = ExtResource("7_xgoch")
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_4vki0")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_d4mkh")])
 node_type = 1
 pos = Vector2(7480, -40)
 
-[sub_resource type="Resource" id="Resource_evtq5"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_0r38h"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_l0gij")
+child = SubResource("Resource_433yc")
 
-[sub_resource type="Resource" id="Resource_ktvrk"]
-script = ExtResource("5_t3ill")
+[sub_resource type="Resource" id="Resource_6gooc"]
+script = ExtResource("5_iorsk")
 script_cmd = "await   GameManager.char_show_glitch(\"phantom\",0.3)"
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_evtq5")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_0r38h")])
 node_type = 9
 pos = Vector2(7220, 0)
 
-[sub_resource type="Resource" id="Resource_xrhqr"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_gyjje"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_ktvrk")
+child = SubResource("Resource_6gooc")
 
-[sub_resource type="Resource" id="Resource_bb84d"]
-script = ExtResource("6_07lfs")
+[sub_resource type="Resource" id="Resource_2u8nc"]
+script = ExtResource("8_g082e")
 time = 0.3
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_xrhqr")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_gyjje")])
 node_type = 6
 pos = Vector2(6960, 60)
 
-[sub_resource type="Resource" id="Resource_c6e1r"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_pncco"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_bb84d")
+child = SubResource("Resource_2u8nc")
 
-[sub_resource type="Resource" id="Resource_ucnvi"]
-script = ExtResource("5_t3ill")
+[sub_resource type="Resource" id="Resource_uy82h"]
+script = ExtResource("5_iorsk")
 script_cmd = "await GameManager.char_show_glitch(\"phantom\",0.3)"
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_c6e1r")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_pncco")])
 node_type = 9
 pos = Vector2(6680, 0)
 
-[sub_resource type="Resource" id="Resource_xpg7x"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_gwm5r"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_ucnvi")
+child = SubResource("Resource_uy82h")
 
-[sub_resource type="Resource" id="Resource_r2yfh"]
-script = ExtResource("5_t3ill")
+[sub_resource type="Resource" id="Resource_navxx"]
+script = ExtResource("5_iorsk")
 script_cmd = "SFXVignette.get_sfx().apply_vignette(0.7,0.9)"
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_xpg7x")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_gwm5r")])
 node_type = 9
 pos = Vector2(6420, 0)
 
-[sub_resource type="Resource" id="Resource_7bkn1"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_frjsh"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_r2yfh")
+child = SubResource("Resource_navxx")
 
-[sub_resource type="Resource" id="Resource_r3x6w"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_ginqk"]
+script = ExtResource("3_oldma")
 text = "phantom_15"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_7bkn1")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_frjsh")])
 node_type = 1
 pos = Vector2(6060, -40)
 
-[sub_resource type="Resource" id="Resource_x0lw5"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_sdnaf"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_r3x6w")
+child = SubResource("Resource_ginqk")
 
-[sub_resource type="Resource" id="Resource_yv1o2"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_uk1tq"]
+script = ExtResource("3_oldma")
 text = "phantom_10"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_x0lw5")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_sdnaf")])
 node_type = 1
 pos = Vector2(5700, -40)
 
-[sub_resource type="Resource" id="Resource_8bvl1"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_ek2br"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_yv1o2")
+child = SubResource("Resource_uk1tq")
 
-[sub_resource type="Resource" id="Resource_vqgqu"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_mv6wt"]
+script = ExtResource("3_oldma")
 text = "phantom_09"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_8bvl1")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_ek2br")])
 node_type = 1
 pos = Vector2(5360, -40)
 
-[sub_resource type="Resource" id="Resource_s6q6y"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_1mmgh"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_vqgqu")
+child = SubResource("Resource_mv6wt")
 
-[sub_resource type="Resource" id="Resource_mtmec"]
-script = ExtResource("5_t3ill")
+[sub_resource type="Resource" id="Resource_i4tub"]
+script = ExtResource("5_iorsk")
 script_cmd = "SFXVignette.get_sfx().apply_vignette(0.4,0.3)"
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_s6q6y")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_1mmgh")])
 node_type = 9
 pos = Vector2(5100, 0)
 
-[sub_resource type="Resource" id="Resource_sxddp"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_o1aqv"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_mtmec")
+child = SubResource("Resource_i4tub")
 
-[sub_resource type="Resource" id="Resource_jf5qh"]
-script = ExtResource("5_t3ill")
+[sub_resource type="Resource" id="Resource_bmowd"]
+script = ExtResource("5_iorsk")
 script_cmd = "GameManager.char_show_glitch(\"phantom\",0.3)"
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_sxddp")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_o1aqv")])
 node_type = 9
 pos = Vector2(4840, 0)
 
-[sub_resource type="Resource" id="Resource_d4wct"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_nwh5o"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_jf5qh")
+child = SubResource("Resource_bmowd")
 
-[sub_resource type="Resource" id="Resource_6iees"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_p1qbm"]
+script = ExtResource("3_oldma")
 text = "phantom_08"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_d4wct")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_nwh5o")])
 node_type = 1
 pos = Vector2(4440, -40)
 
-[sub_resource type="Resource" id="Resource_vonf8"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_ckgxc"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_6iees")
+child = SubResource("Resource_p1qbm")
 
-[sub_resource type="Resource" id="Resource_rcunp"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_cufso"]
+script = ExtResource("3_oldma")
 text = "phantom_14"
-role = ExtResource("4_y3cww")
+role = ExtResource("7_xgoch")
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_vonf8")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_ckgxc")])
 node_type = 1
 pos = Vector2(4060, -40)
 
-[sub_resource type="Resource" id="Resource_pt0eh"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_7snrb"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_rcunp")
+child = SubResource("Resource_cufso")
 
-[sub_resource type="Resource" id="Resource_5jgw2"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_46j18"]
+script = ExtResource("3_oldma")
 text = "phantom_07"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_pt0eh")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_7snrb")])
 node_type = 1
 pos = Vector2(3680, -40)
 
-[sub_resource type="Resource" id="Resource_dqxdn"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_bstd8"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_5jgw2")
+child = SubResource("Resource_46j18")
 
-[sub_resource type="Resource" id="Resource_w0cdy"]
-script = ExtResource("5_t3ill")
+[sub_resource type="Resource" id="Resource_2n2d0"]
+script = ExtResource("5_iorsk")
 script_cmd = "SFXVignette.get_sfx().apply_vignette(0.2,0.3)"
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_dqxdn")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_bstd8")])
 node_type = 9
 pos = Vector2(3360, 0)
 
-[sub_resource type="Resource" id="Resource_iw8vh"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_iju6d"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_w0cdy")
+child = SubResource("Resource_2n2d0")
 
-[sub_resource type="Resource" id="Resource_g0se5"]
-script = ExtResource("5_t3ill")
+[sub_resource type="Resource" id="Resource_bkds3"]
+script = ExtResource("5_iorsk")
 script_cmd = "GameManager.char_show_glitch(\"phantom\",0.3)"
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_iw8vh")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_iju6d")])
 node_type = 9
 pos = Vector2(3080, 0)
 
-[sub_resource type="Resource" id="Resource_2ji7d"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_wi7gj"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_g0se5")
+child = SubResource("Resource_bkds3")
 
-[sub_resource type="Resource" id="Resource_3862i"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_nk3kk"]
+script = ExtResource("3_oldma")
 text = "phantom_06"
-role = ExtResource("4_y3cww")
+role = ExtResource("7_xgoch")
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_2ji7d")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_wi7gj")])
 node_type = 1
 pos = Vector2(2680, -40)
 
-[sub_resource type="Resource" id="Resource_2ocrp"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_5pb8s"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_3862i")
+child = SubResource("Resource_nk3kk")
 
-[sub_resource type="Resource" id="Resource_gi0o8"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_3rh33"]
+script = ExtResource("3_oldma")
 text = "phantom_05"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_2ocrp")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_5pb8s")])
 node_type = 1
 pos = Vector2(2320, -40)
 
-[sub_resource type="Resource" id="Resource_1qrrr"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_1sek5"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_gi0o8")
+child = SubResource("Resource_3rh33")
 
-[sub_resource type="Resource" id="Resource_s1mld"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_pg3fl"]
+script = ExtResource("3_oldma")
 text = "phantom_04"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_1qrrr")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_1sek5")])
 node_type = 1
 pos = Vector2(1960, -40)
 
-[sub_resource type="Resource" id="Resource_c7js6"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_tc6e2"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_s1mld")
+child = SubResource("Resource_pg3fl")
 
-[sub_resource type="Resource" id="Resource_bijvd"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_y252p"]
+script = ExtResource("3_oldma")
 text = "phantom_03"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_c7js6")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_tc6e2")])
 node_type = 1
 pos = Vector2(1600, -40)
 
-[sub_resource type="Resource" id="Resource_cxqym"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_xnoi4"]
+script = ExtResource("2_8xj8a")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_bijvd")
+child = SubResource("Resource_y252p")
 
-[sub_resource type="Resource" id="Resource_oq0sf"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_w4uyj"]
+script = ExtResource("3_oldma")
 text = "phantom_02_err2"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([])
+children = Array[ExtResource("2_8xj8a")]([])
 node_type = 1
 pos = Vector2(1960, 380)
 
-[sub_resource type="Resource" id="Resource_3bvri"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_lstup"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_oq0sf")
+child = SubResource("Resource_w4uyj")
 
-[sub_resource type="Resource" id="Resource_ln1ej"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_j332h"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_oq0sf")
+child = SubResource("Resource_w4uyj")
 
-[sub_resource type="Resource" id="Resource_svp5q"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_njf7c"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_oq0sf")
+child = SubResource("Resource_w4uyj")
 
-[sub_resource type="Resource" id="Resource_2d0io"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_svdtn"]
+script = ExtResource("3_oldma")
 text = "phantom_02_err"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_3bvri"), SubResource("Resource_ln1ej"), SubResource("Resource_svp5q")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_lstup"), SubResource("Resource_j332h"), SubResource("Resource_njf7c")])
 node_type = 1
 pos = Vector2(1560, 360)
 
-[sub_resource type="Resource" id="Resource_eatvp"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_ct23d"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_2d0io")
+child = SubResource("Resource_svdtn")
 
-[sub_resource type="Resource" id="Resource_v5ocr"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_sg8oj"]
+script = ExtResource("2_8xj8a")
 from_port_index = 2
 to_port_index = 0
-child = SubResource("Resource_2d0io")
+child = SubResource("Resource_svdtn")
 
-[sub_resource type="Resource" id="Resource_uqbm7"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_a7i3e"]
+script = ExtResource("2_8xj8a")
 from_port_index = 3
 to_port_index = 0
-child = SubResource("Resource_2d0io")
+child = SubResource("Resource_svdtn")
 
-[sub_resource type="Resource" id="Resource_tukhn"]
-script = ExtResource("5_rc1ba")
+[sub_resource type="Resource" id="Resource_ga5am"]
+script = ExtResource("9_uu8pr")
 options = Array[Dictionary]([{
 "child_index": 0,
 "id": 0,
@@ -451,58 +490,110 @@ options = Array[Dictionary]([{
 "id": 3,
 "name": "phantom_02_opt4"
 }])
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_cxqym"), SubResource("Resource_eatvp"), SubResource("Resource_v5ocr"), SubResource("Resource_uqbm7")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_xnoi4"), SubResource("Resource_ct23d"), SubResource("Resource_sg8oj"), SubResource("Resource_a7i3e")])
 node_type = 2
 pos = Vector2(1160, 120)
 
-[sub_resource type="Resource" id="Resource_re7jx"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_a1uv7"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_tukhn")
+child = SubResource("Resource_ga5am")
 
-[sub_resource type="Resource" id="Resource_bqjnd"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_76jv7"]
+script = ExtResource("3_oldma")
 text = "phantom_02"
-role = ExtResource("4_y3cww")
+role = ExtResource("7_xgoch")
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_re7jx")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_a1uv7")])
 node_type = 1
 pos = Vector2(780, 120)
 
-[sub_resource type="Resource" id="Resource_rdsn7"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_0lbap"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_bqjnd")
+child = SubResource("Resource_76jv7")
 
-[sub_resource type="Resource" id="Resource_grnfa"]
-script = ExtResource("3_dhep5")
+[sub_resource type="Resource" id="Resource_uq6ae"]
+script = ExtResource("3_oldma")
 text = "phantom_01"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_rdsn7")])
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_0lbap")])
 node_type = 1
 pos = Vector2(420, 120)
 
-[sub_resource type="Resource" id="Resource_7unn4"]
-script = ExtResource("2_yp317")
+[sub_resource type="Resource" id="Resource_vkvk0"]
+script = ExtResource("2_8xj8a")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_grnfa")
+child = SubResource("Resource_uq6ae")
 
-[sub_resource type="Resource" id="Resource_1ylig"]
-script = ExtResource("6_th5af")
-children = Array[ExtResource("2_yp317")]([SubResource("Resource_7unn4")])
+[sub_resource type="Resource" id="Resource_ms56m"]
+script = ExtResource("4_k4vbk")
+time = 0.5
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_vkvk0")])
+node_type = 5
+pos = Vector2(200, 220)
+
+[sub_resource type="Resource" id="Resource_02i5v"]
+script = ExtResource("2_8xj8a")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ms56m")
+
+[sub_resource type="Resource" id="Resource_l2ua2"]
+script = ExtResource("5_iorsk")
+script_cmd = "GameManager.player.face_to(Vector2i.UP)"
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_02i5v")])
+node_type = 9
+pos = Vector2(-120, 160)
+
+[sub_resource type="Resource" id="Resource_dhcpk"]
+script = ExtResource("2_8xj8a")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_l2ua2")
+
+[sub_resource type="Resource" id="Resource_ujs2m"]
+script = ExtResource("5_iorsk")
+script_cmd = "GameManager.player.set_pos(Vector2i(12,8))"
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_dhcpk")])
+node_type = 9
+pos = Vector2(-380, 160)
+
+[sub_resource type="Resource" id="Resource_x18u0"]
+script = ExtResource("2_8xj8a")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ujs2m")
+
+[sub_resource type="Resource" id="Resource_oytyu"]
+script = ExtResource("6_f73y2")
+time = 0.1
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_x18u0")])
+node_type = 4
+pos = Vector2(-560, 220)
+
+[sub_resource type="Resource" id="Resource_3p6aj"]
+script = ExtResource("2_8xj8a")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_oytyu")
+
+[sub_resource type="Resource" id="Resource_orenf"]
+script = ExtResource("10_bkxqs")
+children = Array[ExtResource("2_8xj8a")]([SubResource("Resource_3p6aj")])
 node_type = 0
-pos = Vector2(160, 220)
+pos = Vector2(-800, 220)
 
 [resource]
-script = ExtResource("1_xkvkh")
+script = ExtResource("1_qhloc")
 title = "幽灵"
 is_collsion = true
 trigger_type = 1
 one_shot = false
-tree = SubResource("Resource_1ylig")
+tree = SubResource("Resource_orenf")
 map = {}

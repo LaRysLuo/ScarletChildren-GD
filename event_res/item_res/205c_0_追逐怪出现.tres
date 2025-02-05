@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://b84cuqc25v467"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_50frk"]
+
+[resource]
+script = ExtResource("1_50frk")
+item_id = &"205c_0_追逐怪出现"
+item_name = &"追逐怪出现"
+item_catagory = 0
+item_desc = ""
+is_finished = true
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_50frk")]([])

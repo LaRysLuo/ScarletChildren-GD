@@ -154,7 +154,7 @@ func _find_around_enemy(coord:Vector2i) -> ChasingEnemy:
 		var check_pos = coord + check_dir
 		var event:CharacterBase =	get_event(check_pos)
 		print("enemy=",event)
-		if event && event is ChasingEnemy:
+		if event && event is ChasingEnemy && event.chasing_enable:
 			return event
 	return null
 
