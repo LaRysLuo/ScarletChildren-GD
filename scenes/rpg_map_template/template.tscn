@@ -19,11 +19,11 @@ right_limit = 639.0
 position = Vector2(320, 320)
 
 [node name="2" type="Sprite2D" parent="Maps"]
-z_index = 12
+z_index = 10
 position = Vector2(320, 320)
 
 [node name="Objects" type="TileMapLayer" parent="Maps"]
-z_index = 10
+z_index = 1
 tile_set = ExtResource("6_lfsu3")
 rendering_quadrant_size = 32
 

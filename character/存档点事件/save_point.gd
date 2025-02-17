@@ -11,7 +11,7 @@ var anim:AnimatedSprite2D:
 	get(): return get_node("./AnimatedSprite2D2")
 
 func _ready() -> void:
-	GameManager.player.on_interact_changed.connect(change_person_shadow)
+	#GameManager.player.on_interact_changed.connect(change_person_shadow)
 	pass
 
 ## 重写交互逻辑

@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://fwltuxos1oca"]
+[gd_scene load_steps=112 format=3 uid="uid://fwltuxos1oca"]
 
 [ext_resource type="Texture2D" uid="uid://c7kc2k8pcpqs7" path="res://assets/tileset0/111.png" id="1_cnw4s"]
 [ext_resource type="Script" path="res://scripts/player_new.gd" id="1_oobjn"]
@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://b3vo7lgy8et3l" path="res://assets/characters/$礼诗原地待机.png" id="4_j3qap"]
 [ext_resource type="Texture2D" uid="uid://5usglxkqlipg" path="res://assets/system/Balloon.png" id="5_c51be"]
 [ext_resource type="Texture2D" uid="uid://c06wfx6ssyllv" path="res://assets/light/light_tex.tres" id="6_8oerm"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qbc0d"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n8bio"]
+light_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2bg8n"]
 atlas = ExtResource("5_c51be")
@@ -625,6 +631,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b2jnr"]
+light_mode = 1
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bgxlv"]
 atlas = ExtResource("2_genh3")
 region = Rect2(32, 0, 32, 48)
@@ -813,32 +822,38 @@ light_mask = 2
 z_index = 1
 z_as_relative = false
 script = ExtResource("1_oobjn")
-stamina = null
-running_mode = null
-count_time = null
 RECOVER_TIME = 1.0
 MAX_COUNT = 0.1
-move_speed_factor = null
 sprite = ExtResource("2_genh3")
 idle_ext = ExtResource("4_j3qap")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-z_index = 99
-position = Vector2(18.75, -44.75)
-scale = Vector2(0.765625, 0.765625)
-texture = ExtResource("1_cnw4s")
-region_enabled = true
-region_rect = Rect2(64, 32, 32, 32)
+[node name="Attach" type="Node2D" parent="."]
+light_mask = 2
+z_index = 11
+material = SubResource("CanvasItemMaterial_qbc0d")
 
-[node name="BalloonSprite" type="AnimatedSprite2D" parent="."]
+[node name="BalloonSprite" type="AnimatedSprite2D" parent="Attach"]
 visible = false
+light_mask = 0
 z_index = 99
+material = SubResource("CanvasItemMaterial_n8bio")
 position = Vector2(0, -58)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_2h14l")
 animation = &"silent"
 autoplay = "none"
+
+[node name="Sprite2D" type="Sprite2D" parent="Attach"]
+visible = false
+light_mask = 0
+z_index = 11
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_b2jnr")
+position = Vector2(18.75, -44.75)
+scale = Vector2(0.765625, 0.765625)
+texture = ExtResource("1_cnw4s")
+region_enabled = true
+region_rect = Rect2(64, 32, 32, 32)
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." groups=["light"]]
 light_mask = 2
@@ -856,13 +871,11 @@ limit_bottom = 640
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Attach" type="Node2D" parent="."]
-
 [node name="Lighting" type="Node2D" parent="."]
 
 [node name="SelfLight" type="PointLight2D" parent="Lighting"]
 light_mask = 0
-position = Vector2(0, 9)
+position = Vector2(0, -17)
 color = Color(0.976545, 0.8911, 0.874045, 1)
 energy = 1.14
 blend_mode = 2

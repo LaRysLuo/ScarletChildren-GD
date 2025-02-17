@@ -199,7 +199,7 @@ animations = [{
 event_name = "phantom"
 sprite = ExtResource("2_a2iqv")
 
-[node name="AnimatedSprite2D2" parent="." index="4"]
+[node name="AnimatedSprite2D2" parent="." index="2"]
 material = SubResource("ShaderMaterial_eherb")
 sprite_frames = SubResource("SpriteFrames_dj8i1")
 animation = &"idle_down"

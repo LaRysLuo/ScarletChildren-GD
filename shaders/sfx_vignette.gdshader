@@ -22,9 +22,9 @@ void fragment() {
 	    // 计算从屏幕中心到当前像素的距离
 	    vec2 center = vec2(0.5, 0.5); // 屏幕中心
 	    float distance_from_center = distance(screen_uv, center);
-		
+
 		float time = abs(sin(TIME * animation_speed * 3.14159 * 2.0));
-		
+
 	    // 计算暗角效果
 	    float vignette = smoothstep(vignette_radius, vignette_radius + 0.1, distance_from_center);
 	    vignette = vignette * vignette_strength * vignette_factor  * (animation_range * time);
@@ -34,6 +34,6 @@ void fragment() {
 	    // 应用暗角效果
 	    COLOR =  final_color;
 	}
-	
+
 
 }

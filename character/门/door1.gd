@@ -102,6 +102,16 @@ func close_door():
 	await play_anim("close")
 	await  play_anim("default")
 
+## 可重写虚方法
+func _play_open_se():
+	AudioManager.play_door_open()
+	pass
+	
+## 可重写虚方法
+func _play_close_se():
+	AudioManager.play_door_close()
+	pass
+
 ## 播放事件动画
 func play_anim(anim_name:String,custom_spd:float = 1):
 	if anim_name == "default":
@@ -112,9 +122,9 @@ func play_anim(anim_name:String,custom_spd:float = 1):
 	if !anim:return
 	## 播放开关门声音
 	if anim_name == "open":
-		AudioManager.play_door_open()
+		_play_open_se()
 	if anim_name == "close":
-		AudioManager.play_door_close()
+		_play_close_se()
 	var frames = anim.sprite_frames
 	if !frames:return
 	## 判断是否存在该动画名称的动画

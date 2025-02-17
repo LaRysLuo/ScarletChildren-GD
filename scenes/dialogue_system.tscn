@@ -73,11 +73,10 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("5_e3ucw")
 region = Rect2(160, 0, 32, 32)
 
-[node name="DialogueSystem" type="CanvasLayer" node_paths=PackedStringArray("nextable_sign_tr")]
+[node name="DialogueSystem" type="CanvasLayer"]
 process_priority = 10
 layer = 11
 script = ExtResource("1_dckcq")
-nextable_sign_tr = NodePath("DialogueBox/MarginContainer/VBoxContainer/Control2")
 
 [node name="DialogueBox" type="PanelContainer" parent="."]
 anchors_preset = 15

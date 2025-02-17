@@ -554,6 +554,7 @@ child = SubResource("Resource_fv7fi")
 
 [sub_resource type="Resource" id="Resource_d2e2l"]
 script = ExtResource("10_hrf6w")
+time = 0.5
 children = Array[ExtResource("2_yohem")]([SubResource("Resource_8kj3k")])
 node_type = 5
 pos = Vector2(960, 180)

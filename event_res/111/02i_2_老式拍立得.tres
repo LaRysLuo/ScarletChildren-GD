@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://d02jp6iuewemq"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_btawm"]
+
+[resource]
+script = ExtResource("1_btawm")
+item_id = &"02i_2_老式拍立得"
+item_name = &"老式拍立得"
+item_catagory = 1
+item_desc = "插着一次性相纸，可进行拍照"
+err_desc = ""
+relations = Array[ExtResource("1_btawm")]([])

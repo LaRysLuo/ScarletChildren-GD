@@ -32,20 +32,19 @@ enum TriggerType {
 @export var tree:BaseEventNode ## 
 @export var map:Dictionary  ## 字典
 
-func _init(tree:BaseEventNode = null) -> void:
-	self.tree = tree
+func _init(_tree:BaseEventNode = null) -> void:
+	self.tree = _tree
 
 ## 查看语句数量，未完善
-func size():
-	var count:int = 1
-	var node = self.tree
-	print("node:",node)
-	if !node: return 0
-	while(true):
-		node = node.next() ## 获得下一个
-		if node:count+=1
-		else: break
-	return count
-	pass
+#func size():
+	#var count:int = 1
+	#var node = self.tree
+	#print("node:",node)
+	#if !node: return 0
+	#while(true):
+		#node = node.next() ## 获得下一个
+		#if node:count+=1
+		#else: break
+	#return count
 	
 	

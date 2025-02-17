@@ -3,7 +3,7 @@ class_name DataPlayer
 
 ## 这是玩家背包中的所有道具
 #包含了已经使用完毕不显示的道具
-@export var items:Array[Item]
+@export var items:Array[Item] = []
 
 ## 获取背包中可展示的道具
 @export var get_shown_items:Array[Item]:
@@ -85,14 +85,14 @@ var recipes:Dictionary = {
 	## 失去没有相纸的相机
 	## 获得装有永久相纸的相机
 	["02i_0_老式拍立得","03i_0_永久相纸"]: func(craft_list): 
-		complete_item(craft_list[1])
+		remove_item(craft_list[1])
 		update_item(craft_list[0],"02i_1_老式拍立得"),
 	## 在没有相纸的相机上组装一次性相纸
 	## 失去没有相纸的相机
 	## 失去一次性相纸
 	## 获得装有一次性相纸的相机
 	["02i_0_老式拍立得","04i_一次性相纸"]:func(craft_list):
-		complete_item(craft_list[1])
+		remove_item(craft_list[1])
 		update_item(craft_list[0],"02i_2_老式拍立得"),
 	## 在有永久相纸的相机上组装一次性相纸
 	## 	失去一次性相纸
@@ -100,21 +100,22 @@ var recipes:Dictionary = {
 	## 获得永久相纸
 	## 获得装有一次性相纸的相机
 	["02i_1_老式拍立得","04i_一次性相纸"]:func(craft_list):
-		complete_item(craft_list[1])
+		remove_item(craft_list[1])
 		update_item(craft_list[0],"02i_2_老式拍立得")
 		gain_item_array(["03i_0_永久相纸"]),
 	["02i_2_老式拍立得","03i_0_永久相纸"]:func(craft_list):
-		complete_item(craft_list[1])
+		remove_item(craft_list[1])
 		update_item(craft_list[0],"02i_1_老式拍立得")
 		gain_item_array(["04i_一次性相纸"]),
 	["06i_3_手电筒（魔法灯）","103i_0_5号电池"]:func(craft_list):
-		complete_item(craft_list[1])
+		remove_item(craft_list[1])
 		update_item(craft_list[0],"06i_4_手电筒（魔法灯有电池）")
 }
 
 
 ## 判断背包中是否存在指定道具
 func has_item(item_id:StringName,is_finished:bool = false) -> bool:
+	print("items=",items)
 	var filters
 	if !is_finished:
 		filters = items.filter(func(item:Item): return item.item_id == item_id && item.is_finished == false)
@@ -122,36 +123,38 @@ func has_item(item_id:StringName,is_finished:bool = false) -> bool:
 		filters = items.filter(func(item:Item): return item.item_id == item_id)
 	if filters.is_empty(): return false
 	return true
-	
-	
-	
 
-func load_items() -> void:
-	items.append(load(path + "/01c_迷之身影.tres"))
-	items.append(load(path + "/02i_0_老式拍立得.tres"))
-	items.append(load(path + "/03i_0_永久相纸.tres"))
-	items.append(load(path + "/04i_一次性相纸.tres"))
+
+func load_items_at_start() -> void:
+	pass
+	#items.append(load(path + "/01c_迷之身影.tres"))
+	#items.append(load(path + "/02i_0_老式拍立得.tres"))
+	#items.append(load(path + "/03i_0_永久相纸.tres"))
+	#items.append(load(path + "/04i_一次性相纸.tres"))
 
 ## 载入所有道具
 # 并将物品的使用效果赋予
 func load_items_raw():
 	var dir = DirAccess.open(path)
 	if dir:
+		print("目录为:",dir)
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
+		if !OS.is_debug_build():
+			file_name = file_name.get_basename()
+		print("文件名:",file_name)
 		while file_name != "":
 			if !dir.current_is_dir():
-				var item:Item = load(path+"/" + file_name) as Item
-				#var callback = item_effect.get(item.item_id)
-				#print("道具%s的callback=%s",[item.item_name,callback])
+				var item:Item = load(path+"/" + file_name )
+				print("文件名:",file_name)
 				var callback_new = item_effect_config.get(item.item_id)
-				#if callback: 
-					#item.use_event = callback
 				if callback_new: 
 					item.use_event_new = load(callback_new)
 				## TODO 当前在将旧的Callback更换成新的EventRes
 				items_raw.append(item) 
 			file_name = dir.get_next()
+			if !OS.is_debug_build():
+				file_name = file_name.get_basename()
 		dir.list_dir_end()
 	else: print("没有该目录")
 
@@ -193,7 +196,7 @@ func trigger_item(item_key:StringName,first_read:bool):
 	})
 
 ## 移出物品 将物品隐藏
-func complete_item(item_key:String,ingore_notify:bool = false) -> String:
+func remove_item(item_key:String,ingore_notify:bool = false) -> String:
 	var item:Item = find_item(item_key)
 	print("item_key=",item)
 	if !item: return ""
@@ -219,12 +222,6 @@ func find_item_from_raw(item_key:String) ->Item:
 	return null
 
 	
-## WARNING 已弃用
-func remove_item_array(items:Array[Item]):
-	pass
-	#for item in items:
-		#remove_item(item)
-	
 ## 获得物品	
 #GameManager.data_player.gain_item("201c_0_餐厅的八音盒")
 func gain_item(item_key:String,ingore_notify:bool = false):
@@ -238,7 +235,7 @@ func gain_item(item_key:String,ingore_notify:bool = false):
 # item_gain_key表示获得到背包的道具
 # GameManager.data_player.update_item("201c_0_餐厅的八音盒","201c_1_餐厅的八音盒")
 func update_item(to_lose:String,to_gain:String):
-	var item_name:String = complete_item(to_lose,true)
+	var item_name:String = remove_item(to_lose,true)
 	gain_item_array([to_gain],true)
 	on_player_item_changed.emit(item_name,2)
 	on_bag_item_changed.emit()

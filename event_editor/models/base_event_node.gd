@@ -34,10 +34,10 @@ const ConditionNode = 17 ## 条件判断
 @export var pos:Vector2
 
 ## 初始化
-func _init(node_type:int = 0,pos:Vector2 = Vector2.ZERO,children:Array[ChildrenNodeConfig] = []) -> void:
-	self.node_type = node_type
-	self.pos = pos
-	self.children = children
+func _init(_node_type:int = 0,_pos:Vector2 = Vector2.ZERO,_children:Array[ChildrenNodeConfig] = []) -> void:
+	self.node_type = _node_type
+	self.pos = _pos
+	self.children = _children
 
 ## 找到下一个子节点
 func next(index:int=0) -> BaseEventNode:
@@ -47,17 +47,15 @@ func next(index:int=0) -> BaseEventNode:
 	return filters[0].child
 
 ## 查看语句数量，未完善
-func size() -> int:
-	var count:int = 1
-	var node = self
-	while(true):
-		node = next() ## 获得下一个
-		if node: count+=1
-		else: break
-	return count
-	pass
+#func size() -> int:
+	#var count:int = 1
+	#var node = self
+	#while(true):
+		#node = next() ## 获得下一个
+		#if node: count+=1
+		#else: break
+	#return count
 
 ## 在游戏中执行事件
-func _execute(event,args):
+func _execute(_event,_args):
 	printerr("没有重写%s游戏内逻辑" %node_type)
-	pass

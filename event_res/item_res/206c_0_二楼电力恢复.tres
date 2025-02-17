@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://wqctyjwfd2x2"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_xyiqi"]
+
+[resource]
+script = ExtResource("1_xyiqi")
+item_id = &"206c_0_二楼电力恢复"
+item_name = &"二楼电力恢复"
+item_catagory = 2
+item_desc = ""
+is_finished = true
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_xyiqi")]([])

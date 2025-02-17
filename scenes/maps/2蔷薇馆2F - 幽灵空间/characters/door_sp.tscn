@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cbx515yqp0dh8"]
 
-[ext_resource type="Script" path="res://character/门/door1.gd" id="1_2g17j"]
+[ext_resource type="Script" path="res://scenes/maps/2蔷薇馆2F - 幽灵空间/characters/door_sp.gd" id="1_6v2m0"]
 [ext_resource type="Texture2D" uid="uid://1ov2a03351ks" path="res://scenes/maps/2蔷薇馆2F - 幽灵空间/characters/assets/幽灵门.png" id="2_c815b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yogc0"]
@@ -30,7 +30,7 @@ animations = [{
 z_index = 1
 z_as_relative = false
 position = Vector2(0, 1)
-script = ExtResource("1_2g17j")
+script = ExtResource("1_6v2m0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 99

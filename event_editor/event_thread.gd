@@ -11,9 +11,9 @@ func _init() -> void:
 	pass
 
 ## 触发事件封装
-func trigger_event(event:BaseEventNode,trigger_self:Event,args = {}):
-	self.args = args
-	_do_next(event,trigger_self)
+func trigger_event(_event:BaseEventNode,_trigger_self:Event,_args = {}):
+	self.args = _args
+	_do_next(_event,_trigger_self)
 	return self
 
 ## 内部方法

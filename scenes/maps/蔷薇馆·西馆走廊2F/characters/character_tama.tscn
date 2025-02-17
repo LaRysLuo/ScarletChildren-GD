@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuvgikq71xgxj"]
+[gd_scene load_steps=8 format=3 uid="uid://cuvgikq71xgxj"]
 
 [ext_resource type="PackedScene" uid="uid://peicqc66pvva" path="res://character/事件模板.tscn" id="1_xjh7a"]
 [ext_resource type="Texture2D" uid="uid://cxvi1vn3mv7ra" path="res://scenes/maps/蔷薇馆·西馆走廊2F/characters/assets/光珠.png" id="2_jyl27"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bopx4"]
+light_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uif5u"]
 atlas = ExtResource("2_jyl27")
@@ -36,6 +39,7 @@ animations = [{
 event_name = "tama"
 
 [node name="AnimatedSprite2D2" parent="." index="1"]
+material = SubResource("CanvasItemMaterial_bopx4")
 sprite_frames = SubResource("SpriteFrames_5a6qs")
 autoplay = "default"
 frame_progress = 0.803027

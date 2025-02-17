@@ -1,0 +1,786 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=110 format=3 uid="uid://dg1l200uwwhcw"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_gu2f0"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_x1ujw"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="3_7glfx"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="3_14qw2"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_o8gat"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_nq3aj"]
+[ext_resource type="Script" path="res://event_editor/models/fadein_data.gd" id="4_tg23o"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="5_yesv5"]
+[ext_resource type="Script" path="res://event_editor/models/fadeout_data.gd" id="6_lc1va"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="7_26yhe"]
+
+[sub_resource type="Resource" id="Resource_4th7m"]
+script = ExtResource("3_o8gat")
+script_cmd = "SceneManager.navigate_to(\"scene_demo01\")"
+children = Array[ExtResource("2_x1ujw")]([])
+node_type = 9
+pos = Vector2(15960, 300)
+
+[sub_resource type="Resource" id="Resource_2t4eq"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_4th7m")
+
+[sub_resource type="Resource" id="Resource_jn1on"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing22"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_2t4eq")])
+node_type = 1
+pos = Vector2(15600, 260)
+
+[sub_resource type="Resource" id="Resource_yj48q"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_jn1on")
+
+[sub_resource type="Resource" id="Resource_cx1ci"]
+script = ExtResource("5_yesv5")
+time = 0.2
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_yj48q")])
+node_type = 6
+pos = Vector2(15360, 320)
+
+[sub_resource type="Resource" id="Resource_h3je3"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_cx1ci")
+
+[sub_resource type="Resource" id="Resource_qhw1b"]
+script = ExtResource("3_o8gat")
+script_cmd = "await AudioManager.play_monster_roaning2()"
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_h3je3")])
+node_type = 9
+pos = Vector2(15120, 280)
+
+[sub_resource type="Resource" id="Resource_ejvie"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_qhw1b")
+
+[sub_resource type="Resource" id="Resource_buiko"]
+script = ExtResource("5_yesv5")
+time = 0.1
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_ejvie")])
+node_type = 6
+pos = Vector2(14820, 340)
+
+[sub_resource type="Resource" id="Resource_owvyq"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_buiko")
+
+[sub_resource type="Resource" id="Resource_brsm4"]
+script = ExtResource("3_o8gat")
+script_cmd = "await AudioManager. play_tumbling2()"
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_owvyq")])
+node_type = 9
+pos = Vector2(14540, 280)
+
+[sub_resource type="Resource" id="Resource_bokbq"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_brsm4")
+
+[sub_resource type="Resource" id="Resource_iknfa"]
+script = ExtResource("6_lc1va")
+time = 0.5
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_bokbq")])
+node_type = 4
+pos = Vector2(14360, 320)
+
+[sub_resource type="Resource" id="Resource_l3hil"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_iknfa")
+
+[sub_resource type="Resource" id="Resource_dnq6q"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing21"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_l3hil")])
+node_type = 1
+pos = Vector2(13980, 220)
+
+[sub_resource type="Resource" id="Resource_5b8xy"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_dnq6q")
+
+[sub_resource type="Resource" id="Resource_p5nou"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing20"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_5b8xy")])
+node_type = 1
+pos = Vector2(13620, 220)
+
+[sub_resource type="Resource" id="Resource_k5nft"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_p5nou")
+
+[sub_resource type="Resource" id="Resource_kh5mr"]
+script = ExtResource("3_14qw2")
+move_type = 2
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 0
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_k5nft")])
+node_type = 3
+pos = Vector2(13260, 260)
+
+[sub_resource type="Resource" id="Resource_3yq2a"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_kh5mr")
+
+[sub_resource type="Resource" id="Resource_nufx8"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing19"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_3yq2a")])
+node_type = 1
+pos = Vector2(12840, 220)
+
+[sub_resource type="Resource" id="Resource_kp88f"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_nufx8")
+
+[sub_resource type="Resource" id="Resource_3y6u8"]
+script = ExtResource("5_yesv5")
+time = 0.5
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_kp88f")])
+node_type = 6
+pos = Vector2(12520, 300)
+
+[sub_resource type="Resource" id="Resource_773j3"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_3y6u8")
+
+[sub_resource type="Resource" id="Resource_cj7f5"]
+script = ExtResource("3_o8gat")
+script_cmd = "GameManager.show_ent_tween(\"monster\",0.5)"
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_773j3")])
+node_type = 9
+pos = Vector2(12240, 260)
+
+[sub_resource type="Resource" id="Resource_05o0d"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_cj7f5")
+
+[sub_resource type="Resource" id="Resource_rbtf1"]
+script = ExtResource("3_o8gat")
+script_cmd = "GameManager.move_event_to(\"monster\",Vector2i(13,15))"
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_05o0d")])
+node_type = 9
+pos = Vector2(11980, 260)
+
+[sub_resource type="Resource" id="Resource_xqset"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_rbtf1")
+
+[sub_resource type="Resource" id="Resource_p0e8r"]
+script = ExtResource("3_o8gat")
+script_cmd = "GameManager.hide_ent_tween(\"monster\",0)"
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_xqset")])
+node_type = 9
+pos = Vector2(11700, 260)
+
+[sub_resource type="Resource" id="Resource_w8avy"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_p0e8r")
+
+[sub_resource type="Resource" id="Resource_wxefq"]
+script = ExtResource("3_14qw2")
+move_type = 5
+target_char = {
+"coord": Vector2i(23, 1),
+"label": "monster"
+}
+step_count = 0
+speed_factor = 1.0
+wait_finished = false
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_w8avy")])
+node_type = 3
+pos = Vector2(11340, 260)
+
+[sub_resource type="Resource" id="Resource_3rwos"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wxefq")
+
+[sub_resource type="Resource" id="Resource_wkqu3"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing18"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_3rwos")])
+node_type = 1
+pos = Vector2(11000, 220)
+
+[sub_resource type="Resource" id="Resource_1a1bm"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wkqu3")
+
+[sub_resource type="Resource" id="Resource_83mij"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing17"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_1a1bm")])
+node_type = 1
+pos = Vector2(10660, 220)
+
+[sub_resource type="Resource" id="Resource_0i031"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_83mij")
+
+[sub_resource type="Resource" id="Resource_tvp3j"]
+script = ExtResource("3_14qw2")
+move_type = 5
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 2
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_0i031")])
+node_type = 3
+pos = Vector2(10320, 240)
+
+[sub_resource type="Resource" id="Resource_3illa"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_tvp3j")
+
+[sub_resource type="Resource" id="Resource_njwpb"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing16"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_3illa")])
+node_type = 1
+pos = Vector2(9980, 180)
+
+[sub_resource type="Resource" id="Resource_1b6j7"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_njwpb")
+
+[sub_resource type="Resource" id="Resource_cpx4j"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing15"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_1b6j7")])
+node_type = 1
+pos = Vector2(9640, 160)
+
+[sub_resource type="Resource" id="Resource_ieifh"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_cpx4j")
+
+[sub_resource type="Resource" id="Resource_it6jh"]
+script = ExtResource("3_o8gat")
+script_cmd = "await AudioManager.play_knocking()"
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_ieifh")])
+node_type = 9
+pos = Vector2(9380, 200)
+
+[sub_resource type="Resource" id="Resource_esvwp"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_it6jh")
+
+[sub_resource type="Resource" id="Resource_46my4"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing14"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_esvwp")])
+node_type = 1
+pos = Vector2(9020, 160)
+
+[sub_resource type="Resource" id="Resource_aqtdk"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_46my4")
+
+[sub_resource type="Resource" id="Resource_pkuws"]
+script = ExtResource("3_o8gat")
+script_cmd = "await AudioManager.play_knocking()"
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_aqtdk")])
+node_type = 9
+pos = Vector2(8780, 220)
+
+[sub_resource type="Resource" id="Resource_72wi2"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_pkuws")
+
+[sub_resource type="Resource" id="Resource_72705"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing13"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_72wi2")])
+node_type = 1
+pos = Vector2(8400, 160)
+
+[sub_resource type="Resource" id="Resource_7vxl1"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_72705")
+
+[sub_resource type="Resource" id="Resource_6cw1t"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing12"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_7vxl1")])
+node_type = 1
+pos = Vector2(8080, 160)
+
+[sub_resource type="Resource" id="Resource_5lq6k"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_6cw1t")
+
+[sub_resource type="Resource" id="Resource_nefoe"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing11"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_5lq6k")])
+node_type = 1
+pos = Vector2(7740, 160)
+
+[sub_resource type="Resource" id="Resource_xswmp"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_nefoe")
+
+[sub_resource type="Resource" id="Resource_qsyop"]
+script = ExtResource("3_o8gat")
+script_cmd = "await AudioManager.play_knocking()"
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_xswmp")])
+node_type = 9
+pos = Vector2(7500, 200)
+
+[sub_resource type="Resource" id="Resource_2cl24"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_qsyop")
+
+[sub_resource type="Resource" id="Resource_qunbj"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing10"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_2cl24")])
+node_type = 1
+pos = Vector2(7140, 160)
+
+[sub_resource type="Resource" id="Resource_oyuxy"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_qunbj")
+
+[sub_resource type="Resource" id="Resource_in4jw"]
+script = ExtResource("5_yesv5")
+time = 1.0
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_oyuxy")])
+node_type = 6
+pos = Vector2(6860, 300)
+
+[sub_resource type="Resource" id="Resource_rvwyv"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_in4jw")
+
+[sub_resource type="Resource" id="Resource_wcj46"]
+script = ExtResource("3_14qw2")
+move_type = 2
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 4
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_rvwyv")])
+node_type = 3
+pos = Vector2(6520, 240)
+
+[sub_resource type="Resource" id="Resource_ieyvg"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wcj46")
+
+[sub_resource type="Resource" id="Resource_0yl5f"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing09"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_ieyvg")])
+node_type = 1
+pos = Vector2(6120, 200)
+
+[sub_resource type="Resource" id="Resource_8emxs"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_0yl5f")
+
+[sub_resource type="Resource" id="Resource_g5gtr"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing08"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_8emxs")])
+node_type = 1
+pos = Vector2(5760, 200)
+
+[sub_resource type="Resource" id="Resource_ac04b"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_g5gtr")
+
+[sub_resource type="Resource" id="Resource_j7aft"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing07"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_ac04b")])
+node_type = 1
+pos = Vector2(5400, 200)
+
+[sub_resource type="Resource" id="Resource_i8hix"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_j7aft")
+
+[sub_resource type="Resource" id="Resource_ppkru"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing06"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_i8hix")])
+node_type = 1
+pos = Vector2(5020, 200)
+
+[sub_resource type="Resource" id="Resource_481m1"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ppkru")
+
+[sub_resource type="Resource" id="Resource_qf3bj"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing05"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_481m1")])
+node_type = 1
+pos = Vector2(4660, 200)
+
+[sub_resource type="Resource" id="Resource_671yg"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_qf3bj")
+
+[sub_resource type="Resource" id="Resource_bubwj"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing04"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_671yg")])
+node_type = 1
+pos = Vector2(4300, 200)
+
+[sub_resource type="Resource" id="Resource_2bgwl"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_bubwj")
+
+[sub_resource type="Resource" id="Resource_kh0op"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing03"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_2bgwl")])
+node_type = 1
+pos = Vector2(3940, 200)
+
+[sub_resource type="Resource" id="Resource_3u608"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_kh0op")
+
+[sub_resource type="Resource" id="Resource_5ud6h"]
+script = ExtResource("5_yesv5")
+time = 0.1
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_3u608")])
+node_type = 6
+pos = Vector2(3680, 300)
+
+[sub_resource type="Resource" id="Resource_0u6r5"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_5ud6h")
+
+[sub_resource type="Resource" id="Resource_tdo7g"]
+script = ExtResource("3_14qw2")
+move_type = 5
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 0
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_0u6r5")])
+node_type = 3
+pos = Vector2(3320, 240)
+
+[sub_resource type="Resource" id="Resource_bxw3v"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_tdo7g")
+
+[sub_resource type="Resource" id="Resource_xqnvl"]
+script = ExtResource("5_yesv5")
+time = 0.3
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_bxw3v")])
+node_type = 6
+pos = Vector2(3080, 300)
+
+[sub_resource type="Resource" id="Resource_7ubw3"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_xqnvl")
+
+[sub_resource type="Resource" id="Resource_x5fol"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing02"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_7ubw3")])
+node_type = 1
+pos = Vector2(2700, 180)
+
+[sub_resource type="Resource" id="Resource_csui8"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_x5fol")
+
+[sub_resource type="Resource" id="Resource_c5run"]
+script = ExtResource("3_14qw2")
+move_type = 2
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 0
+speed_factor = 1.0
+wait_finished = false
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_csui8")])
+node_type = 3
+pos = Vector2(2340, 220)
+
+[sub_resource type="Resource" id="Resource_ah5wj"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_c5run")
+
+[sub_resource type="Resource" id="Resource_0jdpc"]
+script = ExtResource("3_14qw2")
+move_type = 4
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 3
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_ah5wj")])
+node_type = 3
+pos = Vector2(1980, 220)
+
+[sub_resource type="Resource" id="Resource_b58g2"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_0jdpc")
+
+[sub_resource type="Resource" id="Resource_n751i"]
+script = ExtResource("4_nq3aj")
+text = "after_chasing01"
+role = ExtResource("3_7glfx")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_b58g2")])
+node_type = 1
+pos = Vector2(1620, 180)
+
+[sub_resource type="Resource" id="Resource_42jtx"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_n751i")
+
+[sub_resource type="Resource" id="Resource_7ij8x"]
+script = ExtResource("3_14qw2")
+move_type = 2
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 2
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_42jtx")])
+node_type = 3
+pos = Vector2(1260, 200)
+
+[sub_resource type="Resource" id="Resource_ex0sd"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_7ij8x")
+
+[sub_resource type="Resource" id="Resource_t07f8"]
+script = ExtResource("4_tg23o")
+time = 0.5
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_ex0sd")])
+node_type = 5
+pos = Vector2(1040, 260)
+
+[sub_resource type="Resource" id="Resource_aqhkq"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_t07f8")
+
+[sub_resource type="Resource" id="Resource_klsfm"]
+script = ExtResource("5_yesv5")
+time = 0.5
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_aqhkq")])
+node_type = 6
+pos = Vector2(800, 260)
+
+[sub_resource type="Resource" id="Resource_3name"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_klsfm")
+
+[sub_resource type="Resource" id="Resource_kgrql"]
+script = ExtResource("6_lc1va")
+time = 0.5
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_3name")])
+node_type = 4
+pos = Vector2(620, 260)
+
+[sub_resource type="Resource" id="Resource_oumsc"]
+script = ExtResource("2_x1ujw")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_kgrql")
+
+[sub_resource type="Resource" id="Resource_7kigi"]
+script = ExtResource("7_26yhe")
+children = Array[ExtResource("2_x1ujw")]([SubResource("Resource_oumsc")])
+node_type = 0
+pos = Vector2(380, 280)
+
+[resource]
+script = ExtResource("1_gu2f0")
+title = "劫后惊魂"
+is_collsion = true
+trigger_type = 3
+one_shot = true
+tree = SubResource("Resource_7kigi")
+map = {}

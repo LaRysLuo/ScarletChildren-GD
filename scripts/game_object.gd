@@ -145,8 +145,10 @@ func _movable(pos:Vector2i,ingore_event_collsion:bool = false) -> bool:
 			#return false
 		var map_config:MapConfig = get_parent().get_parent()
 		var event_config:EventConfig = map_config.get_event(pos)
+		if !event_config && !event is  Door1: return true		
 		var event_res:Events_Res = null
-		if event_config: event_res = event_config.event_res
+		#if event_config: 
+			#event_res = event_config.event_res
 		if !ingore_event_collsion:
 			# 如果event是碰撞体才返回
 			if event && event.visible && !event.ingore_collsion:  
@@ -276,7 +278,8 @@ func execute_animation(dir:Vector2i = Vector2i.ZERO):
 			Vector2i.RIGHT:playerAnim.play("idle_right")
 			Vector2i.UP: playerAnim.play("idle_up")
 #region 显示表情
-@onready var balloon_sprite: AnimatedSprite2D = $BalloonSprite
+var balloon_sprite: AnimatedSprite2D:
+	get(): return get_node("Attach/BalloonSprite")
 
 ## 显示表情
 func play_balloon(balloon_name:StringName):

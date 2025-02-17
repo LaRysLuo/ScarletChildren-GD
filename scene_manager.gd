@@ -15,7 +15,7 @@ var is_running:bool = false
 
 ## 信号
 
-signal reading_mode_close
+# signal reading_mode_close
 signal on_map_available
 
 var tool_scenes:Dictionary = {
@@ -23,8 +23,8 @@ var tool_scenes:Dictionary = {
 	"scene_item_list":"res://scenes/ui_scene/scene_item/neo_item_list.tscn",
 	"scene_reading_mode":"res://component/scene_file_read/scene_file_read.tscn",
 	"scene_star_fish":"res://scenes/ui_scene/scene_jigsaw/scene_jigsaw.tscn",
-	"scene_gameover":"res://scenes/ui_scene/scene_gameover/game_over.tscn"
-	
+	"scene_gameover":"res://scenes/ui_scene/scene_gameover/game_over.tscn",
+	"scene_demo01":"res://scenes/ui_scene/scene_test/scene_test.tscn",
 }
 
 
@@ -73,12 +73,12 @@ func goto(path,with_fade:bool = true):
 	if path is PackedScene: scene = path
 	self.show()
 	if with_fade:	await  GameManager.fadeout_black(0.2) 
-	var root = get_tree().root
+	# var root = get_tree().root
 	var loaded_scene =  scene.instantiate()
 	#root.add_child(loaded_scene)
 	SaveManager.add_sibling(loaded_scene)
 	get_tree().current_scene = loaded_scene
-	
+
 	#await  get_tree().change_scene_to_file(full_path)
 
 	if with_fade: await  GameManager.fadein(0.5)
@@ -91,7 +91,7 @@ signal on_player_move_pre #玩家移动前
 signal on_player_moved 
 signal move_finished #玩家移动后
 
-## WARNING(已弃用) 
+## WARNING (已弃用) 
 # 用于主角角色的场景移动
 func move_by_name(scene_name,event_name,with_fade:bool = true):
 	var full_path = scene_file_root + 'maps/' + scene_name + '.tscn'
@@ -99,8 +99,9 @@ func move_by_name(scene_name,event_name,with_fade:bool = true):
 		self.show()
 		anim.play("fade_out")
 		await  anim.animation_finished
-	GameManager.player.map.remove_child(GameManager.player)	# 把玩家脱离出来
 	on_player_move_pre.emit()
+	GameManager.player.map.remove_child(GameManager.player)	# 把玩家脱离出来
+	
 	get_tree().change_scene_to_file(full_path) #跳转到新场景
 	await  get_tree().tree_changed
 	var timer = get_tree().create_timer(0.1)
@@ -126,7 +127,7 @@ func move_by_name(scene_name,event_name,with_fade:bool = true):
 
 
 ## 场景移动：地图间的移动
-func move(path:String,coord:Vector2i,with_fade:bool = true,move_player:bool = false):
+func move(path:String,coord:Vector2i = Vector2i.ZERO,with_fade:bool = true,move_player:bool = false):
 	Larik.print_title("函数名：玩家移动/move")
 	
 	var spi_list:PackedStringArray  =	path.get_file().get_basename().split('_')
@@ -140,12 +141,12 @@ func move(path:String,coord:Vector2i,with_fade:bool = true,move_player:bool = fa
 		Larik.print_content("画面淡出")
 		anim.play("fade_out")
 		await  anim.animation_finished
+	on_player_move_pre.emit(scene_name)
 	## 脱离玩家角色
 	if GameManager.player:
 		GameManager.player.map.remove_child(GameManager.player)	
 		GameManager.add_child(GameManager.player)
-	
-	on_player_move_pre.emit(scene_name)
+	await get_tree().create_timer(0.1).timeout
 	var err =	get_tree().change_scene_to_file(path) #跳转到新场景
 	if err != 0:
 		printerr("跳转新场景失败")
@@ -180,6 +181,7 @@ func move(path:String,coord:Vector2i,with_fade:bool = true,move_player:bool = fa
 	Larik.print_title("函数名：玩家移动/move 运行结束")
 	
 
+## 找出事件
 func find_event_by_name(event_id:int) -> Event:
 	# 找出对应的event
 	var events = get_tree().get_nodes_in_group("events")
@@ -194,7 +196,7 @@ func find_event_by_name(event_id:int) -> Event:
 
 
 
-# 带缓存进入下一个场景
+# 带缓存进入下一个场景（用于UI场景切换）
 func navigate_to(scene):
 	#print("场景管理器准备跳转",scene_name)
 	var current_scene = get_tree().current_scene
@@ -209,7 +211,7 @@ func navigate_to(scene):
 	#playerPos = node.position
 	return await goto(scene)
 
-# 回退到上一个场景
+# 回退到上一个场景（用于UI场景切换）
 func backto(callback = null):
 	await  GameManager.fadeout_black(0.1)
 	var lasted = get_tree().current_scene
@@ -236,6 +238,7 @@ func backto(callback = null):
 			GameManager.clear_screen()
 	lasted.queue_free()
 
+# 退出所有UI场景
 func backall():
 	print("退出全部场景")
 	await  GameManager.fadeout_black(0.1)

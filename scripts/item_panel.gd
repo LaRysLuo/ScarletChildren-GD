@@ -19,28 +19,28 @@ var recipes:Dictionary = {
 	## 失去永久相纸
 	## 失去没有相纸的相机
 	## 获得装有永久相纸的相机
-	["02i_0_老式拍立得","03i_0_永久相纸"]: func(craft_list): 
-		data_player.remove_item(craft_list[1])
-		data_player.update_item(craft_list[0],"02i_1_老式拍立得"),
+	["02i_0_老式拍立得","03i_0_永久相纸"]: func(_craft_list): 
+		data_player.remove_item(_craft_list[1])
+		data_player.update_item(_craft_list[0],"02i_1_老式拍立得"),
 	## 在没有相纸的相机上组装一次性相纸
 	## 失去没有相纸的相机
 	## 失去一次性相纸
 	## 获得装有一次性相纸的相机
-	["02i_0_老式拍立得","04i_一次性相纸"]:func(craft_list):
-		data_player.remove_item(craft_list[1])
-		data_player.update_item(craft_list[0],"02i_2_老式拍立得"),
+	["02i_0_老式拍立得","04i_一次性相纸"]:func(_craft_list):
+		data_player.remove_item(_craft_list[1])
+		data_player.update_item(_craft_list[0],"02i_2_老式拍立得"),
 	## 在有永久相纸的相机上组装一次性相纸
 	## 	失去一次性相纸
 	## 失去装有永久相纸的相机
 	## 获得永久相纸
 	## 获得装有一次性相纸的相机
-	["02i_1_老式拍立得","04i_一次性相纸"]:func(craft_list):
-		data_player.remove_item(craft_list[1])
-		data_player.update_item(craft_list[0],"02i_2_老式拍立得")
+	["02i_1_老式拍立得","04i_一次性相纸"]:func(_craft_list):
+		data_player.remove_item(_craft_list[1])
+		data_player.update_item(_craft_list[0],"02i_2_老式拍立得")
 		data_player.gain_item_array(["03i_0_永久相纸"]),
-	["02i_2_老式拍立得","03i_0_永久相纸"]:func(craft_list):
-		data_player.remove_item(craft_list[1])
-		data_player.update_item(craft_list[0],"02i_1_老式拍立得")
+	["02i_2_老式拍立得","03i_0_永久相纸"]:func(_craft_list):
+		data_player.remove_item(_craft_list[1])
+		data_player.update_item(_craft_list[0],"02i_1_老式拍立得")
 		data_player.gain_item_array(["04i_一次性相纸"]),
 
 }
@@ -160,7 +160,7 @@ func _use_item():
 	if craft_list.is_empty():
 		print("使用道具%s了" % itemList[index].item_name)
 		var event_res = data_player.get_use_callback(current_item)
-		var current = current_item
+		# var current = current_item
 		if event_res:
 			## 1.关掉道具窗口
 			await  SceneManager.backall()

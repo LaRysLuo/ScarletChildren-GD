@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=27 format=3 uid="uid://4h8rsnwtsgr2"]
+[gd_resource type="TileSet" load_steps=28 format=3 uid="uid://4h8rsnwtsgr2"]
 
 [ext_resource type="PackedScene" uid="uid://dmc6ubt05cnnh" path="res://character/character_phantom.tscn" id="1_gv43t"]
 [ext_resource type="PackedScene" uid="uid://fwltuxos1oca" path="res://character/player.tscn" id="1_ho40l"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bnvpecscbbl2q" path="res://character/门/door1.tscn" id="10_fjxm1"]
 [ext_resource type="PackedScene" uid="uid://cy5ta007sskun" path="res://scenes/maps/蔷薇馆.图书室1F/character/book.tscn" id="10_fteqk"]
 [ext_resource type="PackedScene" uid="uid://cbx515yqp0dh8" path="res://scenes/maps/2蔷薇馆2F - 幽灵空间/characters/door_sp.tscn" id="19_j7bgp"]
+[ext_resource type="PackedScene" uid="uid://bkggk6ikdjf4f" path="res://character/门/ladder.tscn" id="21_orkbk"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_00n38"]
 tile_data = PackedInt32Array(0, 1, 262144)
@@ -63,6 +64,7 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_20m50"]
 resource_name = "Door"
 scenes/1/scene = ExtResource("19_j7bgp")
+scenes/2/scene = ExtResource("21_orkbk")
 
 [resource]
 tile_size = Vector2i(32, 32)

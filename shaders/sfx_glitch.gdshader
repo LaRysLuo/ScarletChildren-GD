@@ -37,7 +37,7 @@ void fragment() {
         // 闪烁效果 (flicker effect)
         float flicker = fract(sin(time * 5.0) * 10.0);
         final_color.a *= smoothstep(0.5 - flicker_intensity, 0.5 + flicker_intensity, flicker);
-		COLOR = mix(original_color, final_color, glitch_enabled);	
+		COLOR = mix(original_color, final_color, glitch_enabled);
 	}
 
 }

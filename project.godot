@@ -15,17 +15,21 @@ config/name_localized={
 "en": "The Scarlet's Children"
 }
 config/version="0.01"
-run/main_scene="res://scenes/ui_scene/scene_title/title_sp.tscn"
+run/main_scene="res://scenes/ui_scene/scene_标题画面/title_sp.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/image="res://assets/larikworks_lg.png"
 config/icon="res://assets/icon/larys.svg"
+config/windows_native_icon="res://assets/icon/larys_2.ico"
 
 [autoload]
 
 SceneManager="*res://scenes/scene_manager.tscn"
 AudioManager="*res://scenes/audio_manager.tscn"
-GameManager="*res://scenes/game_play.tscn"
+GameManager="*res://scenes/game.tscn"
 DialogueManager="*res://scenes/dialogue_system.tscn"
 SaveManager="*res://auto_load/save_manager.gd"
+InputManager="*res://auto_load/input_manager/input_manager.gd"
+Core="*res://test/0 - core/core.tscn"
 
 [dialogic]
 
@@ -200,6 +204,7 @@ locale/language_filter=[null]
 [layer_names]
 
 2d_render/layer_2="玩家"
+2d_render/layer_3="UI"
 2d_physics/layer_1="Environment"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Charactor"
@@ -213,3 +218,7 @@ common/physics_interpolation=true
 textures/canvas_textures/default_texture_filter=0
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
+
+[xr]
+
+shaders/enabled=true

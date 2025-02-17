@@ -36,44 +36,65 @@ func play_door_open():
 
 ## 关门
 func play_door_close():
-	play_se("room_door_C")	
+	await play_se("room_door_C")	
 
+func play_knocking():
+	await  play_se("knocking_an_iron_door1")
+
+func play_breaker():
+	await play_se("cutting_a_breaker")
+
+## 出现
+func play_show():
+	await  play_se("monster_show")
+
+## 摔倒
+func play_tumbling2():
+	await  play_se("tumbling2")
+
+func play_monster_roaning2():
+	await  play_se("monster_roaning2")
+
+## 电流声
+func play_electrical_sound():
+	await  play_se("electrical_sound")
 
 ## 播放光标移动
 func play_cursor_move():
 	play_se("Cursor1")
 	
+## 疑惑
+func play_suspicion1():
+	play_se("suspicion1")
+	
+## 玻璃滚动声
 func play_glass_down():
 	play_se("putting_a_glass1")
 	
+## 不能使用
 func play_buzzle():
 	play_se("blip03")
 	
-	
+## 翻页
 func play_turnpage():
 	play_se("page")
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.hide()
-	
-	pass # Replace with function body.
 
 func set_root_path(path):
 	root_path = path
-	pass
 
 ## 播放音乐
 ## file_name 音乐文件名称
 ## vol 音量
-func start_music(file_name:String,vol:float = 0):
-	var stream := find_file_by_type(file_name,1)
+func start_music(_file_name:String,_vol:float = 0):
+	var stream := find_file_by_type(_file_name,1)
 	if stream:
 		print("开始播放音乐：",stream)
 		audio_player.stream = stream
 		audio_player.volume_db = 0
 		audio_player.play()
-	pass
 
 # 停止播放
 func stop_music(fade:bool=false):
@@ -99,7 +120,6 @@ func stop_se():
 
 	se_player.stop()
 	se_player.stream = null
-
 
 # 从特定类型中找到音频文件
 func find_file_by_type(file_name,mode) -> AudioStream :

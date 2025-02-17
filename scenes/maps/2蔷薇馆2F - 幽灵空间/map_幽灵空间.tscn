@@ -15,7 +15,7 @@
 script = ExtResource("4_xmudt")
 item_id = &"205c_0_追逐怪出现"
 value = false
-is_all = true
+is_all = false
 type = -1
 
 [sub_resource type="Resource" id="Resource_63nbv"]
@@ -68,7 +68,7 @@ texture = ExtResource("3_li3cx")
 [node name="Objects" parent="Maps" index="2"]
 z_index = 0
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAMAA0AAQAAAAAACwAMAAcAAAAAAAAAAQAMAAIAAAAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAMAA0AAwAAAAAAAgAMAAcAAAAAAAAAAQABAAEAAAAAAAAAAgA=")
 
 [node name="Movable" parent="Maps" index="3"]
 tile_map_data = PackedByteArray("AAAKAAcAAgABAAEAAAALAAgAAgABAAEAAAAMAAgAAgABAAEAAAAMAAcAAgABAAEAAAALAAcAAgABAAEAAAANAAcAAgABAAEAAAAOAAcAAgABAAEAAAAOAAgAAgABAAEAAAANAAgAAgABAAEAAAAOAAkAAgABAAEAAAANAAkAAgABAAEAAAAMAAkAAgABAAEAAAALAAkAAgABAAEAAAAKAAkAAgABAAEAAAAKAAgAAgABAAEAAAAKAAoAAgABAAEAAAALAAoAAgABAAEAAAAMAAoAAgABAAEAAAANAAoAAgABAAEAAAAOAAoAAgABAAEAAAAOAAsAAgABAAEAAAANAAsAAgABAAEAAAAMAAsAAgABAAEAAAALAAsAAgABAAEAAAAKAAsAAgABAAEAAAAMAAwAAgABAAEAAAAMAA0AAgABAAEAAAAMAA4AAgABAAEAAAAMAA8AAgABAAEAAAA=")
@@ -79,9 +79,7 @@ color = Color(0.0294, 0.23121, 0.42, 1)
 
 [node name="PointLight2D" parent="Lights" index="1"]
 position = Vector2(393, 413)
-range_layer_min = 0
 
 [node name="DirectionalLight2D" parent="Lights" index="2"]
 visible = false
 color = Color(0.638322, 0.717167, 0.91589, 1)
-range_layer_min = 0

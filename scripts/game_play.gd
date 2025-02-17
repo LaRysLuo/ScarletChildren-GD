@@ -24,7 +24,6 @@ var config:PlayerConfig
 signal on_player_loaded # 当玩家实例生成时
 signal on_event_trigger_start
 signal on_event_trigger_end
-signal on_event_reload(event:Event) # 重载入事件状态
 
 
 ## 玩家场景
@@ -58,10 +57,12 @@ func _ready() -> void:
 	set_game_state_buszing()
 	#TranslationServer.set_locale('en')
 	config = load("res://config/player_config.tres") 
+
+	# 连接对话管理器
 	DialogueManager.on_typing.connect(play_typing_se)
 	
 	# 初始化data_player
-	data_player.load_items()
+	data_player.load_items_at_start()
 	data_player.load_items_raw()
 	data_player.on_player_item_changed.connect(show_item_notify)
 	
@@ -75,69 +76,31 @@ func _ready() -> void:
 	## 载入游戏数据 TODO 实际不能在这里调用
 	#SceneManager.move("res://scenes/maps/蔷薇馆·西馆走廊2F/map_蔷薇馆·西馆走廊2f.tscn",Vector2i(8,12),true,true)
 	##return
-
-	
 	#await  SaveManager.load_data()
 	#await get_tree().create_timer(0.5).timeout
 	#GameManager.data_player.gain_item("06i_3_手电筒（魔法灯）")
 	#GameManager.data_player.gain_item("301f_0_羽新的日记")
 	#GameManager.data_player.gain_item("103i_0_5号电池")
 	#GameManager.data_player.gain_item("203c_0_隐藏蔷薇合照已调查")
-	#GameManager.data_player.gain_item("06i_4_手电筒（魔法灯有电池）")
-	#GameManager.data_player.gain_item("204c_0_隐藏幽灵门启动")
+	#GameManager.data_player.gain_item("205c_0_追逐怪出现")
+	#GameManager.data_player.gain_item("206c_0_二楼电力恢复")
 	
 	#set_game_state_normal()
 
+## 事件开始的回调函数
 func _event_trigger_start():
 	set_game_state_buszing()
 
+## 事件结束的回调函数
 func _event_trigger_end():
 	set_game_state_normal()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
+## 播放打字声音
 func play_typing_se():
 	AudioManager.play_se("pushing_a_key")
-	pass
 
-var color_screen:ColorScreen
-## set_screen_color(ColorScreen.BLACK)
 
-## 相机移动
-func camera_move():
-	var camera:Camera2D = get_main_camera()
-	if !camera:
-		print_debug("没有找到camera")
-		return
-	print("camera=",camera)
-	var tween:Tween = get_tree().create_tween()
-	var camera_pos = Vector2(0,camera.offset.y - 200)
-	tween.tween_property(camera,"offset",camera_pos,4)
-	await tween.finished
 
-## 重置摄像机
-func reset_camera(with_tween:bool = true):
-	var cam = get_main_camera()
-	if !cam:
-		print_debug("没有找到camera")
-		return
-	if with_tween:
-		var tween:Tween = get_tree().create_tween()
-		tween.tween_property(cam,"offset",Vector2.ZERO,0.8)
-		await  tween.finished
-	else: cam.offset = Vector2.ZERO
-
-## 获得主摄像机
-func get_main_camera() -> Camera2D:
-	if !GameManager.player: return null
-	return GameManager.player.cam
-	#var scene = get_tree().current_scene
-	#if scene:
-		#return scene.get_node_or_null("Camera2D")
-	#return null
 
 ## INFO 获得道具
 ## 通过item的key值获得对应的item
@@ -160,6 +123,7 @@ func show_item_notify(item_name,state):
 	create_notify().add_item_notify(item_name,state)
 
 
+var color_screen:ColorScreen
 
 ## 设置屏幕颜色
 ## ColorScreen.Black
@@ -249,6 +213,31 @@ func set_ent_visible(char_name:StringName,is_show:bool):
 	var map_config:MapConfig = get_map_config()
 	map_config.set_event_visible_by_name(char_name,is_show)
 
+## 显示事件 封装
+func show_ent_tween(char_name:StringName,time:float =  0.3):
+	set_ent_visible(char_name,true)
+	#await get_tree().process_frame
+	
+	get_character(char_name).modulate.a = 0
+	#print("cccc=",get_character(char_name).self_modulate)
+	await  _set_ent_tween(char_name,true,time)
+
+## 隐藏事件 封装
+func hide_ent_tween(char_name:StringName,time:float =  0.3):
+	await _set_ent_tween(char_name,false,time)
+	
+## INFO 渐变显示隐藏事件
+# 该显示和隐藏不会持久化	
+func _set_ent_tween(char_name:StringName,is_show:bool,time:float):
+	var character = get_character(char_name)
+	var tween:Tween = create_tween()
+	var count:float = 1 if is_show else 0
+	tween.tween_property(character,"modulate:a",count,time)
+	await  tween.finished
+	if is_show:
+		character.show()
+	else:
+		character.hide()
 
 ## 解析名字为事件实例
 func parse_event_name(event_name:StringName) :
@@ -280,115 +269,20 @@ func instance_player(map:Node2D,vec:Vector2):
 	if !player_pre: print_debug("初始化玩家失败，未设置玩家场景的路径")
 	player = player_pre.instantiate() 
 	player.position = vec
-	player.start_pos_changed.connect(update_fog)
+	# player.start_pos_changed.connect(update_fog)
 	map.add_child(player)
-	movable = map.get_parent().get_node("./Movable")
 	
 	# 初始化完毕，使游戏开始运行
 	set_game_state_normal()
 	#block_map = map.get_parent().get_node("./Black")
 	#call_deferred("update_fog") 
 
-## 临时在这个类里先写地图管理类
-## 1. 首先获得玩家类
-## 2. 驱散玩家周围的迷雾
-## 3. 注册玩家移动的信号，更新迷雾状态
-
-var block_map:TileMapLayer
-var movable:TileMapLayer
-var blocks:Array[Node]
-var is_completed:Array = [] ## 表示已经隐藏的图块
-var timer:SceneTreeTimer
-var dirs = [
-	Vector2i.DOWN,
-	Vector2i.LEFT,
-	Vector2i.RIGHT,
-	Vector2i.UP,
-	Vector2i(1,1),
-	Vector2i(-1,-1),
-	Vector2i(1,-1),
-	Vector2i(-1,1)
-]
-var index:int = 0
-
-## 更新地图迷雾
-## 在地图的Tilemap上要配置上迷雾图块
-## TODO 或许可以放到一个专门的文件里
-func update_fog():
-	## 检查玩家配置是否存在
-	if !config:
-		printerr("未配置player_config")
-		return
-		
-	## 获得block_map
-	if !block_map || !block_map.visible:
-		return
-	var vision_range:int = config.vision_range
-	var player_pos := movable.map_to_local(player.cell_pos) 
-	var pos = block_map.local_to_map(player_pos)
-	flood_fill_circle(pos,vision_range)
-	
-	
-## 用洪水填充移出地图上的地图迷雾
-func flood_fill_circle(center:Vector2i,radius:int):
-	var queue:Array = [center]
-	var next_list:Array = []
-	var visited = {}
-	for r in range(radius):
-		if queue.is_empty():
-			queue.append_array(next_list)
-			next_list = []
-		while queue.size() > 0:
-			var pos = queue.pop_front()
-			if pos in visited  or get_antiglare(pos):
-				continue
-			visited[pos] = true
-			
-			
-			var black_state = Vector2i(3,0)
-			
-			if r >= radius -2 && r  < radius:
-				black_state = Vector2i(1,0)
-			if r >= radius - 4 && r < radius -2:
-				black_state = Vector2i(2,0)
-			block_map.set_cell(pos,0,black_state)
-			is_completed.append(pos) ## 把已经照亮的区域存起来
-			
-			for dir in dirs:
-				if abs(dir.x)  == abs(dir.y) and r <= 2:
-					continue 
-				var next = pos + dir
-				next_list.append(next)
-		await  wait(0.01)
-	
-	var unlighting = is_completed.filter(func(item:Vector2i):return item not in visited)
-	
-	for pos in unlighting:
-		block_map.set_cell(pos,0,Vector2i(0,0))
-		is_completed.erase(pos)
 
 ## 等待
 ## TODO 后期转到工具类
 func wait(time:float):
 	await  get_tree().create_timer(time).timeout
 
-## 判断是否是遮光体
-## TODO 需要重新制作遮光体的内容，在地图上获取的标识现在还是32像素的，也要改成8像素的
-func get_antiglare(coord:Vector2i) ->bool:
-	var position =	block_map.map_to_local(coord)
-	var new_coord = movable.local_to_map(position)
-	var tile_data = movable.get_cell_tile_data(new_coord)
-	#print("遮光：",tile_data && tile_data.get_custom_data("antiglare") )
-	if tile_data && tile_data.get_custom_data("antiglare"):return true
-	return false
-
-## WARNING 已弃用
-func get_black(coord:Vector2i) -> Black:
-	var blocks = block_map.get_children()
-	var results = blocks.filter(func(item:Black):return item.cell_pos == coord)
-	if results && !results.is_empty():
-		return results[0] as Black
-	return null
 	 
 ## 触发事件的封装
 func trigger_event_res(event_res:Events_Res,trigger_self:Event = null,args= {}):
@@ -397,21 +291,10 @@ func trigger_event_res(event_res:Events_Res,trigger_self:Event = null,args= {}):
 	var event:BaseEventNode = event_res.tree
 	## WARNING 事件处理主逻辑
 	## 如果需要添加新的节点逻辑，请去对应继承BaseEventNode的子类去重写_execute
-	#await trigger_event(event,trigger_self)
 	## 新建一个自定义的事件线程（不是真的线程，可以叫协程或者序列）来处理所有事件，并等待处理完成
 	var et = EventThread.new()
 	await et.trigger_event(event,trigger_self,args).on_complete
-	#set_game_state_normal()
 	_event_trigger_end()
 	on_event_trigger_end.emit()
 
-## WARNING 已弃用，转为使用自定义事件线程
-## 触发事件封装
-func trigger_event(event:BaseEventNode,trigger_self:Event):
-	while(true):
-		event = event.next()
-		if !event: 
-			print("循环结束")
-			break
-		await event._execute(trigger_self,null) # 执行事件节点的逻辑
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://d2cb35vt5q6gq"]
+[gd_scene load_steps=26 format=4 uid="uid://d2cb35vt5q6gq"]
 
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_byall"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_soxkc"]
@@ -11,10 +11,11 @@
 [ext_resource type="Script" path="res://component/event_extend/event_ex_config.gd" id="6_21351"]
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="7_ug2ad"]
 [ext_resource type="Resource" uid="uid://c1dwnkgwbw7ok" path="res://scenes/maps/蔷薇馆·中厅1F/event/欢迎来到蔷薇馆.tres" id="7_vo36w"]
+[ext_resource type="Resource" uid="uid://bmd8nvc7evnjx" path="res://scenes/maps/蔷薇馆·中厅1F/event/劫后惊魂.tres" id="8_xkuwv"]
 
 [sub_resource type="Resource" id="Resource_ysf0i"]
 script = ExtResource("4_otnw1")
-item_id = &"206c_0_欢迎来到蔷薇馆"
+item_id = &"208c_0_迷之身影"
 value = true
 is_all = true
 type = -1
@@ -39,7 +40,14 @@ event_res = ExtResource("5_cqj17")
 
 [sub_resource type="Resource" id="Resource_pe0j0"]
 script = ExtResource("4_otnw1")
-item_id = &"206c_0_欢迎来到蔷薇馆"
+item_id = &"208c_0_迷之身影"
+value = false
+is_all = true
+type = -1
+
+[sub_resource type="Resource" id="Resource_eelwg"]
+script = ExtResource("4_otnw1")
+item_id = &"205c_0_追逐怪出现"
 value = false
 is_all = true
 type = -1
@@ -48,7 +56,7 @@ type = -1
 resource_name = "(1,1)"
 script = ExtResource("2_soxkc")
 is_show = true
-condition = Array[ExtResource("3_thxss")]([SubResource("Resource_pe0j0")])
+condition = Array[ExtResource("3_thxss")]([SubResource("Resource_pe0j0"), SubResource("Resource_eelwg")])
 frame_index = 0
 pos = Vector2i(1, 1)
 event_res = ExtResource("7_vo36w")
@@ -60,6 +68,22 @@ is_show = false
 condition = Array[ExtResource("3_thxss")]([])
 frame_index = 0
 pos = Vector2i(13, 11)
+
+[sub_resource type="Resource" id="Resource_lmg53"]
+script = ExtResource("4_otnw1")
+item_id = &"205c_0_追逐怪出现"
+value = true
+is_all = true
+type = -1
+
+[sub_resource type="Resource" id="Resource_vphpu"]
+resource_name = "(1,1)"
+script = ExtResource("2_soxkc")
+is_show = true
+condition = Array[ExtResource("3_thxss")]([SubResource("Resource_lmg53")])
+frame_index = 0
+pos = Vector2i(1, 1)
+event_res = ExtResource("8_xkuwv")
 
 [sub_resource type="Resource" id="Resource_yj26r"]
 script = ExtResource("7_ug2ad")
@@ -91,7 +115,7 @@ event_ex = SubResource("Resource_siepr")
 
 [node name="Maps" parent="." index="0"]
 right_limit = 800.0
-event_group = Array[ExtResource("2_soxkc")]([SubResource("Resource_bdfs2"), SubResource("Resource_8glv3"), SubResource("Resource_mybq3"), SubResource("Resource_uea0i")])
+event_group = Array[ExtResource("2_soxkc")]([SubResource("Resource_bdfs2"), SubResource("Resource_8glv3"), SubResource("Resource_mybq3"), SubResource("Resource_uea0i"), SubResource("Resource_vphpu")])
 event_ex = Array[ExtResource("6_21351")]([SubResource("Resource_5wwlb"), SubResource("Resource_ne2vs")])
 
 [node name="0" parent="Maps" index="0"]
@@ -103,10 +127,18 @@ position = Vector2(401, 320)
 texture = ExtResource("3_tpedq")
 
 [node name="Objects" parent="Maps" index="2"]
-tile_map_data = PackedByteArray("AAAQAAkAAQAAAAAABAANAAcAAQAAAAAACwAKAAkAAQAAAAAACwABAAEAAQAAAAAABAANABEAAQAAAAAABAANABIAAQAAAAAAAgANAAsAAAAAAAAAAQA=")
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAQAAkAAQAAAAAABAANAAcAAQAAAAAACwAKAAkAAQAAAAAACwABAAEAAQAAAAAABAANABEAAQAAAAAABAANAAsAAAAAAAAAAQAXAAEAAAAAAAAAAgANABIAAQAAAAAAAgA=")
 
 [node name="Movable" parent="Maps" index="3"]
 tile_map_data = PackedByteArray("AAAJAAoAAgABAAEAAAANAAkAAgABAAEAAAANAAoAAgABAAEAAAALAAoAAgABAAEAAAANAAsAAgABAAEAAAAOAAsAAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAAKAAcAAgABAAEAAAAKAAgAAgABAAEAAAAKAAkAAgABAAEAAAAKAAoAAgABAAEAAAAKAAsAAgABAAEAAAAKAAwAAgABAAEAAAALAAwAAgABAAEAAAAMAA0AAgABAAEAAAALAA0AAgABAAEAAAAMAA4AAgABAAEAAAANAA4AAgABAAEAAAAOAA0AAgABAAEAAAAOAAwAAgABAAEAAAAMAAwAAgABAAEAAAAJAAwAAgABAAEAAAAPAAoAAgABAAEAAAAPAAsAAgABAAEAAAAJAAsAAgABAAEAAAAJAA0AAgABAAEAAAAKAA0AAgABAAEAAAALAAsAAgABAAEAAAAKAA4AAgABAAEAAAAKAA8AAgABAAEAAAALAA4AAgABAAEAAAALAA8AAgABAAEAAAAMAA8AAgABAAEAAAANAA8AAgABAAEAAAAOAA4AAgABAAEAAAAOAA8AAgABAAEAAAAPAA4AAgABAAEAAAAPAA8AAgABAAEAAAANABAAAgABAAEAAAAPAAwAAgABAAEAAAAPAA0AAgABAAEAAAAQAAoAAgABAAEAAAAQAAsAAgABAAEAAAAQAAwAAgABAAEAAAAQAA0AAgABAAEAAAARAAoAAgABAAEAAAARAAsAAgABAAEAAAARAAwAAgABAAEAAAARAA0AAgABAAEAAAAMAAsAAgABAAEAAAANAAcAAgABAAEAAAANAAgAAgABAAEAAAAQAA4AAgABAAEAAAAQAAgAAgABAAEAAAAQAAkAAgABAAEAAAAQAAcAAgABAAEAAAAKABAAAgABAAEAAAALABAAAgABAAEAAAAMABAAAgABAAEAAAANABEAAgABAAEAAAAOABAAAgABAAEAAAAPABAAAgABAAEAAAANAAYAAgABAAEAAAANAAUAAgABAAEAAAANABIAAgABAAEAAAA=")
+
+[node name="PointLight2D" parent="Lights" index="1"]
+range_z_min = 0
+
+[node name="DirectionalLight2D" parent="Lights" index="2"]
+position = Vector2(10, 0)
+range_item_cull_mask = 0
 
 [node name="UI" parent="." index="2" node_paths=PackedStringArray("stamina_bar")]
 stamina_bar = NodePath("ComponetStaminaBar")

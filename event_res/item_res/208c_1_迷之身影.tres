@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://dp66esvh2nxbn"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_rvd64"]
+
+[resource]
+script = ExtResource("1_rvd64")
+item_id = &"208c_2_迷之身影"
+item_name = &"迷之身影"
+item_catagory = 2
+item_desc = "那个幽灵知道我的名字，感觉有点印象"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_rvd64")]([])

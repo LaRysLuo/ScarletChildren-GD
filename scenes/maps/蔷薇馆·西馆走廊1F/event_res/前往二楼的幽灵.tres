@@ -1,0 +1,95 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=18 format=3 uid="uid://b4qwsu4mx067v"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_4whac"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_tpovy"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_j4gh5"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="4_kor5h"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="5_mgwj5"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="6_rjt34"]
+
+[sub_resource type="Resource" id="Resource_ovybl"]
+script = ExtResource("3_j4gh5")
+script_cmd = "GameManager.move_event_to(\"phantom\",Vector2i(21,1))"
+children = Array[ExtResource("2_tpovy")]([])
+node_type = 9
+pos = Vector2(1580, -540)
+
+[sub_resource type="Resource" id="Resource_wn2nw"]
+script = ExtResource("2_tpovy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ovybl")
+
+[sub_resource type="Resource" id="Resource_wmmtl"]
+script = ExtResource("4_kor5h")
+time = 0.5
+children = Array[ExtResource("2_tpovy")]([SubResource("Resource_wn2nw")])
+node_type = 6
+pos = Vector2(1300, -480)
+
+[sub_resource type="Resource" id="Resource_erfev"]
+script = ExtResource("2_tpovy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wmmtl")
+
+[sub_resource type="Resource" id="Resource_arnht"]
+script = ExtResource("5_mgwj5")
+move_type = 5
+target_char = {
+"coord": Vector2i(23, 1),
+"label": "phantom"
+}
+step_count = 3
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_tpovy")]([SubResource("Resource_erfev")])
+node_type = 3
+pos = Vector2(940, -560)
+
+[sub_resource type="Resource" id="Resource_bbm1u"]
+script = ExtResource("2_tpovy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_arnht")
+
+[sub_resource type="Resource" id="Resource_wgycq"]
+script = ExtResource("3_j4gh5")
+script_cmd = "GameManager.move_event_to(\"phantom\",Vector2i(5,11))"
+children = Array[ExtResource("2_tpovy")]([SubResource("Resource_bbm1u")])
+node_type = 9
+pos = Vector2(660, -560)
+
+[sub_resource type="Resource" id="Resource_pagr3"]
+script = ExtResource("2_tpovy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wgycq")
+
+[sub_resource type="Resource" id="Resource_t264e"]
+script = ExtResource("4_kor5h")
+time = 0.1
+children = Array[ExtResource("2_tpovy")]([SubResource("Resource_pagr3")])
+node_type = 6
+pos = Vector2(380, -500)
+
+[sub_resource type="Resource" id="Resource_88uvd"]
+script = ExtResource("2_tpovy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_t264e")
+
+[sub_resource type="Resource" id="Resource_i2eaj"]
+script = ExtResource("6_rjt34")
+children = Array[ExtResource("2_tpovy")]([SubResource("Resource_88uvd")])
+node_type = 0
+pos = Vector2(160, -500)
+
+[resource]
+script = ExtResource("1_4whac")
+title = ""
+is_collsion = true
+trigger_type = 3
+one_shot = true
+tree = SubResource("Resource_i2eaj")
+map = {}

@@ -6,6 +6,6 @@ var dir:Vector2i
 # 移动目标 
 var target:Vector2i
 
-func _init(dir:Vector2i,target:Vector2i) -> void:
-	self.dir = dir
-	self.target = target
+func _init(_dir:Vector2i,_target:Vector2i) -> void:
+	self.dir = _dir
+	self.target = _target

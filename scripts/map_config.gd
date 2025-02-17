@@ -16,6 +16,8 @@ class_name MapConfig
 
 var all_events:Array[Node]  = []
 
+
+
 ## 获得移动层
 var movable:TileMapLayer:
 	get():return get_node("Movable")
@@ -71,9 +73,6 @@ func _reload_event_config():
 ## 增加一个游戏初始化前
 func _map_show_pre():
 	pass
-	# 获取所有的character
-	#if map_pre_event: 
-		#await GameManager.trigger_event_code(map_pre_event,null)
 
 # 1. 事件的可视度判断
 # 2. 自动事件的触发
@@ -82,7 +81,7 @@ func auto_event_trigger():
 	## INFO 这里增加了当游戏忙碌时，延后x秒再执行
 	if GameManager.game_state == GameManager.GameState.Buszing:
 		await  GameManager.on_event_trigger_end
-		await  get_tree().create_timer(0.6).timeout
+		#await  get_tree().create_timer(0.1).timeout
 	print("正在执行自动事件")
 	if all_events.is_empty(): all_events = get_tree().get_nodes_in_group("events")
 	# 筛选出地图上的event
@@ -93,6 +92,7 @@ func auto_event_trigger():
 		if event is Event:
 			print("检测到自动事件：",event.get_instance_id())
 			await event.interact()
+	await  get_tree().create_timer(0.5).timeout
 
 ## 改变指定坐标的事件状态
 func set_event_visible(coord:Vector2i,is_show:bool):
@@ -110,20 +110,23 @@ func set_event_visible_by_name(char_name:StringName,is_show:bool):
 		return
 	config.is_show = is_show
 
+
+
 ## 刷新event的可视状态
 #func refresh_event_visible(is_show:bool,event:Event):
 	#var _is_show:bool = is_show && event.activable(event.get_event_config())
 	#event.visible = _is_show
 
 ## 传入坐标获取事件配置
-func get_event(coord:Vector2i,ingore_condition:bool = false) -> EventConfig:
+func get_event(coord:Vector2i,ignore_condition:bool = false) -> EventConfig:
 	## 没有配置任何事件的情况
 	if event_group.is_empty():
 		return null
-
+	
 	var filter = event_group.filter(
 		func(item:EventConfig): 
-			return item.pos == coord && (get_condition_result(item) || ingore_condition)
+			## INFO 2025.1.31修改 - 改为复数条件
+			return item.pos == coord && (item.get_condition_result() || ignore_condition)
 	)
 	print("filters=",filter.size())
 	if filter.is_empty():return null
@@ -143,9 +146,9 @@ func get_event_coord_by_name(char_name:StringName) -> Vector2i:
 		return Vector2i(-1,-1)
 	return filters.front().ori_cell_pos
 
-## INFO 2025.1.31修改 - 改为复数条件
-func get_condition_result(item:EventConfig) -> bool:
-	return item.get_condition_result()
-	#if item.condition && !item.condition.is_empty():
-		#return item. #.condition._get_result()
-	#return true
+
+#func get_condition_result(item:EventConfig) -> bool:
+	#return item.get_condition_result()
+	##if item.condition && !item.condition.is_empty():
+		##return item. #.condition._get_result()
+	##return true

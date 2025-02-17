@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cfnlobj3g8s5e"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_fb8e6"]
+
+[resource]
+script = ExtResource("1_fb8e6")
+item_id = &"207c_0_漆黑的楼道间"
+item_name = &"漆黑的楼道间"
+item_catagory = 2
+item_desc = "楼道间一片漆黑，无法前进"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_fb8e6")]([])

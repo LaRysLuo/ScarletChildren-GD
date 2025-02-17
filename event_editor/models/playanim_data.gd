@@ -13,13 +13,13 @@ class_name PlayAnimData
 @export var wait_time:float
 
 
-func _init(cmd:int = BaseEventNode.Scripts,pos:Vector2 = Vector2.ZERO,anim_name:String = "",event_type:String = "self",event_coord:Variant = null,wait_time:float = 0.3) -> void:
-	self.node_type = cmd
-	self.pos = pos
-	self.anim_name = anim_name
-	self.event_type = event_type
-	self.event_coord = event_coord
-	self.wait_time = wait_time
+func _init(_cmd:int = BaseEventNode.Scripts,_pos:Vector2 = Vector2.ZERO,_anim_name:String = "",_event_type:String = "self",_event_coord:Variant = null,_wait_time:float = 0.3) -> void:
+	self.node_type = _cmd
+	self.pos = _pos
+	self.anim_name = _anim_name
+	self.event_type = _event_type
+	self.event_coord = _event_coord
+	self.wait_time = _wait_time
 
 func _execute(event,args):
 	var target_event

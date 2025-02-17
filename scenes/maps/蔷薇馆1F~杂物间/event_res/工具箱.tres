@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=76 format=3 uid="uid://ckg4sokx7yvr0"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=78 format=3 uid="uid://ckg4sokx7yvr0"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_8rjlv"]
 [ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_5didf"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="5_vlvxf"]
 [ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="6_s1dgb"]
 
-[sub_resource type="Resource" id="Resource_ycmix"]
+[sub_resource type="Resource" id="Resource_hk1cm"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_04"
 type = 0
@@ -20,13 +20,13 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(2640, -1420)
 
-[sub_resource type="Resource" id="Resource_3pfdt"]
+[sub_resource type="Resource" id="Resource_gtigc"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_ycmix")
+child = SubResource("Resource_hk1cm")
 
-[sub_resource type="Resource" id="Resource_tsugk"]
+[sub_resource type="Resource" id="Resource_y4jsp"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_14"
 type = 0
@@ -35,26 +35,26 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(3040, -1280)
 
-[sub_resource type="Resource" id="Resource_a5gjq"]
+[sub_resource type="Resource" id="Resource_ihwl7"]
 script = ExtResource("2_5didf")
 from_port_index = 2
 to_port_index = 0
-child = SubResource("Resource_tsugk")
+child = SubResource("Resource_y4jsp")
 
-[sub_resource type="Resource" id="Resource_c7n74"]
+[sub_resource type="Resource" id="Resource_qo8uo"]
 script = ExtResource("3_vxdl6")
 keyword = "zawuhourse_03_keyword01"
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_3pfdt"), SubResource("Resource_a5gjq")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_gtigc"), SubResource("Resource_ihwl7")])
 node_type = 12
 pos = Vector2(2340, -1120)
 
-[sub_resource type="Resource" id="Resource_m35vp"]
+[sub_resource type="Resource" id="Resource_fndxl"]
 script = ExtResource("2_5didf")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_c7n74")
+child = SubResource("Resource_qo8uo")
 
-[sub_resource type="Resource" id="Resource_urlfl"]
+[sub_resource type="Resource" id="Resource_nnh63"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_05"
 type = 0
@@ -63,13 +63,13 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(2660, -1000)
 
-[sub_resource type="Resource" id="Resource_0gqge"]
+[sub_resource type="Resource" id="Resource_ojee7"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_urlfl")
+child = SubResource("Resource_nnh63")
 
-[sub_resource type="Resource" id="Resource_mx8yd"]
+[sub_resource type="Resource" id="Resource_l8arq"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_14"
 type = 0
@@ -78,26 +78,26 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(3020, -780)
 
-[sub_resource type="Resource" id="Resource_kuyay"]
+[sub_resource type="Resource" id="Resource_5clbo"]
 script = ExtResource("2_5didf")
 from_port_index = 2
 to_port_index = 0
-child = SubResource("Resource_mx8yd")
+child = SubResource("Resource_l8arq")
 
-[sub_resource type="Resource" id="Resource_fsjjv"]
+[sub_resource type="Resource" id="Resource_jmkbl"]
 script = ExtResource("3_vxdl6")
 keyword = "zawuhourse_03_keyword02"
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_0gqge"), SubResource("Resource_kuyay")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_ojee7"), SubResource("Resource_5clbo")])
 node_type = 12
-pos = Vector2(2340, -840)
+pos = Vector2(2360, -880)
 
-[sub_resource type="Resource" id="Resource_y3ff2"]
+[sub_resource type="Resource" id="Resource_sju26"]
 script = ExtResource("2_5didf")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_fsjjv")
+child = SubResource("Resource_jmkbl")
 
-[sub_resource type="Resource" id="Resource_7l56c"]
+[sub_resource type="Resource" id="Resource_hvwnr"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_10"
 type = 0
@@ -106,70 +106,70 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(2980, -440)
 
-[sub_resource type="Resource" id="Resource_euxrf"]
+[sub_resource type="Resource" id="Resource_ql14w"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_7l56c")
+child = SubResource("Resource_hvwnr")
 
-[sub_resource type="Resource" id="Resource_ctj3g"]
+[sub_resource type="Resource" id="Resource_87jup"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_09"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_euxrf")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_ql14w")])
 node_type = 1
 pos = Vector2(2640, -440)
 
-[sub_resource type="Resource" id="Resource_dfxmf"]
+[sub_resource type="Resource" id="Resource_0fn53"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_ctj3g")
+child = SubResource("Resource_87jup")
 
-[sub_resource type="Resource" id="Resource_rgoi7"]
+[sub_resource type="Resource" id="Resource_g5sas"]
 script = ExtResource("5_vlvxf")
 script_cmd = "GameManager.data_player.gain_item(\"102i_0_螺丝刀\")"
 children = Array[ExtResource("2_5didf")]([])
 node_type = 9
 pos = Vector2(3380, -80)
 
-[sub_resource type="Resource" id="Resource_x2iij"]
+[sub_resource type="Resource" id="Resource_u2xui"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_rgoi7")
+child = SubResource("Resource_g5sas")
 
-[sub_resource type="Resource" id="Resource_rxjba"]
+[sub_resource type="Resource" id="Resource_m16w6"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_15"
 role = ExtResource("5_k3iq1")
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_x2iij")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_u2xui")])
 node_type = 1
 pos = Vector2(3000, -120)
 
-[sub_resource type="Resource" id="Resource_t1ieq"]
+[sub_resource type="Resource" id="Resource_esb67"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_rxjba")
+child = SubResource("Resource_m16w6")
 
-[sub_resource type="Resource" id="Resource_8ml6v"]
+[sub_resource type="Resource" id="Resource_doyoy"]
 script = ExtResource("5_otrmq")
 item_id = "201c_1_餐厅的八音盒"
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_t1ieq")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_esb67")])
 node_type = 13
 pos = Vector2(2680, -120)
 
-[sub_resource type="Resource" id="Resource_6001u"]
+[sub_resource type="Resource" id="Resource_i37tm"]
 script = ExtResource("2_5didf")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_8ml6v")
+child = SubResource("Resource_doyoy")
 
-[sub_resource type="Resource" id="Resource_absmb"]
+[sub_resource type="Resource" id="Resource_iy2et"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_14"
 type = 0
@@ -178,26 +178,26 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(2660, 40)
 
-[sub_resource type="Resource" id="Resource_xemgd"]
+[sub_resource type="Resource" id="Resource_swp3d"]
 script = ExtResource("2_5didf")
 from_port_index = 2
 to_port_index = 0
-child = SubResource("Resource_absmb")
+child = SubResource("Resource_iy2et")
 
-[sub_resource type="Resource" id="Resource_jfhgt"]
+[sub_resource type="Resource" id="Resource_rb868"]
 script = ExtResource("3_vxdl6")
 keyword = "zawuhourse_03_keyword03"
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_dfxmf"), SubResource("Resource_6001u"), SubResource("Resource_xemgd")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_0fn53"), SubResource("Resource_i37tm"), SubResource("Resource_swp3d")])
 node_type = 12
 pos = Vector2(2340, -300)
 
-[sub_resource type="Resource" id="Resource_m6jds"]
+[sub_resource type="Resource" id="Resource_xsxrg"]
 script = ExtResource("2_5didf")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_jfhgt")
+child = SubResource("Resource_rb868")
 
-[sub_resource type="Resource" id="Resource_v24cc"]
+[sub_resource type="Resource" id="Resource_4acdk"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_08"
 type = 0
@@ -206,43 +206,43 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(3340, 360)
 
-[sub_resource type="Resource" id="Resource_twkte"]
+[sub_resource type="Resource" id="Resource_41pjx"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_v24cc")
+child = SubResource("Resource_4acdk")
 
-[sub_resource type="Resource" id="Resource_k20pb"]
+[sub_resource type="Resource" id="Resource_lkly6"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_07"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_twkte")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_41pjx")])
 node_type = 1
 pos = Vector2(3000, 360)
 
-[sub_resource type="Resource" id="Resource_2oisn"]
+[sub_resource type="Resource" id="Resource_1vj2x"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_k20pb")
+child = SubResource("Resource_lkly6")
 
-[sub_resource type="Resource" id="Resource_wobee"]
+[sub_resource type="Resource" id="Resource_mxmcb"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_06"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_2oisn")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_1vj2x")])
 node_type = 1
 pos = Vector2(2660, 360)
 
-[sub_resource type="Resource" id="Resource_tbrwk"]
+[sub_resource type="Resource" id="Resource_jr3u3"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_wobee")
+child = SubResource("Resource_mxmcb")
 
-[sub_resource type="Resource" id="Resource_76evi"]
+[sub_resource type="Resource" id="Resource_elkqp"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_14"
 type = 0
@@ -251,26 +251,26 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(2660, 680)
 
-[sub_resource type="Resource" id="Resource_uo56g"]
+[sub_resource type="Resource" id="Resource_0edht"]
 script = ExtResource("2_5didf")
 from_port_index = 2
 to_port_index = 0
-child = SubResource("Resource_76evi")
+child = SubResource("Resource_elkqp")
 
-[sub_resource type="Resource" id="Resource_ep17t"]
+[sub_resource type="Resource" id="Resource_qul8y"]
 script = ExtResource("3_vxdl6")
 keyword = "zawuhourse_03_keyword04"
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_tbrwk"), SubResource("Resource_uo56g")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_jr3u3"), SubResource("Resource_0edht")])
 node_type = 12
 pos = Vector2(2320, 320)
 
-[sub_resource type="Resource" id="Resource_whnie"]
+[sub_resource type="Resource" id="Resource_fcweh"]
 script = ExtResource("2_5didf")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_ep17t")
+child = SubResource("Resource_qul8y")
 
-[sub_resource type="Resource" id="Resource_2ynpt"]
+[sub_resource type="Resource" id="Resource_ftuwt"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_12"
 type = 0
@@ -279,13 +279,13 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(3040, 920)
 
-[sub_resource type="Resource" id="Resource_pqii6"]
+[sub_resource type="Resource" id="Resource_8otkt"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_2ynpt")
+child = SubResource("Resource_ftuwt")
 
-[sub_resource type="Resource" id="Resource_2n3e8"]
+[sub_resource type="Resource" id="Resource_wvnt5"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_14"
 type = 0
@@ -294,26 +294,26 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(2640, 1080)
 
-[sub_resource type="Resource" id="Resource_5wbxl"]
+[sub_resource type="Resource" id="Resource_k2mwl"]
 script = ExtResource("2_5didf")
 from_port_index = 2
 to_port_index = 0
-child = SubResource("Resource_2n3e8")
+child = SubResource("Resource_wvnt5")
 
-[sub_resource type="Resource" id="Resource_xadlm"]
+[sub_resource type="Resource" id="Resource_j20ju"]
 script = ExtResource("3_vxdl6")
 keyword = "zawuhourse_03_keyword05"
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_pqii6"), SubResource("Resource_5wbxl")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_8otkt"), SubResource("Resource_k2mwl")])
 node_type = 12
 pos = Vector2(2340, 880)
 
-[sub_resource type="Resource" id="Resource_wj1o4"]
+[sub_resource type="Resource" id="Resource_rvifk"]
 script = ExtResource("2_5didf")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_xadlm")
+child = SubResource("Resource_j20ju")
 
-[sub_resource type="Resource" id="Resource_5e8br"]
+[sub_resource type="Resource" id="Resource_6tm5n"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_11"
 type = 0
@@ -322,13 +322,13 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(2640, 1420)
 
-[sub_resource type="Resource" id="Resource_vi3o7"]
+[sub_resource type="Resource" id="Resource_jlgb0"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_5e8br")
+child = SubResource("Resource_6tm5n")
 
-[sub_resource type="Resource" id="Resource_mt2fd"]
+[sub_resource type="Resource" id="Resource_bch7t"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_13"
 type = 0
@@ -337,26 +337,26 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(2980, 1700)
 
-[sub_resource type="Resource" id="Resource_vl8oy"]
+[sub_resource type="Resource" id="Resource_ssvbn"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_mt2fd")
+child = SubResource("Resource_bch7t")
 
-[sub_resource type="Resource" id="Resource_h7k1u"]
+[sub_resource type="Resource" id="Resource_jt0kg"]
 script = ExtResource("5_otrmq")
 item_id = "06i_1_手电筒（无电池）"
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_vl8oy")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_ssvbn")])
 node_type = 13
 pos = Vector2(2640, 1740)
 
-[sub_resource type="Resource" id="Resource_jbyxs"]
+[sub_resource type="Resource" id="Resource_wbxhu"]
 script = ExtResource("2_5didf")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_h7k1u")
+child = SubResource("Resource_jt0kg")
 
-[sub_resource type="Resource" id="Resource_538ui"]
+[sub_resource type="Resource" id="Resource_j2jxk"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_14"
 type = 0
@@ -365,41 +365,57 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(2640, 1880)
 
-[sub_resource type="Resource" id="Resource_014ka"]
+[sub_resource type="Resource" id="Resource_lmwxc"]
 script = ExtResource("2_5didf")
 from_port_index = 2
 to_port_index = 0
-child = SubResource("Resource_538ui")
+child = SubResource("Resource_j2jxk")
 
-[sub_resource type="Resource" id="Resource_m7a6c"]
+[sub_resource type="Resource" id="Resource_tcqb4"]
 script = ExtResource("3_vxdl6")
 keyword = "zawuhourse_03_keyword06"
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_vi3o7"), SubResource("Resource_jbyxs"), SubResource("Resource_014ka")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_jlgb0"), SubResource("Resource_wbxhu"), SubResource("Resource_lmwxc")])
 node_type = 12
 pos = Vector2(2320, 1200)
 
-[sub_resource type="Resource" id="Resource_nu4hq"]
+[sub_resource type="Resource" id="Resource_4q5fv"]
 script = ExtResource("2_5didf")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_m7a6c")
+child = SubResource("Resource_tcqb4")
 
-[sub_resource type="Resource" id="Resource_6jytc"]
+[sub_resource type="Resource" id="Resource_b4j2p"]
+script = ExtResource("3_ynrot")
+text = "zawuhourse_17"
+role = ExtResource("5_k3iq1")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_5didf")]([])
+node_type = 1
+pos = Vector2(2300, -640)
+
+[sub_resource type="Resource" id="Resource_vy04w"]
+script = ExtResource("2_5didf")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_b4j2p")
+
+[sub_resource type="Resource" id="Resource_r20kh"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_03"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_m35vp"), SubResource("Resource_y3ff2"), SubResource("Resource_m6jds"), SubResource("Resource_whnie"), SubResource("Resource_wj1o4"), SubResource("Resource_nu4hq")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_fndxl"), SubResource("Resource_sju26"), SubResource("Resource_xsxrg"), SubResource("Resource_fcweh"), SubResource("Resource_rvifk"), SubResource("Resource_4q5fv"), SubResource("Resource_vy04w")])
 node_type = 1
-pos = Vector2(1880, -180)
+pos = Vector2(1740, -180)
 
-[sub_resource type="Resource" id="Resource_8h5mm"]
+[sub_resource type="Resource" id="Resource_fweis"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_6jytc")
+child = SubResource("Resource_r20kh")
 
-[sub_resource type="Resource" id="Resource_pno6e"]
+[sub_resource type="Resource" id="Resource_llfj5"]
 script = ExtResource("3_dhh7u")
 options = Array[Dictionary]([{
 "child_index": 0,
@@ -410,17 +426,17 @@ options = Array[Dictionary]([{
 "id": 1,
 "name": "test06"
 }])
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_8h5mm")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_fweis")])
 node_type = 2
 pos = Vector2(1400, -120)
 
-[sub_resource type="Resource" id="Resource_nbrn1"]
+[sub_resource type="Resource" id="Resource_fsjxw"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_pno6e")
+child = SubResource("Resource_llfj5")
 
-[sub_resource type="Resource" id="Resource_5bbmu"]
+[sub_resource type="Resource" id="Resource_ja8gp"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_16"
 role = ExtResource("5_k3iq1")
@@ -430,56 +446,56 @@ children = Array[ExtResource("2_5didf")]([])
 node_type = 1
 pos = Vector2(1380, 180)
 
-[sub_resource type="Resource" id="Resource_aaqbh"]
+[sub_resource type="Resource" id="Resource_itr5e"]
 script = ExtResource("2_5didf")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_5bbmu")
+child = SubResource("Resource_ja8gp")
 
-[sub_resource type="Resource" id="Resource_ao4sf"]
+[sub_resource type="Resource" id="Resource_c5uol"]
 script = ExtResource("6_s1dgb")
 script_cmd = "!has_item(\"102i_0_螺丝刀\")"
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_nbrn1"), SubResource("Resource_aaqbh")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_fsjxw"), SubResource("Resource_itr5e")])
 node_type = 17
 pos = Vector2(980, -60)
 
-[sub_resource type="Resource" id="Resource_411mp"]
+[sub_resource type="Resource" id="Resource_2ab8s"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_ao4sf")
+child = SubResource("Resource_c5uol")
 
-[sub_resource type="Resource" id="Resource_xxnny"]
+[sub_resource type="Resource" id="Resource_hn3s3"]
 script = ExtResource("6_s1dgb")
 script_cmd = "has_item(\"06i_1_手电筒（无电池）\",true)"
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_411mp")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_2ab8s")])
 node_type = 17
 pos = Vector2(580, -100)
 
-[sub_resource type="Resource" id="Resource_nxuoa"]
+[sub_resource type="Resource" id="Resource_pt1ck"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_xxnny")
+child = SubResource("Resource_hn3s3")
 
-[sub_resource type="Resource" id="Resource_fesia"]
+[sub_resource type="Resource" id="Resource_5sl7w"]
 script = ExtResource("3_ynrot")
 text = "zawuhourse_01"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_nxuoa")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_pt1ck")])
 node_type = 1
 pos = Vector2(220, -180)
 
-[sub_resource type="Resource" id="Resource_swcae"]
+[sub_resource type="Resource" id="Resource_xfl3k"]
 script = ExtResource("2_5didf")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_fesia")
+child = SubResource("Resource_5sl7w")
 
-[sub_resource type="Resource" id="Resource_fo0os"]
+[sub_resource type="Resource" id="Resource_4c6m0"]
 script = ExtResource("4_eckf2")
-children = Array[ExtResource("2_5didf")]([SubResource("Resource_swcae")])
+children = Array[ExtResource("2_5didf")]([SubResource("Resource_xfl3k")])
 node_type = 0
 pos = Vector2(0, -60)
 
@@ -489,5 +505,5 @@ title = "工具箱"
 is_collsion = true
 trigger_type = 1
 one_shot = false
-tree = SubResource("Resource_fo0os")
+tree = SubResource("Resource_4c6m0")
 map = {}

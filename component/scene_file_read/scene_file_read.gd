@@ -103,6 +103,8 @@ func _close_window():
 	SceneManager.backto()
 	
 	
+var input_triggered := false
+	
 func _input(event: InputEvent) -> void:
 	if !wait_input :  return
 	## 左右移动
@@ -111,8 +113,12 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("right") && nextable():
 		next_page()
 	## 下一页
-	if event.is_action_pressed("submit") :
+	if event.is_action_pressed("submit") && !input_triggered:
+		self.input_triggered = true
 		next_page()
 	## 关闭reading_mode
-	if event.is_action_pressed("cancel") && closable():
+	if event.is_action_pressed("cancel") && !input_triggered && closable():
+		self.input_triggered = true
 		_close_window()
+	if event.is_released():
+		self.input_triggered = false

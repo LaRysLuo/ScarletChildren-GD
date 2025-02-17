@@ -53,7 +53,8 @@ func _execute(ent,agrs):
 		for n in step_count:
 			target = move_dir + target
 			event.move_to_by_route(MoveRoute.new(move_dir,target))
-			event.pos_changed.connect(_reset_spd_factor.bind(event))
+			if !event.pos_changed.is_connected(_reset_spd_factor.bind(event)):
+				event.pos_changed.connect(_reset_spd_factor.bind(event))
 			
 		if wait_finished: await event.pos_changed # 等待全部移动完成
 		

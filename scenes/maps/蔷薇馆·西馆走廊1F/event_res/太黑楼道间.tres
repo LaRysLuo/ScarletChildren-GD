@@ -1,59 +1,48 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=17 format=3 uid="uid://qx7q4ec5admr"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=36 format=3 uid="uid://qx7q4ec5admr"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_gkeib"]
 [ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_gd8t7"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_8fbe0"]
 [ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="3_il7ig"]
 [ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="4_78hgk"]
 [ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_cckqk"]
 [ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="5_7yxgq"]
 [ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="5_nub16"]
 
-[sub_resource type="Resource" id="Resource_6sg37"]
-script = ExtResource("4_cckqk")
-text = "loudao1f_02"
-role = ExtResource("3_il7ig")
-type = 0
-wait_time = 1000
+[sub_resource type="Resource" id="Resource_ccfyd"]
+script = ExtResource("3_8fbe0")
+script_cmd = "GameManager.data_player.gain_item(\"207c_0_漆黑的楼道间\")"
 children = Array[ExtResource("2_gd8t7")]([])
-node_type = 1
-pos = Vector2(1480, -260)
+node_type = 9
+pos = Vector2(2180, -260)
 
-[sub_resource type="Resource" id="Resource_ytmx3"]
+[sub_resource type="Resource" id="Resource_c4bcy"]
 script = ExtResource("2_gd8t7")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_6sg37")
+child = SubResource("Resource_ccfyd")
 
-[sub_resource type="Resource" id="Resource_xyi0r"]
-script = ExtResource("4_78hgk")
-script_cmd = "has_item(\"06i_0_手电筒（疑问）,true\")"
-children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_ytmx3")])
-node_type = 17
-pos = Vector2(1100, -220)
+[sub_resource type="Resource" id="Resource_dsfmd"]
+script = ExtResource("5_7yxgq")
+move_type = 5
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 0
+speed_factor = 1.0
+wait_finished = false
+children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_c4bcy")])
+node_type = 3
+pos = Vector2(1780, -280)
 
-[sub_resource type="Resource" id="Resource_ppcyd"]
+[sub_resource type="Resource" id="Resource_0jl01"]
 script = ExtResource("2_gd8t7")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_xyi0r")
+child = SubResource("Resource_dsfmd")
 
-[sub_resource type="Resource" id="Resource_r2ohr"]
-script = ExtResource("4_cckqk")
-text = "loudao1f_01"
-role = ExtResource("3_il7ig")
-type = 0
-wait_time = 1000
-children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_ppcyd")])
-node_type = 1
-pos = Vector2(740, -280)
-
-[sub_resource type="Resource" id="Resource_ydfgq"]
-script = ExtResource("2_gd8t7")
-from_port_index = 0
-to_port_index = 0
-child = SubResource("Resource_r2ohr")
-
-[sub_resource type="Resource" id="Resource_ypoag"]
+[sub_resource type="Resource" id="Resource_o7bot"]
 script = ExtResource("5_7yxgq")
 move_type = 2
 target_char = {
@@ -63,27 +52,178 @@ target_char = {
 step_count = 1
 speed_factor = 1.0
 wait_finished = true
-children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_ydfgq")])
+children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_0jl01")])
 node_type = 3
-pos = Vector2(340, -240)
+pos = Vector2(1420, -280)
 
-[sub_resource type="Resource" id="Resource_tsh53"]
+[sub_resource type="Resource" id="Resource_yxjlo"]
 script = ExtResource("2_gd8t7")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_ypoag")
+child = SubResource("Resource_o7bot")
 
-[sub_resource type="Resource" id="Resource_w8oib"]
+[sub_resource type="Resource" id="Resource_xe6ws"]
+script = ExtResource("4_cckqk")
+text = "loudao1f_03"
+role = ExtResource("3_il7ig")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_yxjlo")])
+node_type = 1
+pos = Vector2(1060, -300)
+
+[sub_resource type="Resource" id="Resource_wvwhy"]
+script = ExtResource("2_gd8t7")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_xe6ws")
+
+[sub_resource type="Resource" id="Resource_k8x45"]
+script = ExtResource("4_cckqk")
+text = "loudao1f_02"
+role = ExtResource("3_il7ig")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_wvwhy")])
+node_type = 1
+pos = Vector2(700, -300)
+
+[sub_resource type="Resource" id="Resource_tkp14"]
+script = ExtResource("2_gd8t7")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_k8x45")
+
+[sub_resource type="Resource" id="Resource_6ysfb"]
+script = ExtResource("4_cckqk")
+text = "loudao1f_01"
+role = ExtResource("3_il7ig")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_tkp14")])
+node_type = 1
+pos = Vector2(340, -300)
+
+[sub_resource type="Resource" id="Resource_7j45q"]
+script = ExtResource("2_gd8t7")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_6ysfb")
+
+[sub_resource type="Resource" id="Resource_5tr0i"]
+script = ExtResource("4_cckqk")
+text = "loudao1f_05"
+role = ExtResource("3_il7ig")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_gd8t7")]([])
+node_type = 1
+pos = Vector2(1240, 60)
+
+[sub_resource type="Resource" id="Resource_huvwe"]
+script = ExtResource("2_gd8t7")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_5tr0i")
+
+[sub_resource type="Resource" id="Resource_4na5i"]
+script = ExtResource("4_cckqk")
+text = "loudao1f_07"
+role = ExtResource("3_il7ig")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_gd8t7")]([])
+node_type = 1
+pos = Vector2(1940, 500)
+
+[sub_resource type="Resource" id="Resource_kp8ok"]
+script = ExtResource("2_gd8t7")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_4na5i")
+
+[sub_resource type="Resource" id="Resource_evjov"]
+script = ExtResource("4_cckqk")
+text = "loudao1f_06"
+role = ExtResource("3_il7ig")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_kp8ok")])
+node_type = 1
+pos = Vector2(1560, 480)
+
+[sub_resource type="Resource" id="Resource_4tssm"]
+script = ExtResource("2_gd8t7")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_evjov")
+
+[sub_resource type="Resource" id="Resource_nx4oc"]
+script = ExtResource("4_78hgk")
+script_cmd = "!has_item(\"06i_0_手电筒（疑问）\",true)"
+children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_4tssm")])
+node_type = 17
+pos = Vector2(1120, 380)
+
+[sub_resource type="Resource" id="Resource_rvgo5"]
+script = ExtResource("2_gd8t7")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_nx4oc")
+
+[sub_resource type="Resource" id="Resource_pskdt"]
+script = ExtResource("4_78hgk")
+script_cmd = "has_item(\"06i_0_手电筒（疑问）\")"
+children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_huvwe"), SubResource("Resource_rvgo5")])
+node_type = 17
+pos = Vector2(740, 100)
+
+[sub_resource type="Resource" id="Resource_cqib2"]
+script = ExtResource("2_gd8t7")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_pskdt")
+
+[sub_resource type="Resource" id="Resource_mpdf6"]
+script = ExtResource("4_cckqk")
+text = "loudao1f_04"
+role = ExtResource("3_il7ig")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_cqib2")])
+node_type = 1
+pos = Vector2(340, 40)
+
+[sub_resource type="Resource" id="Resource_buudv"]
+script = ExtResource("2_gd8t7")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_mpdf6")
+
+[sub_resource type="Resource" id="Resource_0px51"]
+script = ExtResource("4_78hgk")
+script_cmd = "!has_item(\"207c_0_漆黑的楼道间\")"
+children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_7j45q"), SubResource("Resource_buudv")])
+node_type = 17
+pos = Vector2(-60, -240)
+
+[sub_resource type="Resource" id="Resource_up5j5"]
+script = ExtResource("2_gd8t7")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_0px51")
+
+[sub_resource type="Resource" id="Resource_a7hsf"]
 script = ExtResource("5_nub16")
-children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_tsh53")])
+children = Array[ExtResource("2_gd8t7")]([SubResource("Resource_up5j5")])
 node_type = 0
-pos = Vector2(100, -180)
+pos = Vector2(-320, -200)
 
 [resource]
 script = ExtResource("1_gkeib")
-title = ""
+title = "太黑楼道间"
 is_collsion = true
 trigger_type = 2
 one_shot = false
-tree = SubResource("Resource_w8oib")
+tree = SubResource("Resource_a7hsf")
 map = {}

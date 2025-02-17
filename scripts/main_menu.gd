@@ -33,13 +33,19 @@ func init_window():
 	select(0,true)
 
 
+var input_triggered := false
+
 # 检测输入
 func _input(event: InputEvent) -> void:
 	if !visible:return
 	## 按下取消
-	if event.is_action_pressed("cancel"):
+	if event.is_action_pressed("cancel") && !input_triggered:
+		self.input_triggered = true
 		get_window().set_input_as_handled()
 		close_window()
+	
+	if event.is_released():
+		self.input_triggered = false
 		
 func close_window():
 	SceneManager.backto()

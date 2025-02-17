@@ -8,7 +8,7 @@ class_name ChildrenNodeConfig
 @export var to_port_index:int = -1
 @export var child:BaseEventNode
 
-func _init(from_port_index:int = -1,to_port_index:int = -1,child:BaseEventNode = null) -> void:
-	self.from_port_index = from_port_index
-	self.to_port_index = to_port_index
-	self.child = child
+func _init(_from_port_index:int = -1,_to_port_index:int = -1,_child:BaseEventNode = null) -> void:
+	self.from_port_index = _from_port_index
+	self.to_port_index = _to_port_index
+	self.child = _child

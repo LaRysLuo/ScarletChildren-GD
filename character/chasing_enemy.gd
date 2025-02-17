@@ -23,6 +23,8 @@ class_name ChasingEnemy
 
 @export var across_delay_time:float = 1 # 跨场景时的延迟出现时间
 
+@export var level:int = 0 # 难度
+
 # 跨场景暂停
 @export var across_pause:bool = false
 
@@ -32,7 +34,7 @@ class_name ChasingEnemy
 
 func _ready() -> void:
 	update_astar_points()
-	player.pos_changed.connect(_update_path)
+	
 	#start_chasing()
 
 func _process(delta: float) -> void:
@@ -47,6 +49,7 @@ func start_chasing():
 	AudioManager.play_monster_laughing()
 	## 应用暗角效果
 	SFXVignette.get_sfx().apply_vignette(0.5)
+	player.pos_changed.connect(_update_path)
 	await  GameManager.wait(across_delay_time)
 	chasing_enable = true
 	if !chasing_scene_list.is_empty(): 
@@ -63,7 +66,13 @@ func complete_chasing():
 	print("抓到你了！！！")
 	GameManager.set_game_state_buszing()
 	end_chasing()
-	SceneManager.navigate_to("scene_gameover")
+	
+	## 判断当前场景是否为目标场景
+	print("当前场景为=",SceneManager.current_map)
+	if  SceneManager.get_tree().current_scene.name == "蔷薇馆·中厅":
+		SceneManager.navigate_to("scene_demo01")
+	else:
+		SceneManager.navigate_to("scene_gameover")
 	
 ## 停止追逐战
 func end_chasing():
@@ -71,6 +80,7 @@ func end_chasing():
 		SceneManager.on_player_move_pre.disconnect(_across_scene)
 		SceneManager.on_player_moved.disconnect(_across_restart)
 	chasing_enable = false
+	player.pos_changed.disconnect(_update_path)
 	SFXVignette.get_sfx().clear_effect()
 	
 	
@@ -128,9 +138,13 @@ func _update_path():
 func _across_scene(target_scene:String):
 	## 判断目标场景是否在跨场景的范围内
 	if target_scene in chasing_scene_list:
+		across_pause = true
 		self.map.remove_child(self)	# 把该追逐怪脱离出来
 		GameManager.add_child(self)
-		across_pause = true
+		await GameManager.wait(0.2)
+		self.modulate.a = 0
+		#self.set_pos(Vector2i.ZERO)
+		
 
 	## 如果已在场景外了，结束追逐战
 	else:
@@ -139,37 +153,34 @@ func _across_scene(target_scene:String):
 
 ## 重新开始寻路
 # 将玩家到新场景移动后才会触发该回调
-# 
+# 每次换场景后，怪物会加速，提高怪物的移动速度
 func _across_restart(coord:Vector2i):
 	if !across_pause:return
+	self.level += 1
+	self.move_speed_factor = 1.0 + self.level * 0.1
 	var obj_map = GameManager.player.map
 	self.reparent(obj_map,true)
 	self.map = obj_map
 	await GameManager.wait(0.1)
 	self.set_pos(coord)
-	#self.show()
+	self.modulate.a = 1
 
 	### 移动到对应位置
 	await GameManager.wait(across_delay_time)
-	
-	print("门门门:coord=",coord)
-	
+
 	## 播放开关门效果
 	var result:Dictionary = _find_around_door(coord)
 	if !result: return
 	var dir = result["dir"]
 	var door:Door1 = result["door"]
-	print("门门门=",door)
 	# 1. 门打开
 	await  door.open_door()
-	print("门门门=门打开了")
 	# 2. 角色走出来
 	var check_pos:Vector2i = coord
 	for n in 2:
 		check_pos += dir
 		move_to_by_route(MoveRoute.new(dir,check_pos))
 	await pos_changed
-	print("门门门=门要关闭了")
 	# 3. 门关闭
 	door.close_door()
 	if self.cell_pos == player.cell_pos:

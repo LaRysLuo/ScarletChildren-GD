@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo5k6lbatnr6l"]
+
+[ext_resource type="Shader" path="res://scenes/ui_scene/shader_test/shader_test.gdshader" id="1_7tvd2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4c0u6"]
+shader = ExtResource("1_7tvd2")
+
+[node name="ShaderTest" type="Node2D"]
+material = SubResource("ShaderMaterial_4c0u6")

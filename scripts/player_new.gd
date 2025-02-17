@@ -17,11 +17,11 @@ var interact_with:Event #可交互对象
 	get(): return 0.1
 
 # ONREADY
-@onready var tip: Sprite2D = $Sprite2D
+@onready var tip: Sprite2D = $Attach/Sprite2D
 @onready var cam:Camera2D = $Camera2D
-@onready var attach:Node2D = $Attach
+#@onready var attach:CanvasLayer = $Attach
 
-const FLASH_LIGHT_RES = preload("res://component/flash_light/flash_light.tscn")
+#const FLASH_LIGHT_RES = preload("res://component/flash_light/flash_light.tscn")
 
 ## SIGNAL
 
@@ -183,17 +183,23 @@ func _get_event_font() -> Event:
 				return event
 	return null		# 什么都没找到，返回空
 
+var input_triggerd := false
+
 func _input(event: InputEvent) -> void:
 	if !GameManager.is_normal_state: return 
 	if !is_visible_in_tree():return
 	if event.is_action_pressed("submit") && interact_with :	_insteract(interact_with)
 	## 打開主菜單
-	if event.is_action_pressed("cancel"):
+	if event.is_action_pressed("cancel") && !input_triggerd:
+		self.input_triggerd = true
 		tip.hide()
 		SceneManager.navigate_to("scene_main_menu")
 	## 加速跑
 	if event.is_action_pressed("R1") && running_mode == 0: _start_run()
 	if event.is_action_released("R1") && running_mode == 1:_end_run()
+	
+	if event.is_released():
+		self.input_triggerd = false
 	
 		
 var is_action:bool = false
@@ -249,7 +255,7 @@ func _has_event_clashed(event:Event) -> void:
 #endregion
 
 ## 设置相机跟随
-func set_camera_follow(is_follow:bool):
+func set_camera_follow(_is_follow:bool):
 	pass
 
 ## 设置相机放大或者缩小
@@ -258,22 +264,22 @@ func set_camera_zoom(zoom_arg:Vector2i = Vector2i.ONE):
 
 #region 手电照明
 
-var fl:FlashLight
+#var fl:FlashLight
 ## 显示手电效果
 # 生成一个手电效果到玩家身上
 # 并根据玩家转向时，变更灯光朝向
-func show_flash_light():
-	fl = FLASH_LIGHT_RES.instantiate()
-	self.dir_changed.connect(fl.refresh)
-	fl.refresh(self.dir)
-	attach.add_child(fl)
-
-## 隐藏手电效果
-func hide_flash_light():
-	attach.remove_child(fl)
-	fl.queue_free()
-	
-func get_light_switch() -> bool:
-	return fl != null
+#func show_flash_light():
+	#fl = FLASH_LIGHT_RES.instantiate()
+	#self.dir_changed.connect(fl.refresh)
+	#fl.refresh(self.dir)
+	#attach.add_child(fl)
+#
+### 隐藏手电效果
+#func hide_flash_light():
+	#attach.remove_child(fl)
+	#fl.queue_free()
+	#
+#func get_light_switch() -> bool:
+	#return fl != null
 	
 #endregion 手电照明
