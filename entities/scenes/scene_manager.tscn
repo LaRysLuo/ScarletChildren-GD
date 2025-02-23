@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccrbgcu4vjijn"]
+
+[ext_resource type="Script" path="res://scene_manager.gd" id="1_7hfqe"]
+[ext_resource type="PackedScene" uid="uid://bpcu6gsvelear" path="res://component/screen_effect/screen_effect.tscn" id="2_d8xjo"]
+
+[node name="SceneManager" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_7hfqe")
+
+[node name="CGRect" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScreenEffect" parent="." instance=ExtResource("2_d8xjo")]

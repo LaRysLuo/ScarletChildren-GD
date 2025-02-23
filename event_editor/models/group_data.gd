@@ -1,9 +1,9 @@
 extends BaseEventNode
 class_name GroupData
 
-@export var event_res:Events_Res
+@export var event_res:EventsRes
 
-func _init(cmd:int = BaseEventNode.Scripts,pos:Vector2 = Vector2.ZERO,event_res:Events_Res = null) -> void:
+func _init(cmd:int = BaseEventNode.Scripts,pos:Vector2 = Vector2.ZERO,event_res:EventsRes = null) -> void:
 	self.node_type = cmd
 	self.pos = pos
 	self.event_res = event_res

@@ -1,12 +1,13 @@
 #这是一个场景管理器
 
 extends CanvasLayer
-class_name SceneManage
+# class_name SceneManager
 
 @onready var anim:AnimationPlayer = $AnimationPlayer
-@onready var color_rect:ColorRect = $ColorRect
 @onready var cg_rect:TextureRect = $CGRect
 @export var scene_list = []
+
+# 场景目录
 const scene_file_root = "res://scenes/"
 
 
@@ -14,11 +15,11 @@ var expression:Expression = Expression.new()
 var is_running:bool = false
 
 ## 信号
-
-# signal reading_mode_close
+signal reading_mode_close
 signal on_map_available
+signal on_scene_changed
 
-var tool_scenes:Dictionary = {
+var scenes:Dictionary = {
 	"scene_main_menu":"res://scenes/ui_scene/main_menu.tscn",
 	"scene_item_list":"res://scenes/ui_scene/scene_item/neo_item_list.tscn",
 	"scene_reading_mode":"res://component/scene_file_read/scene_file_read.tscn",
@@ -31,29 +32,38 @@ var tool_scenes:Dictionary = {
 var current_map:String 
 var current_map_name:String
 
+
+
 ## 获得当前场景的名字
 func get_current_scene_name() -> String:
 	return get_tree().current_scene.name
+
 
 
 #场景切换的时候，如果原场景是Main场景，则记录玩家的位置
 var playerPos: Vector2
 
 var first_scene = "Main"
-# Called when the node enters the scene tree for the first time.
+
+#region 生命周期函数
 func _ready() -> void:
 	self.hide()
 	cg_rect.hide()
-	color_rect.hide()
-	
+
+#endregion 
+
+var effect_fadein:Callable # 带一个参数：时间
+var effect_fadeout:Callable # 带一个参数：时间
+
+
 ## 开始解谜
 # SceneManager.to_starfish()
 func to_starfish():
 	var star_fish:SceneJigsaw = await navigate_to("scene_star_fish")
 	var is_finished = has_item("202c_2_星鱼拼图完成",true)
 	if is_finished: star_fish.set_complete()
-	else: star_fish.on_succuss.connect(func(): 
-		GameManager.data_player.gain_item("202c_2_星鱼拼图完成",false)
+	else: star_fish.on_succuss.connect(func(): pass
+		# GameManager.data_player.gain_item("202c_2_星鱼拼图完成",false)
 	)
 	await  star_fish.on_finish
 	
@@ -65,120 +75,96 @@ func is_ui_visible() -> bool:
 func goto(path,with_fade:bool = true):
 	var scene
 	if path is String:
-		var full_path = tool_scenes[path]
+		var full_path = scenes[path]
 		if !full_path:
 			printerr("该场景路径没配置")
 			return
 		scene = load(full_path)
 	if path is PackedScene: scene = path
 	self.show()
-	if with_fade:	await  GameManager.fadeout_black(0.2) 
-	# var root = get_tree().root
+	if with_fade:
+		if  !effect_fadeout: 
+			push_error("SceneManager未配置effect_efadeout")
+		await  effect_fadeout.call(0.2)
+		# await  GameManager.fadeout_black(0.2)  # 淡出为黑色
+
 	var loaded_scene =  scene.instantiate()
-	#root.add_child(loaded_scene)
-	SaveManager.add_sibling(loaded_scene)
+
+	# SaveManager.add_sibling(loaded_scene)
 	get_tree().current_scene = loaded_scene
 
-	#await  get_tree().change_scene_to_file(full_path)
-
-	if with_fade: await  GameManager.fadein(0.5)
+	if with_fade: 
+		if  !effect_fadein:
+			push_error("SceneManager未配置effect_efadein") 
+		await  effect_fadein.call(0.5)  ## GameManager.fadein(0.5)
 	#print("Player",get_tree().current_scene)
 	self.hide()
+	on_scene_changed.emit(get_tree().current_scene)
 	return get_tree().current_scene
 
+## 信号
 
 signal on_player_move_pre #玩家移动前
 signal on_player_moved 
 signal move_finished #玩家移动后
 
-## WARNING (已弃用) 
-# 用于主角角色的场景移动
-func move_by_name(scene_name,event_name,with_fade:bool = true):
-	var full_path = scene_file_root + 'maps/' + scene_name + '.tscn'
-	if with_fade:
-		self.show()
-		anim.play("fade_out")
-		await  anim.animation_finished
-	on_player_move_pre.emit()
-	GameManager.player.map.remove_child(GameManager.player)	# 把玩家脱离出来
-	
-	get_tree().change_scene_to_file(full_path) #跳转到新场景
-	await  get_tree().tree_changed
-	var timer = get_tree().create_timer(0.1)
-	await  timer.timeout
-	print("当前场景为：",get_tree().current_scene.name)
-	
-	var event = find_event_by_name(event_name)
-
-	if !event: 
-		print_debug("场景移动失败，没有找到目标事件点")
-		return
-	
-	# 设置玩家到该点上
-	print_debug("event=",event)
-	GameManager.player.move_event_pos(event)
-	
-	if with_fade:
-		anim.play("fade_in")
-		await anim.animation_finished
-		self.hide()
-	
-	move_finished.emit()
 
 
 ## 场景移动：地图间的移动
 func move(path:String,coord:Vector2i = Vector2i.ZERO,with_fade:bool = true,move_player:bool = false):
-	Larik.print_title("函数名：玩家移动/move")
+	pass
+	# Larik.print_title("函数名：玩家移动/move")
 	
-	var spi_list:PackedStringArray  =	path.get_file().get_basename().split('_')
-	var scene_name = spi_list[-1]
-	Larik.print_content("scene_name:%s" % scene_name)
+	# var spi_list:PackedStringArray  =	path.get_file().get_basename().split('_')
+	# var scene_name = spi_list[-1]
+	# Larik.print_content("scene_name:%s" % scene_name)
 	
-	## 淡出画面
-	is_running = true
-	if with_fade:
-		self.show()
-		Larik.print_content("画面淡出")
-		anim.play("fade_out")
-		await  anim.animation_finished
-	on_player_move_pre.emit(scene_name)
-	## 脱离玩家角色
-	if GameManager.player:
-		GameManager.player.map.remove_child(GameManager.player)	
-		GameManager.add_child(GameManager.player)
-	await get_tree().create_timer(0.1).timeout
-	var err =	get_tree().change_scene_to_file(path) #跳转到新场景
-	if err != 0:
-		printerr("跳转新场景失败")
-		return	
-	## 等待场景转换完成
-	await  get_tree().tree_changed
-	self.current_map = path
-	self.current_map_name = get_tree().current_scene.name
-	if GameManager.player:
-		var obj_maps:TileMapLayer = get_tree().current_scene.get_node("Maps/Objects")
-		GameManager.remove_child(GameManager.player)
-		obj_maps.add_child(GameManager.player)
-		GameManager.player.map = obj_maps
-	#await get_tree().create_timer(0.2).timeout
+	# ## 淡出画面
+	# is_running = true
+	# if with_fade:
+	# 	self.show()
+	# 	Larik.print_content("画面淡出")
+	# 	anim.play("fade_out")
+	# 	await  anim.animation_finished
+	# on_player_move_pre.emit(scene_name)
+	# ## 脱离玩家角色
+	# if GameManager.player:
+	# 	GameManager.player.map.remove_child(GameManager.player)	
+	# 	GameManager.add_child(GameManager.player)
+	# await get_tree().create_timer(0.1).timeout
+	# var err =	get_tree().change_scene_to_file(path) #跳转到新场景
+	# if err != 0:
+	# 	printerr("跳转新场景失败")
+	# 	return	
+	# ## 等待场景转换完成
+	# await  get_tree().tree_changed
+	# self.current_map = path
+	# self.current_map_name = get_tree().current_scene.name
+	# if GameManager.player:
+	# 	var obj_maps:TileMapLayer = get_tree().current_scene.get_node("Maps/Objects")
+	# 	GameManager.remove_child(GameManager.player)
+	# 	obj_maps.add_child(GameManager.player)
+	# 	GameManager.player.map = obj_maps
+	# #await get_tree().create_timer(0.2).timeout
 	
-	## 切换到目标点
-	print("角色移动的目标点coord=",coord)
-	if GameManager.player and move_player: await  GameManager.player.set_pos(coord)
-	on_player_moved.emit(coord)
-	await get_tree().create_timer(0.1).timeout
-	## 淡入画面
-	if with_fade:
-		Larik.print_content("画面淡入")
-		anim.play("fade_in")
-		await anim.animation_finished
-		#self.hide()
+	# ## 切换到目标点
+	# print("角色移动的目标点coord=",coord)
+	# if GameManager.player and move_player: await  GameManager.player.set_pos(coord)
+	# on_player_moved.emit(coord)
+	# await get_tree().create_timer(0.1).timeout
+	# ## 淡入画面
+	# if with_fade:
+	# 	Larik.print_content("画面淡入")
+	# 	anim.play("fade_in")
+	# 	await anim.animation_finished
+	# 	#self.hide()
 	
-	## 发送移动结束的信号
-	is_running = false
+	# ## 发送移动结束的信号
+	# is_running = false
 
-	move_finished.emit(coord)
-	Larik.print_title("函数名：玩家移动/move 运行结束")
+	# move_finished.emit(coord)
+	# on_scene_changed.emit(get_tree().current_scene)
+	# Larik.print_title("函数名：玩家移动/move 运行结束")
 	
 
 ## 找出事件
@@ -211,9 +197,11 @@ func navigate_to(scene):
 	#playerPos = node.position
 	return await goto(scene)
 
+
+
 # 回退到上一个场景（用于UI场景切换）
-func backto(callback = null):
-	await  GameManager.fadeout_black(0.1)
+func backto(callback = null): 
+	await  effect_fadeout.call(0.3)
 	var lasted = get_tree().current_scene
 	get_tree().root.remove_child(lasted)
 	if scene_list.size() > 0 :
@@ -233,56 +221,41 @@ func backto(callback = null):
 			obj_map.enabled = true
 			GameManager.player._init_player()
 			if callback && callback is Signal: callback.emit()
-			SceneManager.reading_mode_close.emit()
+			reading_mode_close.emit()
 			on_map_available.emit()
+			on_scene_changed.emit(get_tree().current_scene)
 			GameManager.clear_screen()
 	lasted.queue_free()
 
 # 退出所有UI场景
-func backall():
-	print("退出全部场景")
-	await  GameManager.fadeout_black(0.1)
-	# 清除掉旧场景
-	var lasted = get_tree().current_scene
-	get_tree().root.remove_child(lasted)
-	#get_tree().unload_current_scene()
-	if scene_list.size() > 0 :
-		var last_scene = scene_list[0]
-		get_tree().current_scene = last_scene
-		last_scene.show()
-		GameManager.player._init_player()
-		#scene_list.clear()
-	await  GameManager.fadein(0.1)
-	## 将多余的场景清除掉
-	print("当前场景队列中剩余的场景1：",scene_list)
-	var other_scenes = scene_list.slice(1)
-	for scene:Node in other_scenes:
-		scene.queue_free()
-	scene_list.clear()
-	on_map_available.emit()
-	print("当前场景队列中剩余的场景2：",scene_list)
+func backall(): pass
+	# print("退出全部场景")
+	# await  GameManager.fadeout_black(0.1)
+	# # 清除掉旧场景
+	# var lasted = get_tree().current_scene
+	# get_tree().root.remove_child(lasted)
+	# #get_tree().unload_current_scene()
+	# if scene_list.size() > 0 :
+	# 	var last_scene = scene_list[0]
+	# 	get_tree().current_scene = last_scene
+	# 	last_scene.show()
+	# 	GameManager.player._init_player()
+	# 	#scene_list.clear()
+	# await  GameManager.fadein(0.1)
+	# ## 将多余的场景清除掉
+	# print("当前场景队列中剩余的场景1：",scene_list)
+	# var other_scenes = scene_list.slice(1)
+	# for scene:Node in other_scenes:
+	# 	scene.queue_free()
+	# scene_list.clear()
+	# on_map_available.emit()
+	# on_scene_changed.emit(get_tree().current_scene)
+	# print("当前场景队列中剩余的场景2：",scene_list)
 
 func reload_scene(last_scene):
 	if last_scene:
 		get_tree().current_scene = last_scene
 		get_tree().reload_current_scene()
-
-# 画面淡出
-func fadeout():
-	self.show()
-	anim.play("fade_out")
-	await  anim.animation_finished
-	#self.hide()
-	
-func fadein():
-	anim.play("fade_in")
-	await  anim.animation_finished	
-	self.hide()
-
-func show_color():
-	color_rect.color = Color.WHITE
-	self.show()
-	pass
 
 
 ## 显示cg
@@ -318,35 +291,33 @@ func in_group(node:Node,group_name:String) -> bool:
 
 ## 玩家是否获得过道具
 func has_item(item_key:String,is_all:bool = false):
-	return	GameManager.data_player.has_item(item_key,is_all)
+	return false	#GameManager.data_player.has_item(item_key,is_all)
 	
-func is_flash() -> bool:
-	return GameManager.player.get_light_switch()
 
 ## 查看前方事件是否是对应事件
 # event_name为Event.event_name的值
-func with_event(event_name:StringName) -> bool:
-	var with:Event = GameManager.player.interact_with
-	if !with: return false
-	return with.event_name == event_name
+func with_event(event_name:StringName) -> bool: return false
+	# var with:Event = GameManager.player.interact_with
+	# if !with: return false
+	# return with.event_name == event_name
 	
 
-func condition_eval(code:String):
+func condition_eval(code:String): pass
 	
-	var inputs:Dictionary = {
-		"player" =  GameManager.player,
-		"interObj" = GameManager.player.interact_with,
-	}
+	# var inputs:Dictionary = {
+	# 	"player" =  GameManager.player,
+	# 	"interObj" = GameManager.player.interact_with,
+	# }
 
-	var error = expression.parse(code,inputs.keys())
-	if error !=OK:
-		printerr("出现错误了")
-		return
-	var result = expression.execute(inputs.values(),self)
-	if expression.has_execute_failed():
-		print("执行出错了:",expression.get_error_text())
-		return
-	if  typeof(result) != TYPE_BOOL:
-		print("返回的参数必须是布尔值")
-		return
-	return result
+	# var error = expression.parse(code,inputs.keys())
+	# if error !=OK:
+	# 	printerr("出现错误了")
+	# 	return
+	# var result = expression.execute(inputs.values(),self)
+	# if expression.has_execute_failed():
+	# 	print("执行出错了:",expression.get_error_text())
+	# 	return
+	# if  typeof(result) != TYPE_BOOL:
+	# 	print("返回的参数必须是布尔值")
+	# 	return
+	# return result

@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://vr2p0va4seao"]
 
-[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/maps/2蔷薇馆2F - 201室/map_1号房间.tscn" id="1_gj6mg"]
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://entities/scenes/rpg_map_template/template.tscn" id="1_gj6mg"]
 
 [node name="示例地图场景" instance=ExtResource("1_gj6mg")]

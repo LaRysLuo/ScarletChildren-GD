@@ -15,7 +15,7 @@ class_name Item
 
 ## 使用的事件 如果没有该事件，该道具不能使用
 @export var use_event:Callable
-@export var use_event_new:Events_Res
+@export var use_event_new:EventsRes
 @export var err_desc:String
 
 

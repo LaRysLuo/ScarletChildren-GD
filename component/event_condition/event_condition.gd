@@ -8,8 +8,6 @@ enum EventConditionType{
 ## 事件条件类型
 @export var type:EventConditionType = -1
 
-var game:GamePlay:
-	get(): return GameManager
 
 # 该函数可在子类中重写
 ## 获得该条件的结果

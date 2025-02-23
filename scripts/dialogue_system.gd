@@ -24,6 +24,7 @@ const AutoPlay = 3
 @onready var content_label: RichTextLabel = get_node("DialogueBox/MarginContainer/VBoxContainer/ContentLabel")
 @onready var options_node:OptionMenu =  get_node("Options") as OptionMenu # Options组件的基节点
 @onready var nextable_sign_tr:Control = get_node("DialogueBox/MarginContainer/VBoxContainer/Control2") 
+@onready var input_dispat:InputDispatcher = get_node("InputDispatcher")
 
 var typing_tween:Tween
 var typing_text:String
@@ -58,11 +59,12 @@ signal on_typing # 正在打字时，可用于增加音效
 
 #region 生命周期
 
-func _enter_tree() -> void:
-	InputManager.on_action_pressed.connect(_action_input)
+func _enter_tree() -> void: pass
 	
-func _exit_tree() -> void:
-	InputManager.on_action_pressed.disconnect(_action_input)
+	# InputManager.on_action_pressed.connect(_action_input)
+	
+func _exit_tree() -> void: pass
+	# InputManager.on_action_pressed.disconnect(_action_input)
 
 func  _ready() -> void:
 	## 把对话框体和选项框体隐藏
@@ -70,6 +72,7 @@ func  _ready() -> void:
 	_hide_option_window()
 	_translate_all_labels(self)
 	_hide_ponder_tips()
+	_init_input_dispatcher()
 
 #endregion
 
@@ -78,40 +81,40 @@ func  _ready() -> void:
 func _action_input(key:int):
 	if wait_input_mode == 3 ||  wait_input_mode == 0: return
 	## 按下A时
-	if key == InputManager.KEY_A  && !ponder_mode:
+	if key == input_dispat.KEY_A  && !ponder_mode:
 		match wait_input_mode:
 			Typing: 	_skip_typing_anim() #如果正在打字中，跳过打字直接出现文字
 			WaitInput:  _next_dialogue() #如果等待输入中，则进入下一段对话
 
 	if wait_input_mode == Typing: return
 	## 按下A，思考关键词
-	if key == InputManager.KEY_A && ponder_mode:
+	if key == input_dispat.KEY_A && ponder_mode:
 		get_window().set_input_as_handled()
 		_submit_ponder()
 		return
 	## 按下B时
-	if key == InputManager.KEY_B && ponder_mode:
+	if key == input_dispat.KEY_B && ponder_mode:
 		get_window().set_input_as_handled()
 		_end_ponder_mode()
 		pass
 	## 按下Y时
 	# 弹出物品选择框
-	if  key == InputManager.KEY_Y && ponder_mode:
+	if  key == input_dispat.KEY_Y && ponder_mode:
 		get_window().set_input_as_handled()
 		_show_item_picker()
 		pass
 	
 	## 按下Y时进行联想
-	if key == InputManager.KEY_Y && !dialogue_options_list.is_empty() && !ponder_mode:
+	if key == input_dispat.KEY_Y && !dialogue_options_list.is_empty() && !ponder_mode:
 		get_window().set_input_as_handled()
 		_start_ponder_mode()
 	if !ponder_mode:return
-	if key == InputManager.KEY_LEFT && key_index > 0:
+	if key == input_dispat.KEY_LEFT && key_index > 0:
 		get_window().set_input_as_handled()
 		key_index -= 1
 		_update_ponder_highlight() 
 		pass
-	if key == InputManager.KEY_RIGHT && key_index < dialogue_options_list.size() - 1:
+	if key == input_dispat.KEY_RIGHT && key_index < dialogue_options_list.size() - 1:
 		get_window().set_input_as_handled()
 		key_index += 1
 		_update_ponder_highlight()
@@ -156,6 +159,11 @@ func set_item_link(link_list):
 
 
 #region 内部函数
+
+func _init_input_dispatcher():
+	input_dispat.on_ui_pressed.connect(_action_input)
+
+
 ## 递归翻译按钮
 func _translate_all_labels(node):
 	for child in node.get_children(true):
@@ -337,12 +345,12 @@ func _can_link() -> bool:
 
 ## 显示物品选择栏
 func _show_item_picker():
-	if !_can_link():
-		AudioManager.play_buzzle() 
-		return
-	self.hide()
-	var item_picker:NeoItemList = await SceneManager.navigate_to("scene_item_list")
-	item_picker.start_picker_mode(_picker_confirm,func():self.show())
+	# if !_can_link():
+	# 	AudioManager.play_buzzle() 
+	# 	return
+	# self.hide()
+	# var item_picker:NeoItemList = await SceneManager.navigate_to("scene_item_list")
+	# item_picker.start_picker_mode(_picker_confirm,func():self.show())
 	pass
 
 ## 选择确定

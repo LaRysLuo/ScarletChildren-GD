@@ -10,4 +10,4 @@ func _init(node_type:int = BaseEventNode.Scripts,pos:Vector2 = Vector2.ZERO,time
 
 func _execute(ent,agrs):
 	print("淡入画面")
-	await  GameManager.fadein(time)
+	await  GameManager.game_screen.fadein(time)

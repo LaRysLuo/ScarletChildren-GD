@@ -32,8 +32,9 @@ func _execute(ent:Event,args):
 	ent.hide()
 	ent.get_parent().remove_child(ent)
 	GameManager.add_child(ent)
-	SceneManager.move(target_map_path,target_coord,is_fade,is_move_character) #传送到目标场合
-	await SceneManager.move_finished #等待移动结束
+	GameManager.scene_manager.move(target_map_path,target_coord,is_fade,is_move_character)
+	# SceneManager.move(target_map_path,target_coord,is_fade,is_move_character) #传送到目标场合
+	await GameManager.scene_manager.move_finished #等待移动结束
 	## 将ent移出
 	if ent is Event:
 		ent.event_finish.connect(func():

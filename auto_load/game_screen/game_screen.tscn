@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpg66qkjifnfy"]
+
+[ext_resource type="Script" path="res://auto_load/game_screen/game_screen.gd" id="1_6buo5"]
+[ext_resource type="PackedScene" uid="uid://bpcu6gsvelear" path="res://component/screen_effect/screen_effect.tscn" id="2_pxi5j"]
+
+[node name="GameScreen" type="Node2D"]
+script = ExtResource("1_6buo5")
+
+[node name="ScreenEffect" parent="." instance=ExtResource("2_pxi5j")]

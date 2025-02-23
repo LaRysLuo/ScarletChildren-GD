@@ -59,6 +59,10 @@ func _ready() -> void:
 	pass
 
 
+## 可被子类继承
+func _get_map_config() -> MapConfig:
+	return get_parent().get_parent() as MapConfig
+
 func move_to(dir:Vector2i):
 	# 计算出目标点的
 	dir_input = dir
@@ -108,7 +112,8 @@ func  move_to_target(route:MoveRoute):
 	self.dir = route.dir
 	var move_target
 	# 判断可行性
-	if !_movable(route.target): move_target = cell_pos
+	if !_movable(route.target): 
+		move_target = cell_pos
 	else: move_target = route.target
 	# 移动到目标点
 	cell_pos = move_target
@@ -146,9 +151,9 @@ func _movable(pos:Vector2i,ingore_event_collsion:bool = false) -> bool:
 		var map_config:MapConfig = get_parent().get_parent()
 		var event_config:EventConfig = map_config.get_event(pos)
 		if !event_config && !event is  Door1: return true		
-		var event_res:Events_Res = null
-		#if event_config: 
-			#event_res = event_config.event_res
+		var event_res:EventsRes = null
+		if event_config: 
+			event_res = event_config.event_res
 		if !ingore_event_collsion:
 			# 如果event是碰撞体才返回
 			if event && event.visible && !event.ingore_collsion:  

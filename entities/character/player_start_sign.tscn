@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfo3m5vxmgpnu"]
+
+[ext_resource type="Texture2D" uid="uid://cgush3j2h8fuv" path="res://assets/tileset0/movable.png" id="1_ny41b"]
+
+[node name="PlayerStartSign" type="Node2D" groups=["player_sign"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 99
+texture = ExtResource("1_ny41b")
+region_enabled = true
+region_rect = Rect2(64, 32, 32, 32)

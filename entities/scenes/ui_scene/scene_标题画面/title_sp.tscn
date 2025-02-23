@@ -1,0 +1,206 @@
+[gd_scene load_steps=18 format=3 uid="uid://b3iuccgaftfe4"]
+
+[ext_resource type="Script" path="res://entities/scenes/ui_scene/scene_标题画面/title_sp.gd" id="1_ja11u"]
+[ext_resource type="Texture2D" uid="uid://b3kn60eed3bx0" path="res://assets/system/title_samle.png" id="2_ne5yf"]
+[ext_resource type="Shader" path="res://shaders/fog.gdshader" id="3_r0s3q"]
+[ext_resource type="Texture2D" uid="uid://dwpqte5q8j3ql" path="res://icon.svg" id="4_5qs4a"]
+[ext_resource type="Texture2D" uid="uid://di3q84qs54kot" path="res://assets/system/logo.png" id="5_pxcrn"]
+[ext_resource type="Script" path="res://entities/component/6 - audio_player/audio_player.gd" id="6_lc5nm"]
+[ext_resource type="PackedScene" uid="uid://b74fwgarq7emp" path="res://auto_load/input_dispatcher/input_dispatcher.tscn" id="7_1wglw"]
+[ext_resource type="PackedScene" uid="uid://dx2pdarkmdbex" path="res://test/9 - scene_loader/scene_loader.tscn" id="8_nvtu5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mw6r"]
+font_size = 150
+font_color = Color(1, 1, 1, 0.352941)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_agldi"]
+shader = ExtResource("3_r0s3q")
+shader_parameter/color = Vector3(1, 1, 1)
+shader_parameter/OCTAVES = 4
+shader_parameter/toumingdu = 0.72
+
+[sub_resource type="LabelSettings" id="LabelSettings_66es8"]
+font_color = Color(0.277528, 0.277528, 0.277528, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pxk6d"]
+font_color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[sub_resource type="Animation" id="Animation_4ntl3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI信息/开始游戏标识:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fog:material:shader_parameter/toumingdu")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.72]
+}
+
+[sub_resource type="Animation" id="Animation_xoped"]
+resource_name = "确定"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_d28h2"]
+resource_name = "闪烁"
+length = 1.5
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI信息/开始游戏标识:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.7, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fog:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_h0npf"]
+resource_name = "雾气变浓"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fog:material:shader_parameter/toumingdu")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.72, 0.72, 5.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bt7bl"]
+_data = {
+"RESET": SubResource("Animation_4ntl3"),
+"确定": SubResource("Animation_xoped"),
+"闪烁": SubResource("Animation_d28h2"),
+"雾气变浓": SubResource("Animation_h0npf")
+}
+
+[node name="TitleMenu" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ja11u")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -12.0
+offset_right = 8.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ne5yf")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 170.0
+offset_right = 678.0
+offset_bottom = 375.0
+text = "Sample"
+label_settings = SubResource("LabelSettings_7mw6r")
+
+[node name="Fog" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_agldi")
+position = Vector2(406.5, 287.75)
+scale = Vector2(10, 10)
+texture = ExtResource("4_5qs4a")
+
+[node name="UI信息" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Logo" type="TextureRect" parent="UI信息"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 68.0
+offset_top = -44.0
+offset_right = 1401.0
+offset_bottom = 581.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_pxcrn")
+
+[node name="开始游戏标识" type="Label" parent="UI信息"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 500.0
+offset_top = 420.0
+offset_right = 644.0
+offset_bottom = 443.0
+text = "请按Z键开始游戏"
+label_settings = SubResource("LabelSettings_66es8")
+
+[node name="版权信息" type="Label" parent="UI信息"]
+layout_mode = 0
+offset_left = 564.0
+offset_top = 567.0
+offset_right = 780.0
+offset_bottom = 590.0
+text = "scarlet's children 0.01@larik"
+label_settings = SubResource("LabelSettings_pxk6d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bt7bl")
+}
+autoplay = "闪烁"
+
+[node name="AudioPlayer" type="Node" parent="."]
+script = ExtResource("6_lc5nm")
+
+[node name="InputDispatcher" parent="." instance=ExtResource("7_1wglw")]
+
+[node name="SceneLoader" parent="." instance=ExtResource("8_nvtu5")]
+scene_path = "\"res://scenes/maps/蔷薇馆·中厅1F/map_蔷薇馆·中厅.tscn\""

@@ -26,4 +26,3 @@ func _execute(ent:Event,args):
 ## 当子线程结束时
 func _sub_event_execute_complete(et:EventThread):
 	print("子线程处理完毕")
-	pass

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy5ta007sskun"]
+
+[ext_resource type="PackedScene" uid="uid://peicqc66pvva" path="res://entities/character/事件模板.tscn" id="1_as1nh"]
+[ext_resource type="Texture2D" uid="uid://dvrkrp47ynav6" path="res://entities/scenes/maps/蔷薇馆.图书室1F/tileset/book.png" id="2_wto00"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23uch"]
+atlas = ExtResource("2_wto00")
+region = Rect2(0, 0, 19, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0rh5n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23uch")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Book" instance=ExtResource("1_as1nh")]
+z_index = 0
+
+[node name="AnimatedSprite2D2" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_0rh5n")

@@ -1,0 +1,156 @@
+[gd_scene load_steps=29 format=4 uid="uid://d2kd4isfhvejs"]
+
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://entities/scenes/rpg_map_template/template.tscn" id="1_gj6mg"]
+[ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_22cdf"]
+[ext_resource type="Texture2D" uid="uid://cu6mil8k4b1vg" path="res://assets/tilesets/蔷薇馆·西馆走廊1F/西馆走廊1F - 1.png" id="2_d0cb8"]
+[ext_resource type="Texture2D" uid="uid://bpldvmx2eua1l" path="res://assets/tilesets/蔷薇馆·西馆走廊1F/西馆走廊1F - 2.png" id="3_8yomd"]
+[ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="3_n6r5x"]
+[ext_resource type="Script" path="res://component/event_condition/ec_item.gd" id="5_tq1t8"]
+[ext_resource type="Script" path="res://component/event_extend/event_ex_config.gd" id="6_0okvc"]
+[ext_resource type="Resource" uid="uid://qx7q4ec5admr" path="res://entities/scenes/maps/蔷薇馆·西馆走廊1F/event_res/太黑楼道间.tres" id="6_2e1qj"]
+[ext_resource type="Resource" uid="uid://hry0pirhvuia" path="res://entities/scenes/maps/蔷薇馆·西馆走廊1F/event_res/前往图书室的幽灵.tres" id="6_tfv18"]
+[ext_resource type="Resource" uid="uid://b4qwsu4mx067v" path="res://entities/scenes/maps/蔷薇馆·西馆走廊1F/event_res/前往二楼的幽灵.tres" id="7_nsf2g"]
+[ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="7_qn177"]
+
+[sub_resource type="Resource" id="Resource_i07xj"]
+script = ExtResource("5_tq1t8")
+item_id = &"206c_0_二楼电力恢复"
+value = false
+is_all = true
+type = -1
+
+[sub_resource type="Resource" id="Resource_mkm0j"]
+resource_name = "(5,8)"
+script = ExtResource("2_22cdf")
+is_show = true
+condition = Array[ExtResource("3_n6r5x")]([SubResource("Resource_i07xj")])
+frame_index = 0
+pos = Vector2i(5, 8)
+event_res = ExtResource("6_2e1qj")
+
+[sub_resource type="Resource" id="Resource_ej87i"]
+resource_name = "(19,10)"
+script = ExtResource("2_22cdf")
+is_show = true
+condition = Array[ExtResource("3_n6r5x")]([])
+frame_index = 0
+pos = Vector2i(19, 10)
+
+[sub_resource type="Resource" id="Resource_ftkoq"]
+script = ExtResource("5_tq1t8")
+item_id = &"208c_1_迷之身影"
+value = false
+is_all = false
+type = -1
+
+[sub_resource type="Resource" id="Resource_q4nou"]
+resource_name = "(1,1)"
+script = ExtResource("2_22cdf")
+is_show = true
+condition = Array[ExtResource("3_n6r5x")]([SubResource("Resource_ftkoq")])
+frame_index = 0
+pos = Vector2i(1, 1)
+event_res = ExtResource("6_tfv18")
+
+[sub_resource type="Resource" id="Resource_ybwla"]
+script = ExtResource("5_tq1t8")
+item_id = &"303f_蔷薇馆的传说"
+value = true
+is_all = true
+type = -1
+
+[sub_resource type="Resource" id="Resource_wi7s4"]
+resource_name = "(1,1)"
+script = ExtResource("2_22cdf")
+is_show = true
+condition = Array[ExtResource("3_n6r5x")]([SubResource("Resource_ybwla")])
+frame_index = 0
+pos = Vector2i(1, 1)
+event_res = ExtResource("7_nsf2g")
+
+[sub_resource type="Resource" id="Resource_vyfdd"]
+script = ExtResource("7_qn177")
+scene_path = "res://entities/scenes/maps/蔷薇馆.图书室1F/map_蔷薇馆.图书室1F.tscn"
+step1 = 2
+step2 = 1
+target_pos = Vector2i(21, 15)
+target_scene_door = Vector2i(0, 0)
+
+[sub_resource type="Resource" id="Resource_778qi"]
+script = ExtResource("6_0okvc")
+coord = Vector2i(17, 10)
+event_ex = SubResource("Resource_vyfdd")
+
+[sub_resource type="Resource" id="Resource_fed0i"]
+script = ExtResource("7_qn177")
+scene_path = "res://entities/scenes/maps/蔷薇馆·中厅1F/map_蔷薇馆·中厅.tscn"
+step1 = 2
+step2 = 0
+target_pos = Vector2i(10, 10)
+target_scene_door = Vector2i(0, 0)
+
+[sub_resource type="Resource" id="Resource_x7x1d"]
+script = ExtResource("6_0okvc")
+coord = Vector2i(17, 15)
+event_ex = SubResource("Resource_fed0i")
+
+[sub_resource type="Resource" id="Resource_v57tx"]
+script = ExtResource("7_qn177")
+scene_path = "res://entities/scenes/maps/蔷薇馆1F~厨房/厨房.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(10, 15)
+target_scene_door = Vector2i(10, 14)
+
+[sub_resource type="Resource" id="Resource_2ico2"]
+script = ExtResource("6_0okvc")
+coord = Vector2i(8, 10)
+event_ex = SubResource("Resource_v57tx")
+
+[sub_resource type="Resource" id="Resource_h2uoo"]
+script = ExtResource("7_qn177")
+scene_path = "res://entities/scenes/maps/蔷薇馆1F~杂物间/杂物间.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(11, 6)
+target_scene_door = Vector2i(11, 7)
+
+[sub_resource type="Resource" id="Resource_bdchv"]
+script = ExtResource("6_0okvc")
+coord = Vector2i(8, 15)
+event_ex = SubResource("Resource_h2uoo")
+
+[sub_resource type="Resource" id="Resource_rvtld"]
+script = ExtResource("7_qn177")
+scene_path = "res://entities/scenes/maps/蔷薇馆·楼道间/map_蔷薇馆·西馆楼道间.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(4, 12)
+target_scene_door = Vector2i(4, 11)
+
+[sub_resource type="Resource" id="Resource_ypgkb"]
+script = ExtResource("6_0okvc")
+coord = Vector2i(5, 7)
+event_ex = SubResource("Resource_rvtld")
+
+[node name="蔷薇馆·西馆走廊1F" instance=ExtResource("1_gj6mg")]
+
+[node name="Maps" parent="." index="0"]
+right_limit = 800.0
+event_group = Array[ExtResource("2_22cdf")]([SubResource("Resource_mkm0j"), SubResource("Resource_ej87i"), SubResource("Resource_q4nou"), SubResource("Resource_wi7s4")])
+event_ex = Array[ExtResource("6_0okvc")]([SubResource("Resource_778qi"), SubResource("Resource_x7x1d"), SubResource("Resource_2ico2"), SubResource("Resource_bdchv"), SubResource("Resource_ypgkb")])
+
+[node name="0" parent="Maps" index="0"]
+position = Vector2(401, 320)
+texture = ExtResource("2_d0cb8")
+
+[node name="2" parent="Maps" index="1"]
+position = Vector2(401, 320)
+texture = ExtResource("3_8yomd")
+
+[node name="Objects" parent="Maps" index="2"]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAATAAoAAQAAAAAACgARAAoAAQAAAAAACQAIAAoAAQAAAAAACQAIAA8AAQAAAAAACwARAA8AAQAAAAAACwAFAAgAAQAAAAAABAAFAAcAAwAAAAAAAgAXAAEAAAAAAAAAAQABAAEAAQAAAAAABAA=")
+
+[node name="Movable" parent="Maps" index="3"]
+tile_map_data = PackedByteArray("AAAIAAoAAgABAAEAAAAIAAkAAgABAAEAAAAIAAgAAgABAAEAAAAIAAcAAgABAAEAAAAIAAYAAgABAAEAAAAFAAkAAgABAAEAAAAFAAoAAgABAAEAAAAGAAwAAgABAAEAAAAHAAsAAgABAAEAAAANAAsAAgABAAEAAAAOAAsAAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAAKAAsAAgABAAEAAAAKAAwAAgABAAEAAAALAAwAAgABAAEAAAAMAA0AAgABAAEAAAALAA0AAgABAAEAAAAMAA4AAgABAAEAAAANAA4AAgABAAEAAAAOAA0AAgABAAEAAAAOAAwAAgABAAEAAAAMAAwAAgABAAEAAAAFAAwAAgABAAEAAAAFAA0AAgABAAEAAAAGAA0AAgABAAEAAAAHAA0AAgABAAEAAAAHAAwAAgABAAEAAAAIAAwAAgABAAEAAAAJAAwAAgABAAEAAAAEAAwAAgABAAEAAAAPAAsAAgABAAEAAAATAA0AAgABAAEAAAATAAwAAgABAAEAAAATAAsAAgABAAEAAAARAAkAAgABAAEAAAARAAgAAgABAAEAAAARAAcAAgABAAEAAAAEAA0AAgABAAEAAAAEAA4AAgABAAEAAAAFAA4AAgABAAEAAAAGAA4AAgABAAEAAAAHAA4AAgABAAEAAAAIAA0AAgABAAEAAAAIAA4AAgABAAEAAAAJAA0AAgABAAEAAAAJAA4AAgABAAEAAAAKAA0AAgABAAEAAAAKAA4AAgABAAEAAAALAA4AAgABAAEAAAAOAA4AAgABAAEAAAAPAAwAAgABAAEAAAAPAA0AAgABAAEAAAAPAA4AAgABAAEAAAAQAAwAAgABAAEAAAAQAA0AAgABAAEAAAAQAA4AAgABAAEAAAARAAwAAgABAAEAAAARAA0AAgABAAEAAAARAA4AAgABAAEAAAAIAAsAAgABAAEAAAAJAAsAAgABAAEAAAALAAsAAgABAAEAAAAMAAsAAgABAAEAAAAQAAsAAgABAAEAAAARAAsAAgABAAEAAAAFAAsAAgABAAEAAAAFAAgAAgABAAEAAAAFAAcAAgABAAEAAAAFAAYAAgABAAEAAAASAA0AAgABAAEAAAATAA4AAgABAAEAAAASAA4AAgABAAEAAAASAAsAAgABAAEAAAASAAwAAgABAAEAAAARAA8AAgABAAEAAAAIAA8AAgABAAEAAAARAAYAAgABAAEAAAARAAoAAgABAAEAAAARABAAAgABAAEAAAAIABAAAgABAAEAAAA=")

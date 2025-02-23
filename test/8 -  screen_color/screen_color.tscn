@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://leogk5cuq62w"]
+
+[ext_resource type="Script" path="res://test/8 -  screen_color/screen_color.gd" id="1_cm08s"]
+
+[node name="ScreenColor" type="CanvasLayer"]
+script = ExtResource("1_cm08s")

@@ -146,7 +146,7 @@ var need_save:bool = false:
 		save_btn.disabled = !(need_save && current_resource)
 
 ## 当前选中的资源
-var current_resource:Events_Res:
+var current_resource:EventsRes:
 	set(new):
 		current_resource = new
 		var res_name : = "无"
@@ -298,7 +298,7 @@ func _save():
 	else: print("备份失败")
 		
 	var tree:BaseEventNode =  await _get_node_tree()
-	if current_resource is Events_Res:
+	if current_resource is EventsRes:
 		print("正在保存")
 		current_resource.tree = tree
 		var path:String = current_resource.resource_path
@@ -308,7 +308,7 @@ func _save():
 
 ## 载入资产
 func _load():
-	var res = current_resource as Events_Res
+	var res = current_resource as EventsRes
 	## 清空所有节点
 	node_parent.clear_connections()
 	var nodes = node_parent.get_children().filter(func(i):return i is GraphNode)
@@ -317,7 +317,7 @@ func _load():
 			node_parent.remove_child(node)
 			node.queue_free()
 	_show_err("正在载入…")
-	if !res is Events_Res: return
+	if !res is EventsRes: return
 	var tree = current_resource.tree
 	print("tree=",tree is BaseEventNode)
 	if tree:	await _create_child_graph_node(tree)

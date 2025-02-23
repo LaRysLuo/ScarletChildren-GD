@@ -12,7 +12,7 @@ class_name MapConfig
 ## 地图上的特殊事件配置列表
 @export var event_ex:Array[EventExConfig]
 
-@export var map_pre_event:Events_Res
+@export var map_pre_event:EventsRes
 
 var all_events:Array[Node]  = []
 
@@ -24,22 +24,20 @@ var movable:TileMapLayer:
 
 #var tile_black:TileMapLayer
 
-func _ready() -> void:
+func _ready() -> void: pass
 	
-	self.hide()
+	# self.hide()
+	# movable.hide()
+	# self.show()
+	# call_deferred("auto_event_trigger")
+	# visibility_changed.connect(_reload_event_config)
+
+## INFO 回调函数, 该函数会被场景管理器调用
+## 初始化地图,该函数取代原_ready函数
+func _init_map():
 	movable.hide()
-	#_init_scene_event()
-	## 增加一个画面显示前的处理
-	await  _map_show_pre()
-	self.show()
-	#tile_black = $Black
-	#if tile_black: tile_black.show()
-	#if SceneManager.is_running:
-		#await SceneManager.move_finished
-	## 做本场景的事件初始化
-	#call_deferred("_init_scene_event")
 	call_deferred("auto_event_trigger")
-	visibility_changed.connect(_reload_event_config)
+
 
 #func _exit_tree() -> void:
 	#print("TEST 开始断开信号")
@@ -79,8 +77,8 @@ func _map_show_pre():
 ## 自动事件的触发
 func auto_event_trigger():
 	## INFO 这里增加了当游戏忙碌时，延后x秒再执行
-	if GameManager.game_state == GameManager.GameState.Buszing:
-		await  GameManager.on_event_trigger_end
+	# if GameManager.game_state == GameManager.GameState.Buszing:
+	# 	await  GameManager.on_event_trigger_end
 		#await  get_tree().create_timer(0.1).timeout
 	print("正在执行自动事件")
 	if all_events.is_empty(): all_events = get_tree().get_nodes_in_group("events")
@@ -90,9 +88,9 @@ func auto_event_trigger():
 	## 遍历这些自动事件执行
 	for event in auto_events:
 		if event is Event:
-			print("检测到自动事件：",event.get_instance_id())
+			# print("检测到自动事件：",event.get_instance_id())
 			await event.interact()
-	await  get_tree().create_timer(0.5).timeout
+			await  get_tree().create_timer(0.5).timeout
 
 ## 改变指定坐标的事件状态
 func set_event_visible(coord:Vector2i,is_show:bool):

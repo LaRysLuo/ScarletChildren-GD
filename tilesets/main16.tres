@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=12 format=3 uid="uid://cjkcoid5hggu7"]
 
 [ext_resource type="Texture2D" uid="uid://dggv03ppcd1in" path="res://assets/tileset0/black8.png" id="1_bb8f0"]
-[ext_resource type="PackedScene" uid="uid://fwltuxos1oca" path="res://character/player.tscn" id="1_c50li"]
-[ext_resource type="PackedScene" uid="uid://dfo3m5vxmgpnu" path="res://character/player_start_sign.tscn" id="2_lhh12"]
-[ext_resource type="PackedScene" uid="uid://ijj8tcxuhut7" path="res://scenes/door.tscn" id="3_qw7do"]
-[ext_resource type="PackedScene" uid="uid://peicqc66pvva" path="res://character/事件模板.tscn" id="5_hbawe"]
+[ext_resource type="PackedScene" uid="uid://ch6g1htuteh5q" path="res://entities/character/player.tscn" id="1_c50li"]
+[ext_resource type="PackedScene" uid="uid://dfo3m5vxmgpnu" path="res://entities/character/player_start_sign.tscn" id="2_lhh12"]
+[ext_resource type="PackedScene" uid="uid://ijj8tcxuhut7" path="res://entities/scenes/door.tscn" id="3_qw7do"]
+[ext_resource type="PackedScene" uid="uid://peicqc66pvva" path="res://entities/character/事件模板.tscn" id="5_hbawe"]
 [ext_resource type="Texture2D" uid="uid://cgush3j2h8fuv" path="res://assets/tileset0/movable.png" id="6_phvh6"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_00n38"]

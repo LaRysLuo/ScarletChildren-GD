@@ -9,6 +9,4 @@ func _init(node_type:int = BaseEventNode.Scripts,pos:Vector2 = Vector2.ZERO,time
 
 func _execute(ent,args):
 	print("淡出画面",time)
-	#GameManager.set_screen_color(ColorScreen.BLACK)
-	await  GameManager.fadeout_black(time)
-	#await SceneManager.fadeout()
+	await  GameManager.game_screen.fadeout(time)

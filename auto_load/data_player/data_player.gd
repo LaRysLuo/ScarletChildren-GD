@@ -22,49 +22,6 @@ signal on_bag_item_changed
 
 const path = "res://event_res/item_res"
 
-## 道具效果列表 OLD
-#var item_effect = {
-	### 装着永久相纸的拍立得
-	#"02i_1_老式拍立得": func(_self:Item):
-		#GameManager.set_game_state_buszing()
-		### 判断条件是否可拍照
-		#var interact_with =  GameManager.player.interact_with
-		#if !interact_with  || !interact_with.is_in_group("save_point"):
-			#DialogueManager.show_message("这里不能自拍",0,0)
-			#GameManager.set_game_state_normal()
-			#return
-		#DialogueManager.show_message("你用的是永久相纸，要在这里自拍吗？",0,0)
-		#await  DialogueManager.dialogue_typing_finish 
-		##var d = Dictionary()
-		#var options:Array[Dictionary] = [
-			#{
-				#"name":"确定",
-				#"child_index":1
-			#},
-			#{
-				#"name":"取消",
-				#"child_index":0
-			#}
-		#]
-		#DialogueManager.show_options(options)
-		#
-		#var result:int = await  DialogueManager.options_finish
-		#if result == 1:
-			### 获得拍照成功的相纸
-			#GameManager.data_player.gain_item("03i_1_永久相纸")
-			#GameManager.data_player.update_item(_self,"02i_0_老式拍立得")
-			#SaveManager.save_data()
-			#await  AudioManager.play_se("camera2")
-			#DialogueManager.show_message("拍照成功了！",0,0)
-		#else:
-			#GameManager.player._init_player()
-		#GameManager.set_game_state_normal(),
-		#
-	### 手电筒使用
-	#"06i_0_手电筒（无电池）": func(_self:Item):
-		#DialogueManager.show_message("flashlight01",0,0)
-		#pass,
-#}
 
 ## 道具效果列表新 NEW
 # KEY为ItemID
@@ -191,9 +148,9 @@ func trigger_item(item_key:StringName,first_read:bool):
 	if !event_res:
 		printerr("event_res没有配置")
 		return
-	await GameManager.trigger_event_res(event_res,null,{
-		"close_any":!first_read
-	})
+	# await GameManager.trigger_event_res(event_res,null,{
+	# 	"close_any":!first_read
+	# })
 
 ## 移出物品 将物品隐藏
 func remove_item(item_key:String,ingore_notify:bool = false) -> String:

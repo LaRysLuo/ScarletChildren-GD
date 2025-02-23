@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=9 format=3 uid="uid://c1dwnkgwbw7ok"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_tae0d"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_nl41g"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="6_0jmdt"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="7_0w3nm"]
+
+[sub_resource type="Resource" id="Resource_u0snd"]
+script = ExtResource("2_nl41g")
+from_port_index = 0
+to_port_index = 0
+
+[sub_resource type="Resource" id="Resource_abkoo"]
+script = ExtResource("6_0jmdt")
+move_type = 5
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 3
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_nl41g")]([SubResource("Resource_u0snd")])
+node_type = 3
+pos = Vector2(400, 100)
+
+[sub_resource type="Resource" id="Resource_k4q41"]
+script = ExtResource("2_nl41g")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_abkoo")
+
+[sub_resource type="Resource" id="Resource_c4pl4"]
+script = ExtResource("7_0w3nm")
+children = Array[ExtResource("2_nl41g")]([SubResource("Resource_k4q41")])
+node_type = 0
+pos = Vector2(180, 180)
+
+[resource]
+script = ExtResource("1_tae0d")
+title = ""
+is_collsion = true
+trigger_type = 3
+one_shot = false
+tree = SubResource("Resource_c4pl4")
+map = {}

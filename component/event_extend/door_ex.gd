@@ -17,18 +17,18 @@ class_name DoorEx
 
 
 ## 组合event_res
-func _make_event_res() ->Events_Res:
+func make_event_res() ->EventsRes:
 	var start = StartData.new()
 	var playanim_node_01 = PlayAnimData.new(BaseEventNode.PlayEventAnim,Vector2.ZERO,"open")
 	var wait_node_02 = WaitData.new(BaseEventNode.Wait,Vector2.ZERO,0.1)
 	var playanim_ndoe_03 = PlayAnimData.new(BaseEventNode.PlayEventAnim,Vector2.ZERO,"opened")
 	var charmove_node_04 = CharacterMoveData.new(BaseEventNode.CharacterMove,Vector2.ZERO,0,{"label":"玩家","coord":"player"},step1,1,true)
-	var script_node_05 = ScriptData.new(BaseEventNode.Scripts,Vector2.ZERO,"await GameManager.fadeout_black(0.5)")
+	var script_node_05 = FadeoutData.new(BaseEventNode.Fadeout,Vector2.ZERO,0.3)
 	var transport_node_06 = TransportData.new(BaseEventNode.CharacterMove,Vector2.ZERO,scene_path,true,target_pos,false)
 	var playanim_node_10 = PlayAnimData.new(BaseEventNode.PlayEventAnim,Vector2.ZERO,"opened","other",target_scene_door) ## 在对应的位置切换门动画
 	var wait_node_07 = WaitData.new(BaseEventNode.Wait,Vector2.ZERO,0.2)
 	var charmove_node_08 = CharacterMoveData.new(BaseEventNode.CharacterMove,Vector2.ZERO,0,{"label":"玩家","coord":"player"},step2,1,false)
-	var script_node_09 = ScriptData.new(BaseEventNode.Scripts,Vector2.ZERO,"await GameManager.fadein()")
+	var script_node_09 = FadeinData.new(BaseEventNode.Fadein,Vector2.ZERO,0.3)
 	var playanim_node_11 = PlayAnimData.new(BaseEventNode.PlayEventAnim,Vector2.ZERO,"close","other",target_scene_door) ## 在对应的位置切换门动画
 	var playanim_node_12 = PlayAnimData.new(BaseEventNode.PlayEventAnim,Vector2.ZERO,"default","other",target_scene_door) ## 在对应的位置切换门动画
 	
@@ -47,7 +47,7 @@ func _make_event_res() ->Events_Res:
 	charmove_node_08.children.append(ChildrenNodeConfig.new(0,0,script_node_09)) ## 角色向前移动
 	script_node_09.children.append(ChildrenNodeConfig.new(0,0,playanim_node_11))
 	playanim_node_11.children.append(ChildrenNodeConfig.new(0,0,playanim_node_12))
-	var event_res = Events_Res.new(start)
+	var event_res = EventsRes.new(start)
 	event_res.is_collsion = true
 	return event_res
 	

@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://4vf6gx444l0e"]
+
+[ext_resource type="Script" path="res://auto_load/game_manager/game_manager.gd" id="1_f2ubp"]
+[ext_resource type="PackedScene" uid="uid://blniy4awddvu3" path="res://component/sfx_vignette/sfx_vignette.tscn" id="2_shtvr"]
+[ext_resource type="Script" path="res://entities/component/6 - audio_player/audio_player.gd" id="3_tfk2q"]
+[ext_resource type="PackedScene" uid="uid://dtjn8c2ay15xk" path="res://entities/scenes/dialogue_system.tscn" id="4_h3lni"]
+[ext_resource type="PackedScene" uid="uid://ccrbgcu4vjijn" path="res://entities/scenes/scene_manager.tscn" id="5_c2y3n"]
+
+[node name="GameManager" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_f2ubp")
+
+[node name="SfxVignette" parent="." instance=ExtResource("2_shtvr")]
+
+[node name="AudioPlayer" type="Node" parent="."]
+script = ExtResource("3_tfk2q")
+
+[node name="DialogueSystem" parent="." instance=ExtResource("4_h3lni")]
+visible = false
+
+[node name="SceneManager" parent="." instance=ExtResource("5_c2y3n")]

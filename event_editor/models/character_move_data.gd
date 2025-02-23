@@ -87,7 +87,7 @@ func _get_event(ent:Event) -> CharacterBase:
 	print("label=",label)
 	if typeof(value) == TYPE_STRING: 
 		if value == "this": return ent ## 当目标角色是0时，表示事件自己
-		if value ==  "player": return GameManager.player as CharacterBase ## 当目标角色是1时，表示玩家
+		if value ==  "player": return GameManager.game_player.player as CharacterBase ## 当目标角色是1时，表示玩家
 	if typeof(value) == TYPE_VECTOR2I:
 		var group = GameManager.get_tree().get_nodes_in_group("events")
 		var filters = group.filter(func(item:Event):return item.event_name == label)

@@ -15,7 +15,7 @@ config/name_localized={
 "en": "The Scarlet's Children"
 }
 config/version="0.01"
-run/main_scene="res://scenes/ui_scene/scene_标题画面/title_sp.tscn"
+run/main_scene="res://entities/scenes/ui_scene/scene_标题画面/title_sp.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/image="res://assets/larikworks_lg.png"
 config/icon="res://assets/icon/larys.svg"
@@ -23,13 +23,8 @@ config/windows_native_icon="res://assets/icon/larys_2.ico"
 
 [autoload]
 
-SceneManager="*res://scenes/scene_manager.tscn"
-AudioManager="*res://scenes/audio_manager.tscn"
-GameManager="*res://scenes/game.tscn"
-DialogueManager="*res://scenes/dialogue_system.tscn"
-SaveManager="*res://auto_load/save_manager.gd"
-InputManager="*res://auto_load/input_manager/input_manager.gd"
-Core="*res://test/0 - core/core.tscn"
+GameManager="*res://auto_load/game_manager/neo_game_manager/game_manager.tscn"
+SceneManager="*res://auto_load/scene_manager/SceneManager.tscn"
 
 [dialogic]
 

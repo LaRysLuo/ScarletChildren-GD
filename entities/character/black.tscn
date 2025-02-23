@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqy6djwldu8qv"]
+
+[ext_resource type="Texture2D" uid="uid://dmc8jsffxjloy" path="res://assets/tileset0/black16.png" id="1_5xx0b"]
+[ext_resource type="Script" path="res://entities/character/black.gd" id="2_sxweg"]
+
+[sub_resource type="Animation" id="Animation_khgss"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ba4u4"]
+resource_name = "hide"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_du18i"]
+resource_name = "show"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8x03b"]
+_data = {
+"RESET": SubResource("Animation_khgss"),
+"hide": SubResource("Animation_ba4u4"),
+"show": SubResource("Animation_du18i")
+}
+
+[node name="Black" type="Sprite2D" groups=["blacks"]]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1_5xx0b")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+script = ExtResource("2_sxweg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8x03b")
+}

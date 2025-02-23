@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b74fwgarq7emp"]
+
+[ext_resource type="Script" path="res://auto_load/input_dispatcher/input_dispatcher.gd" id="1_415y7"]
+
+[node name="InputDispatcher" type="Node"]
+script = ExtResource("1_415y7")

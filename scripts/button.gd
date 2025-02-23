@@ -70,9 +70,9 @@ func refresh():
 	label_text.text = text
 	unfocus()
 
-func focus(none_se = false):
+func focus():
 	cursor.show()
-	if !none_se: AudioManager.play_se("Cursor1")
+	# if !none_se: AudioManager.play_se("Cursor1")
 	anim.play("default")
 	is_focus= true
 	lb_focus_entered.emit()

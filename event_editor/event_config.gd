@@ -31,7 +31,7 @@ var need_refresh:bool = false
 
 # 
 ## 事件资源
-@export var event_res:Events_Res
+@export var event_res:EventsRes
 	
 signal event_visible_changed(is_show:bool)
 

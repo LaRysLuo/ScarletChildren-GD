@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfpxtk6ta6aoy"]
+
+[ext_resource type="Script" path="res://test/4 - event_manager/emits_center/emits_center.gd" id="1_vhuc6"]
+
+[node name="EmitsCenter" type="Node2D"]
+script = ExtResource("1_vhuc6")

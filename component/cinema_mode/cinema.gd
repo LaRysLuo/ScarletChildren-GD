@@ -4,7 +4,7 @@ class_name CinemaScene
 ## 剧场组件
 
 ## 演出内容
-@export var story_res:Events_Res
+@export var story_res:EventsRes
 
 ## 演出结束
 signal  on_complete

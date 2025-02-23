@@ -1,6 +1,6 @@
 @tool
 extends "res://scripts/game_object.gd"
-class_name Player_v1
+class_name PlayerV1
 
 var interact_with:Event #可交互对象
 
@@ -21,12 +21,11 @@ var interact_with:Event #可交互对象
 @onready var cam:Camera2D = $Camera2D
 #@onready var attach:CanvasLayer = $Attach
 
-#const FLASH_LIGHT_RES = preload("res://component/flash_light/flash_light.tscn")
 
 ## SIGNAL
-
 signal  on_interact_changed(event:Event,state:int) ## 当身前可交互状态变更
 signal on_stamina_changed(val:float,is_normal:bool) ## 耐力条变更
+signal on_main_scene_call ## 呼出主菜单键
 
 
 ## INFO 闲置动画24.10.26添加
@@ -34,24 +33,21 @@ signal on_stamina_changed(val:float,is_normal:bool) ## 耐力条变更
 const IDLE_TRIGGER_TIME:float = 1 ## 闲置动画触发时间单位秒
 var idle_timer:Timer ## 闲置动画计时器
 
+##0表示正常 1表示忙碌 2表示仅限ui
+@export var m_state:int = 0 
+
+## 生命周期
+
 func _ready() -> void:
 	super._ready()
 	_init_cam_limit()
 	start_pos_changed.connect(_has_interact_event.bind(0))
 	pos_changed.connect(_has_interact_event.bind(1))
-	event_clashed.connect(_has_event_clashed)
-	
-	GameManager.on_event_trigger_start.connect(_event_trigger_start)
-	GameManager.on_event_trigger_end.connect(_event_trigger_end)
-	
+	event_clashed.connect(_has_event_clashed)	
+	# GameManager.on_event_trigger_start.connect(_event_trigger_start)
+	# GameManager.on_event_trigger_end.connect(_event_trigger_end)
 	restart_idle_timer()
-	#show_flash_light()
 	
-func _init_player() -> void:
-	call_deferred("_has_interact_event")
-	# 重新载入地图事件
-	
-
 func _process(delta: float) -> void:
 	# 编辑器模式返回
 	if Engine.is_editor_hint(): return
@@ -64,10 +60,36 @@ func _process(delta: float) -> void:
 	# 输入处理
 	dir_input = Vector2i(Input.get_vector("left","right","up","down").round())
 	if dir_input.x !=0: dir_input.y=0
-	if !GameManager.is_normal_state : dir_input = Vector2i.ZERO #当不是正常游戏状态时，使输入永远为0 
+	if m_state != 0 : dir_input = Vector2i.ZERO #当不是正常游戏状态时，使输入永远为0 
 	if dir_input.x !=0 || dir_input.y != 0:
 		restart_idle_timer() ## 因为输入了，所以清空限制动画计算时间
 	move_to(dir_input)	
+
+
+## end生命周期
+
+## 回调函数
+func game_state_update(_state:int,_is_buszing:bool) -> void:
+	print("游戏状态更新了",_state)
+	m_state = _state
+
+## 回调函数：事件触发开始
+func _event_trigger_start():
+	tip.hide()
+
+## 回调函数：事件触发结束
+func _event_trigger_end():
+	call_deferred("_has_interact_event",1)
+
+
+## end回调函数
+
+## 初始化角色
+func _init_player() -> void:
+	call_deferred("_has_interact_event")
+	
+
+
 
 ## 跑步处理
 func _running_process(delta:float):
@@ -96,8 +118,6 @@ func _running_process(delta:float):
 				self.stamina = 1
 				# 恢复奔跑
 				
-
-
 
 func restart_idle_timer():
 	if !idle_timer: 
@@ -146,20 +166,20 @@ func _init_cam_limit():
 #region 玩家交互
 # 交互 - 角色移动后会触发信号，目标方向存在可交互事件
 func _has_interact_event(state:int = 1):
-	if !GameManager.is_normal_state:return
+	print("当前游戏状态：",m_state)
+	if m_state != 0:return
 	var event = _get_event_font() # 判断前方是否有可交互事件
 	if event: 
 		print("存在可触发的event=",event)
 		print("该事件是否可触发", event.interactable())
 	if event && event.interactable() && !is_action: 
 		_set_interact_with(event,state)
-		#print("检查到有X事件")
 	else: _set_interact_with(null,state)
 
 # 设置可交互对象
 func _set_interact_with(event:Event = null,state:int = 0):
 	interact_with = event
-	#print("交互时机：",state)
+	# print("交互时机：",state)
 	if state== 0 && interact_with == null && tip.visible:
 		on_interact_changed.emit(event,0)
 		tip.hide()
@@ -186,20 +206,21 @@ func _get_event_font() -> Event:
 var input_triggerd := false
 
 func _input(event: InputEvent) -> void:
-	if !GameManager.is_normal_state: return 
+	if m_state: return 
 	if !is_visible_in_tree():return
 	if event.is_action_pressed("submit") && interact_with :	_insteract(interact_with)
 	## 打開主菜單
 	if event.is_action_pressed("cancel") && !input_triggerd:
-		self.input_triggerd = true
+		# self.input_triggerd = true
 		tip.hide()
-		SceneManager.navigate_to("scene_main_menu")
+		on_main_scene_call.emit()
+		# SceneManager.navigate_to("scene_main_menu")
 	## 加速跑
 	if event.is_action_pressed("R1") && running_mode == 0: _start_run()
 	if event.is_action_released("R1") && running_mode == 1:_end_run()
 	
-	if event.is_released():
-		self.input_triggerd = false
+	# if event.is_released():
+	# 	self.input_triggerd = false
 	
 		
 var is_action:bool = false
@@ -215,6 +236,7 @@ func _insteract(with:Event):
 	# 停止奔跑
 	_end_run()
 	with.interact()
+	## 通过信号告诉事件管理器，with被触发了
 	await with.event_finish # 等待交互结束
 	#is_action = false
 	#判断是否还有交互目标
@@ -239,12 +261,6 @@ func _end_run():
 	running_mode = 0
 	self.move_speed_factor = 1
 
-func _event_trigger_start():
-	tip.hide()
-	
-func _event_trigger_end():
-	call_deferred("_has_interact_event",1)
-	#_has_interact_event(1)
 
 # 判断碰撞的单位触发类型是Touch
 func _has_event_clashed(event:Event) -> void:
@@ -261,25 +277,3 @@ func set_camera_follow(_is_follow:bool):
 ## 设置相机放大或者缩小
 func set_camera_zoom(zoom_arg:Vector2i = Vector2i.ONE):
 	cam.zoom = zoom_arg
-
-#region 手电照明
-
-#var fl:FlashLight
-## 显示手电效果
-# 生成一个手电效果到玩家身上
-# 并根据玩家转向时，变更灯光朝向
-#func show_flash_light():
-	#fl = FLASH_LIGHT_RES.instantiate()
-	#self.dir_changed.connect(fl.refresh)
-	#fl.refresh(self.dir)
-	#attach.add_child(fl)
-#
-### 隐藏手电效果
-#func hide_flash_light():
-	#attach.remove_child(fl)
-	#fl.queue_free()
-	#
-#func get_light_switch() -> bool:
-	#return fl != null
-	
-#endregion 手电照明

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ijj8tcxuhut7"]
+
+[ext_resource type="PackedScene" uid="uid://dcpd1u6slvjtw" path="res://entities/character/character.tscn" id="1_q1vlu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3l2y"]
+
+[node name="Door" groups=["events"] instance=ExtResource("1_q1vlu")]
+
+[node name="CollisionShape2D2" parent="." index="3"]
+z_index = 100
+shape = SubResource("RectangleShape2D_d3l2y")
+
+[node name="AnimatedSprite2D2" parent="." index="4"]
+sprite_frames = null

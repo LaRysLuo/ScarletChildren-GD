@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=6 format=3 uid="uid://bu8t6dg5j7mc2"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_x41gc"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_yso1s"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="5_tamd6"]
+
+[sub_resource type="Resource" id="Resource_7y2dc"]
+script = ExtResource("2_yso1s")
+from_port_index = 0
+to_port_index = 0
+
+[sub_resource type="Resource" id="Resource_egm6o"]
+script = ExtResource("5_tamd6")
+children = Array[ExtResource("2_yso1s")]([SubResource("Resource_7y2dc")])
+node_type = 0
+pos = Vector2(140, 220)
+
+[resource]
+script = ExtResource("1_x41gc")
+title = "日记"
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_egm6o")
+map = {}

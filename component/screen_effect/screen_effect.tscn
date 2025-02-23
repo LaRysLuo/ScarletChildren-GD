@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpcu6gsvelear"]
+
+[ext_resource type="Script" path="res://component/screen_effect/screen_effect.gd" id="1_yj36x"]
+
+[node name="ScreenEffect" type="CanvasLayer" node_paths=PackedStringArray("color_rect")]
+layer = 10
+script = ExtResource("1_yj36x")
+color_rect = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
