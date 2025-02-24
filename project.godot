@@ -27,9 +27,8 @@ SceneManager="*res://scenes/scene_manager.tscn"
 AudioManager="*res://scenes/audio_manager.tscn"
 GameManager="*res://scenes/game.tscn"
 DialogueManager="*res://scenes/dialogue_system.tscn"
-SaveManager="*res://auto_load/save_manager.gd"
 InputManager="*res://auto_load/input_manager/input_manager.gd"
-Core="*res://test/0 - core/core.tscn"
+SaveManager="*res://auto_load/save_manager.gd"
 
 [dialogic]
 

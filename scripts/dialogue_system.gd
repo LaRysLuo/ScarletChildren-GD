@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name DialogueSystem
+# class_name DialogueSystem
 
 ## ==================== 
 # 这是一个对话框管理组件

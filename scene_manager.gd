@@ -1,7 +1,6 @@
 #这是一个场景管理器
 
 extends CanvasLayer
-class_name SceneManage
 
 @onready var anim:AnimationPlayer = $AnimationPlayer
 @onready var color_rect:ColorRect = $ColorRect
@@ -15,7 +14,7 @@ var is_running:bool = false
 
 ## 信号
 
-# signal reading_mode_close
+signal reading_mode_close
 signal on_map_available
 
 var tool_scenes:Dictionary = {
@@ -91,39 +90,6 @@ signal on_player_move_pre #玩家移动前
 signal on_player_moved 
 signal move_finished #玩家移动后
 
-## WARNING (已弃用) 
-# 用于主角角色的场景移动
-func move_by_name(scene_name,event_name,with_fade:bool = true):
-	var full_path = scene_file_root + 'maps/' + scene_name + '.tscn'
-	if with_fade:
-		self.show()
-		anim.play("fade_out")
-		await  anim.animation_finished
-	on_player_move_pre.emit()
-	GameManager.player.map.remove_child(GameManager.player)	# 把玩家脱离出来
-	
-	get_tree().change_scene_to_file(full_path) #跳转到新场景
-	await  get_tree().tree_changed
-	var timer = get_tree().create_timer(0.1)
-	await  timer.timeout
-	print("当前场景为：",get_tree().current_scene.name)
-	
-	var event = find_event_by_name(event_name)
-
-	if !event: 
-		print_debug("场景移动失败，没有找到目标事件点")
-		return
-	
-	# 设置玩家到该点上
-	print_debug("event=",event)
-	GameManager.player.move_event_pos(event)
-	
-	if with_fade:
-		anim.play("fade_in")
-		await anim.animation_finished
-		self.hide()
-	
-	move_finished.emit()
 
 
 ## 场景移动：地图间的移动
@@ -233,7 +199,7 @@ func backto(callback = null):
 			obj_map.enabled = true
 			GameManager.player._init_player()
 			if callback && callback is Signal: callback.emit()
-			SceneManager.reading_mode_close.emit()
+			reading_mode_close.emit()
 			on_map_available.emit()
 			GameManager.clear_screen()
 	lasted.queue_free()
