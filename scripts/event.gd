@@ -36,7 +36,7 @@ var animated_sprite:AnimatedSprite2D:
 
 func _ready() -> void:
 	if Engine.is_editor_hint():return
-	GameManager.data_player.on_bag_item_changed.connect(_refresh_event_state)
+	GameManager.game_player.on_bag_item_changed.connect(_refresh_event_state)
 	#_refresh_event_state()
 	_load_event_config()
 

@@ -29,7 +29,7 @@ class_name ChasingEnemy
 @export var across_pause:bool = false
 
 # 获得玩家位置
-@onready var player:Player_v1 = GameManager.player
+@onready var player:PlayerV1 = GameManager.player
 @onready var a_star:AStar2D = AStar2D.new()
 
 func _ready() -> void:

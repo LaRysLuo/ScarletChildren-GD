@@ -1,10 +1,12 @@
+
+## 已弃用
 extends CanvasLayer
 
-var data_player:DataPlayer:
-	get():return GameManager.data_player
+var game_player:GamePlayer:
+	get():return GameManager.game_player
 
 var itemList:Array[Item]:
-	get(): return data_player.get_shown_items
+	get(): return game_player.get_shown_items
 
 @onready var catagory_label = $VBoxContainer/HBoxContainer/Label
 @onready var helpBox = $VBoxContainer/HBoxContainer/Label2
@@ -12,38 +14,6 @@ var itemList:Array[Item]:
 @onready var prefab:PackedScene = ResourceLoader.load("res://scenes/l_button.tscn")
 @onready var craft_mode_hint:Control = $VBoxContainer/VBoxContainer/CraftModeHint
 
-
-## 组合列表
-var recipes:Dictionary = {
-	## 在没有相纸的相机上组装永久相纸
-	## 失去永久相纸
-	## 失去没有相纸的相机
-	## 获得装有永久相纸的相机
-	["02i_0_老式拍立得","03i_0_永久相纸"]: func(_craft_list): 
-		data_player.remove_item(_craft_list[1])
-		data_player.update_item(_craft_list[0],"02i_1_老式拍立得"),
-	## 在没有相纸的相机上组装一次性相纸
-	## 失去没有相纸的相机
-	## 失去一次性相纸
-	## 获得装有一次性相纸的相机
-	["02i_0_老式拍立得","04i_一次性相纸"]:func(_craft_list):
-		data_player.remove_item(_craft_list[1])
-		data_player.update_item(_craft_list[0],"02i_2_老式拍立得"),
-	## 在有永久相纸的相机上组装一次性相纸
-	## 	失去一次性相纸
-	## 失去装有永久相纸的相机
-	## 获得永久相纸
-	## 获得装有一次性相纸的相机
-	["02i_1_老式拍立得","04i_一次性相纸"]:func(_craft_list):
-		data_player.remove_item(_craft_list[1])
-		data_player.update_item(_craft_list[0],"02i_2_老式拍立得")
-		data_player.gain_item_array(["03i_0_永久相纸"]),
-	["02i_2_老式拍立得","03i_0_永久相纸"]:func(_craft_list):
-		data_player.remove_item(_craft_list[1])
-		data_player.update_item(_craft_list[0],"02i_1_老式拍立得")
-		data_player.gain_item_array(["04i_一次性相纸"]),
-
-}
 
 
 var index:int = 0 :
@@ -128,7 +98,7 @@ func usable(item:Item)->bool:
 	if !craft_list.is_empty() && !craft_list.has(item):return true
 	if craft_list.has(item):return false
 	#print("可用的:%s,craft_list为%s" % [item.item_name,item.use_event])
-	if !data_player.get_use_callback(item): return false
+	if !game_player.get_use_callback(item): return false
 	return true
 
 func _input(event: InputEvent) -> void:
@@ -159,7 +129,7 @@ func _use_item():
 	## 1. 使用道具
 	if craft_list.is_empty():
 		print("使用道具%s了" % itemList[index].item_name)
-		var event_res = data_player.get_use_callback(current_item)
+		var event_res = game_player.get_use_callback(current_item)
 		# var current = current_item
 		if event_res:
 			## 1.关掉道具窗口
@@ -194,18 +164,18 @@ func _cancel_craft_item():
 	pass
 
 ## 完成组合道具
-func _end_craft_item():
-	if craft_list.is_empty(): return
-	var key:Array[String]
-	for item in craft_list:
-		key.append(item.item_id)
+func _end_craft_item(): pass
+	# if craft_list.is_empty(): return
+	# var key:Array[String]
+	# for item in craft_list:
+	# 	key.append(item.item_id)
 	
-	if recipes.has(key):
-		## 移出对应元素
-		AudioManager.play_se("button03a")
-		recipes.get(key).call(craft_list)
-		print("物品组合了")
-	else:
-		AudioManager.play_se("blip03")
-		print("没有事情发生")
-	_cancel_craft_item()
+	# if recipes.has(key):
+	# 	## 移出对应元素
+	# 	AudioManager.play_se("button03a")
+	# 	recipes.get(key).call(craft_list)
+	# 	print("物品组合了")
+	# else:
+	# 	AudioManager.play_se("blip03")
+	# 	print("没有事情发生")
+	# _cancel_craft_item()

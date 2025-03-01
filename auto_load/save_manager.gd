@@ -18,7 +18,7 @@ func save_data():
 	var current_pos = GameManager.player.cell_pos
 	var game_time = GameManager.game_time.current_time
 	## 存储道具
-	var data_items = GameManager.data_player.items
+	var data_items = GameManager.game_player.items
 	
 	save_file.save_player(current_map,current_pos,game_time,data_items)
 
@@ -42,7 +42,7 @@ func load_data():
 		if loadedData.game_time:GameManager.game_time.current_time = loadedData.game_time
 		
 		## 道具
-		if loadedData.items: GameManager.data_player.make_item_by_loaddata(loadedData.items) 
+		if loadedData.items: GameManager.game_data.make_item_by_loaddata(loadedData)
 		
 		## 将场景移动到
 		await  SceneManager.move(current_scene,current_pos,false,true)

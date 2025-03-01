@@ -24,7 +24,8 @@ var select_index:int = 0:
 		last_index = select_index
 		select_index = val
 
-var data_player:DataPlayer
+var game_player:GamePlayer:
+	get():return GameManager.game_player
 var item_list:Array[Item]
 
 var current_item:Item:
@@ -33,7 +34,7 @@ var current_item:Item:
 
 ## 信号
 signal on_cancel
-signal on_use_item(event_res:Events_Res)
+# signal on_use_item(event_res:Events_Res)
 signal on_submit(item:Item)
 signal on_changed(item_id:int)
 
@@ -45,8 +46,7 @@ func get_list():
 func _ready() -> void:
 	craft_mode_hint.hide()
 
-func set_info(list:Array[Item],data_player:DataPlayer):
-	self.data_player = data_player
+func set_info(list:Array[Item]):
 	self.item_list = list
 	refresh()
 
@@ -82,7 +82,7 @@ func clear_item_list(ingore_clear_data):
 func usable(item:Item):
 	if !craft_list.is_empty() && !craft_list.has(item):return true
 	if craft_list.has(item):return false
-	if !data_player.get_use_callback(item): return false
+	if !game_player.usable(item): return false
 	return true
 
 # 玩家按下选择后
@@ -191,11 +191,10 @@ func _end_craft_item():
 	for item in craft_list:
 		key.append(item.item_id)
 	
-	if data_player.recipes.has(key):
+	if game_player.craft_enabled(key):
 		## 移出对应元素
 		AudioManager.play_se("button03a")
-		data_player.recipes.get(key).call(key)
-		
+		game_player.make_craft_call(key)
 		print("物品组合了")
 	else:
 		AudioManager.play_buzzle()

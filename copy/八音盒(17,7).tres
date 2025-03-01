@@ -258,7 +258,7 @@ child = SubResource("Resource_kspv7")
 
 [sub_resource type="Resource" id="Resource_jkiq2"]
 script = ExtResource("5_hjvml")
-script_cmd = "GameManager.data_player.update_item(\"201c_0_餐厅的八音盒\",\"201c_1_餐厅的八音盒\")"
+script_cmd = "update_item(\"201c_0_餐厅的八音盒\",\"201c_1_餐厅的八音盒\")"
 children = Array[ExtResource("2_s2sxe")]([])
 node_type = 9
 pos = Vector2(3400, 1660)

@@ -1,6 +1,6 @@
 @tool
 extends "res://scripts/game_object.gd"
-class_name Playerv1
+class_name PlayerV1
 
 var interact_with:Event #可交互对象
 

@@ -29,6 +29,7 @@ GameManager="*res://scenes/game.tscn"
 DialogueManager="*res://scenes/dialogue_system.tscn"
 InputManager="*res://auto_load/input_manager/input_manager.gd"
 SaveManager="*res://auto_load/save_manager.gd"
+Interpreter="*res://auto_load/interpreter/interpreter.gd"
 
 [dialogic]
 
@@ -72,6 +73,7 @@ general/wrap_lines=true
 
 window/size/viewport_width=800
 window/size/viewport_height=600
+window/size/extend_to_title=true
 window/stretch/mode="viewport"
 
 [editor_plugins]

@@ -28,11 +28,12 @@ var tool_scenes:Dictionary = {
 
 
 var current_map:String 
-var current_map_name:String
+var current_map_name:String: 
+	get: 
+		if get_tree() && get_tree().current_scene:
+			return  get_tree().current_scene.name
+		return ""
 
-## 获得当前场景的名字
-func get_current_scene_name() -> String:
-	return get_tree().current_scene.name
 
 
 #场景切换的时候，如果原场景是Main场景，则记录玩家的位置
@@ -49,10 +50,10 @@ func _ready() -> void:
 # SceneManager.to_starfish()
 func to_starfish():
 	var star_fish:SceneJigsaw = await navigate_to("scene_star_fish")
-	var is_finished = has_item("202c_2_星鱼拼图完成",true)
+	var is_finished = GameManager.game_player.has_item("202c_2_星鱼拼图完成",true)
 	if is_finished: star_fish.set_complete()
 	else: star_fish.on_succuss.connect(func(): 
-		GameManager.data_player.gain_item("202c_2_星鱼拼图完成",false)
+		GameManager.game_player.gain_item("202c_2_星鱼拼图完成",false)
 	)
 	await  star_fish.on_finish
 	
@@ -90,6 +91,8 @@ signal on_player_move_pre #玩家移动前
 signal on_player_moved 
 signal move_finished #玩家移动后
 
+
+	
 
 
 ## 场景移动：地图间的移动
@@ -278,23 +281,7 @@ func eval(code:String):
 	#await instance.code_finished
 	print("已结束运行")
 
-func in_group(node:Node,group_name:String) -> bool:
-	if !node: return false
-	return node.is_in_group(group_name)
 
-## 玩家是否获得过道具
-func has_item(item_key:String,is_all:bool = false):
-	return	GameManager.data_player.has_item(item_key,is_all)
-	
-func is_flash() -> bool:
-	return GameManager.player.get_light_switch()
-
-## 查看前方事件是否是对应事件
-# event_name为Event.event_name的值
-func with_event(event_name:StringName) -> bool:
-	var with:Event = GameManager.player.interact_with
-	if !with: return false
-	return with.event_name == event_name
 	
 
 func condition_eval(code:String):

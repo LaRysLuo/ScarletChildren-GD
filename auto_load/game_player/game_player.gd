@@ -1,5 +1,14 @@
 extends Node
-class_name DataPlayer
+class_name GamePlayer
+
+
+var player_pre:Resource = preload("res://character/player.tscn") # 玩家预制体
+
+## 玩家类
+@export var player:PlayerV1:
+	set(val):
+		player = val
+		on_player_loaded.emit()
 
 ## 这是玩家背包中的所有道具
 #包含了已经使用完毕不显示的道具
@@ -10,17 +19,20 @@ class_name DataPlayer
 	get(): return items.filter(func(item:Item): return !item.is_finished)
 
 
+## 需要调用data_items或者game_data
 
-var items_raw:Array[Item]
+var data_items:DataItems:
+	get(): return GameManager.game_data.data_items
+
 
 ## SIGNAL 
 ## 当玩家的道具变化时 1表示获得 0表示失去 2表示更新
 # 这个用于通知
 signal on_player_item_changed(item_name:StringName,state:int)
 signal on_bag_item_changed
+signal on_player_loaded # 当玩家实例生成时
 
 
-const path = "res://event_res/item_res"
 
 ## 道具效果列表 OLD
 #var item_effect = {
@@ -66,16 +78,7 @@ const path = "res://event_res/item_res"
 		#pass,
 #}
 
-## 道具效果列表新 NEW
-# KEY为ItemID
-# VALUE为EventRes
-var item_effect_config = {
-	"02i_1_老式拍立得": "res://event_res/item_res/effect/02i_1_老式拍立得.tres",
-	"02i_2_老式拍立得": "res://event_res/item_res/effect/02i_1_老式拍立得.tres",
-	"06i_0_手电筒（疑问）":"res://event_res/item_res/effect/06i_0_手电筒（疑问）.tres",
-	"07f_蔷薇馆的传闻":"res://event_res/item_res/effect/07f_蔷薇馆的传闻.tres",
-	"06i_2_手电筒（有电池）":"res://event_res/item_res/effect/06i_2_手电筒（有电池）.tres",
-}
+
 
 ## 合成列表
 ## 组合列表
@@ -112,6 +115,24 @@ var recipes:Dictionary = {
 		update_item(craft_list[0],"06i_4_手电筒（魔法灯有电池）")
 }
 
+# 创建玩家
+func instance_player(map:Node2D,vec:Vector2):
+	if player: print_debug("初始化玩家错误，当前已生成玩家，请确认整个游戏玩家标识是否只有1个")
+	if !player_pre: print_debug("初始化玩家失败，未设置玩家场景的路径")
+	player = player_pre.instantiate() 
+	player.position = vec
+	# player.start_pos_changed.connect(update_fog)
+	map.add_child(player)
+
+
+## 是否能合成
+func craft_enabled(key:Array[String]) -> bool:
+	return recipes.has(key)
+
+## 合成操作
+func make_craft_call(key):
+	recipes.get(key).call(key)
+
 
 ## 判断背包中是否存在指定道具
 func has_item(item_id:StringName,is_finished:bool = false) -> bool:
@@ -125,6 +146,7 @@ func has_item(item_id:StringName,is_finished:bool = false) -> bool:
 	return true
 
 
+## 初始化的时候载入道具
 func load_items_at_start() -> void:
 	pass
 	#items.append(load(path + "/01c_迷之身影.tres"))
@@ -132,62 +154,25 @@ func load_items_at_start() -> void:
 	#items.append(load(path + "/03i_0_永久相纸.tres"))
 	#items.append(load(path + "/04i_一次性相纸.tres"))
 
-## 载入所有道具
-# 并将物品的使用效果赋予
-func load_items_raw():
-	var dir = DirAccess.open(path)
-	if dir:
-		print("目录为:",dir)
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		if !OS.is_debug_build():
-			file_name = file_name.get_basename()
-		print("文件名:",file_name)
-		while file_name != "":
-			if !dir.current_is_dir():
-				var item:Item = load(path+"/" + file_name )
-				print("文件名:",file_name)
-				var callback_new = item_effect_config.get(item.item_id)
-				if callback_new: 
-					item.use_event_new = load(callback_new)
-				## TODO 当前在将旧的Callback更换成新的EventRes
-				items_raw.append(item) 
-			file_name = dir.get_next()
-			if !OS.is_debug_build():
-				file_name = file_name.get_basename()
-		dir.list_dir_end()
-	else: print("没有该目录")
 
-## 生成新的道具栏
-func make_item_by_loaddata(loaded_items:Array[Item]):
-	var new_items:Array[Item]
-	for item:Item in loaded_items:
-		var new_item =  find_item_from_raw(item.item_id)
-		if !new_item: continue
-		#print("new_item",new_item.is_finished)
-		if item.is_finished:new_item.is_finished = item.is_finished
-		else: new_item.is_finished = false
-		new_items.append(new_item)
-	self.items = new_items
-	
 
-## 获得该道具的callback
-## INFO TODO 更新25.01.12
-# 找出物品，并将使用效果返回
-# 物品的使用效果使在物品在初始化的时候被赋予的
-# 这里原本是回调函数，但现在改为EventRes
-func get_use_callback(item:Item):
-	var filters = items_raw.filter(func(itemx:Item):
-		return itemx.item_id == item.item_id
-		)
-	if filters.is_empty(): return null
-	var filter_item:Item = filters[0]
-	return filter_item.use_event_new #已改为EventRes
+func use_item(item:Item):
+	var event_res = data_items.get_use_callback(item)
+	## 1.关掉道具窗口
+	await  SceneManager.backall()
+	## 2.触发物品效果
+	print("触发物品效果")
+	await  GameManager.trigger_event_res(event_res)
 
-## 触发物品效果
+
+func usable(item:Item) ->bool:
+	return data_items.get_use_callback(item) != null
+
+## 触发物品效果 经常被
+# 用于阅读资料等,first_read表示第一次读取
 func trigger_item(item_key:StringName,first_read:bool):
-	var item = find_item_from_raw(item_key)
-	var event_res = self.get_use_callback(item)
+	var item = data_items.get_item_in_raw_list(item_key)
+	var event_res = data_items.get_use_callback(item)
 	if !event_res:
 		printerr("event_res没有配置")
 		return
@@ -215,17 +200,11 @@ func find_item(item_key:String) -> Item:
 		return filters[0]
 	return null
 
-func find_item_from_raw(item_key:String) ->Item:
-	var filters = items_raw.filter(func(item:Item):return item.item_id == item_key)
-	if !filters.is_empty():
-		return filters[0]
-	return null
-
 	
 ## 获得物品	
 #GameManager.data_player.gain_item("201c_0_餐厅的八音盒")
 func gain_item(item_key:String,ingore_notify:bool = false):
-	var entity = get_item_in_raw_list(item_key)
+	var entity = data_items.get_item_in_raw_list(item_key)
 	items.append(entity.duplicate())
 	if !ingore_notify: on_player_item_changed.emit(entity.item_name,1)
 	on_bag_item_changed.emit()
@@ -234,23 +213,14 @@ func gain_item(item_key:String,ingore_notify:bool = false):
 # item_lose表示从背包里失去的道具
 # item_gain_key表示获得到背包的道具
 # GameManager.data_player.update_item("201c_0_餐厅的八音盒","201c_1_餐厅的八音盒")
-func update_item(to_lose:String,to_gain:String):
+func update_item(to_lose:String,to_gain:String) -> void:
 	var item_name:String = remove_item(to_lose,true)
 	gain_item_array([to_gain],true)
 	on_player_item_changed.emit(item_name,2)
 	on_bag_item_changed.emit()
 
 func gain_item_array(item_key_list:Array[String],ingore_notify:bool = false):
-	var item_list:Array[Item]
 	for item_key in item_key_list:
 		gain_item(item_key,ingore_notify)
 
-func get_item_in_raw_list(key:String) -> Item:
-	var item_entitys = items_raw.filter(func(item:Item): return item.item_id == key)
-	var entity:Item
-	if !item_entitys.is_empty():
-		entity = item_entitys[0]
-	else:
-		printerr("出错了，无效的item_key:%s" % key)
-	return entity
 	

@@ -13,7 +13,7 @@ enum Balloon{
 
 
 ## 资源
-var player_pre:Resource = preload("res://character/player.tscn") # 玩家预制体
+
 var notify_prefab = preload("res://component/main_notify/main_ notify.tscn") # 通知预制体
 var color_screen_pre:PackedScene = preload("res://component/color_rect/color_rect_full.tscn")
 
@@ -21,10 +21,9 @@ var config:PlayerConfig
 
 
 ## 信号
-signal on_player_loaded # 当玩家实例生成时
 signal on_event_trigger_start
 signal on_event_trigger_end
-
+signal on_player_loaded
 
 ## 玩家场景
 var game_state = GameState.Normal 
@@ -32,14 +31,17 @@ var game_state = GameState.Normal
 ## 玩家位置
 
 ## 属性
-var player:Player_v1:
-	set(val):
-		player = val
-		on_player_loaded.emit()
+var player:PlayerV1:
+	get():
+		return game_player.player
 
 
 @export var data_variable:DataVariable = preload("res://auto_load/data_variable/data_variable.gd").new()
-@export var data_player:DataPlayer = preload("res://auto_load/data_player/data_player.gd").new()
+# @export var data_player:DataPlayer = preload("res://auto_load/data_player/data_player.gd").new()
+
+@export var game_data:GameData = preload("res://auto_load/game_data/game_data.gd").new()
+@export var game_player:GamePlayer = preload("res://auto_load/game_player/game_player.gd").new()
+
 @export var game_time:GameTime = preload("res://auto_load/game_time/game_time.gd").new()
 
 var is_normal_state:
@@ -61,10 +63,15 @@ func _ready() -> void:
 	# 连接对话管理器
 	DialogueManager.on_typing.connect(play_typing_se)
 	
+	## 初始化游戏数据类
+	_init_game_data()
+
 	# 初始化data_player
-	data_player.load_items_at_start()
-	data_player.load_items_raw()
-	data_player.on_player_item_changed.connect(show_item_notify)
+	_init_game_player()
+
+	# data_player.load_items_at_start()
+	# data_player.load_items_raw()
+	
 	
 	# 初始化游戏时间
 	add_child(game_time)
@@ -87,6 +94,24 @@ func _ready() -> void:
 	
 	#set_game_state_normal()
 
+
+## 初始化游戏数据管理
+func _init_game_data():
+	game_data.initialize()
+	pass
+
+func _init_game_player():
+	game_player.on_player_loaded.connect(_on_player_loaded)
+	game_player.on_player_item_changed.connect(show_item_notify)
+
+
+func _on_player_loaded():
+	# 初始化完毕，使游戏开始运行
+	set_game_state_normal()
+	on_player_loaded.emit()
+	pass
+
+
 ## 事件开始的回调函数
 func _event_trigger_start():
 	set_game_state_buszing()
@@ -105,7 +130,7 @@ func play_typing_se():
 ## INFO 获得道具
 ## 通过item的key值获得对应的item
 func gain_item(item_key:String):
-	data_player.gain_item(item_key)
+	game_player.gain_item(item_key)
 	
 #func remove_item()
 
@@ -252,7 +277,6 @@ func parse_event_name(event_name:StringName) :
 		printerr("出错了，没有匹配到该名字事件")
 		return
 	return filter[0]
-	pass
 
 ## 设置玩家面朝方向
 func face_to(dir:Vector2i):
@@ -262,20 +286,6 @@ func face_to(dir:Vector2i):
 ## 获得当前场景的地图
 func get_map_config() -> MapConfig:
 	return get_tree().current_scene.get_node("Maps") as MapConfig
-
-# 创建玩家
-func instance_player(map:Node2D,vec:Vector2):
-	if player: print_debug("初始化玩家错误，当前已生成玩家，请确认整个游戏玩家标识是否只有1个")
-	if !player_pre: print_debug("初始化玩家失败，未设置玩家场景的路径")
-	player = player_pre.instantiate() 
-	player.position = vec
-	# player.start_pos_changed.connect(update_fog)
-	map.add_child(player)
-	
-	# 初始化完毕，使游戏开始运行
-	set_game_state_normal()
-	#block_map = map.get_parent().get_node("./Black")
-	#call_deferred("update_fog") 
 
 
 ## 等待

@@ -35,15 +35,15 @@ var picker_mode:bool = false
 var picker_complete:Callable
 var picker_cancel:Callable
 
-## data_player
-var data_player:DataPlayer:
-	get(): return GameManager.data_player
+## game_player
+var game_player:GamePlayer:
+	get(): return GameManager.game_player
 
 ## 获得道具列表
 func get_items(index:int) -> Array[Item]:
 	var key = catagory_group[index].key
 	if !key: return []
-	return data_player.get_shown_items.filter(func(item:Item):return item.item_catagory == key)
+	return game_player.get_shown_items.filter(func(item:Item):return item.item_catagory == key)
 
 
 func _ready() -> void:
@@ -64,7 +64,7 @@ func _ready() -> void:
 	item_list.on_cancel.connect(_on_item_list_cancel)
 	item_list.on_submit.connect(_use_item)
 	
-	data_player.on_bag_item_changed.connect(_on_catagory_changed.bind(catagory_index))
+	game_player.on_bag_item_changed.connect(_on_catagory_changed.bind(catagory_index))
 
 	catagory_bar.active()
 
@@ -91,17 +91,12 @@ func _use_item(item:Item):
 		if !item_list.usable(item):
 			AudioManager.play_se("blip03")
 			return
-		var event_res = data_player.get_use_callback(item)
-		## 1.关掉道具窗口
-		await  SceneManager.backall()
-		## 2.触发物品效果
-		print("触发物品效果")
-		await  GameManager.trigger_event_res(event_res)
+		game_player.use_item(item)
 
 ## INFO 信号函数 当标签页变化时，刷新itemList
 func _on_catagory_changed(index:int):
 	var list:Array[Item] = get_items(index)
-	item_list.set_info(list,data_player)
+	item_list.set_info(list)
 
 ## INFO 信号函数
 func _on_catagory_confirm(index:int):

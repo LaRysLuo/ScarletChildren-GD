@@ -17,7 +17,7 @@ func next(_index:int=0) -> BaseEventNode:
 
 ## 在游戏中执行事件
 func _execute(_event, _agrs):
-    var condition = await SceneManager.condition_eval(script_cmd)
+    var condition = await Interpreter.condition_eval(script_cmd)
     print("condition=", condition)
     condition_result = 0 if condition else 1
     print("%s事件执行完成" % script_cmd)
