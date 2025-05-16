@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dal1ivj3o3ul1"]
+
+[ext_resource type="Script" path="res://event_sys/ExPage/ex_page.gd" id="1_3kkaj"]
+
+[node name="ExPage" type="Node2D"]
+script = ExtResource("1_3kkaj")

@@ -1,75 +1,75 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=28 format=3 uid="uid://0fbapropmxta"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=30 format=3 uid="uid://0fbapropmxta"]
 
-[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_dq44b"]
-[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_nefau"]
-[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_f3nxu"]
-[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="4_peo05"]
-[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="5_wph5o"]
-[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="6_nboq0"]
-[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="7_epumt"]
-[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="8_abxkd"]
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_tpewh"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_we46s"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_6va5f"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="4_7hey1"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="5_l5w05"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="6_h252n"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="7_n7tb8"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="8_ntvhw"]
 
-[sub_resource type="Resource" id="Resource_gmbqy"]
-script = ExtResource("3_f3nxu")
-script_cmd = "GameManager.data_player.gain_item(\"208c_0_迷之身影\")"
-children = Array[ExtResource("2_nefau")]([])
+[sub_resource type="Resource" id="Resource_himwo"]
+script = ExtResource("3_6va5f")
+script_cmd = "gain_item(\"208c_0_迷之身影\")"
+children = Array[ExtResource("2_we46s")]([])
 node_type = 9
-pos = Vector2(2960, 140)
+pos = Vector2(3200, 140)
 
-[sub_resource type="Resource" id="Resource_t6vin"]
-script = ExtResource("2_nefau")
+[sub_resource type="Resource" id="Resource_vqy81"]
+script = ExtResource("2_we46s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_gmbqy")
+child = SubResource("Resource_himwo")
 
-[sub_resource type="Resource" id="Resource_qnjt4"]
-script = ExtResource("3_f3nxu")
-script_cmd = "GameManager.hide_ent_tween(\"phantom\")"
-children = Array[ExtResource("2_nefau")]([SubResource("Resource_t6vin")])
+[sub_resource type="Resource" id="Resource_8cbne"]
+script = ExtResource("3_6va5f")
+script_cmd = "gm.hide_ent_tween(\"phantom\")"
+children = Array[ExtResource("2_we46s")]([SubResource("Resource_vqy81")])
 node_type = 9
-pos = Vector2(2680, 140)
+pos = Vector2(2920, 140)
 
-[sub_resource type="Resource" id="Resource_bd2lv"]
-script = ExtResource("2_nefau")
+[sub_resource type="Resource" id="Resource_lrenq"]
+script = ExtResource("2_we46s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_qnjt4")
+child = SubResource("Resource_8cbne")
 
-[sub_resource type="Resource" id="Resource_20aob"]
-script = ExtResource("4_peo05")
+[sub_resource type="Resource" id="Resource_2dx2l"]
+script = ExtResource("4_7hey1")
 time = 0.5
-children = Array[ExtResource("2_nefau")]([SubResource("Resource_bd2lv")])
+children = Array[ExtResource("2_we46s")]([SubResource("Resource_lrenq")])
 node_type = 6
-pos = Vector2(2420, 200)
+pos = Vector2(2660, 200)
 
-[sub_resource type="Resource" id="Resource_d2opv"]
-script = ExtResource("2_nefau")
+[sub_resource type="Resource" id="Resource_kgumv"]
+script = ExtResource("2_we46s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_20aob")
+child = SubResource("Resource_2dx2l")
 
-[sub_resource type="Resource" id="Resource_x82gd"]
-script = ExtResource("5_wph5o")
+[sub_resource type="Resource" id="Resource_i8v11"]
+script = ExtResource("5_l5w05")
 move_type = 5
 target_char = {
 "coord": Vector2i(13, 11),
 "label": "phantom"
 }
-step_count = 1
+step_count = 2
 speed_factor = 0.7
 wait_finished = true
-children = Array[ExtResource("2_nefau")]([SubResource("Resource_d2opv")])
+children = Array[ExtResource("2_we46s")]([SubResource("Resource_kgumv")])
 node_type = 3
-pos = Vector2(2080, 140)
+pos = Vector2(2320, 140)
 
-[sub_resource type="Resource" id="Resource_5exlf"]
-script = ExtResource("2_nefau")
+[sub_resource type="Resource" id="Resource_scsmf"]
+script = ExtResource("2_we46s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_x82gd")
+child = SubResource("Resource_i8v11")
 
-[sub_resource type="Resource" id="Resource_gg23i"]
-script = ExtResource("5_wph5o")
+[sub_resource type="Resource" id="Resource_e7jm0"]
+script = ExtResource("5_l5w05")
 move_type = 3
 target_char = {
 "coord": Vector2i(13, 11),
@@ -78,60 +78,73 @@ target_char = {
 step_count = 3
 speed_factor = 0.7
 wait_finished = true
-children = Array[ExtResource("2_nefau")]([SubResource("Resource_5exlf")])
+children = Array[ExtResource("2_we46s")]([SubResource("Resource_scsmf")])
 node_type = 3
-pos = Vector2(1720, 140)
+pos = Vector2(1960, 140)
 
-[sub_resource type="Resource" id="Resource_gye3m"]
-script = ExtResource("2_nefau")
+[sub_resource type="Resource" id="Resource_lmqwb"]
+script = ExtResource("2_we46s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_gg23i")
+child = SubResource("Resource_e7jm0")
 
-[sub_resource type="Resource" id="Resource_68moo"]
-script = ExtResource("4_peo05")
+[sub_resource type="Resource" id="Resource_pbn2h"]
+script = ExtResource("4_7hey1")
 time = 1.0
-children = Array[ExtResource("2_nefau")]([SubResource("Resource_gye3m")])
+children = Array[ExtResource("2_we46s")]([SubResource("Resource_lmqwb")])
 node_type = 6
-pos = Vector2(1460, 180)
+pos = Vector2(1700, 180)
 
-[sub_resource type="Resource" id="Resource_tx455"]
-script = ExtResource("2_nefau")
+[sub_resource type="Resource" id="Resource_yrj02"]
+script = ExtResource("2_we46s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_68moo")
+child = SubResource("Resource_pbn2h")
 
-[sub_resource type="Resource" id="Resource_v6tux"]
-script = ExtResource("3_f3nxu")
-script_cmd = "GameManager.show_ent_tween(\"phantom\")"
-children = Array[ExtResource("2_nefau")]([SubResource("Resource_tx455")])
+[sub_resource type="Resource" id="Resource_dj2qb"]
+script = ExtResource("3_6va5f")
+script_cmd = "am.play_suspicion1()"
+children = Array[ExtResource("2_we46s")]([SubResource("Resource_yrj02")])
+node_type = 9
+pos = Vector2(1440, 120)
+
+[sub_resource type="Resource" id="Resource_t7872"]
+script = ExtResource("2_we46s")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_dj2qb")
+
+[sub_resource type="Resource" id="Resource_a1ojf"]
+script = ExtResource("3_6va5f")
+script_cmd = "gm.show_ent_tween(\"phantom\")"
+children = Array[ExtResource("2_we46s")]([SubResource("Resource_t7872")])
 node_type = 9
 pos = Vector2(1180, 140)
 
-[sub_resource type="Resource" id="Resource_p8o3i"]
-script = ExtResource("2_nefau")
+[sub_resource type="Resource" id="Resource_rio14"]
+script = ExtResource("2_we46s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_v6tux")
+child = SubResource("Resource_a1ojf")
 
-[sub_resource type="Resource" id="Resource_nrfcu"]
-script = ExtResource("7_epumt")
+[sub_resource type="Resource" id="Resource_dgvm6"]
+script = ExtResource("7_n7tb8")
 text = "……"
-role = ExtResource("6_nboq0")
+role = ExtResource("6_h252n")
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_nefau")]([SubResource("Resource_p8o3i")])
+children = Array[ExtResource("2_we46s")]([SubResource("Resource_rio14")])
 node_type = 1
 pos = Vector2(780, 80)
 
-[sub_resource type="Resource" id="Resource_a42ix"]
-script = ExtResource("2_nefau")
+[sub_resource type="Resource" id="Resource_3a2ss"]
+script = ExtResource("2_we46s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_nrfcu")
+child = SubResource("Resource_dgvm6")
 
-[sub_resource type="Resource" id="Resource_4mtdr"]
-script = ExtResource("5_wph5o")
+[sub_resource type="Resource" id="Resource_2avfj"]
+script = ExtResource("5_l5w05")
 move_type = 5
 target_char = {
 "coord": "player",
@@ -140,27 +153,27 @@ target_char = {
 step_count = 3
 speed_factor = 1.0
 wait_finished = true
-children = Array[ExtResource("2_nefau")]([SubResource("Resource_a42ix")])
+children = Array[ExtResource("2_we46s")]([SubResource("Resource_3a2ss")])
 node_type = 3
 pos = Vector2(400, 100)
 
-[sub_resource type="Resource" id="Resource_cbfgk"]
-script = ExtResource("2_nefau")
+[sub_resource type="Resource" id="Resource_vii17"]
+script = ExtResource("2_we46s")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_4mtdr")
+child = SubResource("Resource_2avfj")
 
-[sub_resource type="Resource" id="Resource_xb57c"]
-script = ExtResource("8_abxkd")
-children = Array[ExtResource("2_nefau")]([SubResource("Resource_cbfgk")])
+[sub_resource type="Resource" id="Resource_qihue"]
+script = ExtResource("8_ntvhw")
+children = Array[ExtResource("2_we46s")]([SubResource("Resource_vii17")])
 node_type = 0
 pos = Vector2(180, 180)
 
 [resource]
-script = ExtResource("1_dq44b")
+script = ExtResource("1_tpewh")
 title = ""
 is_collsion = true
 trigger_type = 3
 one_shot = false
-tree = SubResource("Resource_xb57c")
+tree = SubResource("Resource_qihue")
 map = {}

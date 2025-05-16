@@ -97,8 +97,6 @@ func _running_process(delta:float):
 				# 恢复奔跑
 				
 
-
-
 func restart_idle_timer():
 	if !idle_timer: 
 		idle_timer = Timer.new()
@@ -193,14 +191,16 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel") && !input_triggerd:
 		self.input_triggerd = true
 		tip.hide()
-		SceneManager.navigate_to("scene_main_menu")
+		var shot:Image = get_viewport().get_texture().get_image()
+		var mainMenu:MainMenu =	await	SceneManager.navigate_to("scene_main_menu")
+		mainMenu.set_mapshot(ImageTexture.create_from_image(shot))
 	## 加速跑
 	if event.is_action_pressed("R1") && running_mode == 0: _start_run()
 	if event.is_action_released("R1") && running_mode == 1:_end_run()
 	
 	if event.is_released():
 		self.input_triggerd = false
-	
+
 		
 var is_action:bool = false
 

@@ -14,7 +14,9 @@ class_name Door1
 #var event_res:Events_Res
 
 @export var event_res:Events_Res
-@export var event_config:EventConfig
+
+
+
 
 
 ## 组件引用
@@ -23,27 +25,38 @@ var anim:AnimatedSprite2D:
 
 func _ready() -> void:
 	super._ready()
-	event_config = get_event_config()
+	# event_config = get_event_config()
 	
 	#GameManager.player.on_interact_changed.connect(change_person_shadow)
 	#self.event_res = _load_eventres_from_config()
-	pass
+
+func _load_event_config():
+	if !page : 
+		# _refresh_event_visible(false)
+		return
+	if page.content: self.ingore_collsion = !page.content.is_collsion
+	# 刷新精灵图
+	_refresh_sprite_frame(page.frame_index,page)
+	# 刷新可视化
+	_init_event_visible(page)
 
 func _refresh_event_state(item_name:StringName = "",state:int = 0):
 	await  super._refresh_event_state()
-	event_config = get_event_config()
-	
-	if self.ori_cell_pos == Vector2i(8,9):
-		print("事件(%s,%s)重新刷新后的event_config为%s" % [ori_cell_pos.x,ori_cell_pos.y,event_config])
-	if !event_config: _refresh_sprite_frame(0) # 将精灵图变回默认
+	# event_config = get_event_config()
+	# if self.ori_cell_pos == Vector2i(8,9):
+	# 	print("事件(%s,%s)重新刷新后的page为%s" % [ori_cell_pos.x,ori_cell_pos.y,page])
+	if !page: _refresh_sprite_frame(0) # 将精灵图变回默认
 		
 
 ## 从配置文件载入event资源
 # 1 优先获取event_config
 # 2 如果没有event_config就获取ex_config
 func _load_eventres_from_config():
-	if event_config: return
-	var eec = _get_eventex_config(cell_pos)
+	if page: return
+	var ex = handler.try_get_ex_page(ori_cell_pos)
+	if !ex: return 
+	var eec = ex.content
+	print("eec",eec)
 	if !eec: return null
 	if eec is DoorEx:
 		var event_res =  eec._make_event_res()
@@ -52,17 +65,17 @@ func _load_eventres_from_config():
 	else: return null
 	
 
-## 寻找EventExConfig
-func _get_eventex_config(coord:Vector2i) -> EventEx:
-	var map_config:MapConfig = get_parent().get_parent()
-	var filters = map_config.event_ex.filter(func(item:EventExConfig):return item.coord == coord)
-	if filters.is_empty():
-		return null
-	return filters[0].event_ex
+## 寻找EventExConfig 弃用中
+# func _get_eventex_config(coord:Vector2i) -> EventEx:
+# 	var map_config:MapConfig = get_parent().get_parent()
+# 	var filters = map_config.event_ex.filter(func(item:EventExConfig):return item.coord == coord)
+# 	if filters.is_empty():
+# 		return null
+# 	return filters[0].event_ex
 
 ## 重写交互逻辑
 func interact():
-	if event_config:
+	if page:
 		print("开始执行普通事件")
 		super.interact()
 	else:
@@ -76,7 +89,7 @@ func interact():
 		print("门事件完成")
 
 func interactable() -> bool:
-	if event_config:
+	if page:
 		return super.interactable()
 	else:
 		var config = _load_eventres_from_config()
@@ -84,7 +97,7 @@ func interactable() -> bool:
 		return true
 	
 func touchable() -> bool:
-	if event_config:
+	if page:
 		return super.touchable()
 	else:
 		if _find_around_enemy(cell_pos):

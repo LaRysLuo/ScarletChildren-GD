@@ -17,6 +17,9 @@ class_name MapConfig
 var all_events:Array[Node]  = []
 
 
+var event_pages_handler:EventPageHandler:
+	get: return get_parent().get_node("EventPages")
+
 
 ## 获得移动层
 var movable:TileMapLayer:
@@ -90,7 +93,6 @@ func auto_event_trigger():
 	## 遍历这些自动事件执行
 	for event in auto_events:
 		if event is Event:
-			print("检测到自动事件：",event.get_instance_id())
 			await event.interact()
 	await  get_tree().create_timer(0.5).timeout
 
@@ -131,7 +133,10 @@ func get_event(coord:Vector2i,ignore_condition:bool = false) -> EventConfig:
 	print("filters=",filter.size())
 	if filter.is_empty():return null
 	return filter.front()
-	
+
+
+
+
 ## 获得对应名称的的Event
 func get_event_by_name(char_name:StringName) -> Event:
 	if all_events.is_empty():return null

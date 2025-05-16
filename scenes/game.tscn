@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/game_play.gd" id="1_lrmgu"]
 [ext_resource type="PackedScene" uid="uid://blniy4awddvu3" path="res://component/sfx_vignette/sfx_vignette.tscn" id="2_orktd"]
 
-[node name="Game" type="CanvasLayer"]
-layer = 2
+[node name="Game" type="Node"]
 script = ExtResource("1_lrmgu")
 
 [node name="SfxVignette" parent="." instance=ExtResource("2_orktd")]
+visible = false

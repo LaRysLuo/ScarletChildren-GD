@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://3vsh52w13rec"]
+
+[ext_resource type="Script" path="res://component/lbutton_v2/lbutton_v_2.gd" id="1_8p8vo"]
+[ext_resource type="Texture2D" uid="uid://bwd7wdrn7q5e1" path="res://component/lbutton_v2/assets/background.png" id="1_33cdd"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ft0yc"]
+
+[node name="LbuttonV2" type="Control"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8p8vo")
+icon = SubResource("CanvasTexture_ft0yc")
+text = "道具"
+selected_color = Color(255, 87, 176, 0.5)
+
+[node name="Background" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_33cdd")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="Background/MarginContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.788235)
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+texture = SubResource("CanvasTexture_ft0yc")
+
+[node name="Text" type="Label" parent="Background/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "道具"

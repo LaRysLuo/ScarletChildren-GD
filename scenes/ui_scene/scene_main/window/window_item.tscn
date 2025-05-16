@@ -1,0 +1,139 @@
+[gd_scene load_steps=8 format=3 uid="uid://1wdhlbrkec7r"]
+
+[ext_resource type="Texture2D" uid="uid://2rh4cwmxr73u" path="res://scenes/ui_scene/scene_main/window/assets/window.png" id="1_0lt7t"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main/window/window_item.gd" id="1_6bpgo"]
+[ext_resource type="Texture2D" uid="uid://dio0snbvaag1p" path="res://scenes/ui_scene/scene_main/window/assets/inner_window_bg.png" id="2_8etuq"]
+[ext_resource type="Texture2D" uid="uid://c18q0mt6xf4k8" path="res://scenes/ui_scene/scene_main/window/assets/tab_bg.png" id="3_nqk2n"]
+[ext_resource type="Texture2D" uid="uid://decguqip0ikku" path="res://scenes/ui_scene/scene_main/window/assets/arrow.png" id="4_fil52"]
+[ext_resource type="FontFile" uid="uid://mnflroidndvn" path="res://assets/fonts/fusion-pixel-10px-monospaced.otc" id="5_1fmkb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dkaps"]
+font = ExtResource("5_1fmkb")
+font_size = 14
+font_color = Color(0.683077, 0.683077, 0.683077, 1)
+
+[node name="WindowItem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -58.0
+offset_bottom = -322.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6bpgo")
+
+[node name="WindowBg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 742.0
+offset_bottom = 314.0
+texture = ExtResource("1_0lt7t")
+
+[node name="InnerWindowBgMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -1
+theme_override_constants/margin_top = 35
+
+[node name="InnerWindowBg" type="TextureRect" parent="InnerWindowBgMargin"]
+custom_minimum_size = Vector2(700, 220)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 5.04
+texture = ExtResource("2_8etuq")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InnerWindowBgMargin/InnerWindowBg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="ItemGridMargin" type="MarginContainer" parent="InnerWindowBgMargin/InnerWindowBg/HBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InnerWindowBgMargin/InnerWindowBg/HBoxContainer/ItemGridMargin"]
+layout_mode = 2
+
+[node name="Arrow2" type="TextureRect" parent="InnerWindowBgMargin/InnerWindowBg/HBoxContainer/ItemGridMargin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("4_fil52")
+expand_mode = 4
+stretch_mode = 3
+flip_v = true
+
+[node name="ItemGrid" type="VBoxContainer" parent="InnerWindowBgMargin/InnerWindowBg/HBoxContainer/ItemGridMargin/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 3
+
+[node name="Arrow" type="TextureRect" parent="InnerWindowBgMargin/InnerWindowBg/HBoxContainer/ItemGridMargin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("4_fil52")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="InnerWindowBgMargin/InnerWindowBg/HBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Label" type="Label" parent="InnerWindowBgMargin/InnerWindowBg/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "这是一个有趣的书"
+label_settings = SubResource("LabelSettings_dkaps")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Tab" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.066
+anchor_top = 0.049
+anchor_right = 0.087
+anchor_bottom = 0.125
+offset_left = 0.0279999
+offset_top = 19.378
+offset_right = 48.446
+offset_bottom = 29.25
+texture = ExtResource("3_nqk2n")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Tab"]
+modulate = Color(0.493545, 0.493546, 0.493546, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "物品"
+horizontal_alignment = 1
+vertical_alignment = 1

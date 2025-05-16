@@ -18,7 +18,7 @@ signal reading_mode_close
 signal on_map_available
 
 var tool_scenes:Dictionary = {
-	"scene_main_menu":"res://scenes/ui_scene/main_menu.tscn",
+	"scene_main_menu":"res://scenes/ui_scene/scene_main/main_menu.tscn",
 	"scene_item_list":"res://scenes/ui_scene/scene_item/neo_item_list.tscn",
 	"scene_reading_mode":"res://component/scene_file_read/scene_file_read.tscn",
 	"scene_star_fish":"res://scenes/ui_scene/scene_jigsaw/scene_jigsaw.tscn",

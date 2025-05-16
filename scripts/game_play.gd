@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node
 class_name GamePlay
 
 ## 枚举
@@ -34,6 +34,9 @@ var game_state = GameState.Normal
 var player:PlayerV1:
 	get():
 		return game_player.player
+
+var sub_viewport:
+	get: return get_node("SubViewport")
 
 
 @export var data_variable:DataVariable = preload("res://auto_load/data_variable/data_variable.gd").new()
@@ -140,11 +143,14 @@ func create_notify() -> MainNotify:
 	var notify_entity
 	if filters.is_empty():
 		notify_entity = notify_prefab.instantiate()
-		self.add_child(notify_entity)
+		add_child(notify_entity)
 	else: notify_entity = filters[0]
 	return notify_entity
 
+
+## 显示道具通知
 func show_item_notify(item_name,state):
+	# 创建道具获取通知
 	create_notify().add_item_notify(item_name,state)
 
 

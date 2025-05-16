@@ -16,7 +16,8 @@ class_name LButton
 
 @export var symbol:String
 
-@onready var label_text:Label = $Label
+@onready var label_text:Label = $MenuBase/Label
+@onready var icon_text:TextureRect = $MenuBase/Icon
 @onready var cursor:ColorRect = $ColorRect
 @onready var anim:AnimationPlayer = $AnimationPlayer
 
@@ -59,9 +60,11 @@ func _input(event: InputEvent) -> void:
 		
 func _refresh_lb_disable_state(state:bool):
 	if state:
-		label_text.self_modulate.a = 0.3
+		if label_text: label_text.self_modulate.a = 0.3
+		if icon_text: icon_text.self_modulate.a = 0.3
 	else:
 		if label_text: label_text.self_modulate.a = 1
+		if icon_text: icon_text.self_modulate.a = 1
 	pass
 
 func refresh():

@@ -1,92 +1,123 @@
 extends CanvasLayer
+class_name MainMenu
 
-var itemList:Array[LButton]
 @onready var menuPanel = $MenuPanel
+@onready var menu_v2:MenuV2 = $MenuV2
+@onready var bg_panel:Panel = $Panel
+@onready var panel_bg:TextureRect = $PanelBg
+@onready var window_item:WindowItem = $WindowItem
 
-var last := -1
-var index := 0
+@export var mapshot:Texture2D
 
-## 按键handler
-var btn_handler = {
-	"item": _to_item,
-	"lib": _to_lib,
-	"load":null
-}
-
-
-# Called when the node enters the scene tree for the first time.
+## 初始化
 func _ready() -> void:
-	#visibility_changed.connect(func ():
-		#get_tree().paused = visible)
-	var list = menuPanel.get_children()
-	for item in list:
-		if item is LButton: 
-			itemList.append(item)
-			if item.symbol && btn_handler.get(item.symbol):
-				item.lb_submit.connect(btn_handler.get(item.symbol))
-			item.connect("lb_select_changed",on_select)
-	init_window()
-	pass # Replace with function body.
+	_init_window_item()
+	_init_menu_v2()
 
-func init_window():
+## 初始化道具列表窗口
+func _init_window_item():
+	window_item.set_items([{
+		"name":"测试道具",
+		"key": "01",
+		"desc":"测试测试测试1",
+		"icon":null
+	},
+	{
+		"name":"测试道具2",
+		"key": "01",
+		"desc":"测试测试测试2",
+		"icon":null
+	},
+	{
+		"name":"测试道具3",
+		"key": "01",
+		"desc":"测试测试测试3",
+		"icon":null
+	},{
+		"name":"测试道具4",
+		"key": "01",
+		"desc":"测试测试测试3",
+		"icon":null
+	},{
+		"name":"测试道具5",
+		"key": "01",
+		"desc":"测试测试测试4",
+		"icon":null
+	},
+	{
+		"name":"测试道具6",
+		"key": "01",
+		"desc":"测试测试测试5",
+		"icon":null
+	},
+	{
+		"name":"测试道具7",
+		"key": "01",
+		"desc":"测试测试测试6",
+		"icon":null
+	},
+		{
+		"name":"测试道具8",
+		"key": "01",
+		"desc":"测试测试测试7",
+		"icon":null
+	},
+		{
+		"name":"测试道具9",
+		"key": "01",
+		"desc":"测试测试测试8",
+		"icon":null
+	},
+		{
+		"name":"测试道具10",
+		"key": "01",
+		"desc":"测试测试测试9",
+		"icon":null
+	},
+		{
+		"name":"测试道具11",
+		"key": "01",
+		"desc":"测试测试测试10",
+		"icon":null
+	}
+	])
+
+	window_item.on_select_changed.connect(func(): AudioManager.play_cursor_move())
+	window_item.on_submit.connect(func():AudioManager.play_puzzle_complete())
+	window_item.on_cancel.connect(_item_back)
+
+## 初始化menuV2窗口
+func _init_menu_v2():
+	menu_v2.set_handler("item",_to_item)
+	menu_v2.set_handler("cancel",close_window)
 	AudioManager.play_se("Computer")
-	select(0,true)
+	menu_v2.activate()
 
+## 设置屏幕图片
+func set_mapshot(_mapshot:Texture2D):
+	panel_bg.texture =  _mapshot as Texture2D
+	print_debug("texture:",_mapshot as Texture2D)
+	self.mapshot = _mapshot
 
-var input_triggered := false
-
-# 检测输入
-func _input(event: InputEvent) -> void:
-	if !visible:return
-	## 按下取消
-	if event.is_action_pressed("cancel") && !input_triggered:
-		self.input_triggered = true
-		get_window().set_input_as_handled()
-		close_window()
-	
-	if event.is_released():
-		self.input_triggered = false
-		
+## 关闭该窗口
 func close_window():
 	SceneManager.backto()
 	
-
-func on_item_menu():
-	SceneManager.navigate_to("scene_item_list")
-	pass
-
-func on_other():
-	pass	
-
-func select(_index:int,skip_se:bool = false):
-	index = _index
-	var last_btn = itemList[last]
-	var btn = itemList[index]
-	if last_btn: last_btn.unfocus()
-	if btn: btn.focus(skip_se)
-	if last != index: last = index
-
-func _on_tree_entered() -> void:
-	var timer =  get_tree().create_timer(0.1)
-	timer.connect("timeout",func():
-		print("计时器触发")
-	)
-	pass # Replace with function body.
-
-func on_select(event:int):
-	print("list的数量：",itemList.size())
-	match  event:
-		3:
-			# 向下移动
-			if index > 0: select(index-1)
-		0:
-			# 向上移动
-			if index < itemList.size() -1: select(index+1)
+# func _on_tree_entered() -> void:
+# 	var timer =  get_tree().create_timer(0.1)
+# 	timer.connect("timeout",func():
+# 		print("计时器触发")
+# 	)
 
 ## 跳转到道具列表
 func _to_item():
-	SceneManager.navigate_to("scene_item_list")
-	
+	print("1111")
+	window_item.show_and_active()
+
+## 关闭道具窗口
+func _item_back():
+	window_item.hide_and_clear()
+
 ## 跳转到资料列表
 func _to_lib():
 	SceneManager.navigate_to("scene_lib")

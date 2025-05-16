@@ -1,23 +1,49 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0l2t2hnk6fsu"]
+[gd_scene load_steps=14 format=3 uid="uid://d0l2t2hnk6fsu"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_ae5lu"]
-[ext_resource type="Texture2D" uid="uid://bq1fb8i7vtves" path="res://assets/resu_menu.png" id="2_rvugv"]
-[ext_resource type="PackedScene" uid="uid://b1hk4o04kvkqq" path="res://scenes/l_button.tscn" id="3_c33l3"]
-[ext_resource type="Texture2D" uid="uid://c7v2mmqkwqc7d" path="res://assets/system/keyboard.png" id="3_lppqe"]
-[ext_resource type="Script" path="res://auto_load/game_time/game_time_window.gd" id="4_obl8l"]
-[ext_resource type="Script" path="res://scenes/scene_name_label.gd" id="5_akyev"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_5v8cf"]
+[ext_resource type="Texture2D" uid="uid://bq1fb8i7vtves" path="res://assets/resu_menu.png" id="2_eyujq"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="2_nim08"]
+[ext_resource type="Texture2D" uid="uid://bnf2dw0qvtswe" path="res://scenes/ui_scene/scene_main/assets/window_bg.png" id="3_j0ou4"]
+[ext_resource type="PackedScene" uid="uid://b1hk4o04kvkqq" path="res://scenes/l_button.tscn" id="4_5s5ro"]
+[ext_resource type="Script" path="res://auto_load/game_time/game_time_window.gd" id="5_3x6yt"]
+[ext_resource type="Script" path="res://scenes/scene_name_label.gd" id="6_w87f3"]
+[ext_resource type="PackedScene" uid="uid://1nvvaoxy1h3g" path="res://component/window_menu_v2/menu_v2.tscn" id="6_yaxyn"]
+[ext_resource type="Texture2D" uid="uid://c7v2mmqkwqc7d" path="res://assets/system/keyboard.png" id="7_kiemt"]
+[ext_resource type="PackedScene" uid="uid://1wdhlbrkec7r" path="res://scenes/ui_scene/scene_main/window/window_item.tscn" id="9_qsxwp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_11qkm"]
+shader = ExtResource("2_nim08")
+shader_parameter/blur_radius = 3.321
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1mf4a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w01cw"]
+texture = ExtResource("3_j0ou4")
 
 [node name="MainMenu" type="CanvasLayer"]
-script = ExtResource("1_ae5lu")
+script = ExtResource("1_5v8cf")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="PanelBg" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_11qkm")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stretch_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1mf4a")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -37,7 +63,7 @@ offset_left = 468.0
 offset_top = 32.0
 offset_right = 776.0
 offset_bottom = 599.0
-texture = ExtResource("2_rvugv")
+texture = ExtResource("2_eyujq")
 
 [node name="ItemList" type="ItemList" parent="."]
 visible = false
@@ -54,30 +80,38 @@ item_1/text = "资料"
 item_2/text = "载入"
 
 [node name="MenuPanel" type="Panel" parent="."]
+visible = false
 offset_left = 24.0
 offset_top = 40.0
 offset_right = 185.0
 offset_bottom = 120.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_w01cw")
 
-[node name="Button" parent="MenuPanel" instance=ExtResource("3_c33l3")]
+[node name="Button" parent="MenuPanel" instance=ExtResource("4_5s5ro")]
 layout_mode = 1
 text = "道具"
 symbol = "item"
 
-[node name="Button3" parent="MenuPanel" instance=ExtResource("3_c33l3")]
+[node name="Button3" parent="MenuPanel" instance=ExtResource("4_5s5ro")]
 layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.454545
 anchor_right = 0.993789
 anchor_bottom = 0.909091
+offset_top = -0.363598
+offset_right = 0.999969
+offset_bottom = 3.27272
 text = "载入"
 symbol = "load"
+
+[node name="MenuV2" parent="." instance=ExtResource("6_yaxyn")]
 
 [node name="Panel3" type="Panel" parent="." node_paths=PackedStringArray("label")]
 offset_left = 27.0
 offset_top = 502.0
 offset_right = 202.0
 offset_bottom = 542.0
-script = ExtResource("4_obl8l")
+script = ExtResource("5_3x6yt")
 label = NodePath("Label")
 
 [node name="Label" type="Label" parent="Panel3"]
@@ -96,7 +130,7 @@ offset_left = 219.0
 offset_top = 502.0
 offset_right = 442.0
 offset_bottom = 542.0
-script = ExtResource("5_akyev")
+script = ExtResource("6_w87f3")
 
 [node name="Label" type="Label" parent="SceneNameLabel"]
 layout_mode = 1
@@ -130,7 +164,7 @@ theme_override_constants/margin_left = 30
 [node name="Sprite2D" type="Sprite2D" parent="Panel2/MarginContainer"]
 position = Vector2(13, 20)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("3_lppqe")
+texture = ExtResource("7_kiemt")
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
 
@@ -150,12 +184,19 @@ theme_override_constants/margin_left = 30
 [node name="Sprite2D2" type="Sprite2D" parent="Panel2/MarginContainer2"]
 position = Vector2(13, 20)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("3_lppqe")
+texture = ExtResource("7_kiemt")
 region_enabled = true
 region_rect = Rect2(16, 32, 16, 16)
 
 [node name="Label" type="Label" parent="Panel2/MarginContainer2"]
 layout_mode = 2
 text = "回到游戏"
+
+[node name="WindowItem" parent="." instance=ExtResource("9_qsxwp")]
+visible = false
+offset_left = 24.0
+offset_top = 144.0
+offset_right = -34.0
+offset_bottom = -178.0
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

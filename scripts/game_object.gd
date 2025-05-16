@@ -136,6 +136,7 @@ func _movable(pos:Vector2i,ingore_event_collsion:bool = false) -> bool:
 	if !(cell_data && cell_data.get_custom_data("movable")): # 如果不可移动则返回
 		return false
 	var event:Event = get_event(pos)
+	# print("判断event是否有%s，是否会无视碰撞：%s" % [event,event.ingore_collsion])
 	if event:
 		## 如果移动目标点有敌人，无法移动
 		#if event != self && event.is_in_group("enemy"):
@@ -143,16 +144,16 @@ func _movable(pos:Vector2i,ingore_event_collsion:bool = false) -> bool:
 		## 如果目标点是door
 		#if self.is_in_group("player") && event._find_around_enemy(pos) &&  !event.touchable():
 			#return false
-		var map_config:MapConfig = get_parent().get_parent()
-		var event_config:EventConfig = map_config.get_event(pos)
-		if !event_config && !event is  Door1: return true		
-		var event_res:Events_Res = null
+		# var map_config:MapConfig = get_parent().get_parent()
+		# var event_config:EventConfig = map_config.get_event(pos)
+		# if !event_config && !event is  Door1: return true		
+		# var event_res:Events_Res = null
 		#if event_config: 
 			#event_res = event_config.event_res
 		if !ingore_event_collsion:
 			# 如果event是碰撞体才返回
-			if event && event.visible && !event.ingore_collsion:  
-				# 判断事件是否会不会触发
+			
+			if   !event.ingore_collsion:  
 				event_clashed.emit(event)
 				return false
 	return true
@@ -166,7 +167,9 @@ func pos_has_player(coord:Vector2i) -> bool:
 func get_event(cell:Vector2i) -> CharacterBase:
 	var events := get_tree().get_nodes_in_group("events")
 	for event:CharacterBase in events:
-		if event.cell_pos == cell && event.visible: return event
+		if event.cell_pos == cell:
+			print("当前DOOR事件的visible:%s" % event.visible)
+			if event.visible: return event
 	return null
 
 func find_last_route() -> MoveRoute:

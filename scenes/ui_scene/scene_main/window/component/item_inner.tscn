@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://mwcbj8erl2xa"]
+
+[ext_resource type="Texture2D" uid="uid://85kjveyk6qdb" path="res://scenes/ui_scene/scene_main/window/assets/inner_item_bg.png" id="1_256pq"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main/window/component/item_inner.gd" id="2_y7k1f"]
+[ext_resource type="FontFile" uid="uid://mnflroidndvn" path="res://assets/fonts/fusion-pixel-10px-monospaced.otc" id="3_l7jlr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x8qsg"]
+font = ExtResource("3_l7jlr")
+
+[node name="ItemInner" type="TextureRect"]
+self_modulate = Color(0.239216, 0.239216, 0.239216, 0.494118)
+custom_minimum_size = Vector2(0, 28)
+texture = ExtResource("1_256pq")
+stretch_mode = 6
+script = ExtResource("2_y7k1f")
+label = "测文字"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 0)
+layout_mode = 2
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "测文字"
+label_settings = SubResource("LabelSettings_x8qsg")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1hk4o04kvkqq"]
+[gd_scene load_steps=6 format=3 uid="uid://b1hk4o04kvkqq"]
 
 [ext_resource type="Script" path="res://scripts/button.gd" id="1_ucpww"]
+[ext_resource type="Texture2D" uid="uid://hag6unir2cwy" path="res://scenes/ui_scene/scene_main/assets/icon_default.png" id="2_hp4ma"]
 
 [sub_resource type="Animation" id="Animation_fxe4y"]
 length = 0.001
@@ -44,10 +45,11 @@ _data = {
 [node name="LButton" type="Control"]
 custom_minimum_size = Vector2(160, 40)
 layout_mode = 3
-anchor_right = 0.2
-anchor_bottom = 0.0666667
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 40.0
 script = ExtResource("1_ucpww")
-metadata/_edit_use_anchors_ = true
+text = "菜单名字1"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -59,23 +61,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -61.0
-offset_top = -11.0
-offset_right = 71.0
-offset_bottom = 12.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "测试样本"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2n1dl")
 }
 autoplay = "default"
+
+[node name="MenuBase" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 98.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Control" type="Control" parent="MenuBase"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MenuBase"]
+layout_mode = 2
+texture = ExtResource("2_hp4ma")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="MenuBase"]
+layout_mode = 2
+text = "菜单名字1"
