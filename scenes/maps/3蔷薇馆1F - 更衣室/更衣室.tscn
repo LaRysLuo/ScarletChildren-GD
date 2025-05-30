@@ -1,0 +1,139 @@
+[gd_scene load_steps=22 format=4 uid="uid://f42ci1xmmk8l"]
+
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_dujwc"]
+[ext_resource type="Texture2D" uid="uid://dqfqg4rj0wd7u" path="res://scenes/maps/3蔷薇馆1F - 更衣室/maps/换衣间 - 1.png" id="2_a6235"]
+[ext_resource type="Texture2D" uid="uid://j7meiykmwnbl" path="res://scenes/maps/3蔷薇馆1F - 更衣室/maps/换衣间 - 3.png" id="3_6t1v0"]
+[ext_resource type="Script" path="res://event_sys/ExPage/ex_page.gd" id="4_ol4kn"]
+[ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="5_hof51"]
+[ext_resource type="Script" path="res://event_sys/EventPage/event_page.gd" id="6_28086"]
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="7_rj43o"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="8_gsnwy"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="9_j1m5l"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="10_3kgai"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="11_q75k7"]
+
+[sub_resource type="Resource" id="Resource_4o7t7"]
+script = ExtResource("5_hof51")
+scene_path = "res://scenes/maps/3蔷薇馆1F - 东馆走廊/东馆走廊1f.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(12, 5)
+target_scene_door = Vector2i(12, 6)
+
+[sub_resource type="Resource" id="Resource_e8q2k"]
+script = ExtResource("5_hof51")
+scene_path = "res://scenes/maps/3蔷薇馆1F - 会诊室/会诊室.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(18, 8)
+target_scene_door = Vector2i(17, 8)
+
+[sub_resource type="Resource" id="Resource_45gwu"]
+script = ExtResource("9_j1m5l")
+text = "挂着很多衣服"
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("8_gsnwy")]([])
+node_type = 1
+pos = Vector2(4420, 140)
+
+[sub_resource type="Resource" id="Resource_qutr0"]
+script = ExtResource("8_gsnwy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_45gwu")
+
+[sub_resource type="Resource" id="Resource_7c4sm"]
+script = ExtResource("10_3kgai")
+children = Array[ExtResource("8_gsnwy")]([SubResource("Resource_qutr0")])
+node_type = 0
+pos = Vector2(4180, 240)
+
+[sub_resource type="Resource" id="Resource_778nj"]
+script = ExtResource("7_rj43o")
+title = ""
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_7c4sm")
+map = {}
+
+[sub_resource type="Resource" id="Resource_d7tq1"]
+script = ExtResource("9_j1m5l")
+text = "e01_03_b_01"
+role = ExtResource("11_q75k7")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("8_gsnwy")]([])
+node_type = 1
+pos = Vector2(4880, 80)
+
+[sub_resource type="Resource" id="Resource_52286"]
+script = ExtResource("8_gsnwy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_d7tq1")
+
+[sub_resource type="Resource" id="Resource_t7xs0"]
+script = ExtResource("10_3kgai")
+children = Array[ExtResource("8_gsnwy")]([SubResource("Resource_52286")])
+node_type = 0
+pos = Vector2(4620, 160)
+
+[sub_resource type="Resource" id="Resource_4pbns"]
+script = ExtResource("7_rj43o")
+title = ""
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_t7xs0")
+map = {}
+
+[node name="更衣室" instance=ExtResource("1_dujwc")]
+
+[node name="Maps" parent="." index="0"]
+bottom_limit = 600.0
+right_limit = 800.0
+
+[node name="0" parent="Maps" index="0"]
+position = Vector2(401, 300)
+texture = ExtResource("2_a6235")
+
+[node name="2" parent="Maps" index="1"]
+position = Vector2(401, 300)
+texture = ExtResource("3_6t1v0")
+
+[node name="Objects" parent="Maps" index="2"]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAHAAgAAQAAAAAACwAKAA0AAQAAAAAACwAKAAcAAQAAAAAABAAMAAgAAQAAAAAABAA=")
+
+[node name="Movable" parent="Maps" index="3"]
+tile_map_data = PackedByteArray("AAAIAAkAAgABAAEAAAAIAAgAAgABAAEAAAAJAAgAAgABAAEAAAAJAAkAAgABAAEAAAAJAAoAAgABAAEAAAAKAAwAAgABAAEAAAAKAAsAAgABAAEAAAAJAAsAAgABAAEAAAALAAsAAgABAAEAAAALAAoAAgABAAEAAAAMAAoAAgABAAEAAAAKAAoAAgABAAEAAAAKAAkAAgABAAEAAAALAAkAAgABAAEAAAAMAAkAAgABAAEAAAALAAgAAgABAAEAAAAKAAgAAgABAAEAAAAHAAgAAgABAAEAAAAKAA0AAgABAAEAAAAKAA4AAgABAAEAAAA=")
+
+[node name="东馆走廊" type="Node2D" parent="EventPages" index="0"]
+position = Vector2(336, 432)
+script = ExtResource("4_ol4kn")
+pos = Vector2i(10, 13)
+content = SubResource("Resource_4o7t7")
+
+[node name="会诊室" type="Node2D" parent="EventPages" index="1"]
+position = Vector2(240, 272)
+script = ExtResource("4_ol4kn")
+pos = Vector2i(7, 8)
+content = SubResource("Resource_e8q2k")
+
+[node name="衣柜" type="Node2D" parent="EventPages" index="2"]
+position = Vector2(336, 240)
+script = ExtResource("6_28086")
+pos = Vector2i(10, 7)
+dir = null
+content = SubResource("Resource_778nj")
+
+[node name="娃娃架" type="Node2D" parent="EventPages" index="3"]
+position = Vector2(400, 272)
+script = ExtResource("6_28086")
+pos = Vector2i(12, 8)
+dir = null
+content = SubResource("Resource_4pbns")

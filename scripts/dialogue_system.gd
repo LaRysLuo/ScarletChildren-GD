@@ -121,9 +121,8 @@ func _action_input(key:int):
 #region 对外函数
 
 ## 【对外】显示消息
-func show_message(text:String,wait_type:int,wait_time:float,role:Role = null):
-	print("text=",text)
-	var info :=  DialogueInfo.new(role,text,wait_type,wait_time) # 生成对话信息
+func show_message(text:String,wait_type:int,wait_time:float,role:Role = null,expression_id:int = 0):
+	var info :=  DialogueInfo.new(role,expression_id,text,wait_type,wait_time) # 生成对话信息
 	#var temp_list :Array[DialogueInfo] = [ info]
 	_start_dialogue( [ info]) #开始对话
 
@@ -185,11 +184,11 @@ func _render_content(info:DialogueInfo):
 			name_label.label_settings.font_color = info.role.theme_color
 			name_label.text = info.role.role_name
 			name_label.show()
-
+		var tachie = info.role.get_tachie(info.role_expression_id)
 		## 如果角色有立绘，则显示立绘
-		if info.role.tachie:
+		if tachie:
 			tachie_tr.show()
-			tachie_tr.texture = info.role.tachie
+			tachie_tr.texture = tachie
 	
 	typing_tween = get_tree().create_tween()
 	content_label.text = ""

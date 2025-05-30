@@ -1,0 +1,120 @@
+[gd_scene load_steps=20 format=4 uid="uid://dukrgko4sikbt"]
+
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_e2blq"]
+[ext_resource type="Texture2D" uid="uid://c6qawv3dimrrq" path="res://scenes/maps/3蔷薇馆1F - 会诊室/map/会诊室 - 1.png" id="2_3x7vc"]
+[ext_resource type="Texture2D" uid="uid://5m8cjos6mvid" path="res://scenes/maps/3蔷薇馆1F - 会诊室/map/会诊室 - 2.png" id="3_iu3uj"]
+[ext_resource type="Script" path="res://event_sys/ExPage/ex_page.gd" id="4_h2fjh"]
+[ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="5_3dp1e"]
+[ext_resource type="Script" path="res://event_sys/EventPage/event_page.gd" id="6_hnkic"]
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="7_chklh"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="8_ujw0q"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="9_nx5wl"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="10_fhjfo"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="11_k0rux"]
+
+[sub_resource type="Resource" id="Resource_se5v8"]
+script = ExtResource("5_3dp1e")
+scene_path = "res://scenes/maps/3蔷薇馆1F - 东馆走廊/东馆走廊1f.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(5, 5)
+target_scene_door = Vector2i(5, 6)
+
+[sub_resource type="Resource" id="Resource_jnyb4"]
+script = ExtResource("5_3dp1e")
+scene_path = "res://scenes/maps/3蔷薇馆1F - 更衣室/更衣室.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(6, 8)
+target_scene_door = Vector2i(7, 8)
+
+[sub_resource type="Resource" id="Resource_cabuk"]
+script = ExtResource("10_fhjfo")
+text = "e01_03_a_02"
+role = ExtResource("9_nx5wl")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("8_ujw0q")]([])
+node_type = 1
+pos = Vector2(1939.88, -106.224)
+
+[sub_resource type="Resource" id="Resource_v76h1"]
+script = ExtResource("8_ujw0q")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_cabuk")
+
+[sub_resource type="Resource" id="Resource_12jd4"]
+script = ExtResource("10_fhjfo")
+text = "e01_03_a_01"
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("8_ujw0q")]([SubResource("Resource_v76h1")])
+node_type = 1
+pos = Vector2(1580, -100)
+
+[sub_resource type="Resource" id="Resource_1i5et"]
+script = ExtResource("8_ujw0q")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_12jd4")
+
+[sub_resource type="Resource" id="Resource_4vhb7"]
+script = ExtResource("11_k0rux")
+children = Array[ExtResource("8_ujw0q")]([SubResource("Resource_1i5et")])
+node_type = 0
+pos = Vector2(1340, 0)
+
+[sub_resource type="Resource" id="Resource_gf4wu"]
+script = ExtResource("7_chklh")
+title = ""
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_4vhb7")
+map = {}
+
+[node name="会诊室" instance=ExtResource("1_e2blq")]
+
+[node name="Maps" parent="." index="0"]
+bottom_limit = 600.0
+right_limit = 800.0
+
+[node name="0" parent="Maps" index="0"]
+position = Vector2(401, 300)
+texture = ExtResource("2_3x7vc")
+
+[node name="2" parent="Maps" index="1"]
+position = Vector2(401, 300)
+texture = ExtResource("3_iu3uj")
+
+[node name="Objects" parent="Maps" index="2"]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAARAAgAAQAAAAAACwALAA0AAQAAAAAACwAHAAcAAQAAAAAABAA=")
+
+[node name="Movable" parent="Maps" index="3"]
+tile_map_data = PackedByteArray("AAAIAAkAAgABAAEAAAAIAAgAAgABAAEAAAAIAAcAAgABAAEAAAAJAAcAAgABAAEAAAAJAAgAAgABAAEAAAAJAAkAAgABAAEAAAAJAAoAAgABAAEAAAAHAAkAAgABAAEAAAAHAAgAAgABAAEAAAAKAAgAAgABAAEAAAAKAAkAAgABAAEAAAALAAkAAgABAAEAAAAKAAoAAgABAAEAAAAKAAsAAgABAAEAAAAJAAsAAgABAAEAAAALAAwAAgABAAEAAAALAAsAAgABAAEAAAALAA0AAgABAAEAAAALAA4AAgABAAEAAAAMAAsAAgABAAEAAAAKAAwAAgABAAEAAAAMAAwAAgABAAEAAAANAAsAAgABAAEAAAANAAoAAgABAAEAAAAMAAoAAgABAAEAAAALAAoAAgABAAEAAAAMAAkAAgABAAEAAAANAAkAAgABAAEAAAANAAgAAgABAAEAAAAOAAgAAgABAAEAAAAPAAgAAgABAAEAAAAPAAkAAgABAAEAAAAOAAkAAgABAAEAAAAQAAgAAgABAAEAAAARAAgAAgABAAEAAAASAAgAAgABAAEAAAAPAAcAAgABAAEAAAAOAAcAAgABAAEAAAANAAcAAgABAAEAAAA=")
+
+[node name="PointLight2D" parent="Lights" index="1"]
+position = Vector2(370, 155)
+
+[node name="东馆走廊" type="Node2D" parent="EventPages" index="0"]
+position = Vector2(368, 432)
+script = ExtResource("4_h2fjh")
+pos = Vector2i(11, 13)
+content = SubResource("Resource_se5v8")
+
+[node name="更衣室" type="Node2D" parent="EventPages" index="1"]
+position = Vector2(560, 272)
+script = ExtResource("4_h2fjh")
+pos = Vector2i(17, 8)
+content = SubResource("Resource_jnyb4")
+
+[node name="书架" type="Node2D" parent="EventPages" index="2"]
+position = Vector2(240, 240)
+script = ExtResource("6_hnkic")
+pos = Vector2i(7, 7)
+dir = null
+content = SubResource("Resource_gf4wu")

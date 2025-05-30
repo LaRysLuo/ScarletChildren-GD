@@ -31,6 +31,8 @@ const MOVE_SPEED = 3.0
 
 # 事件层
 @onready var map:TileMapLayer = get_parent()
+
+## 这个参数map.local_to_map自动获取
 @onready var ori_cell_pos:Vector2i = map.local_to_map(position)
 @onready var cell_pos:Vector2i = map.local_to_map(position)
 @onready var playerAnim:AnimatedSprite2D = $AnimatedSprite2D2
@@ -49,32 +51,42 @@ signal pos_changed
 signal event_clashed #碰触到可交互的事件
 signal dir_changed #当方向变了的话
 
-func _init() -> void:
-	
-	pass
+func reload_cell_pos() -> void:
+	map = get_parent()
+	ori_cell_pos = map.local_to_map(position)
+	cell_pos = map.local_to_map(position)
 
 func _ready() -> void:
 	execute_animation()
-	
-	pass
 
-
-func move_to(dir:Vector2i):
+func move_to(_dir:Vector2i):
+	if _dir == Vector2i.ZERO: return
 	# 计算出目标点的
-	dir_input = dir
-	var cell:Vector2i = cell_pos + dir
-	var route := MoveRoute.new(dir,cell)
+	dir_input = _dir
+	var cell:Vector2i = cell_pos + _dir if !is_stairway(_dir) else get_stair_target(_dir)
+	var route := MoveRoute.new(_dir,cell)
 	
 	# 存入移动队列
 	if  !(tween && tween.is_running()) && cell_pos != cell && cell_list.is_empty(): # 判断目标是否已经移动队列里了
 		cell_list.push_back(route) # 把目标点放入移动队列中
 		_next()
 
+## 获得楼梯的目标
+func get_stair_target(_dir:Vector2i):
+	var dir_plus_list = [ Vector2i.UP, Vector2i.DOWN ]
+	for dir_plus in dir_plus_list:
+		var target = cell_pos + _dir + dir_plus
+		print("当前的坐标是%s找到的坐标是%s" % [cell_pos,target])
+		var cell_data = map_base.get_cell_tile_data(target)
+		if cell_data && cell_data.get_custom_data("movable"):
+			return target
+	push_error("出现错误了，没有获取到有效的可移动图块")
+
 ## 移动角色
 # 目标点
 func move(target_pos:Vector2i):
-	var dir:Vector2i = target_pos - cell_pos
-	var route = MoveRoute.new(dir,target_pos)
+	var _dir:Vector2i = target_pos - cell_pos
+	var route = MoveRoute.new(_dir,target_pos)
 	move_to_by_route(route)
 
 func move_to_by_route(route:MoveRoute):
@@ -93,13 +105,12 @@ func set_pos(coord:Vector2i):
 
 
 func move_event_pos(event:Node2D):
-	var map = event.get_parent()
-	map.add_child(self)
-	self.map = map
+	var _map = event.get_parent()
+	_map.add_child(self)
+	self.map = _map
 	self.global_position = event.global_position
 	self.cell_pos =  self.map.local_to_map(position)
 	self.map_base = get_node("../../Movable")
-	pass
 
 # 移动到目标点
 func  move_to_target(route:MoveRoute):
@@ -109,7 +120,8 @@ func  move_to_target(route:MoveRoute):
 	var move_target
 	# 判断可行性
 	if !_movable(route.target): move_target = cell_pos
-	else: move_target = route.target
+	else: 
+		move_target = route.target
 	# 移动到目标点
 	cell_pos = move_target
 	start_pos_changed.emit()
@@ -120,8 +132,8 @@ func  move_to_target(route:MoveRoute):
 	var time:float = 1 / (MOVE_SPEED * move_speed_factor)
 	#print("移动时间为",time)
 	tween.tween_property(self,"position",map.map_to_local(move_target),time)
-	tween.finished.connect(_next)
-	
+	tween.finished.connect(_next)	
+
 # TODO 需要判断这个目标点是否可移动
 func _movable(pos:Vector2i,ingore_event_collsion:bool = false) -> bool:
 	if !map_base:
@@ -153,23 +165,27 @@ func _movable(pos:Vector2i,ingore_event_collsion:bool = false) -> bool:
 		if !ingore_event_collsion:
 			# 如果event是碰撞体才返回
 			
-			if   !event.ingore_collsion:  
+			if !event.ingore_collsion:  
 				event_clashed.emit(event)
 				return false
 	return true
 
+## 判断当前位置是否是楼梯
+func is_stairway(_dir:Vector2i):
+	var cell_data = map_base.get_cell_tile_data(cell_pos)
+	var left_or_right = "stairway_left" if _dir == Vector2i.LEFT else "stairway_right"
+	return cell_data && cell_data.get_custom_data(left_or_right)
+	
 func pos_has_player(coord:Vector2i) -> bool:
 	if GameManager.player.cell_pos == coord:
 		return true
 	return false	
 	
-# 寻找事件元素
+# 寻找对应坐标的事件
 func get_event(cell:Vector2i) -> CharacterBase:
 	var events := get_tree().get_nodes_in_group("events")
-	for event:CharacterBase in events:
-		if event.cell_pos == cell:
-			print("当前DOOR事件的visible:%s" % event.visible)
-			if event.visible: return event
+	for event:Event in events:
+		if event.cell_pos == cell and event.visible: return event
 	return null
 
 func find_last_route() -> MoveRoute:
@@ -180,6 +196,7 @@ func find_last_route() -> MoveRoute:
 # 继续处理队列中的移动目标
 func _next():
 	#if tween && tween.is_running(): return
+	
 	if cell_list.is_empty() :
 		#停止移动
 		pos_changed.emit() #发出移动完成的信号
@@ -194,8 +211,8 @@ func _reset_speed_factor():
 	self.speed_factor = 1
 	self.move_speed_factor = 1
 
-func face_to(dir:Vector2i):
-	self.dir = dir
+func face_to(_dir:Vector2i):
+	self.dir = _dir
 	execute_animation()
 
 # 初始化动画
@@ -208,7 +225,7 @@ func init_animation():
 func init_character_animation() -> SpriteFrames:
 	#裁剪Texture
 	var sprite_size = Vector2(32,48)
-	var anim_list = []
+	var _anim_list = []
 	var frames = SpriteFrames.new()
 	frames.remove_animation("default")
 	for y in range(v):
@@ -262,17 +279,17 @@ func get_tex(x:int,y:int,sprite_size:Vector2) -> AtlasTexture:
 	return frame
 
 # 处理动画状态
-func execute_animation(dir:Vector2i = Vector2i.ZERO):
+func execute_animation(_dir:Vector2i = Vector2i.ZERO):
 	# 处理面朝方向
-	if dir != Vector2i.ZERO || tween && tween.is_running():
+	if _dir != Vector2i.ZERO || tween && tween.is_running():
 		#printerr("播放动画中",speed_factor)
-		if dir == Vector2i.DOWN:
+		if _dir == Vector2i.DOWN:
 			playerAnim.play("move_down",speed_factor)
-		if dir == Vector2i.LEFT:
+		if _dir == Vector2i.LEFT:
 			playerAnim.play("move_left",speed_factor)
-		if dir == Vector2i.RIGHT:
+		if _dir == Vector2i.RIGHT:
 			playerAnim.play("move_right",speed_factor)
-		if dir == Vector2i.UP:
+		if _dir == Vector2i.UP:
 			playerAnim.play("move_up",speed_factor)
 	else:
 		match self.dir:
@@ -306,13 +323,13 @@ func show_glitch(time,dur_time:float = 0.3):
 	if time && typeof(time) == TYPE_FLOAT:
 		show_time = time
 	print("TX111 : show_time=",show_time)
-	var material:ShaderMaterial = playerAnim.material
-	material.shader = glitch_shader
+	var _material:ShaderMaterial = playerAnim.material
+	_material.shader = glitch_shader
 	## 显示故障效果
 	effect_tween = get_tree().create_tween()
 	effect_tween.set_loops(1)
-	material.set_shader_parameter("glitch_enabled",0)
-	effect_tween.tween_property(material,"shader_parameter/glitch_enabled",1,dur_time)
+	_material.set_shader_parameter("glitch_enabled",0)
+	effect_tween.tween_property(_material,"shader_parameter/glitch_enabled",1,dur_time)
 	## 等待tween结束
 	await  effect_tween.finished
 	print("准备倒计时=",show_time)
@@ -329,9 +346,9 @@ func show_glitch(time,dur_time:float = 0.3):
 	await  effect_finished
 	## 隐藏动画效果
 	effect_tween = get_tree().create_tween()
-	effect_tween.tween_property(material,"shader_parameter/glitch_enabled",0,dur_time)
+	effect_tween.tween_property(_material,"shader_parameter/glitch_enabled",0,dur_time)
 	await  effect_tween.finished
-	material.shader = null
+	_material.shader = null
 
 func hide_glitch():
 	if effect_tween:

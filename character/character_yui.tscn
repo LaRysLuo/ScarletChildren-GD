@@ -187,6 +187,8 @@ animations = [{
 }]
 
 [node name="CharacterYui" groups=["characters", "events"] instance=ExtResource("1_g2ivn")]
+position = Vector2(0, -1)
+up_direction = Vector2(0, 1)
 event_name = "yui"
 sprite = ExtResource("3_86l4p")
 

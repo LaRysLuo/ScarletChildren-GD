@@ -90,5 +90,5 @@ func from_data(data:BaseEventNode):
 		_refresh_selected()
 	return self
 
-func to_data(edit:GraphEdit) -> BaseEventNode:
+func to_data(_edit:GraphEdit) -> BaseEventNode:
 	return CharacterMoveData.new(BaseEventNode.CharacterMove,self.position_offset,move_type.selected,selected_character,step_count.value,speed_factor_spinbox.value,wait_finished.button_pressed)

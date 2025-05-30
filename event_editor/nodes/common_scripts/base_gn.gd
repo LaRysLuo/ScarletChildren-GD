@@ -16,12 +16,12 @@ func show_err(msg:String):
 	dialogue.popup_centered()
 
 ## WARNING 继承该类需要重写
-func from_data(data:BaseEventNode) -> BaseGN:
+func from_data(_data:BaseEventNode) -> BaseGN:
 	printerr("未重写from_data")
 	return null
 
 ## WARNING 继承该类需要重写 
 ## 将保存的数据转为储存数据
-func to_data(edit:GraphEdit) -> BaseEventNode:
+func to_data(_edit:GraphEdit) -> BaseEventNode:
 	printerr("未重写to_data")
 	return null

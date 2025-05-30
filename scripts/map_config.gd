@@ -146,7 +146,7 @@ func get_event_by_name(char_name:StringName) -> Event:
 	
 ## 传入角色名称获取角色
 func get_event_coord_by_name(char_name:StringName) -> Vector2i:
-	var filters =	get_tree().get_nodes_in_group("characters").filter(func(char:Event):return char.event_name == char_name)
+	var filters =	get_tree().get_nodes_in_group("characters").filter(func(_char:Event):return _char.event_name == char_name)
 	if filters.is_empty():
 		return Vector2i(-1,-1)
 	return filters.front().ori_cell_pos

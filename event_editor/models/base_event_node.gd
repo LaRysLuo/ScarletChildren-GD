@@ -20,6 +20,7 @@ const Reading = 14 ## 阅读模式
 const ReadingPage = 15 ## 阅读Ex - 页面
 const CinemaMode = 16 ## 启动剧场模式
 const ConditionNode = 17 ## 条件判断
+const PasswordInput = 18 ## 密码输入器
 
 
 ## graph节点

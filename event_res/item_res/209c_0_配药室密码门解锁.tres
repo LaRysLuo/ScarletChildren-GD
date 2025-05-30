@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cdq6kd8di40bw"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_l06dx"]
+
+[resource]
+script = ExtResource("1_l06dx")
+item_id = &"209c_0_配药室密码门解锁"
+item_name = &"配药室密码门解锁"
+item_catagory = 2
+item_desc = ""
+is_finished = true
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_l06dx")]([])

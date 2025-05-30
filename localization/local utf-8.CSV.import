@@ -13,5 +13,5 @@ dest_files=["res://localization/local utf-8.zh_CN.translation", "res://localizat
 
 [params]
 
-compress=true
+compress=false
 delimiter=0

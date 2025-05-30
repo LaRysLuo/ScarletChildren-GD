@@ -114,7 +114,6 @@ animations = [{
 
 [node name="门1" type="Node2D" groups=["events"]]
 z_index = 1
-z_as_relative = false
 position = Vector2(0, 1)
 script = ExtResource("1_sx0sr")
 
@@ -139,6 +138,5 @@ label_settings = SubResource("LabelSettings_n05by")
 vertical_alignment = 1
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-y_sort_enabled = true
 position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_ffnn2")

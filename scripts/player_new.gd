@@ -52,12 +52,16 @@ func _init_player() -> void:
 	# 重新载入地图事件
 	
 
+func _is_moving() -> bool:
+	return get_parent().name == "GameManager"
+
 func _process(delta: float) -> void:
 	# 编辑器模式返回
 	if Engine.is_editor_hint(): return
 	# 不可见时返回
 	if !is_visible_in_tree():return
-	
+	if _is_moving(): return
+	if !map_base: return
 	# 跑步处理
 	_running_process(delta)
 	
@@ -146,8 +150,8 @@ func _init_cam_limit():
 func _has_interact_event(state:int = 1):
 	if !GameManager.is_normal_state:return
 	var event = _get_event_font() # 判断前方是否有可交互事件
+	print("存在可触发的event=",event)
 	if event: 
-		print("存在可触发的event=",event)
 		print("该事件是否可触发", event.interactable())
 	if event && event.interactable() && !is_action: 
 		_set_interact_with(event,state)
@@ -170,7 +174,6 @@ func _set_interact_with(event:Event = null,state:int = 0):
 func _get_event_font() -> Event:
 	# 获得所有事件
 	var events = get_tree().get_nodes_in_group("events")
-	#print("events=",events)
 	var target_pos = cell_pos + dir
 	for event in events:
 		if event is Event: #首先判断event是否为Event类型
@@ -261,25 +264,3 @@ func set_camera_follow(_is_follow:bool):
 ## 设置相机放大或者缩小
 func set_camera_zoom(zoom_arg:Vector2i = Vector2i.ONE):
 	cam.zoom = zoom_arg
-
-#region 手电照明
-
-#var fl:FlashLight
-## 显示手电效果
-# 生成一个手电效果到玩家身上
-# 并根据玩家转向时，变更灯光朝向
-#func show_flash_light():
-	#fl = FLASH_LIGHT_RES.instantiate()
-	#self.dir_changed.connect(fl.refresh)
-	#fl.refresh(self.dir)
-	#attach.add_child(fl)
-#
-### 隐藏手电效果
-#func hide_flash_light():
-	#attach.remove_child(fl)
-	#fl.queue_free()
-	#
-#func get_light_switch() -> bool:
-	#return fl != null
-	
-#endregion 手电照明

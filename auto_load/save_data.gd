@@ -11,9 +11,9 @@ class_name SaveData
 
 @export var items:Array[Item]
 
-func save_player(current_map:String,current_pos:Vector2i,game_time:int,items:Array[Item]):
-	self.current_map = current_map
-	self.current_pos = current_pos
-	self.game_time = game_time
-	self.items = items
+func save_player(_current_map:String,_current_pos:Vector2i,_game_time:int,_items:Array[Item]):
+	self.current_map = _current_map
+	self.current_pos = _current_pos
+	self.game_time = _game_time
+	self.items = _items
 	return self

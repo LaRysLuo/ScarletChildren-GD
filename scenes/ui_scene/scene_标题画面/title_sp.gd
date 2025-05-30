@@ -23,8 +23,8 @@ func _exit_tree() -> void:
 func _action_input(key:int) -> void:
 	if is_action: return
 	if key == InputManager.KEY_A:
-		# _start_game2()
-		_test_game1()
+		_start_game2()
+		# _test_game1()
 
 #endregion
 
@@ -68,7 +68,7 @@ func _start_game2():
 	SceneManager.move("res://scenes/maps/蔷薇馆·中厅1F/map_蔷薇馆·中厅.tscn")
 
 func _test_game1():
-	Core.camera.camera_move()
+	# Core.camera.camera_move()
 	pass
 
 #endregion

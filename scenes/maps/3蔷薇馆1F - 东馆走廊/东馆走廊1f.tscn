@@ -1,0 +1,182 @@
+[gd_scene load_steps=28 format=4 uid="uid://hb8r1ya3rpj4"]
+
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_eyjry"]
+[ext_resource type="Texture2D" uid="uid://6elxvv363ecy" path="res://scenes/maps/3蔷薇馆1F - 东馆走廊/maps/东馆走廊 - 1.png" id="2_du1u7"]
+[ext_resource type="Texture2D" uid="uid://bnbtk6jhv3og4" path="res://scenes/maps/3蔷薇馆1F - 东馆走廊/maps/东馆走廊 - 3.png" id="3_baljb"]
+[ext_resource type="Script" path="res://event_sys/ExPage/ex_page.gd" id="4_5rlu1"]
+[ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="5_66qwn"]
+[ext_resource type="Script" path="res://event_sys/EventPage/event_page.gd" id="6_mh224"]
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="7_kecft"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="8_iedg3"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="9_a8o6o"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="10_bkfqp"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="11_ogt7g"]
+[ext_resource type="Resource" uid="uid://dq8drkho25mmr" path="res://config/role_data/ai.tres" id="12_08xxm"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="13_nx8st"]
+
+[sub_resource type="Resource" id="Resource_txdr2"]
+script = ExtResource("5_66qwn")
+scene_path = "res://scenes/maps/蔷薇馆·中厅1F/map_蔷薇馆·中厅.tscn"
+step1 = 2
+step2 = 0
+target_pos = Vector2i(16, 10)
+target_scene_door = Vector2i(16, 9)
+
+[sub_resource type="Resource" id="Resource_htmys"]
+script = ExtResource("5_66qwn")
+scene_path = "res://scenes/maps/3蔷薇馆1F - 更衣室/更衣室.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(10, 14)
+target_scene_door = Vector2i(10, 13)
+
+[sub_resource type="Resource" id="Resource_ung2d"]
+script = ExtResource("5_66qwn")
+scene_path = "res://scenes/maps/3蔷薇馆1F - 药房/配药室.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(11, 9)
+target_scene_door = Vector2i(11, 10)
+
+[sub_resource type="Resource" id="Resource_6v475"]
+script = ExtResource("5_66qwn")
+scene_path = "res://scenes/maps/3蔷薇馆1F - 会诊室/会诊室.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(11, 14)
+target_scene_door = Vector2i(11, 13)
+
+[sub_resource type="Resource" id="Resource_kxhq8"]
+script = ExtResource("9_a8o6o")
+move_type = 2
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 1
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("8_iedg3")]([])
+node_type = 3
+pos = Vector2(6520, 20)
+
+[sub_resource type="Resource" id="Resource_q7fkx"]
+script = ExtResource("8_iedg3")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_kxhq8")
+
+[sub_resource type="Resource" id="Resource_es70e"]
+script = ExtResource("11_ogt7g")
+text = "e01_03_d_03"
+role = ExtResource("10_bkfqp")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("8_iedg3")]([SubResource("Resource_q7fkx")])
+node_type = 1
+pos = Vector2(6134.54, -7.51769)
+
+[sub_resource type="Resource" id="Resource_0r7hy"]
+script = ExtResource("8_iedg3")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_es70e")
+
+[sub_resource type="Resource" id="Resource_mkh87"]
+script = ExtResource("11_ogt7g")
+text = "e01_03_d_02"
+role = ExtResource("10_bkfqp")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("8_iedg3")]([SubResource("Resource_0r7hy")])
+node_type = 1
+pos = Vector2(5784.57, -2.37098)
+
+[sub_resource type="Resource" id="Resource_tl4qn"]
+script = ExtResource("8_iedg3")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_mkh87")
+
+[sub_resource type="Resource" id="Resource_01vw8"]
+script = ExtResource("11_ogt7g")
+text = "e01_03_d_01"
+role = ExtResource("12_08xxm")
+type = 0
+wait_time = 1000
+children = Array[ExtResource("8_iedg3")]([SubResource("Resource_tl4qn")])
+node_type = 1
+pos = Vector2(5380, 0)
+
+[sub_resource type="Resource" id="Resource_0jmev"]
+script = ExtResource("8_iedg3")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_01vw8")
+
+[sub_resource type="Resource" id="Resource_cagak"]
+script = ExtResource("13_nx8st")
+children = Array[ExtResource("8_iedg3")]([SubResource("Resource_0jmev")])
+node_type = 0
+pos = Vector2(5140, 100)
+
+[sub_resource type="Resource" id="Resource_at0mm"]
+script = ExtResource("7_kecft")
+title = ""
+is_collsion = true
+trigger_type = 2
+one_shot = false
+tree = SubResource("Resource_cagak")
+map = {}
+
+[node name="东馆走廊1F" instance=ExtResource("1_eyjry")]
+
+[node name="Maps" parent="." index="0"]
+bottom_limit = 600.0
+right_limit = 800.0
+
+[node name="0" parent="Maps" index="0"]
+position = Vector2(401, 300)
+texture = ExtResource("2_du1u7")
+
+[node name="2" parent="Maps" index="1"]
+position = Vector2(401, 300)
+texture = ExtResource("3_baljb")
+
+[node name="Objects" parent="Maps" index="2"]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAFAAYAAQAAAAAACQAMAAYAAQAAAAAACQAFAAwAAQAAAAAACwAMAAwAAQAAAAAACwARAAQAAQAAAAAABAA=")
+
+[node name="Movable" parent="Maps" index="3"]
+tile_map_data = PackedByteArray("AAAIAAkAAgABAAEAAAAIAAgAAgABAAEAAAAIAAcAAgABAAEAAAAJAAcAAgABAAEAAAAJAAgAAgABAAEAAAAJAAkAAgABAAEAAAAHAAkAAgABAAEAAAAGAAkAAgABAAEAAAAGAAgAAgABAAEAAAAFAAkAAgABAAEAAAAFAAoAAgABAAEAAAADAAcAAgABAAEAAAAEAAcAAgABAAEAAAAFAAcAAgABAAEAAAAHAAcAAgABAAEAAAAGAAcAAgABAAEAAAAHAAgAAgABAAEAAAAKAAcAAgABAAEAAAALAAcAAgABAAEAAAAMAAcAAgABAAEAAAANAAcAAgABAAEAAAAOAAcAAgABAAEAAAAOAAgAAgABAAEAAAAPAAgAAgAGAAEAAAANAAgAAgABAAEAAAAMAAgAAgABAAEAAAALAAgAAgABAAEAAAAKAAgAAgABAAEAAAAOAAkAAgABAAEAAAANAAkAAgABAAEAAAAMAAkAAgABAAEAAAALAAkAAgABAAEAAAAKAAkAAgABAAEAAAAMAAoAAgABAAEAAAAMAAsAAgABAAEAAAAEAAkAAgABAAEAAAADAAkAAgABAAEAAAAFAAgAAgABAAEAAAAEAAgAAgABAAEAAAADAAgAAgABAAEAAAAQAAcAAgAEAAEAAAARAAgAAgABAAEAAAASAAgAAgABAAEAAAASAAcAAgABAAEAAAARAAcAAgABAAEAAAARAAYAAgABAAEAAAARAAUAAgABAAEAAAARAAQAAgABAAEAAAARAAMAAgABAAEAAAARAAIAAgABAAEAAAARAAEAAgABAAEAAAARAAAAAgABAAEAAAAFAAYAAgABAAEAAAAFAAUAAgABAAEAAAAFAAQAAgABAAEAAAAFAAMAAgABAAEAAAAFAAIAAgABAAEAAAAMAAYAAgABAAEAAAAMAAUAAgABAAEAAAAMAAQAAgABAAEAAAAMAAMAAgABAAEAAAAMAAIAAgABAAEAAAAFAAsAAgABAAEAAAAFAAwAAgABAAEAAAAMAAwAAgABAAEAAAA=")
+
+[node name="中厅" type="Node2D" parent="EventPages" index="0"]
+position = Vector2(176, 400)
+script = ExtResource("4_5rlu1")
+pos = Vector2i(5, 12)
+content = SubResource("Resource_txdr2")
+
+[node name="更衣室" type="Node2D" parent="EventPages" index="1"]
+position = Vector2(400, 208)
+script = ExtResource("4_5rlu1")
+pos = Vector2i(12, 6)
+content = SubResource("Resource_htmys")
+
+[node name="配药室" type="Node2D" parent="EventPages" index="2"]
+position = Vector2(400, 400)
+script = ExtResource("4_5rlu1")
+pos = Vector2i(12, 12)
+content = SubResource("Resource_ung2d")
+
+[node name="会诊室" type="Node2D" parent="EventPages" index="3"]
+position = Vector2(176, 208)
+script = ExtResource("4_5rlu1")
+pos = Vector2i(5, 6)
+content = SubResource("Resource_6v475")
+
+[node name="通往二楼的门（被封锁）" type="Node2D" parent="EventPages" index="4"]
+position = Vector2(560, 144)
+script = ExtResource("6_mh224")
+pos = Vector2i(17, 4)
+is_show = true
+content = SubResource("Resource_at0mm")

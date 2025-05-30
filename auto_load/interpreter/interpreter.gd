@@ -25,6 +25,7 @@ var inputs:Dictionary = {
 	"am" = AudioManager
 }
 
+
 ## 适用于VOID代码
 
 ## 更新道具

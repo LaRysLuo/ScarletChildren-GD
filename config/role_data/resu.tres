@@ -1,11 +1,29 @@
-[gd_resource type="Resource" script_class="Role" load_steps=3 format=3 uid="uid://bwhg086isf8w5"]
+[gd_resource type="Resource" script_class="Role" load_steps=12 format=3 uid="uid://bwhg086isf8w5"]
 
 [ext_resource type="Script" path="res://component/role_manager/role.gd" id="1_8m6s4"]
-[ext_resource type="Texture2D" uid="uid://brh3hkvfxetia" path="res://assets/tachie/resu.png" id="2_oxfpy"]
+[ext_resource type="Texture2D" uid="uid://dp2omwh7s8ql2" path="res://assets/tachie/resu/resu_cry.png" id="2_dn7cg"]
+[ext_resource type="Texture2D" uid="uid://dskrd1naromji" path="res://assets/tachie/resu/resu_displeased.png" id="3_nh2hu"]
+[ext_resource type="Texture2D" uid="uid://culwpvvjfc81m" path="res://assets/tachie/resu/resu_normal.png" id="4_phxom"]
+[ext_resource type="Texture2D" uid="uid://cubqp3bcgowoq" path="res://assets/tachie/resu/resu_scared.png" id="5_u88b5"]
+[ext_resource type="Texture2D" uid="uid://do8ua1o6o8n14" path="res://assets/tachie/resu/resu_puzzled .png" id="5_vjs42"]
+[ext_resource type="Texture2D" uid="uid://suf2rnk6ixm5" path="res://assets/tachie/resu/resu_shy.png" id="6_4gqst"]
+[ext_resource type="Texture2D" uid="uid://bacy10uatq3ms" path="res://assets/tachie/resu/resu_sleepy.png" id="7_fnv3e"]
+[ext_resource type="Texture2D" uid="uid://w5oiiadeo3ik" path="res://assets/tachie/resu/resu_happy.png" id="8_vo0vo"]
+[ext_resource type="Texture2D" uid="uid://c88uaurd5uoal" path="res://assets/tachie/resu/resu_surprise.png" id="9_v4ed2"]
+[ext_resource type="Texture2D" uid="uid://chwv4d28jyo1e" path="res://assets/tachie/resu/resu_speechless.png" id="10_0ilbh"]
 
 [resource]
 script = ExtResource("1_8m6s4")
 role_name = "礼诗"
 theme_color = Color(1, 0.780392, 0.513726, 1)
-tachie = ExtResource("2_oxfpy")
+tachie_normal = ExtResource("4_phxom")
+tachie_smile = ExtResource("8_vo0vo")
+tachie_shy = ExtResource("6_4gqst")
+tachie_cry = ExtResource("2_dn7cg")
+tachie_surprise = ExtResource("9_v4ed2")
+tachie_displeased = ExtResource("3_nh2hu")
+tachie_sleepy = ExtResource("7_fnv3e")
+tachie_scared = ExtResource("5_u88b5")
+tachie_puzzled = ExtResource("5_vjs42")
+tachie_speechless = ExtResource("10_0ilbh")
 desc = ""

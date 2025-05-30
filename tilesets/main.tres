@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=28 format=3 uid="uid://4h8rsnwtsgr2"]
+[gd_resource type="TileSet" load_steps=29 format=3 uid="uid://4h8rsnwtsgr2"]
 
 [ext_resource type="PackedScene" uid="uid://dmc6ubt05cnnh" path="res://character/character_phantom.tscn" id="1_gv43t"]
 [ext_resource type="PackedScene" uid="uid://fwltuxos1oca" path="res://character/player.tscn" id="1_ho40l"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cgush3j2h8fuv" path="res://assets/tileset0/movable.png" id="2_j3we6"]
 [ext_resource type="PackedScene" uid="uid://dfo3m5vxmgpnu" path="res://character/player_start_sign.tscn" id="2_m7tjg"]
 [ext_resource type="PackedScene" uid="uid://bhjuj5bar1qrh" path="res://character/门/door2_none.tscn" id="3_2p6jg"]
+[ext_resource type="PackedScene" uid="uid://24g3eb0ah2gc" path="res://character/character_ai_sit.tscn" id="3_amtl6"]
 [ext_resource type="PackedScene" uid="uid://dar6yiyqmjdvs" path="res://character/character_yui.tscn" id="3_dpppe"]
 [ext_resource type="PackedScene" uid="uid://jqjc3hen3qui" path="res://character/character_resuchild.tscn" id="4_fk7gj"]
 [ext_resource type="PackedScene" uid="uid://peicqc66pvva" path="res://character/事件模板.tscn" id="4_n4pwp"]
@@ -32,6 +33,7 @@ tile_data = PackedInt32Array(0, 1, 262144)
 resource_name = "角色"
 scenes/1/scene = ExtResource("1_gv43t")
 scenes/2/scene = ExtResource("2_55pu8")
+scenes/3/scene = ExtResource("3_amtl6")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_r122q"]
 resource_name = "Events"
@@ -60,6 +62,17 @@ texture_region_size = Vector2i(32, 32)
 3:1/0 = 0
 0:1/0 = 0
 0:1/0/custom_data_2 = true
+1:4/0 = 0
+4:1/0 = 0
+4:1/0/custom_data_0 = true
+4:1/0/custom_data_3 = true
+5:1/0 = 0
+5:1/0/custom_data_0 = true
+5:1/0/custom_data_3 = true
+5:1/0/custom_data_4 = true
+6:1/0 = 0
+6:1/0/custom_data_0 = true
+6:1/0/custom_data_4 = true
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_20m50"]
 resource_name = "Door"
@@ -74,6 +87,10 @@ custom_data_layer_1/name = "start_pos"
 custom_data_layer_1/type = 1
 custom_data_layer_2/name = "antiglare"
 custom_data_layer_2/type = 1
+custom_data_layer_3/name = "stairway_left"
+custom_data_layer_3/type = 1
+custom_data_layer_4/name = "stairway_right"
+custom_data_layer_4/type = 1
 sources/1 = SubResource("TileSetScenesCollectionSource_r122q")
 sources/2 = SubResource("TileSetAtlasSource_wmd5j")
 sources/0 = SubResource("TileSetScenesCollectionSource_t6ixt")

@@ -36,6 +36,7 @@ const READING_RES = preload("res://event_editor/nodes/read_ready_node/read_ready
 const READING_PAGE_RES = preload("res://event_editor/nodes/reading_page_node/reading_page_node.tscn")
 const CINEMA_RES = preload("res://event_editor/nodes/cinema_node/cinema_mode.tscn")
 const CONDITION_RES = preload("res://event_editor/nodes/condition_node/condition_node.tscn")
+const INNERSCENE_RES = preload("res://event_editor/nodes/pw_input_node/pw_input_node.tscn")
 #const NODE_RES = preload("res://event_editor/nodes/charactermove_node.tscn")
 
 
@@ -130,7 +131,11 @@ var MENU_SETTING = [
 		"id" = BaseEventNode.ConditionNode,
 		"name" = "条件判断",
 		"callback" = func(from = null): return _create_node(CONDITION_RES,from).from_data(from)
-	},
+	},{
+		"id" = BaseEventNode.PasswordInput,
+		"name" = "内联场景",
+		"callback" = func(from = null): return _create_node(INNERSCENE_RES,from).from_data(from)
+	}
 ]
 
 var nodeMap = {}
@@ -165,6 +170,7 @@ var get_node_count:
 
 ## 节点初始化
 func _enter_tree() -> void:
+	# _loaded_editor_translation()
 	## 初始化菜单按钮
 	_init_menu_btns()
 	
@@ -188,7 +194,7 @@ func _enter_tree() -> void:
 	_init_popup_menu()
 	_init_history()
 	
-	_loaded_editor_translation()
+	
 	#add_menu.hide()
 
 func _exit_tree() -> void:
@@ -208,11 +214,8 @@ func _exit_tree() -> void:
 			#"Message":btn.button_up.disconnect(_add_message_node)
 			#"Option":btn.button_down.disconnect(_add_option_node)
 
-func _loaded_editor_translation():
-	#var file = FileAccess.open("res://localization/local utf-8.zh.translation", FileAccess.READ)
-	var translation = ResourceLoader.load("res://localization/local utf-8.zh_CN.translation") as Translation
-	if translation:
-		TranslationServer.add_translation(translation)
+
+
 
 
 var selected:Array[Node]
@@ -302,7 +305,7 @@ func _save():
 		print("正在保存")
 		current_resource.tree = tree
 		var path:String = current_resource.resource_path
-		var err2 = ResourceSaver.save(current_resource,path)
+		var _err2 = ResourceSaver.save(current_resource,path)
 	print("保存成功")
 	need_save = false
 
@@ -401,7 +404,7 @@ func _add_message_node(from:BaseEventNode = null) -> GraphNode:
 	if from:
 		var msgn = node as MessageGN  ## 获得Message实例
 		var from_message_data  = from as MessageNode
-		msgn.set_value(from_message_data.text,from_message_data.role,from_message_data.type,from_message_data.wait_time)
+		msgn.set_value(from_message_data.text,from_message_data.role,from_message_data.type,from_message_data.wait_time,from_message_data.expression_id)
 	return node
 
 ## 添加选项
@@ -597,7 +600,7 @@ func disconnect_lines(from_node: StringName, from_port: int, to_node: StringName
 	pass
 
 func show_menu(at_position:Vector2):
-	var mc = at_position + node_parent.scroll_offset  
+	var _mc = at_position + node_parent.scroll_offset  
 	_show_popup_menu(at_position)
 	print("at_pos=",at_position)
 	pass

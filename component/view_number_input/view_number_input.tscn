@@ -1,0 +1,146 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf11pmpn0etfn"]
+
+[ext_resource type="Script" path="res://component/view_number_input/view_number_input.gd" id="1_g6as8"]
+[ext_resource type="Script" path="res://component/view_number_input/view_number_item.gd" id="2_0rolu"]
+[ext_resource type="Texture2D" uid="uid://1aurk4p334pw" path="res://assets/system/上箭头.png" id="3_fox14"]
+
+[node name="ViewNumberInput" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g6as8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="NumberItem" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+script = ExtResource("2_0rolu")
+
+[node name="UpArrow" type="TextureRect" parent="HBoxContainer/NumberItem"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("3_fox14")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/NumberItem"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/NumberItem/PanelContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DownArrow" type="TextureRect" parent="HBoxContainer/NumberItem"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("3_fox14")
+expand_mode = 2
+stretch_mode = 3
+flip_v = true
+
+[node name="NumberItem2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+script = ExtResource("2_0rolu")
+
+[node name="UpArrow" type="TextureRect" parent="HBoxContainer/NumberItem2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("3_fox14")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/NumberItem2"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/NumberItem2/PanelContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DownArrow" type="TextureRect" parent="HBoxContainer/NumberItem2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("3_fox14")
+expand_mode = 2
+stretch_mode = 3
+flip_v = true
+
+[node name="NumberItem3" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+script = ExtResource("2_0rolu")
+
+[node name="UpArrow" type="TextureRect" parent="HBoxContainer/NumberItem3"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("3_fox14")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/NumberItem3"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/NumberItem3/PanelContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DownArrow" type="TextureRect" parent="HBoxContainer/NumberItem3"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("3_fox14")
+expand_mode = 2
+stretch_mode = 3
+flip_v = true
+
+[node name="NumberItem4" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+script = ExtResource("2_0rolu")
+
+[node name="UpArrow" type="TextureRect" parent="HBoxContainer/NumberItem4"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("3_fox14")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/NumberItem4"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/NumberItem4/PanelContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DownArrow" type="TextureRect" parent="HBoxContainer/NumberItem4"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("3_fox14")
+expand_mode = 2
+stretch_mode = 3
+flip_v = true

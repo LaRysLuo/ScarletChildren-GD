@@ -40,5 +40,5 @@ text = "显示类型"
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-placeholder_text = "请输入GDScripts语句，只支持单语句"
+placeholder_text = "请输入GDScripts语句，只支持单语句。Interpreter静态类"
 wrap_mode = 1

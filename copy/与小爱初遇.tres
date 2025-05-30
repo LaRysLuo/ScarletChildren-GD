@@ -1,0 +1,414 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=54 format=3 uid="uid://cgkygkpo511h"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_ydclq"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_rseju"]
+[ext_resource type="Resource" uid="uid://dq8drkho25mmr" path="res://config/role_data/ai.tres" id="3_j5q8l"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_gp6ek"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="5_iwel7"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="6_5vsvk"]
+
+[sub_resource type="Resource" id="Resource_fdnj4"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_23"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([])
+node_type = 1
+pos = Vector2(9710.6, -295.38)
+
+[sub_resource type="Resource" id="Resource_vs0cw"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_fdnj4")
+
+[sub_resource type="Resource" id="Resource_ka27x"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_22"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_vs0cw")])
+node_type = 1
+pos = Vector2(9369.6, -289.38)
+
+[sub_resource type="Resource" id="Resource_w4vqw"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ka27x")
+
+[sub_resource type="Resource" id="Resource_jpwgi"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_21"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_w4vqw")])
+node_type = 1
+pos = Vector2(9041.6, -285.38)
+
+[sub_resource type="Resource" id="Resource_dxf3x"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_jpwgi")
+
+[sub_resource type="Resource" id="Resource_bat2h"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_20"
+role = ExtResource("5_iwel7")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_dxf3x")])
+node_type = 1
+pos = Vector2(8664.6, -275.38)
+
+[sub_resource type="Resource" id="Resource_3syjp"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_bat2h")
+
+[sub_resource type="Resource" id="Resource_nw4fq"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_19"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_3syjp")])
+node_type = 1
+pos = Vector2(8296.6, -262.38)
+
+[sub_resource type="Resource" id="Resource_7304q"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_nw4fq")
+
+[sub_resource type="Resource" id="Resource_wh7cf"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_18"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_7304q")])
+node_type = 1
+pos = Vector2(7946.6, -254.38)
+
+[sub_resource type="Resource" id="Resource_baqo8"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wh7cf")
+
+[sub_resource type="Resource" id="Resource_yygco"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_17"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_baqo8")])
+node_type = 1
+pos = Vector2(7581.6, -248.38)
+
+[sub_resource type="Resource" id="Resource_tjsxq"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_yygco")
+
+[sub_resource type="Resource" id="Resource_k2vbd"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_16"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_tjsxq")])
+node_type = 1
+pos = Vector2(7223.6, -240.38)
+
+[sub_resource type="Resource" id="Resource_uypql"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_k2vbd")
+
+[sub_resource type="Resource" id="Resource_h68g6"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_15"
+role = ExtResource("5_iwel7")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_uypql")])
+node_type = 1
+pos = Vector2(6872.56, -237.238)
+
+[sub_resource type="Resource" id="Resource_kyohh"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_h68g6")
+
+[sub_resource type="Resource" id="Resource_52lst"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_14"
+role = ExtResource("5_iwel7")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_kyohh")])
+node_type = 1
+pos = Vector2(6497.46, -227.778)
+
+[sub_resource type="Resource" id="Resource_8p746"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_52lst")
+
+[sub_resource type="Resource" id="Resource_o1hud"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_13"
+role = ExtResource("5_iwel7")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_8p746")])
+node_type = 1
+pos = Vector2(6130.06, -213.478)
+
+[sub_resource type="Resource" id="Resource_0pel5"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_o1hud")
+
+[sub_resource type="Resource" id="Resource_tuaut"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_12"
+role = ExtResource("5_iwel7")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_0pel5")])
+node_type = 1
+pos = Vector2(5770.36, -203.578)
+
+[sub_resource type="Resource" id="Resource_lon5k"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_tuaut")
+
+[sub_resource type="Resource" id="Resource_pjw1m"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_11"
+role = ExtResource("5_iwel7")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_lon5k")])
+node_type = 1
+pos = Vector2(5396.36, -203.578)
+
+[sub_resource type="Resource" id="Resource_xk4lw"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_pjw1m")
+
+[sub_resource type="Resource" id="Resource_h6axi"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_10"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_xk4lw")])
+node_type = 1
+pos = Vector2(5060.93, -200.424)
+
+[sub_resource type="Resource" id="Resource_ivd2m"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_h6axi")
+
+[sub_resource type="Resource" id="Resource_12io4"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_09"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_ivd2m")])
+node_type = 1
+pos = Vector2(4678.93, -196.424)
+
+[sub_resource type="Resource" id="Resource_1b2f0"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_12io4")
+
+[sub_resource type="Resource" id="Resource_f0d46"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_08"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_1b2f0")])
+node_type = 1
+pos = Vector2(4332.93, -190.424)
+
+[sub_resource type="Resource" id="Resource_i8p6h"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_f0d46")
+
+[sub_resource type="Resource" id="Resource_csb4j"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_07"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_i8p6h")])
+node_type = 1
+pos = Vector2(3986.93, -186.424)
+
+[sub_resource type="Resource" id="Resource_e12r5"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_csb4j")
+
+[sub_resource type="Resource" id="Resource_823vt"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_06"
+role = ExtResource("5_iwel7")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_e12r5")])
+node_type = 1
+pos = Vector2(3611.93, -187.424)
+
+[sub_resource type="Resource" id="Resource_rex0w"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_823vt")
+
+[sub_resource type="Resource" id="Resource_h5yoo"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_05"
+role = ExtResource("5_iwel7")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_rex0w")])
+node_type = 1
+pos = Vector2(3257.93, -179.424)
+
+[sub_resource type="Resource" id="Resource_bfqjd"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_h5yoo")
+
+[sub_resource type="Resource" id="Resource_yyrfi"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_04"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_bfqjd")])
+node_type = 1
+pos = Vector2(2912.93, -182.424)
+
+[sub_resource type="Resource" id="Resource_3jc74"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_yyrfi")
+
+[sub_resource type="Resource" id="Resource_57u7u"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_03"
+role = ExtResource("5_iwel7")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_3jc74")])
+node_type = 1
+pos = Vector2(2540, -180)
+
+[sub_resource type="Resource" id="Resource_7v121"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_57u7u")
+
+[sub_resource type="Resource" id="Resource_d8wu0"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_02"
+role = ExtResource("3_j5q8l")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_7v121")])
+node_type = 1
+pos = Vector2(2200, -180)
+
+[sub_resource type="Resource" id="Resource_saj20"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_d8wu0")
+
+[sub_resource type="Resource" id="Resource_gaq3c"]
+script = ExtResource("4_gp6ek")
+text = "e01_03_e_01"
+role = ExtResource("5_iwel7")
+type = 0
+wait_time = 1000
+expression_id = 1
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_saj20")])
+node_type = 1
+pos = Vector2(1860, -180)
+
+[sub_resource type="Resource" id="Resource_wwgub"]
+script = ExtResource("2_rseju")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_gaq3c")
+
+[sub_resource type="Resource" id="Resource_0p7f3"]
+script = ExtResource("6_5vsvk")
+children = Array[ExtResource("2_rseju")]([SubResource("Resource_wwgub")])
+node_type = 0
+pos = Vector2(1600, -100)
+
+[resource]
+script = ExtResource("1_ydclq")
+title = ""
+is_collsion = true
+trigger_type = 3
+one_shot = true
+tree = SubResource("Resource_0p7f3")
+map = {}

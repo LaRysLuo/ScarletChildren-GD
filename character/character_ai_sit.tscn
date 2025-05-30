@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://24g3eb0ah2gc"]
+
+[ext_resource type="PackedScene" uid="uid://dcpd1u6slvjtw" path="res://character/character.tscn" id="1_n08b1"]
+[ext_resource type="Texture2D" uid="uid://jv6ihyigdm40" path="res://assets/characters/ai_sit.png" id="2_sh0bd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dpmo"]
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li6k0"]
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu5wt"]
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecntb"]
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hfsd"]
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p0mu0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sh0bd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dpmo")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li6k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu5wt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecntb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hfsd")
+}],
+"loop": true,
+"name": &"move_down",
+"speed": 5.0
+}]
+
+[node name="CharacterAi" groups=["characters", "events"] instance=ExtResource("1_n08b1")]
+event_name = "ai"
+h = 1
+v = 1
+
+[node name="CollisionShape2D2" parent="." index="1"]
+visible = false
+
+[node name="AnimatedSprite2D2" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_p0mu0")
+animation = &"idle_down"

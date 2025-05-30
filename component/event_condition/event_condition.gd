@@ -6,7 +6,7 @@ enum EventConditionType{
 }
 
 ## 事件条件类型
-@export var type:EventConditionType = -1
+@export var type:EventConditionType = EventConditionType.Item
 
 var game:GamePlay:
 	get(): return GameManager

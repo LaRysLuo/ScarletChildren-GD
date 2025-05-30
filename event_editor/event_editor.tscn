@@ -31,16 +31,17 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Box" type="VSplitContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 1.02833
 grow_horizontal = 2
 grow_vertical = 2
-collapsed = true
+dragger_visibility = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Box"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Line1" type="HSplitContainer" parent="Box/VBoxContainer"]
 layout_mode = 2
@@ -71,8 +72,9 @@ disabled = true
 text = "保存"
 
 [node name="Line2" type="FlowContainer" parent="Box/VBoxContainer"]
+clip_contents = true
+layout_direction = 2
 layout_mode = 2
-last_wrap_alignment = 1
 vertical = true
 
 [node name="GraphEdit" type="GraphEdit" parent="Box"]
@@ -83,6 +85,7 @@ show_menu = false
 show_zoom_buttons = false
 
 [node name="GraphEdit2" type="GraphEdit" parent="Box"]
+visible = false
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 right_disconnects = true

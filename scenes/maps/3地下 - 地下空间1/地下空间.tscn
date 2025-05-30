@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=4 uid="uid://bagt6sp8aolq5"]
+
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_re3y7"]
+[ext_resource type="Texture2D" uid="uid://eu1slj88h563" path="res://scenes/maps/3地下 - 地下空间1/map/别屋 - 1.png" id="2_32vxo"]
+[ext_resource type="Texture2D" uid="uid://co8cw8cpgtkqu" path="res://scenes/maps/3地下 - 地下空间1/map/别屋 - 2.png" id="3_4pvfa"]
+[ext_resource type="Script" path="res://event_sys/ExPage/ex_page.gd" id="4_nvker"]
+[ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="5_1pu05"]
+
+[sub_resource type="Resource" id="Resource_n3c2w"]
+script = ExtResource("5_1pu05")
+scene_path = "res://scenes/maps/3蔷薇馆1F - 药房/配药室.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(5, 14)
+target_scene_door = Vector2i(6, 14)
+
+[sub_resource type="Resource" id="Resource_n2aws"]
+script = ExtResource("5_1pu05")
+scene_path = "res://scenes/maps/3地下 - 冰窖/冰窖.tscn"
+step1 = 2
+step2 = 2
+target_pos = Vector2i(12, 12)
+target_scene_door = Vector2i(12, 11)
+
+[node name="地下空间" instance=ExtResource("1_re3y7")]
+
+[node name="Maps" parent="." index="0"]
+bottom_limit = 600.0
+right_limit = 800.0
+
+[node name="0" parent="Maps" index="0"]
+position = Vector2(401, 300)
+texture = ExtResource("2_32vxo")
+
+[node name="2" parent="Maps" index="1"]
+position = Vector2(401, 300)
+texture = ExtResource("3_4pvfa")
+
+[node name="Objects" parent="Maps" index="2"]
+tile_map_data = PackedByteArray("AAARAAgAAQAAAAAACwAKAAoAAQAAAAAACwA=")
+
+[node name="Movable" parent="Maps" index="3"]
+visible = true
+tile_map_data = PackedByteArray("AAAHAAsAAgABAAEAAAAIAAsAAgABAAEAAAAJAAsAAgABAAEAAAAKAAsAAgABAAEAAAALAAsAAgABAAEAAAAMAAsAAgAGAAEAAAAOAAwAAgABAAEAAAAPAAwAAgABAAEAAAANAAwAAgABAAEAAAAMAAwAAgABAAEAAAALAAwAAgABAAEAAAAKAAwAAgABAAEAAAAJAAwAAgABAAEAAAAIAAwAAgABAAEAAAAHAAwAAgABAAEAAAAHAA0AAgABAAEAAAAIAA0AAgABAAEAAAAJAA0AAgABAAEAAAAKAA0AAgABAAEAAAALAA0AAgABAAEAAAAMAA0AAgABAAEAAAANAA0AAgABAAEAAAAOAA0AAgABAAEAAAAPAA0AAgABAAEAAAAKAAoAAgABAAEAAAAKAAkAAgABAAEAAAAKAAgAAgABAAEAAAAQAAgAAgABAAEAAAARAAgAAgABAAEAAAASAAgAAgABAAEAAAAOAAkAAgAFAAEAAAANAAoAAgAFAAEAAAAPAAgAAgAEAAEAAAA=")
+
+[node name="Lights" parent="." index="1"]
+visible = false
+
+[node name="配药室" type="Node2D" parent="EventPages" index="0"]
+position = Vector2(560, 272)
+script = ExtResource("4_nvker")
+pos = Vector2i(17, 8)
+content = SubResource("Resource_n3c2w")
+
+[node name="冰窖" type="Node2D" parent="EventPages" index="1"]
+position = Vector2(336, 336)
+script = ExtResource("4_nvker")
+pos = Vector2i(10, 10)
+content = SubResource("Resource_n2aws")

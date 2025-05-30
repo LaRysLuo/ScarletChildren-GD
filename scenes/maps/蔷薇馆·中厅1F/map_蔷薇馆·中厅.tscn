@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://d2cb35vt5q6gq"]
+[gd_scene load_steps=54 format=4 uid="uid://d2cb35vt5q6gq"]
 
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_byall"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_soxkc"]
@@ -19,13 +19,15 @@
 [ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="17_u74y3"]
 [ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="18_ubg65"]
 [ext_resource type="PackedScene" uid="uid://dal1ivj3o3ul1" path="res://event_sys/ExPage/ExPage.tscn" id="19_4otbe"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="20_ip6tr"]
+[ext_resource type="Resource" uid="uid://dq8drkho25mmr" path="res://config/role_data/ai.tres" id="20_mt1xm"]
 
 [sub_resource type="Resource" id="Resource_ysf0i"]
 script = ExtResource("4_otnw1")
 item_id = &"208c_0_迷之身影"
 value = true
 is_all = true
-type = -1
+type = 0
 
 [sub_resource type="Resource" id="Resource_bdfs2"]
 resource_name = "(13,17)"
@@ -58,7 +60,7 @@ script = ExtResource("4_otnw1")
 item_id = &"205c_0_追逐怪出现"
 value = true
 is_all = true
-type = -1
+type = 0
 
 [sub_resource type="Resource" id="Resource_vphpu"]
 resource_name = "(1,1)"
@@ -87,27 +89,43 @@ script = ExtResource("4_otnw1")
 item_id = &"208c_0_迷之身影"
 value = false
 is_all = true
-type = -1
+type = 0
 
 [sub_resource type="Resource" id="Resource_gvcav"]
 script = ExtResource("4_otnw1")
 item_id = &"205c_0_追逐怪出现"
 value = false
 is_all = true
-type = -1
+type = 0
 
 [sub_resource type="Resource" id="Resource_3paip"]
 script = ExtResource("4_otnw1")
 item_id = &"208c_0_迷之身影"
 value = true
 is_all = true
-type = -1
+type = 0
+
+[sub_resource type="Resource" id="Resource_4qvnc"]
+script = ExtResource("7_ug2ad")
+scene_path = "res://scenes/maps/3蔷薇馆1F - 东馆走廊/东馆走廊1f.tscn"
+step1 = 0
+step2 = 2
+target_pos = Vector2i(5, 12)
+target_scene_door = Vector2i(5, 11)
+
+[sub_resource type="Resource" id="Resource_w56ld"]
+script = ExtResource("4_otnw1")
+item_id = &"111"
+value = true
+is_all = true
+type = 0
 
 [sub_resource type="Resource" id="Resource_5yqc7"]
 script = ExtResource("17_u74y3")
 text = "空空的长椅"
 type = 0
 wait_time = 1000
+expression_id = 0
 children = Array[ExtResource("16_qr1u0")]([])
 node_type = 1
 pos = Vector2(740, 40)
@@ -133,9 +151,130 @@ one_shot = false
 tree = SubResource("Resource_nh0et")
 map = {}
 
+[sub_resource type="Resource" id="Resource_sr0q5"]
+script = ExtResource("4_otnw1")
+item_id = &"1111"
+value = false
+is_all = true
+type = 0
+
+[sub_resource type="Resource" id="Resource_tlsof"]
+script = ExtResource("17_u74y3")
+text = "dialogue_06_resu"
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("16_qr1u0")]([])
+node_type = 1
+pos = Vector2(1937.39, -62.6316)
+
+[sub_resource type="Resource" id="Resource_t2x3v"]
+script = ExtResource("16_qr1u0")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_tlsof")
+
+[sub_resource type="Resource" id="Resource_d1f2m"]
+script = ExtResource("17_u74y3")
+text = "dialogue_05_resu"
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("16_qr1u0")]([SubResource("Resource_t2x3v")])
+node_type = 1
+pos = Vector2(1592.38, -57.6496)
+
+[sub_resource type="Resource" id="Resource_7nrs6"]
+script = ExtResource("16_qr1u0")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_d1f2m")
+
+[sub_resource type="Resource" id="Resource_jyd4o"]
+script = ExtResource("17_u74y3")
+text = "dialogue_04_resu"
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("16_qr1u0")]([SubResource("Resource_7nrs6")])
+node_type = 1
+pos = Vector2(1249.87, -56.4041)
+
+[sub_resource type="Resource" id="Resource_8uygv"]
+script = ExtResource("16_qr1u0")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_jyd4o")
+
+[sub_resource type="Resource" id="Resource_a464u"]
+script = ExtResource("17_u74y3")
+text = "dialogue_03_resu"
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("16_qr1u0")]([SubResource("Resource_8uygv")])
+node_type = 1
+pos = Vector2(903.617, -47.6855)
+
+[sub_resource type="Resource" id="Resource_w07n8"]
+script = ExtResource("16_qr1u0")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_a464u")
+
+[sub_resource type="Resource" id="Resource_ba7nj"]
+script = ExtResource("17_u74y3")
+text = "dialogue_02_resu"
+role = ExtResource("20_ip6tr")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("16_qr1u0")]([SubResource("Resource_w07n8")])
+node_type = 1
+pos = Vector2(551.14, -45.1945)
+
+[sub_resource type="Resource" id="Resource_10xw3"]
+script = ExtResource("16_qr1u0")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ba7nj")
+
+[sub_resource type="Resource" id="Resource_f1yoi"]
+script = ExtResource("17_u74y3")
+text = "dialogue_01_ai"
+role = ExtResource("20_mt1xm")
+type = 0
+wait_time = 1000
+expression_id = 0
+children = Array[ExtResource("16_qr1u0")]([SubResource("Resource_10xw3")])
+node_type = 1
+pos = Vector2(180, -40)
+
+[sub_resource type="Resource" id="Resource_gcu08"]
+script = ExtResource("16_qr1u0")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_f1yoi")
+
+[sub_resource type="Resource" id="Resource_4cutb"]
+script = ExtResource("18_ubg65")
+children = Array[ExtResource("16_qr1u0")]([SubResource("Resource_gcu08")])
+node_type = 0
+pos = Vector2(-65.2964, 42.597)
+
+[sub_resource type="Resource" id="Resource_wmgyf"]
+script = ExtResource("15_qc5if")
+title = ""
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_4cutb")
+map = {}
+
 [node name="蔷薇馆·中厅" instance=ExtResource("1_byall")]
 
 [node name="Maps" parent="." index="0"]
+y_sort_enabled = true
 right_limit = 800.0
 event_group = Array[ExtResource("2_soxkc")]([SubResource("Resource_bdfs2"), SubResource("Resource_8glv3"), SubResource("Resource_uea0i"), SubResource("Resource_vphpu")])
 event_ex = Array[ExtResource("6_21351")]([SubResource("Resource_ne2vs")])
@@ -150,7 +289,7 @@ texture = ExtResource("12_aj2qv")
 
 [node name="Objects" parent="Maps" index="2"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAQAAkAAQAAAAAABAANAAcAAQAAAAAACwAKAAkAAQAAAAAACwABAAEAAQAAAAAABAANABEAAQAAAAAABAAXAAEAAAAAAAAAAgANABIAAQAAAAAAAgANAAwAAAAAAAAAAQANAAsAAQAAAAAABAA=")
+tile_map_data = PackedByteArray("AAANAAcAAQAAAAAACwAKAAkAAQAAAAAACwABAAEAAQAAAAAABAANABEAAQAAAAAABAAXAAEAAAAAAAAAAgANABIAAQAAAAAAAgANAAwAAAAAAAAAAQAQAAkAAQAAAAAACwANAAsAAAAAAAAAAwA=")
 
 [node name="Movable" parent="Maps" index="3"]
 tile_map_data = PackedByteArray("AAAJAAoAAgABAAEAAAALAAoAAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAAKAAcAAgABAAEAAAAKAAgAAgABAAEAAAAKAAkAAgABAAEAAAAKAAoAAgABAAEAAAAKAAsAAgABAAEAAAAKAAwAAgABAAEAAAALAAwAAgABAAEAAAAMAA0AAgABAAEAAAALAA0AAgABAAEAAAAMAA4AAgABAAEAAAANAA4AAgABAAEAAAAOAA0AAgABAAEAAAAOAAwAAgABAAEAAAAMAAwAAgABAAEAAAAJAAwAAgABAAEAAAAPAAoAAgABAAEAAAAPAAsAAgABAAEAAAAJAAsAAgABAAEAAAAJAA0AAgABAAEAAAAKAA0AAgABAAEAAAALAAsAAgABAAEAAAAKAA4AAgABAAEAAAAKAA8AAgABAAEAAAALAA4AAgABAAEAAAALAA8AAgABAAEAAAAMAA8AAgABAAEAAAANAA8AAgABAAEAAAAOAA4AAgABAAEAAAAOAA8AAgABAAEAAAAPAA4AAgABAAEAAAAPAA8AAgABAAEAAAANABAAAgABAAEAAAAPAAwAAgABAAEAAAAPAA0AAgABAAEAAAAQAAoAAgABAAEAAAAQAAsAAgABAAEAAAAQAAwAAgABAAEAAAAQAA0AAgABAAEAAAARAAoAAgABAAEAAAARAAsAAgABAAEAAAARAAwAAgABAAEAAAARAA0AAgABAAEAAAAQAA4AAgABAAEAAAAQAAgAAgABAAEAAAAQAAkAAgABAAEAAAAQAAcAAgABAAEAAAAKABAAAgABAAEAAAALABAAAgABAAEAAAAMABAAAgABAAEAAAANABEAAgABAAEAAAAOABAAAgABAAEAAAAPABAAAgABAAEAAAANABIAAgABAAEAAAA=")
@@ -163,26 +302,48 @@ position = Vector2(10, 0)
 range_item_cull_mask = 0
 
 [node name="欢迎来到蔷薇馆[开场]" parent="EventPages" index="0" instance=ExtResource("13_es3ws")]
+visible = false
+position = Vector2(48, 48)
 pos = Vector2i(1, 1)
 condition = Array[ExtResource("3_thxss")]([SubResource("Resource_qcy77"), SubResource("Resource_gvcav")])
 is_show = true
+dir = null
 content = ExtResource("7_vo36w")
 
 [node name="蔷薇馆大门" parent="EventPages" index="1" instance=ExtResource("13_es3ws")]
+position = Vector2(432, 560)
 pos = Vector2i(13, 17)
 condition = Array[ExtResource("3_thxss")]([SubResource("Resource_3paip")])
 is_show = true
+dir = null
 content = ExtResource("4_8wdld")
 
-[node name="长椅(无人）" type="Node2D" parent="EventPages" index="2"]
-script = ExtResource("14_ig6cj")
-pos = Vector2i(13, 11)
-is_show = true
-content = SubResource("Resource_u63v3")
-
-[node name="西馆大门" parent="EventPages" index="3" instance=ExtResource("19_4otbe")]
+[node name="西馆大门" parent="EventPages" index="2" instance=ExtResource("19_4otbe")]
+position = Vector2(336, 304)
 pos = Vector2i(10, 9)
 content = SubResource("Resource_siepr")
+
+[node name="东馆大门" parent="EventPages" index="3" instance=ExtResource("19_4otbe")]
+position = Vector2(528, 304)
+pos = Vector2i(16, 9)
+content = SubResource("Resource_4qvnc")
+
+[node name="长椅(无人）" type="Node2D" parent="EventPages" index="4"]
+position = Vector2(432, 368)
+script = ExtResource("14_ig6cj")
+pos = Vector2i(13, 11)
+condition = Array[ExtResource("3_thxss")]([SubResource("Resource_w56ld")])
+dir = null
+content = SubResource("Resource_u63v3")
+
+[node name="与小爱的对话1" type="Node2D" parent="EventPages" index="5"]
+position = Vector2(432, 368)
+script = ExtResource("14_ig6cj")
+pos = Vector2i(13, 11)
+condition = Array[ExtResource("3_thxss")]([SubResource("Resource_sr0q5")])
+is_show = true
+dir = null
+content = SubResource("Resource_wmgyf")
 
 [node name="UI" parent="." index="3" node_paths=PackedStringArray("stamina_bar")]
 stamina_bar = NodePath("ComponetStaminaBar")

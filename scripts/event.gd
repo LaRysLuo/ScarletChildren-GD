@@ -29,9 +29,6 @@ signal  event_finish # 事件交互结束
 var animated_sprite:AnimatedSprite2D:
 	get(): return get_node("AnimatedSprite2D2")
 
-
-
-
 ## 事件NPC的实现：方案1，在Event_Res上增加一个行走图的选择
 ## 当事件被激活时，使该行走图人物被渲染出来显示。
 ## 事件的tres要是一个可控制的角色
@@ -48,22 +45,6 @@ func _ready() -> void:
 	#_refresh_event_state()
 	_load_event_config()
 
-#func _exit_tree() -> void:
-	#var config:EventConfig = get_event_config(true)
-	#if !config: return 
-	#config.event_visible_changed.disconnect(_refresh_event_visible)
-
-## 显示编辑器坐标提示
-#func _show_editor_coord_hint():
-	
-	#if !coord_hint_label: return
-	
-	#coord_hint_label.hide()
-	#if !Engine.is_editor_hint():return
-	#coord_hint_label.text = "%s,%s" % [cell_pos.x,cell_pos.y]
-	#
-	##coord_hint_label.show()
-	#print("更新编辑器=",coord_hint_label.visible)
 	
 ## 载入事件config
 func _load_event_config():
@@ -71,19 +52,34 @@ func _load_event_config():
 		_refresh_event_visible(false)
 		return
 	if page.content: self.ingore_collsion = !page.content.is_collsion
+
+	# 根据Page来初始化
+	# if page.instance_character(self): return
+
 	# 刷新精灵图
 	_refresh_sprite_frame(page.frame_index,page)
 	# 刷新可视化
 	_init_event_visible(page)
 	
-
 ## 刷新精灵图
 func _refresh_sprite_frame(frame_index:int,config:EventPage = null):
-	if config:
-		if !config.need_refresh: return
-		config.need_refresh = false
+	print("刷新精灵图",config.dir)
+	if !config: #&& !config.need_refresh: 
+		# print("没有需要更新",config.need_refresh)
+		return
+	# config.need_refresh = false
+	var animation_name = get_dir_animation_name(config.dir)
+	print("animation_name",animation_name)
+	if animation_name: animated_sprite.animation =  animation_name
 	animated_sprite.frame = frame_index
-	pass
+
+func get_dir_animation_name(_dir:int) :
+	match _dir:
+		0: return "idle_down"
+		1: return "idle_left"
+		2:return "idle_right"
+		3: return "idle_up"
+	return null
 
 ## 初始化事件可视化
 func _init_event_visible(config:EventPage):
@@ -155,7 +151,7 @@ func _parse_event_config(event):
 func activable(event:EventPage) -> bool:
 	if event and event.content:
 		## INFO 增加可视化的条件判断
-		return one_shot_valid(event) && _condition_valid(event) 
+		return one_shot_valid(event) && _condition_valid(event) && event.enable
 	return true
 
 func _find_around_enemy(coord:Vector2i) -> ChasingEnemy:
@@ -172,11 +168,11 @@ func interactable() -> bool:
 	## 因为追逐战的关系，添加一项，周围有enemy时，无法交互
 	if _find_around_enemy(cell_pos):
 		return false
-	var page = handler.try_get_event_page(ori_cell_pos)
+	# var page = handler.try_get_event_page(ori_cell_pos)
 	# var event = get_event_config()
 	if page and page.content:
 		# print("可交互事件状态为：",activable(event))
-		return activable(page) &&  visible && page.content.trigger_type == Events_Res.TriggerType.Interact交互
+		return activable(page) && (page.content.trigger_type == Events_Res.TriggerType.Interact交互 or page.content.trigger_type == Events_Res.TriggerType.Touch触碰)
 	return false
 	
 func touchable() -> bool:
@@ -185,7 +181,7 @@ func touchable() -> bool:
 		return false
 	# var event = get_event_config()
 	if page and page.content:
-		return activable(page) &&  visible  && page.content.trigger_type == Events_Res.TriggerType.Touch触碰
+		return activable(page) && page.content.trigger_type == Events_Res.TriggerType.Touch触碰
 	return false
 
 func can_auto_trigger() -> bool:
