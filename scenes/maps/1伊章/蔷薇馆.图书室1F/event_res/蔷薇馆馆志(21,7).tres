@@ -1,0 +1,237 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=42 format=3 uid="uid://tfbaig06h6l"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_k4lbq"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_0dkxx"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_j04fv"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_0eis5"]
+[ext_resource type="Script" path="res://event_editor/models/reading_page_data.gd" id="3_gwqln"]
+[ext_resource type="Script" path="res://event_editor/models/cinema_data.gd" id="3_j0cj1"]
+[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="3_kvcbc"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="4_1t3ce"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="4_5ibxx"]
+[ext_resource type="Script" path="res://event_editor/models/reading_data.gd" id="4_ca35i"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="5_1x5in"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="5_g2j03"]
+
+[sub_resource type="Resource" id="Resource_rvpxo"]
+script = ExtResource("3_gwqln")
+content = "file_aboutscar_05"
+children = Array[ExtResource("2_0dkxx")]([])
+node_type = 15
+pos = Vector2(1580, -40)
+
+[sub_resource type="Resource" id="Resource_g8ead"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_rvpxo")
+
+[sub_resource type="Resource" id="Resource_vuwxt"]
+script = ExtResource("3_gwqln")
+content = "file_aboutscar_04"
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_g8ead")])
+node_type = 15
+pos = Vector2(1260, -40)
+
+[sub_resource type="Resource" id="Resource_y03r8"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_vuwxt")
+
+[sub_resource type="Resource" id="Resource_rb2xw"]
+script = ExtResource("3_gwqln")
+content = "file_aboutscar_03"
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_y03r8")])
+node_type = 15
+pos = Vector2(960, -40)
+
+[sub_resource type="Resource" id="Resource_kr4t2"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_rb2xw")
+
+[sub_resource type="Resource" id="Resource_835en"]
+script = ExtResource("3_gwqln")
+content = "file_aboutscar_02"
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_kr4t2")])
+node_type = 15
+pos = Vector2(660, -40)
+
+[sub_resource type="Resource" id="Resource_pscky"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_835en")
+
+[sub_resource type="Resource" id="Resource_2cyxc"]
+script = ExtResource("3_gwqln")
+content = "file_aboutscar_01"
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_pscky")])
+node_type = 15
+pos = Vector2(340, -40)
+
+[sub_resource type="Resource" id="Resource_sxx4e"]
+script = ExtResource("2_0dkxx")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_2cyxc")
+
+[sub_resource type="Resource" id="Resource_i55sf"]
+script = ExtResource("3_0eis5")
+text = "libsurvey05"
+role = ExtResource("4_5ibxx")
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("4_1t3ce")]([])
+children = Array[ExtResource("2_0dkxx")]([])
+node_type = 1
+pos = Vector2(1740, -400)
+
+[sub_resource type="Resource" id="Resource_ts5ry"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_i55sf")
+
+[sub_resource type="Resource" id="Resource_gxkvs"]
+script = ExtResource("3_j0cj1")
+cinema_scene_path = "res://scenes/other/回忆1：图书室/图书室的回忆.tscn"
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_ts5ry")])
+node_type = 16
+pos = Vector2(1500, -300)
+
+[sub_resource type="Resource" id="Resource_n16e4"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_gxkvs")
+
+[sub_resource type="Resource" id="Resource_s4gwf"]
+script = ExtResource("5_g2j03")
+time = 0.2
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_n16e4")])
+node_type = 6
+pos = Vector2(1240, -280)
+
+[sub_resource type="Resource" id="Resource_serr4"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_s4gwf")
+
+[sub_resource type="Resource" id="Resource_4ngbw"]
+script = ExtResource("5_1x5in")
+script_cmd = "play_se(\"fault\")"
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_serr4")])
+node_type = 9
+pos = Vector2(1000, -340)
+
+[sub_resource type="Resource" id="Resource_o2dcb"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_4ngbw")
+
+[sub_resource type="Resource" id="Resource_c2ikv"]
+script = ExtResource("3_0eis5")
+text = "libsurvey04"
+role = ExtResource("4_5ibxx")
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("4_1t3ce")]([])
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_o2dcb")])
+node_type = 1
+pos = Vector2(620, -420)
+
+[sub_resource type="Resource" id="Resource_2bu1e"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_c2ikv")
+
+[sub_resource type="Resource" id="Resource_kbbjv"]
+script = ExtResource("5_1x5in")
+script_cmd = "gain_item(\"303f_蔷薇馆的传说\")"
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_2bu1e")])
+node_type = 9
+pos = Vector2(360, -300)
+
+[sub_resource type="Resource" id="Resource_76jnm"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_kbbjv")
+
+[sub_resource type="Resource" id="Resource_lx5f6"]
+script = ExtResource("4_ca35i")
+title = "file_aboutscar_title"
+close_any_time = false
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_sxx4e"), SubResource("Resource_76jnm")])
+node_type = 14
+pos = Vector2(100, -220)
+
+[sub_resource type="Resource" id="Resource_4oul0"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_lx5f6")
+
+[sub_resource type="Resource" id="Resource_xo8h3"]
+script = ExtResource("3_kvcbc")
+options = Array[Dictionary]([{
+"child_index": 0,
+"id": 0,
+"name": "libsurvey02"
+}, {
+"child_index": -1,
+"id": 1,
+"name": "test06"
+}])
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_4oul0")])
+node_type = 2
+pos = Vector2(-200, -220)
+
+[sub_resource type="Resource" id="Resource_we0v4"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_xo8h3")
+
+[sub_resource type="Resource" id="Resource_tvf0e"]
+script = ExtResource("3_0eis5")
+text = "libsurvey01"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("4_1t3ce")]([])
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_we0v4")])
+node_type = 1
+pos = Vector2(-560, -240)
+
+[sub_resource type="Resource" id="Resource_eifi6"]
+script = ExtResource("2_0dkxx")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_tvf0e")
+
+[sub_resource type="Resource" id="Resource_ucyc3"]
+script = ExtResource("2_j04fv")
+children = Array[ExtResource("2_0dkxx")]([SubResource("Resource_eifi6")])
+node_type = 0
+pos = Vector2(-760, -140)
+
+[resource]
+script = ExtResource("1_k4lbq")
+title = "获取蔷薇馆馆志"
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_ucyc3")
+map = {}

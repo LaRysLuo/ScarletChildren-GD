@@ -211,5 +211,6 @@ speed_factor = 1.3
 
 [node name="AnimatedSprite2D2" parent="." index="2"]
 material = SubResource("ShaderMaterial_eherb")
+position = Vector2(0, 5.5)
 sprite_frames = SubResource("SpriteFrames_t46ps")
 animation = &"idle_down"

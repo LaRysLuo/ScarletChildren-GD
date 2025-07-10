@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="Role" load_steps=3 format=3 uid="uid://dq8drkho25mmr"]
 
 [ext_resource type="Script" path="res://component/role_manager/role.gd" id="1_l1rqu"]
-[ext_resource type="Texture2D" uid="uid://dn8mjjql6yn5c" path="res://assets/tachie/ai_v3.png" id="2_shs1p"]
+[ext_resource type="Texture2D" uid="uid://lo104afxrjfw" path="res://assets/tachie/ai.png" id="2_5qofm"]
 
 [resource]
 script = ExtResource("1_l1rqu")
 role_name = "小爱"
 theme_color = Color(0.0784314, 0.890196, 0.109804, 1)
-tachie_normal = ExtResource("2_shs1p")
+tachie_normal = ExtResource("2_5qofm")
 desc = ""

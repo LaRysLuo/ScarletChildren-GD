@@ -1,0 +1,871 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=127 format=3 uid="uid://b267imqp2btpo"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_a36p2"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_dn8lh"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_x6w3l"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="3_5pyjl"]
+[ext_resource type="Script" path="res://event_editor/models/keyword_data.gd" id="3_h4btl"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_tray0"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="5_hpuhg"]
+[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="5_tasje"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="7_72u0r"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="7_ao2q3"]
+[ext_resource type="Script" path="res://event_editor/models/sub_thread_data .gd" id="8_3tft5"]
+[ext_resource type="Script" path="res://event_editor/models/itemlink_data.gd" id="9_4huxi"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="11_3nakq"]
+
+[sub_resource type="Resource" id="Resource_hqom6"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_04"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 1
+pos = Vector2(1180, -260)
+
+[sub_resource type="Resource" id="Resource_7ay7m"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_hqom6")
+
+[sub_resource type="Resource" id="Resource_lw4y1"]
+script = ExtResource("3_h4btl")
+keyword = "e01_01_c_03"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_7ay7m")])
+node_type = 12
+pos = Vector2(820, 40)
+
+[sub_resource type="Resource" id="Resource_20dd3"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_lw4y1")
+
+[sub_resource type="Resource" id="Resource_rr4fn"]
+script = ExtResource("5_hpuhg")
+script_cmd = "gain_item(\"201c_0_餐厅的八音盒\")"
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 9
+pos = Vector2(3260, 400)
+
+[sub_resource type="Resource" id="Resource_swi1l"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_rr4fn")
+
+[sub_resource type="Resource" id="Resource_4pgo5"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_09"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_swi1l")])
+node_type = 1
+pos = Vector2(2840, 360)
+
+[sub_resource type="Resource" id="Resource_lksfp"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_4pgo5")
+
+[sub_resource type="Resource" id="Resource_ob4qx"]
+script = ExtResource("5_hpuhg")
+script_cmd = "am.stop_music()"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_lksfp")])
+node_type = 9
+pos = Vector2(2500, 360)
+
+[sub_resource type="Resource" id="Resource_6wpus"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ob4qx")
+
+[sub_resource type="Resource" id="Resource_7mk0r"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_08"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_6wpus")])
+node_type = 1
+pos = Vector2(2140, 320)
+
+[sub_resource type="Resource" id="Resource_54thc"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_7mk0r")
+
+[sub_resource type="Resource" id="Resource_5fuqa"]
+script = ExtResource("5_hpuhg")
+script_cmd = "am.play_musicalbox()"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_54thc")])
+node_type = 9
+pos = Vector2(1880, 380)
+
+[sub_resource type="Resource" id="Resource_vljrx"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_5fuqa")
+
+[sub_resource type="Resource" id="Resource_hqakk"]
+script = ExtResource("5_tasje")
+options = Array[Dictionary]([{
+"child_index": 0,
+"id": 0,
+"name": "按下按钮"
+}, {
+"child_index": -1,
+"id": 1,
+"name": "NO"
+}])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_vljrx")])
+node_type = 2
+pos = Vector2(1520, 380)
+
+[sub_resource type="Resource" id="Resource_6p0ia"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_hqakk")
+
+[sub_resource type="Resource" id="Resource_hn1gd"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_06"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_6p0ia")])
+node_type = 1
+pos = Vector2(1120, 260)
+
+[sub_resource type="Resource" id="Resource_uxjen"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_hn1gd")
+
+[sub_resource type="Resource" id="Resource_nypwq"]
+script = ExtResource("3_h4btl")
+keyword = "e01_01_c_05"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_uxjen")])
+node_type = 12
+pos = Vector2(780, 300)
+
+[sub_resource type="Resource" id="Resource_6mnas"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_nypwq")
+
+[sub_resource type="Resource" id="Resource_fq7dx"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_02"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 1
+pos = Vector2(700, -380)
+
+[sub_resource type="Resource" id="Resource_vt4ur"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_fq7dx")
+
+[sub_resource type="Resource" id="Resource_s1726"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_01"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_20dd3"), SubResource("Resource_6mnas"), SubResource("Resource_vt4ur")])
+node_type = 1
+pos = Vector2(360, 20)
+
+[sub_resource type="Resource" id="Resource_k3tlu"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_s1726")
+
+[sub_resource type="Resource" id="Resource_g4cxm"]
+script = ExtResource("5_hpuhg")
+script_cmd = "am.stop_music()"
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 9
+pos = Vector2(1540, 700)
+
+[sub_resource type="Resource" id="Resource_1pyjg"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_g4cxm")
+
+[sub_resource type="Resource" id="Resource_rj0wu"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_08"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_1pyjg")])
+node_type = 1
+pos = Vector2(1140, 620)
+
+[sub_resource type="Resource" id="Resource_kmwk3"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_rj0wu")
+
+[sub_resource type="Resource" id="Resource_ip52h"]
+script = ExtResource("5_hpuhg")
+script_cmd = "am.play_musicalbox()"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_kmwk3")])
+node_type = 9
+pos = Vector2(840, 640)
+
+[sub_resource type="Resource" id="Resource_ciep4"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ip52h")
+
+[sub_resource type="Resource" id="Resource_e4tkx"]
+script = ExtResource("3_h4btl")
+keyword = "e01_01_c_26"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_ciep4")])
+node_type = 12
+pos = Vector2(460, 580)
+
+[sub_resource type="Resource" id="Resource_bpcb0"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_e4tkx")
+
+[sub_resource type="Resource" id="Resource_jw1ks"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_10"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_bpcb0")])
+node_type = 1
+pos = Vector2(60, 440)
+
+[sub_resource type="Resource" id="Resource_r0088"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_jw1ks")
+
+[sub_resource type="Resource" id="Resource_1ne84"]
+script = ExtResource("5_hpuhg")
+script_cmd = "update_item(\"201c_2_餐厅的八音盒\",\"201c_3_餐厅的八音盒\")"
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 9
+pos = Vector2(3340, 1960)
+
+[sub_resource type="Resource" id="Resource_smmk8"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_1ne84")
+
+[sub_resource type="Resource" id="Resource_nsjhq"]
+script = ExtResource("5_hpuhg")
+script_cmd = "gain_item(\"106i_RZ欧梅咖电池\")"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_smmk8")])
+node_type = 9
+pos = Vector2(3080, 1960)
+
+[sub_resource type="Resource" id="Resource_jbpd0"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_nsjhq")
+
+[sub_resource type="Resource" id="Resource_qdxol"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_21"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_jbpd0")])
+node_type = 1
+pos = Vector2(2680, 1920)
+
+[sub_resource type="Resource" id="Resource_b6cao"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_qdxol")
+
+[sub_resource type="Resource" id="Resource_ekxsa"]
+script = ExtResource("3_5pyjl")
+text_id = "e01_01_c_17"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_i2vtr"]
+script = ExtResource("3_tray0")
+text = ""
+role = ExtResource("7_72u0r")
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([SubResource("Resource_ekxsa")])
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 111
+pos = Vector2(3760, 1020)
+
+[sub_resource type="Resource" id="Resource_02blv"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_i2vtr")
+
+[sub_resource type="Resource" id="Resource_7jm6q"]
+script = ExtResource("5_hpuhg")
+script_cmd = "update_item(\"201c_2_餐厅的八音盒\",\"201c_3_餐厅的八音盒\")"
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 9
+pos = Vector2(5700, 1440)
+
+[sub_resource type="Resource" id="Resource_ut88h"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_7jm6q")
+
+[sub_resource type="Resource" id="Resource_r8yc7"]
+script = ExtResource("5_hpuhg")
+script_cmd = "gain_item(\"106i_RZ欧梅咖电池\")"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_ut88h")])
+node_type = 9
+pos = Vector2(5440, 1440)
+
+[sub_resource type="Resource" id="Resource_sxtv7"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_r8yc7")
+
+[sub_resource type="Resource" id="Resource_6v1f1"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_21"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_sxtv7")])
+node_type = 1
+pos = Vector2(5080, 1440)
+
+[sub_resource type="Resource" id="Resource_b42ew"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_6v1f1")
+
+[sub_resource type="Resource" id="Resource_odemn"]
+script = ExtResource("5_tasje")
+options = Array[Dictionary]([{
+"child_index": 0,
+"id": 0,
+"name": "e01_01_c_20"
+}, {
+"child_index": -1,
+"id": 1,
+"name": "NO"
+}])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_b42ew")])
+node_type = 2
+pos = Vector2(4740, 1480)
+
+[sub_resource type="Resource" id="Resource_dwai3"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_odemn")
+
+[sub_resource type="Resource" id="Resource_tmrqy"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_19"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_dwai3")])
+node_type = 1
+pos = Vector2(4360, 1380)
+
+[sub_resource type="Resource" id="Resource_xffar"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_tmrqy")
+
+[sub_resource type="Resource" id="Resource_qnrel"]
+script = ExtResource("5_hpuhg")
+script_cmd = "update_item(\"201c_1_餐厅的八音盒\",\"201c_2_餐厅的八音盒\")"
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 9
+pos = Vector2(4380, 1780)
+
+[sub_resource type="Resource" id="Resource_goqbq"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_qnrel")
+
+[sub_resource type="Resource" id="Resource_mcpri"]
+script = ExtResource("8_3tft5")
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_xffar"), SubResource("Resource_goqbq")])
+node_type = 10
+pos = Vector2(4120, 1560)
+
+[sub_resource type="Resource" id="Resource_dpycv"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_mcpri")
+
+[sub_resource type="Resource" id="Resource_tqjsy"]
+script = ExtResource("9_4huxi")
+item_id = "102i_0_螺丝刀"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_dpycv")])
+node_type = 13
+pos = Vector2(3780, 1540)
+
+[sub_resource type="Resource" id="Resource_v0g6p"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_tqjsy")
+
+[sub_resource type="Resource" id="Resource_b56qe"]
+script = ExtResource("3_h4btl")
+keyword = "e01_01_c_16"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_02blv"), SubResource("Resource_v0g6p")])
+node_type = 12
+pos = Vector2(3400, 1400)
+
+[sub_resource type="Resource" id="Resource_mrjqr"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_b56qe")
+
+[sub_resource type="Resource" id="Resource_1fdnd"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_15"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_mrjqr")])
+node_type = 1
+pos = Vector2(3000, 1320)
+
+[sub_resource type="Resource" id="Resource_8cuxm"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_1fdnd")
+
+[sub_resource type="Resource" id="Resource_x3osg"]
+script = ExtResource("5_hpuhg")
+script_cmd = "update_item(\"201c_0_餐厅的八音盒\",\"201c_1_餐厅的八音盒\")"
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 9
+pos = Vector2(3640, 1720)
+
+[sub_resource type="Resource" id="Resource_gml0m"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_x3osg")
+
+[sub_resource type="Resource" id="Resource_xen4j"]
+script = ExtResource("7_ao2q3")
+script_cmd = "!has_item(\"201c_1_餐厅的八音盒\",true)"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_gml0m")])
+node_type = 17
+pos = Vector2(3280, 1720)
+
+[sub_resource type="Resource" id="Resource_37idn"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_xen4j")
+
+[sub_resource type="Resource" id="Resource_35edt"]
+script = ExtResource("11_3nakq")
+time = 0.3
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_37idn")])
+node_type = 6
+pos = Vector2(2940, 1740)
+
+[sub_resource type="Resource" id="Resource_eytkj"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_35edt")
+
+[sub_resource type="Resource" id="Resource_r7ysk"]
+script = ExtResource("8_3tft5")
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_8cuxm"), SubResource("Resource_eytkj")])
+node_type = 10
+pos = Vector2(2640, 1660)
+
+[sub_resource type="Resource" id="Resource_37u2t"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_r7ysk")
+
+[sub_resource type="Resource" id="Resource_iu4c6"]
+script = ExtResource("7_ao2q3")
+script_cmd = "!has_item(\"201c_2_餐厅的八音盒\",true)"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_b6cao"), SubResource("Resource_37u2t")])
+node_type = 17
+pos = Vector2(2240, 1680)
+
+[sub_resource type="Resource" id="Resource_156mj"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_iu4c6")
+
+[sub_resource type="Resource" id="Resource_mwc6w"]
+script = ExtResource("5_tasje")
+options = Array[Dictionary]([{
+"child_index": 0,
+"id": 0,
+"name": "e01_01_c_14"
+}, {
+"child_index": -1,
+"id": 1,
+"name": "NO"
+}])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_156mj")])
+node_type = 2
+pos = Vector2(1900, 1680)
+
+[sub_resource type="Resource" id="Resource_nk28n"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_mwc6w")
+
+[sub_resource type="Resource" id="Resource_4ktsd"]
+script = ExtResource("3_h4btl")
+keyword = "e01_01_c_13"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_nk28n")])
+node_type = 12
+pos = Vector2(1580, 1700)
+
+[sub_resource type="Resource" id="Resource_076qs"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_4ktsd")
+
+[sub_resource type="Resource" id="Resource_t64xc"]
+script = ExtResource("3_5pyjl")
+text_id = "e01_01_c_23"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_hupx5"]
+script = ExtResource("3_5pyjl")
+text_id = "e01_01_c_24"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_a1j8h"]
+script = ExtResource("3_5pyjl")
+text_id = "e01_01_c_25"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_2pnnj"]
+script = ExtResource("3_tray0")
+text = ""
+role = ExtResource("7_72u0r")
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([SubResource("Resource_t64xc"), SubResource("Resource_hupx5"), SubResource("Resource_a1j8h")])
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 111
+pos = Vector2(1900, 1980)
+
+[sub_resource type="Resource" id="Resource_q3g4l"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_2pnnj")
+
+[sub_resource type="Resource" id="Resource_i1v7m"]
+script = ExtResource("3_h4btl")
+keyword = "e01_01_c_22"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_q3g4l")])
+node_type = 12
+pos = Vector2(1580, 2000)
+
+[sub_resource type="Resource" id="Resource_lwva8"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_i1v7m")
+
+[sub_resource type="Resource" id="Resource_eahc3"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_12"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_076qs"), SubResource("Resource_lwva8")])
+node_type = 1
+pos = Vector2(1120, 1360)
+
+[sub_resource type="Resource" id="Resource_eeqvb"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_eahc3")
+
+[sub_resource type="Resource" id="Resource_8p31h"]
+script = ExtResource("3_h4btl")
+keyword = "e01_01_c_11"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_eeqvb")])
+node_type = 12
+pos = Vector2(740, 1200)
+
+[sub_resource type="Resource" id="Resource_wttlj"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_8p31h")
+
+[sub_resource type="Resource" id="Resource_wn33e"]
+script = ExtResource("5_hpuhg")
+script_cmd = "am.stop_music()"
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 9
+pos = Vector2(1800, 1020)
+
+[sub_resource type="Resource" id="Resource_w52eu"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wn33e")
+
+[sub_resource type="Resource" id="Resource_i1oe4"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_08"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_w52eu")])
+node_type = 1
+pos = Vector2(1440, 980)
+
+[sub_resource type="Resource" id="Resource_nk582"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_i1oe4")
+
+[sub_resource type="Resource" id="Resource_18sjb"]
+script = ExtResource("5_hpuhg")
+script_cmd = "am.play_musicalbox()"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_nk582")])
+node_type = 9
+pos = Vector2(1140, 1020)
+
+[sub_resource type="Resource" id="Resource_jem6w"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_18sjb")
+
+[sub_resource type="Resource" id="Resource_5kblj"]
+script = ExtResource("3_h4btl")
+keyword = "e01_01_c_26"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_jem6w")])
+node_type = 12
+pos = Vector2(740, 940)
+
+[sub_resource type="Resource" id="Resource_mb16g"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_5kblj")
+
+[sub_resource type="Resource" id="Resource_77ud2"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_10"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_wttlj"), SubResource("Resource_mb16g")])
+node_type = 1
+pos = Vector2(380, 860)
+
+[sub_resource type="Resource" id="Resource_bxdsn"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_77ud2")
+
+[sub_resource type="Resource" id="Resource_dit84"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_27"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([])
+node_type = 1
+pos = Vector2(1480, 2300)
+
+[sub_resource type="Resource" id="Resource_6yakt"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_dit84")
+
+[sub_resource type="Resource" id="Resource_jn6eg"]
+script = ExtResource("7_ao2q3")
+script_cmd = "!has_item(\"201c_3_餐厅的八音盒\",true)"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_6yakt")])
+node_type = 17
+pos = Vector2(1120, 2280)
+
+[sub_resource type="Resource" id="Resource_v5atd"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_jn6eg")
+
+[sub_resource type="Resource" id="Resource_nthep"]
+script = ExtResource("3_h4btl")
+keyword = "e01_01_c_26"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_v5atd")])
+node_type = 12
+pos = Vector2(740, 2240)
+
+[sub_resource type="Resource" id="Resource_3wkfi"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_nthep")
+
+[sub_resource type="Resource" id="Resource_x11ke"]
+script = ExtResource("3_tray0")
+text = "e01_01_c_10"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5pyjl")]([])
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_3wkfi")])
+node_type = 1
+pos = Vector2(380, 2020)
+
+[sub_resource type="Resource" id="Resource_7wwuo"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_x11ke")
+
+[sub_resource type="Resource" id="Resource_vp21s"]
+script = ExtResource("7_ao2q3")
+script_cmd = "!has_item(\"201c_3_餐厅的八音盒\",true)"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_bxdsn"), SubResource("Resource_7wwuo")])
+node_type = 17
+pos = Vector2(-80, 860)
+
+[sub_resource type="Resource" id="Resource_e26d3"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_vp21s")
+
+[sub_resource type="Resource" id="Resource_1btrm"]
+script = ExtResource("7_ao2q3")
+script_cmd = "!has_item(\"105i_RZ欧梅咖电池\",true)"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_r0088"), SubResource("Resource_e26d3")])
+node_type = 17
+pos = Vector2(-480, 460)
+
+[sub_resource type="Resource" id="Resource_u1eh7"]
+script = ExtResource("2_x6w3l")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_1btrm")
+
+[sub_resource type="Resource" id="Resource_e4btb"]
+script = ExtResource("7_ao2q3")
+script_cmd = "!has_item(\"201c_0_餐厅的八音盒\",true)"
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_k3tlu"), SubResource("Resource_u1eh7")])
+node_type = 17
+pos = Vector2(-880, -20)
+
+[sub_resource type="Resource" id="Resource_nfptb"]
+script = ExtResource("2_x6w3l")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_e4btb")
+
+[sub_resource type="Resource" id="Resource_nrkma"]
+script = ExtResource("2_dn8lh")
+children = Array[ExtResource("2_x6w3l")]([SubResource("Resource_nfptb")])
+node_type = 0
+pos = Vector2(-1100, 20)
+
+[resource]
+script = ExtResource("1_a36p2")
+title = "八音盒(17,7)"
+is_collsion = true
+trigger_type = 1
+one_shot = false
+tree = SubResource("Resource_nrkma")
+map = {}

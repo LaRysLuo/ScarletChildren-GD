@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgb2ne3b3ts7l"]
+
+[ext_resource type="Script" path="res://component/tutorial_hint/tutorial_panel.gd" id="1_g4u3i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_npc81"]
+font_color = Color(0.703808, 0.703808, 0.703808, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_njd5v"]
+font_size = 20
+font_color = Color(0.615315, 0.0108018, 0.239443, 1)
+outline_size = 4
+outline_color = Color(0.489622, 0.489622, 0.489622, 1)
+
+[node name="TutorialPanel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -471.0
+offset_bottom = -510.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g4u3i")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "TUTORIAL"
+label_settings = SubResource("LabelSettings_npc81")
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "tr(e00_B03!)"
+label_settings = SubResource("LabelSettings_njd5v")

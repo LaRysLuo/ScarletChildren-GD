@@ -20,11 +20,11 @@ func _ready() -> void:
 	hide()
 
 ## 更新耐力条
-func refresh(val:float,is_normal:bool):
+func refresh(val:float,_is_normal:bool):
 	progress_bar.value = val
-	if self.is_normal != is_normal:
-		self.is_normal = is_normal
-		style.bg_color = NORMAL_COLOR if is_normal else RECOVER_COLOR
+	if self.is_normal != _is_normal:
+		self.is_normal = _is_normal
+		style.bg_color = NORMAL_COLOR if _is_normal else RECOVER_COLOR
 	if !timer:
 		self.show()
 		timer =get_tree().create_timer(1)

@@ -17,34 +17,38 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -58.0
-offset_bottom = -322.0
+offset_right = -469.0
+offset_bottom = -225.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6bpgo")
 
 [node name="WindowBg" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 742.0
-offset_bottom = 314.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_0lt7t")
+expand_mode = 1
 
 [node name="InnerWindowBgMargin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = -1
-theme_override_constants/margin_top = 35
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
 
 [node name="InnerWindowBg" type="TextureRect" parent="InnerWindowBgMargin"]
-custom_minimum_size = Vector2(700, 220)
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 size_flags_stretch_ratio = 5.04
 texture = ExtResource("2_8etuq")
 expand_mode = 1
@@ -56,16 +60,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 10
+alignment = 1
 
 [node name="ItemGridMargin" type="MarginContainer" parent="InnerWindowBgMargin/InnerWindowBg/HBoxContainer"]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 4
+theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InnerWindowBgMargin/InnerWindowBg/HBoxContainer/ItemGridMargin"]
 layout_mode = 2
@@ -97,7 +102,8 @@ expand_mode = 4
 stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="InnerWindowBgMargin/InnerWindowBg/HBoxContainer"]
-custom_minimum_size = Vector2(320, 0)
+visible = false
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
@@ -119,10 +125,10 @@ anchor_left = 0.066
 anchor_top = 0.049
 anchor_right = 0.087
 anchor_bottom = 0.125
-offset_left = 0.0279999
-offset_top = 19.378
-offset_right = 48.446
-offset_bottom = 29.25
+offset_left = 0.153999
+offset_top = 2.378
+offset_right = 56.203
+offset_bottom = 12.25
 texture = ExtResource("3_nqk2n")
 stretch_mode = 3
 
@@ -134,6 +140,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "物品"
+text = "手提包"
 horizontal_alignment = 1
 vertical_alignment = 1

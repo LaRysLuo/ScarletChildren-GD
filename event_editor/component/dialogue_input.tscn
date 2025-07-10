@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwk0uqj7m3sv6"]
+
+[ext_resource type="Script" path="res://event_editor/component/dialogue_input.gd" id="1_affpp"]
+
+[node name="DialogueInput" type="VBoxContainer"]
+script = ExtResource("1_affpp")
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+split_offset = 70
+dragger_visibility = 2
+
+[node name="Label2" type="Label" parent="HSplitContainer3"]
+layout_mode = 2
+text = "文本键"
+
+[node name="HBoxContainer" type="HSplitContainer" parent="HSplitContainer3"]
+layout_mode = 2
+split_offset = 150
+
+[node name="LineEdit" type="LineEdit" parent="HSplitContainer3/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "请输入文本键"
+
+[node name="Button" type="Button" parent="HSplitContainer3/HBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "X"
+
+[node name="HSplitContainer4" type="HSplitContainer" parent="."]
+layout_mode = 2
+split_offset = 385
+
+[node name="Label" type="Label" parent="HSplitContainer4"]
+layout_mode = 2
+text = "对话表情"
+
+[node name="OptionButton" type="OptionButton" parent="HSplitContainer4"]
+layout_mode = 2
+selected = 0
+item_count = 10
+popup/item_0/text = "通常"
+popup/item_1/text = "高兴"
+popup/item_1/id = 1
+popup/item_2/text = "害羞"
+popup/item_2/id = 2
+popup/item_3/text = "哭泣"
+popup/item_3/id = 3
+popup/item_4/text = "惊讶"
+popup/item_4/id = 4
+popup/item_5/text = "不满"
+popup/item_5/id = 5
+popup/item_6/text = "困倦"
+popup/item_6/id = 6
+popup/item_7/text = "害怕"
+popup/item_7/id = 7
+popup/item_8/text = "疑惑"
+popup/item_8/id = 8
+popup/item_9/text = "无语"
+popup/item_9/id = 9
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "文本预览"
+
+[node name="TextPreview" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0.560784)
+z_index = 5
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="TextEdit" type="TextEdit" parent="TextPreview"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+editable = false
+wrap_mode = 1

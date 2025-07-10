@@ -7,13 +7,10 @@ enum GameState {
 	Buszing, #忙碌的
 }
 
-enum Balloon{
-	Angry,	
-}
-
 
 ## 资源
 
+# 物品提示框
 var notify_prefab = preload("res://component/main_notify/main_ notify.tscn") # 通知预制体
 var color_screen_pre:PackedScene = preload("res://component/color_rect/color_rect_full.tscn")
 
@@ -21,44 +18,71 @@ var config:PlayerConfig
 
 
 ## 信号
-signal on_event_trigger_start
-signal on_event_trigger_end
+signal on_event_trigger_start # 事件开始时点
+signal on_event_trigger_end #事件结束时点
+signal on_buszing_finished ## 当忙碌状态结束了
 signal on_player_loaded
+signal on_player_ready #当玩家准备就绪
 
 ## 玩家场景
-var game_state = GameState.Normal 
+var game_state:GameState = GameState.Normal 
 
-## 玩家位置
+## 可存储类
+var savable_list:Dictionary = {}
 
-## 属性
+
+## 玩家
 var player:PlayerV1:
-	get():
-		return game_player.player
-
-var sub_viewport:
-	get: return get_node("SubViewport")
+	get(): return game_player.player
 
 
-@export var data_variable:DataVariable = preload("res://auto_load/data_variable/data_variable.gd").new()
-# @export var data_player:DataPlayer = preload("res://auto_load/data_player/data_player.gd").new()
+## 变量数据
+@export var loaded_game_data:Dictionary
 
+
+## 游戏数据类
 @export var game_data:GameData = preload("res://auto_load/game_data/game_data.gd").new()
+## 游戏玩家类
 @export var game_player:GamePlayer = preload("res://auto_load/game_player/game_player.gd").new()
+## 游戏道具类
+@export var game_items:GameItems = preload("res://auto_load/game_items/game_items.gd").new()
+## 游戏变量类
+@export var game_variable:GameVariable = preload("res://auto_load/game_variable/game_variable.gd").new()
 
+# @export var game_story:StoryFlagHandler = preload("res://scripts/core/story_flag/story_flag_handler.gd").new()
+
+## 游戏时间类
 @export var game_time:GameTime = preload("res://auto_load/game_time/game_time.gd").new()
 
-var is_normal_state:
+## Steam成就类
+@export var steam_achievement:SteamAchievement = preload("res://auto_load/steam_achievement/steam_achievement.gd").new()
+
+## 是否为正常状态
+var is_normal_state:bool:
 	get(): return game_state == GameState.Normal
 
+## 是否忙碌的
+var is_buszing: bool:
+	get(): return game_state == GameState.Buszing
+
 func set_game_state_buszing():
+	print("[GameManager]正在忙碌中")
+	# get_tree().paused = true
 	game_state = GameState.Buszing
 
 func set_game_state_normal():
+	# get_tree().paused = false
 	game_state = GameState.Normal
-	print("游戏状态变为正常")
+	print("[GameManager]游戏状态变为正常")
+	on_buszing_finished.emit()
+	
+func do_executable(): on_player_ready.emit()
 
 
+#region 生命周期
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	set_game_state_buszing()
 	#TranslationServer.set_locale('en')
 	config = load("res://config/player_config.tres") 
@@ -71,69 +95,105 @@ func _ready() -> void:
 
 	# 初始化data_player
 	_init_game_player()
+	_init_game_items()
+	_init_game_variable()
+	_game_time()
 
-	# data_player.load_items_at_start()
-	# data_player.load_items_raw()
-	
-	
-	# 初始化游戏时间
-	add_child(game_time)
-	
-	# 连接信号：这些信号是为了事件触发开始时点和结束时点的信号
-	on_event_trigger_start.connect(_event_trigger_start)
-	on_event_trigger_end.connect(_event_trigger_end)
-	
-	## 载入游戏数据 TODO 实际不能在这里调用
-	#SceneManager.move("res://scenes/maps/蔷薇馆·西馆走廊2F/map_蔷薇馆·西馆走廊2f.tscn",Vector2i(8,12),true,true)
-	##return
-	#await  SaveManager.load_data()
-	#await get_tree().create_timer(0.5).timeout
-	#GameManager.data_player.gain_item("06i_3_手电筒（魔法灯）")
-	#GameManager.data_player.gain_item("301f_0_羽新的日记")
-	#GameManager.data_player.gain_item("103i_0_5号电池")
-	#GameManager.data_player.gain_item("203c_0_隐藏蔷薇合照已调查")
-	#GameManager.data_player.gain_item("205c_0_追逐怪出现")
-	#GameManager.data_player.gain_item("206c_0_二楼电力恢复")
-	
-	#set_game_state_normal()
+	# _init_game_story()
 
+	_init_steam()
+	
+   
+   
+	call_deferred("_load_game_data")
+
+
+func _process(_delta: float) -> void:
+	Steam.run_callbacks()
+
+
+
+#endregion 
+
+## 在_ready一帧后执行
+func _load_game_data():
+	# var _data = Save.load_data()
+	# if _data && _data is Dictionary:
+	#     loaded_game_data = _data 
+	# # get_tree().paused = true
+	pass
 
 ## 初始化游戏数据管理
 func _init_game_data():
-	game_data.initialize()
-	pass
+	self.add_child(game_data)
 
+## 初始化游戏玩家类
 func _init_game_player():
 	game_player.on_player_loaded.connect(_on_player_loaded)
-	game_player.on_player_item_changed.connect(show_item_notify)
+	savable_list["game_player"] = game_player
+	
+## 初始化游戏道具类
+func _init_game_items():
+	game_items.on_player_item_changed.connect(show_item_notify)
+	game_items.initialize()
+	savable_list["game_items"] = game_items
+
+## 初始化游戏变量类
+func _init_game_variable():
+	savable_list["game_variable"] = game_variable
+
+ # 初始化游戏时间
+func _game_time():
+	add_child(game_time)
+	savable_list["game_time"] = game_time
+
+## 初始化steam
+func _init_steam():
+	var initial:Dictionary  = Steam.steamInitEx(3770050)
+	if initial['status'] > Steam.STEAM_API_INIT_RESULT_OK:
+		print("Failed to initialize Steam, shutting down: %s" % initial)
+		get_tree().quit()
+		return
+	print("[Steam]初始化成功")
+	Steam.current_stats_received.connect(_on_steam_stats_ready,CONNECT_ONE_SHOT)
+	Steam.user_stats_received.connect(_on_steam_stats_ready)
+	var is_owned = Steam.isSubscribed()
+	if !is_owned:
+		print('[Steam]你没有拥有该游戏')
+		get_tree().quit()
+	# steam_achievement.test_remove_achievement("01_WELCOME_TO_SCARLETMANOR")
+	steam_achievement.load_all_achievenment_from_steam()
+
 
 
 func _on_player_loaded():
 	# 初始化完毕，使游戏开始运行
+	print("[GameManager]玩家初始化完成")
 	set_game_state_normal()
+	
 	on_player_loaded.emit()
-	pass
+
+func _on_steam_stats_ready(game_id: int, result: int, user_id: int):
+	print("[Steam]game_id=%s,result=%s,userid=%s",[game_id,result,user_id])
+	steam_achievement.load_all_achievenment_from_steam()
 
 
 ## 事件开始的回调函数
 func _event_trigger_start():
+	print("[GM]开始繁忙")
 	set_game_state_buszing()
+	on_event_trigger_start.emit()
 
 ## 事件结束的回调函数
 func _event_trigger_end():
+	print("[GM]恢复正常")
 	set_game_state_normal()
+	on_event_trigger_end.emit()
 
 ## 播放打字声音
 func play_typing_se():
 	AudioManager.play_se("pushing_a_key")
 
-
-
-
-## INFO 获得道具
-## 通过item的key值获得对应的item
-func gain_item(item_key:String):
-	game_player.gain_item(item_key)
 	
 #func remove_item()
 
@@ -177,6 +237,7 @@ func fadeout_black(time:float = 1):
 	
 ## 淡入画面
 func fadein(time:float = 1):
+	
 	if color_screen:
 		await color_screen.fadein(time)
 		color_screen = null
@@ -272,7 +333,7 @@ func _set_ent_tween(char_name:StringName,is_show:bool,time:float):
 
 ## 解析名字为事件实例
 func parse_event_name(event_name:StringName) :
-	if event_name == "sefl":
+	if event_name == "player":
 		return player
 	if event_name == "":
 		return null
@@ -303,7 +364,12 @@ func wait(time:float):
 ## 触发事件的封装
 func trigger_event_res(event_res:Events_Res,trigger_self:Event = null,args= {}):
 	#if !GameManager.is_normal_state: return
-	on_event_trigger_start.emit()
+	## Q: 为什么这里要使用on_event_trigger_start.emit()，而不是直接放到set_game_state_buszing
+	## A: 这个on_event_trigger_start和on_event_trigger_end本身只表示事件触发开始时点和事件触发结束时点，
+	##    不是表示事件忙碌状态得结束
+	## 但是确实发现，这样写有点奇怪，所以现在进行了改版25.6.7
+
+	_event_trigger_start()
 	var event:BaseEventNode = event_res.tree
 	## WARNING 事件处理主逻辑
 	## 如果需要添加新的节点逻辑，请去对应继承BaseEventNode的子类去重写_execute
@@ -311,6 +377,6 @@ func trigger_event_res(event_res:Events_Res,trigger_self:Event = null,args= {}):
 	var et = EventThread.new()
 	await et.trigger_event(event,trigger_self,args).on_complete
 	_event_trigger_end()
-	on_event_trigger_end.emit()
+	
 
 	

@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://wfqjriegb47u"]
+
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/prefabs/app_menu_item.gd" id="1_h6bor"]
+[ext_resource type="LabelSettings" uid="uid://crb5su7vef2d8" path="res://assets/fonts/ui_label_settings.tres" id="4_1kcmj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ql2jc"]
+bg_color = Color(0.3904, 0.64, 0.48192, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.103744, 0.103744, 0.103743, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.548963, 0.548963, 0.548963, 0.6)
+shadow_size = 2
+shadow_offset = Vector2(2.975, 1.75)
+
+[node name="AppMenuItemV2" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 108.0
+grow_horizontal = 2
+script = ExtResource("1_h6bor")
+
+[node name="Icon" type="Panel" parent="."]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ql2jc")
+
+[node name="TextureRect" type="TextureRect" parent="Icon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = -9.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "手提包"
+label_settings = ExtResource("4_1kcmj")
+horizontal_alignment = 1

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvvk3hqxia3fs"]
+
+[ext_resource type="Texture2D" uid="uid://dm6idyh6sifpl" path="res://assets/characters/$幽灵晓翼（代用）.png" id="1_a4330"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq8bj"]
+atlas = ExtResource("1_a4330")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kf2j"]
+atlas = ExtResource("1_a4330")
+region = Rect2(32, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3kfc"]
+atlas = ExtResource("1_a4330")
+region = Rect2(32, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0olm5"]
+atlas = ExtResource("1_a4330")
+region = Rect2(32, 144, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uawlx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq8bj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kf2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3kfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0olm5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Phantom" type="AnimatedSprite2D"]
+modulate = Color(0.2484, 0.2484, 0.2484, 1)
+position = Vector2(396, 537)
+sprite_frames = SubResource("SpriteFrames_uawlx")

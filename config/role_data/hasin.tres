@@ -7,5 +7,5 @@
 script = ExtResource("1_ddgin")
 role_name = "羽新"
 theme_color = Color(0.741176, 0.054902, 0.137255, 1)
-tachie = ExtResource("2_vm6mq")
+tachie_normal = ExtResource("2_vm6mq")
 desc = ""

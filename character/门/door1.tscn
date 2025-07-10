@@ -1,8 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnvpecscbbl2q"]
+[gd_scene load_steps=18 format=3 uid="uid://c68b8m41yt4vm"]
 
-[ext_resource type="Script" path="res://character/门/door1.gd" id="1_sx0sr"]
-[ext_resource type="Texture2D" uid="uid://c5uiupvmxp3hc" path="res://character/门/e_t04_ドア外装.png" id="3_gxgwn"]
-[ext_resource type="Texture2D" uid="uid://x5pgo7ppn2ut" path="res://assets/tilesets/others/door_empty.png" id="4_k25tw"]
+[ext_resource type="Script" path="res://character/门/door1.gd" id="1_ieepy"]
+[ext_resource type="Texture2D" uid="uid://x5pgo7ppn2ut" path="res://assets/tilesets/others/door_empty.png" id="2_4eyqk"]
+[ext_resource type="Texture2D" uid="uid://c5uiupvmxp3hc" path="res://character/门/e_t04_ドア外装.png" id="3_mhtxd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yogc0"]
 
@@ -10,47 +10,47 @@
 font_size = 12
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vr448"]
-atlas = ExtResource("4_k25tw")
+atlas = ExtResource("2_4eyqk")
 region = Rect2(0, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbqv1"]
-atlas = ExtResource("3_gxgwn")
+atlas = ExtResource("3_mhtxd")
 region = Rect2(0, 192, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86ege"]
-atlas = ExtResource("3_gxgwn")
+atlas = ExtResource("3_mhtxd")
 region = Rect2(0, 128, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kccu3"]
-atlas = ExtResource("3_gxgwn")
+atlas = ExtResource("3_mhtxd")
 region = Rect2(0, 64, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fv4h5"]
-atlas = ExtResource("3_gxgwn")
+atlas = ExtResource("3_mhtxd")
 region = Rect2(0, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xkgw5"]
-atlas = ExtResource("3_gxgwn")
+atlas = ExtResource("3_mhtxd")
 region = Rect2(0, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rsny2"]
-atlas = ExtResource("3_gxgwn")
+atlas = ExtResource("3_mhtxd")
 region = Rect2(0, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fnqbg"]
-atlas = ExtResource("3_gxgwn")
+atlas = ExtResource("3_mhtxd")
 region = Rect2(0, 64, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03vqp"]
-atlas = ExtResource("3_gxgwn")
+atlas = ExtResource("3_mhtxd")
 region = Rect2(0, 128, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4e5c"]
-atlas = ExtResource("3_gxgwn")
+atlas = ExtResource("3_mhtxd")
 region = Rect2(0, 192, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpqkg"]
-atlas = ExtResource("4_k25tw")
+atlas = ExtResource("2_4eyqk")
 region = Rect2(0, 0, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ffnn2"]
@@ -115,7 +115,7 @@ animations = [{
 [node name="门1" type="Node2D" groups=["events"]]
 z_index = 1
 position = Vector2(0, 1)
-script = ExtResource("1_sx0sr")
+script = ExtResource("1_ieepy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 99

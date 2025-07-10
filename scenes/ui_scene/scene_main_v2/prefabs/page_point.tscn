@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceqhkvl4jfwvo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_po7qu"]
+bg_color = Color(0.790483, 0.509655, 0.546568, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="PagePoint" type="Panel"]
+custom_minimum_size = Vector2(10, 10)
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_po7qu")

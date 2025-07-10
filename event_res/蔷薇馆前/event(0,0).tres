@@ -1,55 +1,12 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=13 format=3 uid="uid://dhl4x364tbpyp"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=5 format=3 uid="uid://dhl4x364tbpyp"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_jpyuk"]
 [ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_07k66"]
-[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_oqmmo"]
-[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="4_wm64b"]
-[ext_resource type="Script" path="res://event_editor/models/sub_thread_data .gd" id="5_6adhn"]
-
-[sub_resource type="Resource" id="Resource_uxogc"]
-script = ExtResource("3_oqmmo")
-script_cmd = "GameManager.reset_camera()"
-children = Array[ExtResource("2_07k66")]([])
-node_type = 9
-pos = Vector2(1020, -20)
-
-[sub_resource type="Resource" id="Resource_wbwnm"]
-script = ExtResource("4_wm64b")
-time = 2.0
-children = Array[ExtResource("2_07k66")]([SubResource("Resource_uxogc")])
-node_type = 6
-pos = Vector2(800, 80)
-
-[sub_resource type="Resource" id="Resource_3bjpu"]
-script = ExtResource("3_oqmmo")
-script_cmd = "await GameManager.camera_move()"
-children = Array[ExtResource("2_07k66")]([SubResource("Resource_wbwnm")])
-node_type = 9
-pos = Vector2(480, -100)
-
-[sub_resource type="Resource" id="Resource_efmq7"]
-script = ExtResource("3_oqmmo")
-script_cmd = "AudioManager.play_se(\"hop\")"
-children = Array[ExtResource("2_07k66")]([])
-node_type = 9
-pos = Vector2(740, 220)
-
-[sub_resource type="Resource" id="Resource_3m8if"]
-script = ExtResource("4_wm64b")
-time = 2.6
-children = Array[ExtResource("2_07k66")]([SubResource("Resource_efmq7")])
-node_type = 6
-pos = Vector2(460, 220)
-
-[sub_resource type="Resource" id="Resource_78vgy"]
-script = ExtResource("5_6adhn")
-children = Array[ExtResource("2_07k66")]([SubResource("Resource_3bjpu"), SubResource("Resource_3m8if")])
-node_type = 10
-pos = Vector2(280, 60)
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_jkhbb"]
 
 [sub_resource type="Resource" id="Resource_wvvwb"]
 script = ExtResource("2_07k66")
-children = Array[ExtResource("2_07k66")]([SubResource("Resource_78vgy")])
+children = Array[ExtResource("2_jkhbb")]([])
 node_type = 0
 pos = Vector2(60, 80)
 

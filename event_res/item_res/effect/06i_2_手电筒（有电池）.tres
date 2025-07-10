@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=18 format=3 uid="uid://cxskmeojw2pjv"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=19 format=3 uid="uid://cxskmeojw2pjv"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_ehgiy"]
 [ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_gnifo"]
 [ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_7aoka"]
 [ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_13wt6"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="3_e6jxf"]
 [ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="4_iulsf"]
 [ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="4_lbb66"]
 
@@ -12,6 +13,9 @@ script = ExtResource("3_7aoka")
 text = "手电筒关闭了"
 type = 0
 wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_e6jxf")]([])
 children = Array[ExtResource("2_gnifo")]([])
 node_type = 1
 pos = Vector2(1760, 500)
@@ -40,6 +44,9 @@ script = ExtResource("3_7aoka")
 text = "手电筒打开了"
 type = 0
 wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_e6jxf")]([])
 children = Array[ExtResource("2_gnifo")]([])
 node_type = 1
 pos = Vector2(1780, 180)

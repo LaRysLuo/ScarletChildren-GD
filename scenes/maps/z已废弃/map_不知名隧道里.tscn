@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://k17354wt144h"]
+
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_vvauf"]
+[ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_jbhra"]
+[ext_resource type="Resource" uid="uid://cp1dpu3axpya1" path="res://event_res/e08.tres" id="2_xhm3h"]
+[ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="3_b7lxg"]
+[ext_resource type="Texture2D" uid="uid://del6m104mg6v7" path="res://assets/tilesets/不知名隧道/不知名隧道里 - 0.png" id="4_urgqu"]
+[ext_resource type="Script" path="res://scenes/maps/z已废弃/map_不知名隧道里.gd" id="5_3t7gn"]
+[ext_resource type="Texture2D" uid="uid://jm8nwdrfna0r" path="res://assets/tilesets/不知名隧道/不知名隧道里 - 1.png" id="5_j30oi"]
+[ext_resource type="Texture2D" uid="uid://12ui6dhipehb" path="res://assets/tilesets/不知名隧道/不知名隧道里 - 2.png" id="6_ep5uf"]
+
+[sub_resource type="Resource" id="Resource_7jin3"]
+resource_name = "(0,0)"
+script = ExtResource("2_jbhra")
+is_show = true
+condition = Array[ExtResource("3_b7lxg")]([])
+frame_index = 0
+pos = Vector2i(0, 0)
+event_res = ExtResource("2_xhm3h")
+
+[node name="不知名隧道里" instance=ExtResource("1_vvauf")]
+
+[node name="Maps" parent="." index="0"]
+event_group = Array[ExtResource("2_jbhra")]([SubResource("Resource_7jin3")])
+
+[node name="0" parent="Maps" index="0"]
+position = Vector2(401, 300)
+texture = ExtResource("4_urgqu")
+
+[node name="AnimatedBackgroud" type="Node2D" parent="Maps" index="1"]
+script = ExtResource("5_3t7gn")
+
+[node name="1-1" type="Sprite2D" parent="Maps/AnimatedBackgroud" index="0"]
+z_index = 12
+position = Vector2(399, 75)
+texture = ExtResource("6_ep5uf")
+
+[node name="1-2" type="Sprite2D" parent="Maps/AnimatedBackgroud" index="1"]
+z_index = 12
+position = Vector2(399, 299)
+texture = ExtResource("6_ep5uf")
+
+[node name="1-3" type="Sprite2D" parent="Maps/AnimatedBackgroud" index="2"]
+z_index = 12
+position = Vector2(399, 523)
+texture = ExtResource("6_ep5uf")
+
+[node name="2" parent="Maps" index="2"]
+position = Vector2(399, 299)
+texture = ExtResource("5_j30oi")
+
+[node name="Objects" parent="Maps" index="3"]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0, 12, 0, 8, 0, 1, 0, 0, 0, 0, 0, 7, 0)
+
+[node name="Movable" parent="Maps" index="4"]
+tile_map_data = PackedByteArray(0, 0, 12, 0, 8, 0, 2, 0, 1, 0, 1, 0, 0, 0)

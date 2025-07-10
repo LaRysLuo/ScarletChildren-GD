@@ -13,6 +13,22 @@
 texture = ExtResource("2_vx4vm")
 modulate_color = Color(0, 0, 0, 0.827451)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr5ho"]
+atlas = ExtResource("5_e3ucw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q858d"]
+atlas = ExtResource("5_e3ucw")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jdun"]
+atlas = ExtResource("5_e3ucw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vy64"]
+atlas = ExtResource("5_e3ucw")
+region = Rect2(160, 0, 32, 32)
+
 [sub_resource type="LabelSettings" id="LabelSettings_rbe6h"]
 font = ExtResource("2_0c0fu")
 font_size = 18
@@ -23,7 +39,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DialogueBox/MarginContainer/VBoxContainer/Control2/TextureRect2:position")
+tracks/0/path = NodePath("Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Control2/TextureRect2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -41,7 +57,7 @@ step = 0.333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DialogueBox/MarginContainer/VBoxContainer/Control2/TextureRect2:position")
+tracks/0/path = NodePath("Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Control2/TextureRect2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,52 +73,141 @@ _data = {
 "shark": SubResource("Animation_87q3v")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rr5ho"]
-atlas = ExtResource("5_e3ucw")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q858d"]
-atlas = ExtResource("5_e3ucw")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6jdun"]
-atlas = ExtResource("5_e3ucw")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0vy64"]
-atlas = ExtResource("5_e3ucw")
-region = Rect2(160, 0, 32, 32)
-
 [node name="DialogueSystem" type="CanvasLayer"]
 process_priority = 10
 layer = 11
 script = ExtResource("1_dckcq")
 
-[node name="DialogueBox" type="PanelContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 446.0
-offset_right = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 59.44)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 520.0
+offset_bottom = 579.44
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="DialogueBox" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -75.0
+offset_right = 801.0
+offset_bottom = 81.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_wehxc")
 
-[node name="MarginContainer" type="MarginContainer" parent="DialogueBox"]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/DialogueBox"]
 layout_mode = 2
-theme_override_constants/margin_left = 248
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DialogueBox/MarginContainer"]
+[node name="StartToPonderMode" type="HBoxContainer" parent="Control/DialogueBox/MarginContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="XButton" type="HBoxContainer" parent="Control/DialogueBox/MarginContainer2/StartToPonderMode"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="Control/DialogueBox/MarginContainer2/StartToPonderMode/XButton"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_rr5ho")
+
+[node name="Label" type="Label" parent="Control/DialogueBox/MarginContainer2/StartToPonderMode/XButton"]
+layout_mode = 2
+text = "sys_startponder"
+
+[node name="PonderMode" type="HBoxContainer" parent="Control/DialogueBox/MarginContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 7
+
+[node name="AButton" type="HBoxContainer" parent="Control/DialogueBox/MarginContainer2/PonderMode"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="Control/DialogueBox/MarginContainer2/PonderMode/AButton"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_q858d")
+
+[node name="Label" type="Label" parent="Control/DialogueBox/MarginContainer2/PonderMode/AButton"]
+layout_mode = 2
+text = "sys_ponder"
+
+[node name="BButton" type="HBoxContainer" parent="Control/DialogueBox/MarginContainer2/PonderMode"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="Control/DialogueBox/MarginContainer2/PonderMode/BButton"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6jdun")
+
+[node name="Label" type="Label" parent="Control/DialogueBox/MarginContainer2/PonderMode/BButton"]
+layout_mode = 2
+text = "sys_exit"
+
+[node name="YButton2" type="HBoxContainer" parent="Control/DialogueBox/MarginContainer2/PonderMode"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="Control/DialogueBox/MarginContainer2/PonderMode/YButton2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0vy64")
+
+[node name="Label" type="Label" parent="Control/DialogueBox/MarginContainer2/PonderMode/YButton2"]
+layout_mode = 2
+text = "sys_item"
+
+[node name="KeyTipsBottom" parent="Control/DialogueBox/MarginContainer2" instance=ExtResource("6_doo03")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -208.0
+offset_right = 801.0
+offset_bottom = 84.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_s8ynm")
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(1.88, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Control" type="Control" parent="Control/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 130)
 layout_mode = 2
 
-[node name="Control" type="Control" parent="DialogueBox/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Control" type="Control" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 37.34)
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="DialogueBox/MarginContainer/VBoxContainer/Control"]
+[node name="NameLabel" type="Label" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Control"]
 custom_minimum_size = Vector2(-3.275, 0)
 layout_mode = 2
 offset_left = 4.0
@@ -112,10 +217,11 @@ offset_bottom = 33.0
 text = "礼诗"
 label_settings = SubResource("LabelSettings_rbe6h")
 
-[node name="ContentLabel" type="RichTextLabel" parent="DialogueBox/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 70)
+[node name="ContentLabel" type="RichTextLabel" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
 theme_override_constants/line_separation = 5
 theme_override_fonts/normal_font = ExtResource("2_0c0fu")
 bbcode_enabled = true
@@ -124,12 +230,12 @@ text = "礼诗要说的话显示在这里
 scroll_active = false
 autowrap_mode = 2
 
-[node name="Control2" type="Control" parent="DialogueBox/MarginContainer/VBoxContainer"]
+[node name="Control2" type="Control" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect2" type="TextureRect" parent="DialogueBox/MarginContainer/VBoxContainer/Control2"]
+[node name="TextureRect2" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Control2"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 1
 anchors_preset = 8
@@ -146,98 +252,17 @@ texture = ExtResource("4_svu3c")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogueBox/MarginContainer/VBoxContainer/Control2"]
-root_node = NodePath("../../../../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Control2"]
+root_node = NodePath("../../../../../../..")
 libraries = {
 "": SubResource("AnimationLibrary_vhsiw")
 }
 autoplay = "shark"
 
-[node name="MarginContainer2" type="MarginContainer" parent="DialogueBox"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 5
-
-[node name="StartToPonderMode" type="HBoxContainer" parent="DialogueBox/MarginContainer2"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/separation = 10
-
-[node name="XButton" type="HBoxContainer" parent="DialogueBox/MarginContainer2/StartToPonderMode"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="TextureRect" type="TextureRect" parent="DialogueBox/MarginContainer2/StartToPonderMode/XButton"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_rr5ho")
-
-[node name="Label" type="Label" parent="DialogueBox/MarginContainer2/StartToPonderMode/XButton"]
-layout_mode = 2
-text = "sys_startponder"
-
-[node name="PonderMode" type="HBoxContainer" parent="DialogueBox/MarginContainer2"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/separation = 7
-
-[node name="AButton" type="HBoxContainer" parent="DialogueBox/MarginContainer2/PonderMode"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="TextureRect" type="TextureRect" parent="DialogueBox/MarginContainer2/PonderMode/AButton"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_q858d")
-
-[node name="Label" type="Label" parent="DialogueBox/MarginContainer2/PonderMode/AButton"]
-layout_mode = 2
-text = "sys_ponder"
-
-[node name="BButton" type="HBoxContainer" parent="DialogueBox/MarginContainer2/PonderMode"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="TextureRect" type="TextureRect" parent="DialogueBox/MarginContainer2/PonderMode/BButton"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_6jdun")
-
-[node name="Label" type="Label" parent="DialogueBox/MarginContainer2/PonderMode/BButton"]
-layout_mode = 2
-text = "sys_exit"
-
-[node name="YButton2" type="HBoxContainer" parent="DialogueBox/MarginContainer2/PonderMode"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="TextureRect" type="TextureRect" parent="DialogueBox/MarginContainer2/PonderMode/YButton2"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_0vy64")
-
-[node name="Label" type="Label" parent="DialogueBox/MarginContainer2/PonderMode/YButton2"]
-layout_mode = 2
-text = "sys_item"
-
-[node name="KeyTipsBottom" parent="DialogueBox/MarginContainer2" instance=ExtResource("6_doo03")]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 20.0
-offset_top = 214.0
-offset_right = 307.661
-offset_bottom = 673.0
-scale = Vector2(0.84, 0.84)
-texture = ExtResource("2_s8ynm")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Options" parent="." instance=ExtResource("3_ym6pg")]
-offset_left = 618.0
-offset_top = 347.0
-offset_right = 774.0
-offset_bottom = 433.0
+[node name="Options" parent="Control" instance=ExtResource("3_ym6pg")]
+custom_minimum_size = Vector2(160, 100)
+layout_mode = 0
+offset_left = 619.0
+offset_top = -196.0
+offset_right = 779.0
+offset_bottom = -96.0

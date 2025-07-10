@@ -39,6 +39,8 @@ var spin_box:SpinBox:
 var expression_opt:OptionButton:
 	get: return get_node("VBoxContainer/HSplitContainer4/OptionButton")
 
+var position_type:OptionButton:
+	get: return get_node("VBoxContainer/HSplitContainer5/OptionButton")
 
 func _enter_tree() -> void:
 	wait_type_btn = $VBoxContainer/HSplitContainer/OptionButton
@@ -86,12 +88,13 @@ func _refresh_role_selected():
 	else: role_selected_text.text = "无"
 	
 
-func  set_value(text:String,role:Role,type:int,wait_time:int,expression_id = 0):
+func  set_value(text:String,role:Role,type:int,wait_time:int,expression_id = 0,_position_type = 2):
 	text_edit.text = text
 	role_selected = role
 	option_btn.selected = type
 	spin_box.value =wait_time
 	expression_opt.selected = expression_id if expression_id else 0
+	position_type.selected = _position_type
 	_on_item_selected(type)
 	_refresh_role_selected()
 	_refresh_preview()
@@ -106,4 +109,4 @@ func _refresh_preview():
 	text_preview.text = TranslationServer.get_translation_object('zh_CN').get_message(text_edit.text)
 
 func to_data(_edit:GraphEdit) -> BaseEventNode:
-	return MessageNode.new(BaseEventNode.Message,self.position_offset,text_edit.text,role_selected,option_btn.selected,spin_box.value,expression_opt.selected)
+	return MessageNode.new(BaseEventNode.Message,self.position_offset,text_edit.text,role_selected,option_btn.selected,spin_box.value,expression_opt.selected,position_type.selected)

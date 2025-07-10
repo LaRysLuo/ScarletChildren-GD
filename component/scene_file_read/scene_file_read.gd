@@ -31,16 +31,16 @@ var page_index = -1
 var close_type:int = ALL_READED_CLOSE
 
 ## 信号
-signal read_finished ## 所有消息被读完了
+# signal read_finished ## 所有消息被读完了
 
 func _ready() -> void:
 	self.hide()
 
 ## 启动阅读模式
-func read_pre(file_title,close_type = 1) -> SceneFileRead:
+func read_pre(_file_title,_close_type = 1) -> SceneFileRead:
 	
-	self.close_type = close_type
-	title_label.text = tr(file_title)
+	self.close_type = _close_type
+	title_label.text = tr(_file_title)
 	if self.close_type == ALL_READED_CLOSE:
 		key_tip.disable_key(KeyTipsBottom.keyType.key_b)
 	next_page(true)

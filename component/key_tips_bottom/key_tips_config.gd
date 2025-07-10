@@ -14,6 +14,6 @@ signal  on_value_changed
 		emit_signal("on_value_changed")
 
 
-func _init(key_name:StringName = "功能名称",is_show:bool =true) -> void:
-	self.key_name = key_name
-	self.is_show = is_show
+func _init(_key_name:StringName = "功能名称",_is_show:bool =true) -> void:
+	self.key_name = _key_name
+	self.is_show = _is_show

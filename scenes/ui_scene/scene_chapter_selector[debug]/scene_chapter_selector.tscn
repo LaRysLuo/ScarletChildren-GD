@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqs28yf8ateyu"]
+
+[ext_resource type="PackedScene" uid="uid://cv28tatigk75y" path="res://scenes/ui_scene/scene_chapter_selector[debug]/chapter_item.tscn" id="1_84h5t"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_chapter_selector[debug]/scene_chapter_selector.gd" id="1_gri0n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_irrlm"]
+font_size = 31
+
+[sub_resource type="LabelSettings" id="LabelSettings_6465c"]
+font_size = 14
+font_color = Color(0.643342, 0.17624, 0.36751, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pgq6s"]
+font_size = 18
+
+[node name="SceneChapterSelector" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_gri0n")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "章节选择器（用于测试）"
+label_settings = SubResource("LabelSettings_irrlm")
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "点击下方对应的单元跳转到对应的章节，如果要配置新的章节，请在ChapterSelector类型中配置"
+label_settings = SubResource("LabelSettings_6465c")
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "伊章"
+label_settings = SubResource("LabelSettings_pgq6s")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ChapterItem" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_84h5t")]
+layout_mode = 2
+text = "c1初入蔷薇馆"
+symbol = "e1c1"
+
+[node name="ChapterItem2" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_84h5t")]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "c2熟悉的地方"
+symbol = "e1c2"
+
+[node name="ChapterItem3" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_84h5t")]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "c3小爱的烦恼"
+symbol = "e1c3"
+
+[node name="ChapterItem4" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_84h5t")]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "c4蔷薇花园"
+symbol = "e1c4"

@@ -1,17 +1,19 @@
-[gd_scene load_steps=16 format=4 uid="uid://gbs3dj1jnh64"]
+[gd_scene load_steps=18 format=4 uid="uid://gbs3dj1jnh64"]
 
 [ext_resource type="Script" path="res://component/cinema_mode/cinema.gd" id="1_88xjm"]
 [ext_resource type="Script" path="res://scripts/map_config.gd" id="1_xchar"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_87j0u"]
 [ext_resource type="Resource" uid="uid://clh33vmicpe3q" path="res://scenes/other/回忆1：图书室/event_res/showtime.tres" id="3_vggf8"]
 [ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="5_6xhva"]
-[ext_resource type="Texture2D" uid="uid://bu4kfc57c8566" path="res://scenes/maps/蔷薇馆.图书室1F/tileset/图书室1F - 1.png" id="6_tvoye"]
-[ext_resource type="Texture2D" uid="uid://da7njolsgtdf8" path="res://scenes/maps/蔷薇馆.图书室1F/tileset/图书室1F - 2.png" id="7_ermcn"]
+[ext_resource type="Texture2D" uid="uid://bu4kfc57c8566" path="res://scenes/maps/1伊章/蔷薇馆.图书室1F/tileset/图书室1F - 1.png" id="6_tvoye"]
+[ext_resource type="Texture2D" uid="uid://da7njolsgtdf8" path="res://scenes/maps/1伊章/蔷薇馆.图书室1F/tileset/图书室1F - 2.png" id="7_ermcn"]
 [ext_resource type="TileSet" uid="uid://4h8rsnwtsgr2" path="res://tilesets/main.tres" id="8_6ougj"]
 [ext_resource type="Shader" path="res://shaders/tile.gdshader" id="9_j8qfa"]
 [ext_resource type="TileSet" uid="uid://cjkcoid5hggu7" path="res://tilesets/main16.tres" id="10_h5acf"]
+[ext_resource type="Script" path="res://event_sys/TilemapEventComponent/EventPageHandler/event_page_handler.gd" id="11_2vbrs"]
 [ext_resource type="Shader" path="res://scenes/other/回忆1：图书室/map_蔷薇馆.图书室1F.gdshader" id="11_cdqrq"]
 [ext_resource type="Script" path="res://scenes/other/回忆1：图书室/film_grain.gd" id="12_5mlhu"]
+[ext_resource type="Script" path="res://event_sys/TilemapEventComponent/EventPage/event_page.gd" id="12_uyqb5"]
 
 [sub_resource type="Resource" id="Resource_7rsjo"]
 resource_name = "(21,5)"
@@ -72,6 +74,22 @@ z_index = 13
 material = SubResource("ShaderMaterial_wdukg")
 tile_set = ExtResource("10_h5acf")
 rendering_quadrant_size = 8
+
+[node name="EventPages" type="Node2D" parent="."]
+script = ExtResource("11_2vbrs")
+
+[node name="幼年礼诗" type="Node2D" parent="EventPages"]
+position = Vector2(688, 240)
+script = ExtResource("12_uyqb5")
+pos = Vector2i(21, 7)
+is_show = true
+
+[node name="幼年晓翼" type="Node2D" parent="EventPages"]
+position = Vector2(688, 496)
+script = ExtResource("12_uyqb5")
+pos = Vector2i(21, 15)
+is_show = true
+dir = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2

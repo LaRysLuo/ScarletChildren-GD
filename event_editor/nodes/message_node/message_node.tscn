@@ -55,6 +55,56 @@ text = "空"
 layout_mode = 2
 text = "选取"
 
+[node name="HSplitContainer2" type="HSplitContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+split_offset = 385
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+text = "等待时间（毫秒)"
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+min_value = 1000.0
+max_value = 10000.0
+step = 100.0
+value = 1000.0
+
+[node name="HSplitContainer5" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 385
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer5"]
+layout_mode = 2
+text = "位置"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HSplitContainer5"]
+layout_mode = 2
+selected = 2
+item_count = 3
+popup/item_0/text = "顶部"
+popup/item_1/text = "中间"
+popup/item_1/id = 1
+popup/item_2/text = "底部"
+popup/item_2/id = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 385
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "是否等待"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "等待按键"
+popup/item_1/text = "自动播放"
+popup/item_1/id = 1
+
 [node name="HSplitContainer3" type="HSplitContainer" parent="VBoxContainer"]
 layout_mode = 2
 split_offset = 125
@@ -74,7 +124,7 @@ split_offset = 385
 
 [node name="Label" type="Label" parent="VBoxContainer/HSplitContainer4"]
 layout_mode = 2
-text = "表情"
+text = "对话表情"
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer/HSplitContainer4"]
 layout_mode = 2
@@ -121,38 +171,6 @@ grow_horizontal = 2
 grow_vertical = 2
 editable = false
 wrap_mode = 1
-
-[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
-layout_mode = 2
-split_offset = 385
-
-[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer"]
-layout_mode = 2
-text = "是否等待"
-
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HSplitContainer"]
-layout_mode = 2
-selected = 0
-item_count = 2
-popup/item_0/text = "等待按键"
-popup/item_1/text = "自动播放"
-popup/item_1/id = 1
-
-[node name="HSplitContainer2" type="HSplitContainer" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-split_offset = 385
-
-[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer2"]
-layout_mode = 2
-text = "等待时间（毫秒)"
-
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HSplitContainer2"]
-layout_mode = 2
-min_value = 1000.0
-max_value = 10000.0
-step = 100.0
-value = 1000.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2

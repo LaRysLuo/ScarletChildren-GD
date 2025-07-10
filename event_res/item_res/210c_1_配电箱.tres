@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://blwfpbmp728ys"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_cv154"]
+
+[resource]
+script = ExtResource("1_cv154")
+item_id = &"210c_1_配电箱"
+item_name = &"配电箱"
+item_catagory = 2
+item_desc = " 杂货间的配电箱，还缺少1个电池"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_cv154")]([])

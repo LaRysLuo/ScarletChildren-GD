@@ -10,22 +10,25 @@ class_name PlayAnimData
 
 @export var anim_name:String
 
+@export var ori_data:Dictionary = {}
+
 @export var wait_time:float
 
 
-func _init(_cmd:int = BaseEventNode.Scripts,_pos:Vector2 = Vector2.ZERO,_anim_name:String = "",_event_type:String = "self",_event_coord:Variant = null,_wait_time:float = 0.3) -> void:
+func _init(_cmd:int = BaseEventNode.Scripts,_pos:Vector2 = Vector2.ZERO,_anim_name:String = "",_event_type:String = "this",_event_coord:Variant = null,_ori_data = {},_wait_time:float = 0.3) -> void:
 	self.node_type = _cmd
 	self.pos = _pos
 	self.anim_name = _anim_name
 	self.event_type = _event_type
 	self.event_coord = _event_coord
+	self.ori_data = _ori_data
 	self.wait_time = _wait_time
 
-func _execute(event,args):
+func _execute(_event,_args):
 	var target_event
 	match event_type:
-		"self":target_event = event
-		"player": GameManager.player
+		"this":target_event = _event
+		"player": target_event = GameManager.game_player.player
 		"other": target_event =_get_event_by_coord()
 	#print("event_type=%s,coord=%s,target_event=%s" % [event_type,event_coord,target_event])
 	if target_event is Door1:
@@ -46,4 +49,4 @@ func _get_event_by_coord() -> Event:
 	print("filters=",filters)
 	if filters.is_empty(): return null
 	return filters[0]
-	return null
+

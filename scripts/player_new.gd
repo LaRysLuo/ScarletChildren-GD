@@ -4,6 +4,11 @@ class_name PlayerV1
 
 var interact_with:Event #可交互对象
 
+const ABILITY_RUNNING := "running"
+const ABILITY_OPEN_MAIN:= "open_main_menu" ## 打开主菜单
+
+var player_movable:bool = true
+
 # EXPORT
 @export var stamina:float = 1:
 	set(val):
@@ -23,10 +28,16 @@ var interact_with:Event #可交互对象
 
 #const FLASH_LIGHT_RES = preload("res://component/flash_light/flash_light.tscn")
 
+var _ability:Array[String]
+
+func update_ability(_inner_ability:Array[String]): self._ability = _inner_ability
+	
+
 ## SIGNAL
 
 signal  on_interact_changed(event:Event,state:int) ## 当身前可交互状态变更
 signal on_stamina_changed(val:float,is_normal:bool) ## 耐力条变更
+signal on_stamina_used(val:float) ## 耐力条消耗
 
 
 ## INFO 闲置动画24.10.26添加
@@ -44,7 +55,7 @@ func _ready() -> void:
 	GameManager.on_event_trigger_start.connect(_event_trigger_start)
 	GameManager.on_event_trigger_end.connect(_event_trigger_end)
 	
-	restart_idle_timer()
+	# restart_idle_timer() ## 因为图像变化，暂时关闭动态待机画面
 	#show_flash_light()
 	
 func _init_player() -> void:
@@ -62,15 +73,16 @@ func _process(delta: float) -> void:
 	if !is_visible_in_tree():return
 	if _is_moving(): return
 	if !map_base: return
+	
 	# 跑步处理
 	_running_process(delta)
 	
 	# 输入处理
 	dir_input = Vector2i(Input.get_vector("left","right","up","down").round())
 	if dir_input.x !=0: dir_input.y=0
-	if !GameManager.is_normal_state : dir_input = Vector2i.ZERO #当不是正常游戏状态时，使输入永远为0 
-	if dir_input.x !=0 || dir_input.y != 0:
-		restart_idle_timer() ## 因为输入了，所以清空限制动画计算时间
+	if !player_movable : dir_input = Vector2i.ZERO #当不是正常游戏状态时，使输入永远为0 
+	# if dir_input.x !=0 || dir_input.y != 0:
+	# 	restart_idle_timer() ## 因为输入了，所以清空限制动画计算时间
 	move_to(dir_input)	
 
 ## 跑步处理
@@ -81,9 +93,11 @@ func _running_process(delta:float):
 		# 将计时归0
 		count_time = 0
 		# 消耗模式
-		if running_mode == 1:
+		if running_mode == 1 && is_moving:
 			# 消耗耐力奔跑
 			self.stamina -= 0.05
+			# 触发跑步耐力消耗的回调
+			on_stamina_used.emit(0.05)
 			if self.stamina <= 0:
 				# 进入疲劳模式
 				_exhausted()
@@ -98,7 +112,6 @@ func _running_process(delta:float):
 			if self.stamina >= 1:
 				_recover_run()
 				self.stamina = 1
-				# 恢复奔跑
 				
 
 func restart_idle_timer():
@@ -113,9 +126,8 @@ func restart_idle_timer():
 	#print("重新开始计时闲置动画")
 
 func play_idle_animation():
-	#print("闲置动画触发了")
+	print("[Player]闲置动画触发了")
 	if dir == Vector2i.DOWN: playerAnim.play("idle_ext")
-	pass
 
 
 func set_pos(coord:Vector2i):
@@ -135,15 +147,22 @@ func move_event_pos(event:Node2D):
 	_init_cam_limit()
 
 # 配置摄像机设置
-func _init_cam_limit():
-	var map_config = map.get_parent() as MapConfig
-	if !map_config:
-		print_debug("配置摄像机限制失败，未设置map_config")
+func _init_cam_limit(_map_config = null):
+	if !_map_config:	_map_config = map.get_parent() as MapConfig
+	if !_map_config:
+		print_debug("配置摄像机限制失败，未设置_map_config")
 		return
-	cam.limit_left = map_config.left_limit
-	cam.limit_right = map_config.right_limit
-	cam.limit_top = map_config.top_limit
-	cam.limit_bottom = map_config.bottom_limit
+	cam.limit_left = _map_config.left_limit
+	cam.limit_right = _map_config.right_limit
+	cam.limit_top = _map_config.top_limit
+	cam.limit_bottom = _map_config.bottom_limit
+
+## 设置摄像机配置
+func set_cam_limit(_limit_left:int,_limit_right:int,_limit_top:int,_limit_bottom:int):
+	cam.limit_left = _limit_left
+	cam.limit_right = _limit_right
+	cam.limit_top = _limit_top
+	cam.limit_bottom = _limit_bottom
 
 #region 玩家交互
 # 交互 - 角色移动后会触发信号，目标方向存在可交互事件
@@ -157,6 +176,7 @@ func _has_interact_event(state:int = 1):
 		_set_interact_with(event,state)
 		#print("检查到有X事件")
 	else: _set_interact_with(null,state)
+	# GameManager.do_executable()
 
 # 设置可交互对象
 func _set_interact_with(event:Event = null,state:int = 0):
@@ -191,12 +211,15 @@ func _input(event: InputEvent) -> void:
 	if !is_visible_in_tree():return
 	if event.is_action_pressed("submit") && interact_with :	_insteract(interact_with)
 	## 打開主菜單
-	if event.is_action_pressed("cancel") && !input_triggerd:
+	if event.is_action_pressed("cancel") && !input_triggerd && _ability.has(ABILITY_OPEN_MAIN):
 		self.input_triggerd = true
 		tip.hide()
 		var shot:Image = get_viewport().get_texture().get_image()
-		var mainMenu:MainMenu =	await	SceneManager.navigate_to("scene_main_menu")
-		mainMenu.set_mapshot(ImageTexture.create_from_image(shot))
+		var scene:SceneMenuV2 = await  UIManager.show_ui("scene_main")
+		scene.set_mapshot(ImageTexture.create_from_image(shot))
+		# var shot:Image = get_viewport().get_texture().get_image()
+		# var mainMenu:SceneMain =	await SceneManager.navigate_to("scene_main_menu")
+		# mainMenu.set_mapshot(ImageTexture.create_from_image(shot))
 	## 加速跑
 	if event.is_action_pressed("R1") && running_mode == 0: _start_run()
 	if event.is_action_released("R1") && running_mode == 1:_end_run()
@@ -226,6 +249,7 @@ func _insteract(with:Event):
 
 ## 加速奔跑
 func _start_run():
+	if !_ability.has(ABILITY_RUNNING): return
 	running_mode = 1
 	self.move_speed_factor = 2
 
@@ -243,9 +267,11 @@ func _end_run():
 	self.move_speed_factor = 1
 
 func _event_trigger_start():
+	player_movable = false
 	tip.hide()
 	
 func _event_trigger_end():
+	player_movable = true
 	call_deferred("_has_interact_event",1)
 	#_has_interact_event(1)
 

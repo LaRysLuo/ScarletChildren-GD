@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=4 uid="uid://daobfw1vxyrxy"]
+
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_qcjx4"]
+[ext_resource type="Texture2D" uid="uid://cpk4xy6xj4bte" path="res://scenes/maps/0序章/不知名小屋/assets/不知名的小屋_1.png" id="2_54ybg"]
+[ext_resource type="Texture2D" uid="uid://cmbb5c1f4uyqt" path="res://scenes/maps/0序章/不知名小屋/assets/不知名的小屋_2.png" id="3_k0bte"]
+[ext_resource type="Script" path="res://event_sys/TilemapEventComponent/EventPage/event_page.gd" id="4_ov0i0"]
+[ext_resource type="Resource" uid="uid://wkhmhx2xo68s" path="res://scenes/maps/0序章/不知名小屋/event/Talk.tres" id="7_b112g"]
+[ext_resource type="Resource" uid="uid://cwii0pkfk0pke" path="res://scenes/maps/0序章/不知名小屋/event/DoorEnable.tres" id="9_g4vaa"]
+[ext_resource type="Script" path="res://event_sys/TilemapEventComponent/ExPage/ex_page.gd" id="14_m2cyb"]
+[ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="21_smwk2"]
+[ext_resource type="Script" path="res://component/event_condition/ec_variable.gd" id="22_0mhkq"]
+
+[sub_resource type="Resource" id="Resource_quydc"]
+script = ExtResource("22_0mhkq")
+variable_name = "e00_heard_scarlet_mansion_story"
+value = false
+
+[sub_resource type="Resource" id="Resource_jyk4r"]
+script = ExtResource("22_0mhkq")
+variable_name = "e00_heard_scarlet_mansion_story"
+value = true
+
+[node name="不知名小屋" instance=ExtResource("1_qcjx4")]
+
+[node name="Maps" parent="." index="0"]
+bottom_limit = 600.0
+right_limit = 800.0
+
+[node name="0" parent="Maps" index="0"]
+position = Vector2(401, 400)
+texture = ExtResource("2_54ybg")
+
+[node name="2" parent="Maps" index="1"]
+position = Vector2(401, 400)
+texture = ExtResource("3_k0bte")
+
+[node name="Objects" parent="Maps" index="2"]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAALAA8AAQAAAAAAAgAMAA4AAQAAAAAABgAKAA0AAQAAAAAAAwAAAAAAAQAAAAAABAAKAAoAAwAAAAAAAwAKAAkAAQAAAAAABQA=")
+
+[node name="Movable" parent="Maps" index="3"]
+position = Vector2(1, 0)
+tile_map_data = PackedByteArray("AAAJAAsAAgABAAEAAAAJAAwAAgABAAEAAAAJAA0AAgABAAEAAAAJAA4AAgABAAEAAAAKAAsAAgABAAEAAAAKAAwAAgABAAEAAAAKAA0AAgABAAEAAAAKAA4AAgABAAEAAAALAAsAAgABAAEAAAALAAwAAgABAAEAAAALAA0AAgABAAEAAAALAA4AAgABAAEAAAAMAAsAAgABAAEAAAAMAAwAAgABAAEAAAAMAA0AAgABAAEAAAAMAA4AAgABAAEAAAANAAsAAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAANAA4AAgABAAEAAAAOAAsAAgABAAEAAAAOAAwAAgABAAEAAAAOAA0AAgABAAEAAAAOAA4AAgABAAEAAAAJAA8AAgABAAEAAAAKAA8AAgABAAEAAAALAA8AAgABAAEAAAAMAA8AAgABAAEAAAANAA8AAgABAAEAAAAKAAoAAgABAAEAAAAKAAkAAgABAAEAAAAKAAgAAgABAAEAAAAKAAcAAgABAAEAAAAKAAYAAgABAAEAAAA=")
+
+[node name="AI" type="Node2D" parent="EventPages" index="0"]
+position = Vector2(400, 464)
+script = ExtResource("4_ov0i0")
+pos = Vector2i(12, 14)
+is_show = true
+dir = 1
+
+[node name="Yui" type="Node2D" parent="EventPages" index="1"]
+position = Vector2(336, 432)
+script = ExtResource("4_ov0i0")
+pos = Vector2i(10, 13)
+is_show = true
+dir = 2
+
+[node name="Hasin" type="Node2D" parent="EventPages" index="2"]
+position = Vector2(336, 304)
+script = ExtResource("4_ov0i0")
+pos = Vector2i(10, 9)
+is_show = true
+
+[node name="Talk" type="Node2D" parent="EventPages" index="3"]
+script = ExtResource("4_ov0i0")
+condition = Array[ExtResource("21_smwk2")]([SubResource("Resource_quydc")])
+content = ExtResource("7_b112g")
+
+[node name="Door" type="Node2D" parent="EventPages" index="4"]
+position = Vector2(336, 336)
+script = ExtResource("14_m2cyb")
+pos = Vector2i(10, 10)
+
+[node name="DoorEnable" type="Node2D" parent="EventPages" index="5"]
+position = Vector2(336, 336)
+script = ExtResource("4_ov0i0")
+pos = Vector2i(10, 10)
+condition = Array[ExtResource("21_smwk2")]([SubResource("Resource_jyk4r")])
+is_show = true
+dir = 3
+content = ExtResource("9_g4vaa")

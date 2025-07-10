@@ -11,8 +11,7 @@ var anim:AnimatedSprite2D:
 	get(): return get_node("./AnimatedSprite2D2")
 
 func _ready() -> void:
-	#GameManager.player.on_interact_changed.connect(change_person_shadow)
-	pass
+	GameManager.game_player.player.on_interact_changed.connect(change_person_shadow)
 
 ## 重写交互逻辑
 func interact():
@@ -20,6 +19,9 @@ func interact():
 		event_finish.emit()
 		return
 	_parse_event_config(event_res)
+
+func _load_event_config():
+	return
 
 func interactable() -> bool:
 	return true

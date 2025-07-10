@@ -2,8 +2,11 @@ extends Node2D
 
 # 初始化玩家位置
 func _ready() -> void:
+	print("正在初始化玩家")
 	var node = find_player_start_pos()
+	
 	if node && !GameManager.player:
+		
 		GameManager.game_player.instance_player(node.get_parent(),node.global_position)
 	# 清除当前的玩家初始化标识
 	queue_free()

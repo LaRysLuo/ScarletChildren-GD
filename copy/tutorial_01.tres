@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=15 format=3 uid="uid://bo15pv7akcqtr"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_82310"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_cf525"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="3_5rr2o"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="4_feae2"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="5_2hfs0"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="6_yaciu"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="7_4ka6e"]
+
+[sub_resource type="Resource" id="Resource_j6jc4"]
+script = ExtResource("5_2hfs0")
+text = "e00_B02"
+role = ExtResource("4_feae2")
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5rr2o")]([])
+children = Array[ExtResource("2_cf525")]([])
+node_type = 1
+pos = Vector2(1900, 100)
+
+[sub_resource type="Resource" id="Resource_v23hb"]
+script = ExtResource("2_cf525")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_j6jc4")
+
+[sub_resource type="Resource" id="Resource_8ilcv"]
+script = ExtResource("5_2hfs0")
+text = "e00_B01"
+role = ExtResource("4_feae2")
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_5rr2o")]([])
+children = Array[ExtResource("2_cf525")]([SubResource("Resource_v23hb")])
+node_type = 1
+pos = Vector2(1560, 100)
+
+[sub_resource type="Resource" id="Resource_viuka"]
+script = ExtResource("2_cf525")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_8ilcv")
+
+[sub_resource type="Resource" id="Resource_r71bt"]
+script = ExtResource("6_yaciu")
+move_type = 5
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 3
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_cf525")]([SubResource("Resource_viuka")])
+node_type = 3
+pos = Vector2(1160, 140)
+
+[sub_resource type="Resource" id="Resource_smf25"]
+script = ExtResource("2_cf525")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_r71bt")
+
+[sub_resource type="Resource" id="Resource_0jt4c"]
+script = ExtResource("7_4ka6e")
+children = Array[ExtResource("2_cf525")]([SubResource("Resource_smf25")])
+node_type = 0
+pos = Vector2(560, 220)
+
+[resource]
+script = ExtResource("1_82310")
+title = "11"
+is_collsion = true
+trigger_type = 3
+one_shot = false
+tree = SubResource("Resource_0jt4c")
+map = {}

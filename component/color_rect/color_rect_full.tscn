@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://component/color_rect/color_rect_full.gd" id="1_yj36x"]
 
 [node name="ScreenEffect" type="CanvasLayer" node_paths=PackedStringArray("color_rect")]
-layer = 10
+layer = 11
 script = ExtResource("1_yj36x")
 color_rect = NodePath("ColorRect")
 

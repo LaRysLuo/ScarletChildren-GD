@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://byeqcxpvbheph"]
+
+[ext_resource type="StyleBox" uid="uid://c1tq8xpqkwuuf" path="res://scenes/ui_scene/scene_save/style_box_flat.tres" id="1_3opkd"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/pages/page_picture/page_picture.gd" id="1_juvgh"]
+[ext_resource type="Texture2D" uid="uid://bq1fb8i7vtves" path="res://assets/resu_menu.png" id="2_wh4qs"]
+[ext_resource type="FontFile" uid="uid://mnflroidndvn" path="res://assets/fonts/fusion-pixel-10px-monospaced.otc" id="3_8xi6v"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/page_tabs.gd" id="4_qbu6w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcvdl"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kdnvr"]
+font = ExtResource("3_8xi6v")
+
+[sub_resource type="LabelSettings" id="LabelSettings_gd0c2"]
+font = ExtResource("3_8xi6v")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_nlp48"]
+font = ExtResource("3_8xi6v")
+font_color = Color(1, 1, 1, 0.784314)
+outline_size = 5
+outline_color = Color(0.156781, 0.0824791, 0.0485759, 1)
+shadow_color = Color(0, 0, 0, 0.827451)
+
+[node name="PagePicture" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kcvdl")
+script = ExtResource("1_juvgh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "存档"
+label_settings = SubResource("LabelSettings_kdnvr")
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(141, 400)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_3opkd")
+
+[node name="ColorRect" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer"]
+visible = false
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("2_wh4qs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EmptyLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "NO DATA"
+label_settings = SubResource("LabelSettings_gd0c2")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="MapName" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "蔷薇馆·中厅"
+label_settings = SubResource("LabelSettings_nlp48")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="GameTime" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "10m24s"
+label_settings = SubResource("LabelSettings_nlp48")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SaveTime" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "2025-06-15 11:11:11"
+label_settings = SubResource("LabelSettings_nlp48")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PageTabs" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("4_qbu6w")

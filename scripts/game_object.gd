@@ -32,6 +32,10 @@ const MOVE_SPEED = 3.0
 # 事件层
 @onready var map:TileMapLayer = get_parent()
 
+# 地址配置层
+var map_config:MapConfig:
+	get: return find_parent("Maps")
+
 ## 这个参数map.local_to_map自动获取
 @onready var ori_cell_pos:Vector2i = map.local_to_map(position)
 @onready var cell_pos:Vector2i = map.local_to_map(position)
@@ -42,7 +46,10 @@ const DIRS = [ Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP]
 
 # 通行层
 var map_base: TileMapLayer:
-	get(): return get_node("../../Movable") # 暂时这么使用，应该要放在GamePlay的配置中
+	get(): 
+		if !map_config: return null
+		# if !map_config.is_loaded:return null
+		return  map_config._get_movable()  # 暂时这么使用，应该要放在GamePlay的配置中
 
 # 信号
 # 有可交互事件存在
@@ -110,10 +117,11 @@ func move_event_pos(event:Node2D):
 	self.map = _map
 	self.global_position = event.global_position
 	self.cell_pos =  self.map.local_to_map(position)
-	self.map_base = get_node("../../Movable")
+	# self.map_base = get_node("../../Movable")
 
 # 移动到目标点
 func  move_to_target(route:MoveRoute):
+	print("[BaseCharacter]开始移动到目标点")
 	is_moving = true
 	# 设定面朝方向
 	self.dir = route.dir
@@ -137,17 +145,19 @@ func  move_to_target(route:MoveRoute):
 # TODO 需要判断这个目标点是否可移动
 func _movable(pos:Vector2i,ingore_event_collsion:bool = false) -> bool:
 	if !map_base:
-		print_debug("没有正确配置通行层")
+		print_debug("[BaseCharacter]没有正确配置通行层")
 		return false
 	## 如果是敌人，检查目标点有没有玩家
 	if !ingore_event_collsion:
 		if is_in_group("enemy") && pos_has_player(pos) :
 			print("怎么了，我为什么不能动")
 			return false
-	var cell_data = map_base.get_cell_tile_data(pos)
+	var movable_pos = _trans_pos_to_movable_pos(pos)
+	var cell_data = map_base.get_cell_tile_data(movable_pos)
 	if !(cell_data && cell_data.get_custom_data("movable")): # 如果不可移动则返回
 		return false
 	var event:Event = get_event(pos)
+	print("[BaseCharacter]event是什么：%s",event)
 	# print("判断event是否有%s，是否会无视碰撞：%s" % [event,event.ingore_collsion])
 	if event:
 		## 如果移动目标点有敌人，无法移动
@@ -164,11 +174,29 @@ func _movable(pos:Vector2i,ingore_event_collsion:bool = false) -> bool:
 			#event_res = event_config.event_res
 		if !ingore_event_collsion:
 			# 如果event是碰撞体才返回
-			
-			if !event.ingore_collsion:  
+			if !event.ingore_collsion:
+				print("[BaseCharacter]没有无视碰撞体")
 				event_clashed.emit(event)
 				return false
+			
+	print("[BaseCharacter]可移动的")
 	return true
+
+## 将玩家坐标转为移动层坐标
+func _trans_pos_to_movable_pos(pos:Vector2i) -> Vector2i:
+	# 转为为玩家层的实际坐标
+	var _position = map.map_to_local(pos)
+	var _world_pos = map.to_global(_position)
+	var _taget_local = map_base.to_local(_world_pos)
+	# 根据实际坐标，转为map
+	# print("当前玩家坐标",pos)
+	# print("当前玩家实际",_position)
+	# print("移动层:",map_base.get_parent().name)
+	# print("对应移动层坐标",map_base.local_to_map(_taget_local))
+	
+	return map_base.local_to_map(_taget_local)
+
+
 
 ## 判断当前位置是否是楼梯
 func is_stairway(_dir:Vector2i):
@@ -196,7 +224,6 @@ func find_last_route() -> MoveRoute:
 # 继续处理队列中的移动目标
 func _next():
 	#if tween && tween.is_running(): return
-	
 	if cell_list.is_empty() :
 		#停止移动
 		pos_changed.emit() #发出移动完成的信号

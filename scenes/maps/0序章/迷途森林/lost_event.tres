@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=13 format=3 uid="uid://ddcem5hkevb6c"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_k3tbh"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_rdobo"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="3_nsipo"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_m8v73"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="5_36681"]
+
+[sub_resource type="Resource" id="Resource_xi3hm"]
+script = ExtResource("3_nsipo")
+text_id = "e00_B17"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_i5r03"]
+script = ExtResource("4_m8v73")
+text = ""
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_nsipo")]([SubResource("Resource_xi3hm")])
+children = Array[ExtResource("2_rdobo")]([])
+node_type = 111
+pos = Vector2(980, 160)
+
+[sub_resource type="Resource" id="Resource_t5ha1"]
+script = ExtResource("2_rdobo")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_i5r03")
+
+[sub_resource type="Resource" id="Resource_e7l3j"]
+script = ExtResource("3_nsipo")
+text_id = "e00_B16"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_85i0w"]
+script = ExtResource("4_m8v73")
+text = ""
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_nsipo")]([SubResource("Resource_e7l3j")])
+children = Array[ExtResource("2_rdobo")]([SubResource("Resource_t5ha1")])
+node_type = 111
+pos = Vector2(640, 160)
+
+[sub_resource type="Resource" id="Resource_avrdy"]
+script = ExtResource("2_rdobo")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_85i0w")
+
+[sub_resource type="Resource" id="Resource_tefcs"]
+script = ExtResource("5_36681")
+children = Array[ExtResource("2_rdobo")]([SubResource("Resource_avrdy")])
+node_type = 0
+pos = Vector2(400, 280)
+
+[resource]
+script = ExtResource("1_k3tbh")
+title = ""
+is_collsion = true
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_tefcs")
+map = {}

@@ -1,52 +1,12 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=12 format=3 uid="uid://jhha6inghanv"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=5 format=3 uid="uid://jhha6inghanv"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_2bmy5"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_fhb4n"]
 [ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_v20nc"]
-[ext_resource type="Script" path="res://event_editor/models/transport_data.gd" id="3_1yp1s"]
-[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_dy7n2"]
-[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="4_06o1v"]
-
-[sub_resource type="Resource" id="Resource_ms75f"]
-script = ExtResource("3_dy7n2")
-script_cmd = "GameManager.fadein()"
-children = Array[ExtResource("2_v20nc")]([])
-node_type = 9
-pos = Vector2(2460, 220)
-
-[sub_resource type="Resource" id="Resource_wu7h8"]
-script = ExtResource("4_06o1v")
-time = 6.0
-children = Array[ExtResource("2_v20nc")]([SubResource("Resource_ms75f")])
-node_type = 6
-pos = Vector2(2160, 280)
-
-[sub_resource type="Resource" id="Resource_rh0p7"]
-script = ExtResource("3_1yp1s")
-target_map_path = "res://scenes/maps/map_蔷薇馆·中厅.tscn"
-is_move_character = true
-target_coord = Vector2i(13, 16)
-is_fade = false
-children = Array[ExtResource("2_v20nc")]([SubResource("Resource_wu7h8")])
-node_type = 8
-pos = Vector2(1740, 220)
-
-[sub_resource type="Resource" id="Resource_c4ibg"]
-script = ExtResource("3_dy7n2")
-script_cmd = "AudioManager.play_se(\"Wooden Door Squeaking Opened Slowly2\")"
-children = Array[ExtResource("2_v20nc")]([SubResource("Resource_rh0p7")])
-node_type = 9
-pos = Vector2(1440, 220)
-
-[sub_resource type="Resource" id="Resource_tqtfv"]
-script = ExtResource("3_dy7n2")
-script_cmd = "await GameManager.fadeout_black()"
-children = Array[ExtResource("2_v20nc")]([SubResource("Resource_c4ibg")])
-node_type = 9
-pos = Vector2(1180, 220)
 
 [sub_resource type="Resource" id="Resource_55ucq"]
 script = ExtResource("2_v20nc")
-children = Array[ExtResource("2_v20nc")]([SubResource("Resource_tqtfv")])
+children = Array[ExtResource("2_fhb4n")]([])
 node_type = 0
 pos = Vector2(960, 280)
 

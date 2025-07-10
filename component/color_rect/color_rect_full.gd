@@ -14,16 +14,17 @@ func set_color(color:Color,with_fade:bool = false,time:float = 1):
 	if !with_fade:
 		color_rect.color = color
 	else:
-		var tween = get_tree().create_tween()
-		var new_color = Color(color_rect.color,0)
-		color_rect.color = new_color
-		tween.tween_property(color_rect,"color",color,time)
+		var tween = create_tween()
+		color_rect.modulate.a = 0 
+		# var new_color = Color(color_rect.color,0)
+		color_rect.color = color
+		tween.tween_property(color_rect,"modulate:a",1,time)
 		tween.tween_callback(complete)
 
 func fadein(time:float = 1):
-	var tween = get_tree().create_tween()
-	var new_color = Color(color_rect.color,0)
-	tween.tween_property(color_rect,"modulate",new_color,time)
+	var tween = create_tween()
+	# var new_color = Color(color_rect.color,0)
+	tween.tween_property(color_rect,"modulate:a",0,time)
 	tween.tween_callback(clear)
 
 func complete():
@@ -35,4 +36,3 @@ func clear():
 	fade_finished.emit()
 	self.get_parent().remove_child(self)
 	self.queue_free()
-	pass

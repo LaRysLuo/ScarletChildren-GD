@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://6exey0lurxl0"]
 
 [ext_resource type="Script" path="res://scripts/map_config.gd" id="1_h0v84"]
-[ext_resource type="Script" path="res://event_sys/EventPageHandler/event_page_handler.gd" id="4_1b8tj"]
+[ext_resource type="Script" path="res://event_sys/TilemapEventComponent/EventPageHandler/event_page_handler.gd" id="4_1b8tj"]
 [ext_resource type="PackedScene" uid="uid://6uslunbaolj1" path="res://scenes/ui_scene/comp_stamina_bar/comp_stamina_bar.tscn" id="4_rgmaj"]
 [ext_resource type="Script" path="res://scenes/rpg_map_template/ui_controller.gd" id="4_yhun8"]
 [ext_resource type="Texture2D" uid="uid://c06wfx6ssyllv" path="res://assets/light/light_tex.tres" id="5_tvvqe"]

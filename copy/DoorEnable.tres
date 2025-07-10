@@ -1,0 +1,160 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=29 format=3 uid="uid://b2lnu0m5s6b6y"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_htj0t"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_kxnxc"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="3_fr5af"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_cwid8"]
+[ext_resource type="Script" path="res://event_editor/models/transport_data.gd" id="5_1bvrm"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="5_djwou"]
+[ext_resource type="Script" path="res://event_editor/models/fadein_data.gd" id="6_5cqos"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="6_ubers"]
+[ext_resource type="Script" path="res://event_editor/models/fadeout_data.gd" id="7_r22cs"]
+[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="7_v36bn"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="8_j6656"]
+
+[sub_resource type="Resource" id="Resource_r8wkn"]
+script = ExtResource("4_cwid8")
+text = "1111"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_fr5af")]([])
+children = Array[ExtResource("2_kxnxc")]([])
+node_type = 1
+pos = Vector2(1000, 140)
+
+[sub_resource type="Resource" id="Resource_p2smk"]
+script = ExtResource("2_kxnxc")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_r8wkn")
+
+[sub_resource type="Resource" id="Resource_2x4ww"]
+script = ExtResource("6_5cqos")
+time = 0.5
+children = Array[ExtResource("2_kxnxc")]([])
+node_type = 5
+pos = Vector2(2720, -100)
+
+[sub_resource type="Resource" id="Resource_llaqi"]
+script = ExtResource("2_kxnxc")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_2x4ww")
+
+[sub_resource type="Resource" id="Resource_ilu0o"]
+script = ExtResource("5_1bvrm")
+target_map_path = "res://scenes/maps/0序章/迷途森林/迷途森林.tscn"
+is_move_character = true
+target_coord = Vector2i(12, 0)
+is_fade = false
+children = Array[ExtResource("2_kxnxc")]([SubResource("Resource_llaqi")])
+node_type = 8
+pos = Vector2(2280, -140)
+
+[sub_resource type="Resource" id="Resource_aulsa"]
+script = ExtResource("2_kxnxc")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ilu0o")
+
+[sub_resource type="Resource" id="Resource_x51g1"]
+script = ExtResource("7_r22cs")
+time = 0.5
+children = Array[ExtResource("2_kxnxc")]([SubResource("Resource_aulsa")])
+node_type = 4
+pos = Vector2(2040, -80)
+
+[sub_resource type="Resource" id="Resource_shhmu"]
+script = ExtResource("2_kxnxc")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_x51g1")
+
+[sub_resource type="Resource" id="Resource_jwdr1"]
+script = ExtResource("5_djwou")
+move_type = 5
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 1
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_kxnxc")]([SubResource("Resource_shhmu")])
+node_type = 3
+pos = Vector2(1520, -120)
+
+[sub_resource type="Resource" id="Resource_k0xup"]
+script = ExtResource("2_kxnxc")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_jwdr1")
+
+[sub_resource type="Resource" id="Resource_lj0fl"]
+script = ExtResource("6_ubers")
+script_cmd = "set_event_ingore_collsion(\"self\")"
+children = Array[ExtResource("2_kxnxc")]([SubResource("Resource_k0xup")])
+node_type = 9
+pos = Vector2(1000, -120)
+
+[sub_resource type="Resource" id="Resource_3g1i3"]
+script = ExtResource("2_kxnxc")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_lj0fl")
+
+[sub_resource type="Resource" id="Resource_h2655"]
+script = ExtResource("7_v36bn")
+options = Array[Dictionary]([{
+"child_index": 0,
+"id": 0,
+"name": "YES"
+}, {
+"child_index": 1,
+"id": 1,
+"name": "NO"
+}])
+children = Array[ExtResource("2_kxnxc")]([SubResource("Resource_p2smk"), SubResource("Resource_3g1i3")])
+node_type = 2
+pos = Vector2(640, -60)
+
+[sub_resource type="Resource" id="Resource_h0k2t"]
+script = ExtResource("2_kxnxc")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_h2655")
+
+[sub_resource type="Resource" id="Resource_v8574"]
+script = ExtResource("4_cwid8")
+text = "e00_AA53"
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_fr5af")]([])
+children = Array[ExtResource("2_kxnxc")]([SubResource("Resource_h0k2t")])
+node_type = 1
+pos = Vector2(260, -120)
+
+[sub_resource type="Resource" id="Resource_e4bmi"]
+script = ExtResource("2_kxnxc")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_v8574")
+
+[sub_resource type="Resource" id="Resource_1716g"]
+script = ExtResource("8_j6656")
+children = Array[ExtResource("2_kxnxc")]([SubResource("Resource_e4bmi")])
+node_type = 0
+pos = Vector2(40, 20)
+
+[resource]
+script = ExtResource("1_htj0t")
+title = "333"
+is_collsion = true
+trigger_type = 2
+one_shot = false
+tree = SubResource("Resource_1716g")
+map = {}

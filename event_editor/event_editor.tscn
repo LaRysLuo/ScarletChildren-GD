@@ -9,6 +9,7 @@ content_margin_right = 8.0
 content_margin_bottom = 4.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_mpcnw"]
+font_color = Color(1, 0, 0, 1)
 
 [node name="EventEditor" type="Control" node_paths=PackedStringArray("save_btn", "clear_btn", "node_parent", "popup_menu", "popup_menu2", "res_name_label", "tip_label", "add_menu")]
 custom_minimum_size = Vector2(0, 600)
@@ -19,67 +20,70 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6dp6w")
-save_btn = NodePath("Box/VBoxContainer/Line1/HBoxContainer/SaveBtn")
-clear_btn = NodePath("Box/VBoxContainer/Line1/HBoxContainer/ClearBtn")
+save_btn = NodePath("Box/VBoxContainer/VBoxContainer/Line1/HBoxContainer/SaveBtn")
+clear_btn = NodePath("Box/VBoxContainer/VBoxContainer/Line1/HBoxContainer/ClearBtn")
 node_parent = NodePath("Box/GraphEdit")
 popup_menu = NodePath("PopupMenu")
 popup_menu2 = NodePath("AddNodeMenuPanel")
-res_name_label = NodePath("Box/VBoxContainer/Line1/Label")
+res_name_label = NodePath("Box/VBoxContainer/VBoxContainer/Line1/Label")
 tip_label = NodePath("History/Label")
-add_menu = NodePath("Box/VBoxContainer/Line2")
-metadata/_edit_use_anchors_ = true
+add_menu = NodePath("Box/VBoxContainer/VBoxContainer/Line2")
 
 [node name="Box" type="VSplitContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.02833
+offset_bottom = 671.0
 grow_horizontal = 2
-grow_vertical = 2
 dragger_visibility = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Box"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
 
-[node name="Line1" type="HSplitContainer" parent="Box/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Box/VBoxContainer"]
+layout_mode = 2
+
+[node name="Line1" type="HSplitContainer" parent="Box/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 split_offset = 1680
 
-[node name="Label" type="Label" parent="Box/VBoxContainer/Line1"]
+[node name="Label" type="Label" parent="Box/VBoxContainer/VBoxContainer/Line1"]
 layout_mode = 2
 text = "当前文件:  无"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Box/VBoxContainer/Line1"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Box/VBoxContainer/VBoxContainer/Line1"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 alignment = 2
 
-[node name="ClearBtn" type="Button" parent="Box/VBoxContainer/Line1/HBoxContainer"]
+[node name="ClearBtn" type="Button" parent="Box/VBoxContainer/VBoxContainer/Line1/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwaxp")
 disabled = true
 text = "清除"
 
-[node name="SaveBtn" type="Button" parent="Box/VBoxContainer/Line1/HBoxContainer"]
+[node name="SaveBtn" type="Button" parent="Box/VBoxContainer/VBoxContainer/Line1/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qwaxp")
 disabled = true
 text = "保存"
 
-[node name="Line2" type="FlowContainer" parent="Box/VBoxContainer"]
+[node name="Line2" type="HFlowContainer" parent="Box/VBoxContainer/VBoxContainer"]
 clip_contents = true
 layout_direction = 2
 layout_mode = 2
-vertical = true
+
+[node name="Spacing" type="Control" parent="Box/VBoxContainer"]
+layout_mode = 2
 
 [node name="GraphEdit" type="GraphEdit" parent="Box"]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
+size_flags_vertical = 2
 right_disconnects = true
 show_menu = false
 show_zoom_buttons = false

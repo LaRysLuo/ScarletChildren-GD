@@ -1,35 +1,53 @@
-extends Control
+extends InputableScene
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var ui_info: Control = $"UI信息"
 
 var is_action:bool =false
 
+
+## 标题菜单组件
+var title_menu:MenuV2:
+	get: return get_node("MenuV2")
+
+
+
+
 var tween:Tween
 
 #region  生命周期重载
 func _ready() -> void:
 	AudioManager.start_music("theme")
+	_init_handlers()
+	_init_menu_handler()
+	activate()
 
-func _enter_tree() -> void:
-	InputManager.on_action_pressed.connect(_action_input)
-
-func _exit_tree() -> void:
-	InputManager.on_action_pressed.disconnect(_action_input)
-
-#endregion
-
-#region 信号函数
-func _action_input(key:int) -> void:
-	if is_action: return
-	if key == InputManager.KEY_A:
-		_start_game2()
-		# _test_game1()
 
 #endregion
 
 #region 内部函数
 
+func _init_handlers():
+	set_handler("ok",_handle_show_menu)
+
+func _init_menu_handler():
+	title_menu.set_handler("new_game",_start_game2)
+	title_menu.set_handler("load_game",_handle_load_game)
+	title_menu.on_select_sfx.connect(func(): Interpreter.play_se("select03"))
+	if Save.exist():
+		print("[Save]读取到存档")
+		title_menu.get_btn("load_game").disable = false
+
+
+func _handle_show_menu():
+	remove_handler("ok")
+	deactivate()
+	await AudioManager.play_se("Confirm")
+	animation_player.play("确定")
+	await animation_player.animation_finished
+	title_menu.activate()
+
+	
 # 游戏开始	
 func start_game():
 	self.is_action = true
@@ -58,17 +76,25 @@ func _start_game2():
 	self.is_action = true
 	await AudioManager.play_se("Confirm")
 	AudioManager.stop_music(true)
-	animation_player.play("确定")
-	await animation_player.animation_finished
 	if tween: tween.kill()
 	tween = create_tween()
 	var target = Color(1, 1, 1, 0) 
 	tween.tween_property(ui_info,"modulate",target,0.3)
 	
-	SceneManager.move("res://scenes/maps/蔷薇馆·中厅1F/map_蔷薇馆·中厅.tscn")
+	SceneManager.move("res://scenes/maps/0序章/0_START/Start.tscn")
 
-func _test_game1():
-	# Core.camera.camera_move()
-	pass
+func _handle_load_game():
+	print("[Title]触发了显示scene_load")
+	title_menu.deactivate()
+	var scene:SceneLoad =  await UIManager.show_ui("scene_load")
+	scene.show_with_load()
+	scene.on_confirm.connect(func(): 
+		AudioManager.stop_music(true)
+		UIManager.pop_ui(scene)
+		# queue_free()
+		)
+	scene.on_cancel.connect(func(): 
+		print("[SceneLoad]退出载入页面了")
+		title_menu.activate())
 
 #endregion

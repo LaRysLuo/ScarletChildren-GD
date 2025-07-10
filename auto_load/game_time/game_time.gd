@@ -23,3 +23,10 @@ func timeout():
 	on_time_changed.emit(current_time)
 	pass
 	
+func to_data() -> Dictionary:
+	return {
+		"current_time": current_time
+	}
+
+func from_data(_data:Dictionary) -> void:
+	current_time = _data.get("current_time")

@@ -16,7 +16,7 @@ func _enter_tree() -> void:
 	add_control_to_bottom_panel(event_editor_panel,"事件编辑器")
 	add_custom_type("Events_Res","Resource",custom_resource_type,preload("res://icon.svg"))	
 
-	add_custom_type("ExPage","Node2D",preload("res://event_sys/ExPage/ex_page.gd"),preload("res://assets/icon/stair.png"))
+	add_custom_type("ExPage","Node2D",preload("res://event_sys/TilemapEventComponent/EventPage/event_page.gd"),preload("res://assets/icon/stair.png"))
 
 	custom_inspector = preload("res://event_editor/res_inspector.gd").new()
 	add_inspector_plugin(custom_inspector)
@@ -34,7 +34,7 @@ func _loaded_editor_translation():
 	var merged = merge_translations(e1,e2)
 	TranslationServer.clear()
 	if merged: TranslationServer.add_translation(merged)
-	print("测试翻译:%s 当前信息数量%s", [merged.get_message("dialogue_06_resu"),merged.get_message_count()])
+	# print("测试翻译:%s 当前信息数量%s", [merged.get_message("dialogue_06_resu"),merged.get_message_count()])
 
 
 func merge_translations(t1: Translation, t2: Translation) -> Translation:

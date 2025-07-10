@@ -1,14 +1,6 @@
 extends Event
 class_name Door1
 
-## MAIN LOGIC
-#1 门打开
-#2 玩家前进步
-#3 画面淡出
-#4 场景转移
-#5 等到
-#6 画面淡入
-#7 玩家前进1步
 
 ## 事件资源
 #var event_res:Events_Res
@@ -16,31 +8,31 @@ class_name Door1
 @export var event_res:Events_Res
 
 
-
-
-
 ## 组件引用
 var anim:AnimatedSprite2D:
 	get(): return get_node("./AnimatedSprite2D2")
 
-func _ready() -> void:
-	super._ready()
-	# event_config = get_event_config()
-	
-	#GameManager.player.on_interact_changed.connect(change_person_shadow)
-	#self.event_res = _load_eventres_from_config()
-
+## 重写Event._load_event_config载入事件配置，该配置会在Event._ready里被调用
 func _load_event_config():
-	if !page : 
-		# _refresh_event_visible(false)
-		return
+	## 1. ExPage生效的情况下：
+	if !page : return
+	## 2. EventPage生效的情况下：处理碰撞，以及刷新精灵图和可见度
 	if page.content: self.ingore_collsion = !page.content.is_collsion
 	# 刷新精灵图
 	_refresh_sprite_frame(page.frame_index,page)
 	# 刷新可视化
 	_init_event_visible(page)
 
-func _refresh_event_state(item_name:StringName = "",state:int = 0):
+## 重写获取动画名称的参数
+func get_dir_animation_name(_dir:int) :
+	match _dir:
+		0: return "default"
+		1: return "close"
+		2:return "open"
+		3: return "opened"
+	return null
+
+func _refresh_event_state(_item_name:StringName = "",_state:int = 0):
 	await  super._refresh_event_state()
 	# event_config = get_event_config()
 	# if self.ori_cell_pos == Vector2i(8,9):
@@ -59,9 +51,9 @@ func _load_eventres_from_config():
 	print("eec",eec)
 	if !eec: return null
 	if eec is DoorEx:
-		var event_res =  eec._make_event_res()
+		var _event_res =  eec._make_event_res()
 		#print("生成的event_res:",event_res)
-		return event_res
+		return _event_res
 	else: return null
 	
 
@@ -127,9 +119,9 @@ func _play_close_se():
 
 ## 播放事件动画
 func play_anim(anim_name:String,custom_spd:float = 1):
-	if anim_name == "default":
+	if anim_name == "default" || anim_name == "close":
 		self.ingore_collsion = false
-	if anim_name == "opened":
+	if anim_name == "opened" || anim_name == "open":
 		self.ingore_collsion = true
 
 	if !anim:return

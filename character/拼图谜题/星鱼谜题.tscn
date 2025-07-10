@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bhyfv7set5e8n"]
 
 [ext_resource type="PackedScene" uid="uid://peicqc66pvva" path="res://character/事件模板.tscn" id="1_6pc3o"]
-[ext_resource type="Texture2D" uid="uid://ogbytisytgqy" path="res://scenes/maps/2蔷薇馆2F - 浴室/assets/fish_tile.png" id="2_ywgpa"]
+[ext_resource type="Texture2D" uid="uid://ogbytisytgqy" path="res://scenes/maps/2伊章/2蔷薇馆2F - 浴室/assets/fish_tile.png" id="2_ywgpa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3q4p5"]
 atlas = ExtResource("2_ywgpa")

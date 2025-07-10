@@ -1,182 +1,189 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=41 format=3 uid="uid://b7ny3b3p5ivbm"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=42 format=3 uid="uid://b7ny3b3p5ivbm"]
 
-[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_et6kp"]
-[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_dkihu"]
-[ext_resource type="Script" path="res://event_editor/models/reading_page_data.gd" id="3_bdbqd"]
-[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="4_f4cju"]
-[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="5_cw370"]
-[ext_resource type="Script" path="res://event_editor/models/cinema_data.gd" id="6_7bxkj"]
-[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="7_xe26s"]
-[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="8_2ah0b"]
-[ext_resource type="Script" path="res://event_editor/models/reading_data.gd" id="9_p8vqj"]
-[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="10_k35ay"]
-[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="11_ossuj"]
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_2sf5w"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_kggfv"]
+[ext_resource type="Script" path="res://event_editor/models/reading_page_data.gd" id="3_qus65"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="4_kong4"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="5_j4ryy"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="6_bt118"]
+[ext_resource type="Script" path="res://event_editor/models/cinema_data.gd" id="7_1h033"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="8_c3n2f"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="9_2mpky"]
+[ext_resource type="Script" path="res://event_editor/models/reading_data.gd" id="10_mlqe0"]
+[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="11_62uxb"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="12_bvhsm"]
 
-[sub_resource type="Resource" id="Resource_mk6ar"]
-script = ExtResource("3_bdbqd")
+[sub_resource type="Resource" id="Resource_t2c0s"]
+script = ExtResource("3_qus65")
 content = "file_aboutscar_05"
-children = Array[ExtResource("2_dkihu")]([])
+children = Array[ExtResource("2_kggfv")]([])
 node_type = 15
 pos = Vector2(1580, -40)
 
-[sub_resource type="Resource" id="Resource_6andw"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_bq3c0"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_mk6ar")
+child = SubResource("Resource_t2c0s")
 
-[sub_resource type="Resource" id="Resource_at5qe"]
-script = ExtResource("3_bdbqd")
+[sub_resource type="Resource" id="Resource_h4xks"]
+script = ExtResource("3_qus65")
 content = "file_aboutscar_04"
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_6andw")])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_bq3c0")])
 node_type = 15
 pos = Vector2(1260, -40)
 
-[sub_resource type="Resource" id="Resource_ckiud"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_aonfa"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_at5qe")
+child = SubResource("Resource_h4xks")
 
-[sub_resource type="Resource" id="Resource_cpi0t"]
-script = ExtResource("3_bdbqd")
+[sub_resource type="Resource" id="Resource_fnrq3"]
+script = ExtResource("3_qus65")
 content = "file_aboutscar_03"
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_ckiud")])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_aonfa")])
 node_type = 15
 pos = Vector2(960, -40)
 
-[sub_resource type="Resource" id="Resource_ma4s2"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_n1sbx"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_cpi0t")
+child = SubResource("Resource_fnrq3")
 
-[sub_resource type="Resource" id="Resource_prg5v"]
-script = ExtResource("3_bdbqd")
+[sub_resource type="Resource" id="Resource_kyhb4"]
+script = ExtResource("3_qus65")
 content = "file_aboutscar_02"
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_ma4s2")])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_n1sbx")])
 node_type = 15
 pos = Vector2(660, -40)
 
-[sub_resource type="Resource" id="Resource_rekoi"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_vrhgr"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_prg5v")
+child = SubResource("Resource_kyhb4")
 
-[sub_resource type="Resource" id="Resource_in6tu"]
-script = ExtResource("3_bdbqd")
+[sub_resource type="Resource" id="Resource_bklwb"]
+script = ExtResource("3_qus65")
 content = "file_aboutscar_01"
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_rekoi")])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_vrhgr")])
 node_type = 15
 pos = Vector2(340, -40)
 
-[sub_resource type="Resource" id="Resource_d3qc6"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_ck774"]
+script = ExtResource("2_kggfv")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_in6tu")
+child = SubResource("Resource_bklwb")
 
-[sub_resource type="Resource" id="Resource_d2c6t"]
-script = ExtResource("5_cw370")
+[sub_resource type="Resource" id="Resource_y8161"]
+script = ExtResource("6_bt118")
 text = "libsurvey05"
-role = ExtResource("4_f4cju")
+role = ExtResource("5_j4ryy")
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_dkihu")]([])
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("4_kong4")]([])
+children = Array[ExtResource("2_kggfv")]([])
 node_type = 1
 pos = Vector2(1740, -400)
 
-[sub_resource type="Resource" id="Resource_govea"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_s0vmx"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_d2c6t")
+child = SubResource("Resource_y8161")
 
-[sub_resource type="Resource" id="Resource_pcwu1"]
-script = ExtResource("6_7bxkj")
+[sub_resource type="Resource" id="Resource_6iew4"]
+script = ExtResource("7_1h033")
 cinema_scene_path = "res://scenes/other/回忆1：图书室/图书室的回忆.tscn"
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_govea")])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_s0vmx")])
 node_type = 16
 pos = Vector2(1500, -300)
 
-[sub_resource type="Resource" id="Resource_w3wc0"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_0t2hk"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_pcwu1")
+child = SubResource("Resource_6iew4")
 
-[sub_resource type="Resource" id="Resource_tc6r4"]
-script = ExtResource("7_xe26s")
+[sub_resource type="Resource" id="Resource_bndha"]
+script = ExtResource("8_c3n2f")
 time = 0.2
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_w3wc0")])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_0t2hk")])
 node_type = 6
 pos = Vector2(1240, -280)
 
-[sub_resource type="Resource" id="Resource_swm6u"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_4lmty"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_tc6r4")
+child = SubResource("Resource_bndha")
 
-[sub_resource type="Resource" id="Resource_1x45j"]
-script = ExtResource("8_2ah0b")
+[sub_resource type="Resource" id="Resource_otmfn"]
+script = ExtResource("9_2mpky")
 script_cmd = "AudioManager.play_se(\"fault\")"
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_swm6u")])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_4lmty")])
 node_type = 9
 pos = Vector2(1000, -340)
 
-[sub_resource type="Resource" id="Resource_e4pli"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_65ift"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_1x45j")
+child = SubResource("Resource_otmfn")
 
-[sub_resource type="Resource" id="Resource_80qb4"]
-script = ExtResource("5_cw370")
+[sub_resource type="Resource" id="Resource_5x6j6"]
+script = ExtResource("6_bt118")
 text = "libsurvey04"
-role = ExtResource("4_f4cju")
+role = ExtResource("5_j4ryy")
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_e4pli")])
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("4_kong4")]([])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_65ift")])
 node_type = 1
 pos = Vector2(640, -380)
 
-[sub_resource type="Resource" id="Resource_1vngp"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_u8bbx"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_80qb4")
+child = SubResource("Resource_5x6j6")
 
-[sub_resource type="Resource" id="Resource_hr682"]
-script = ExtResource("8_2ah0b")
+[sub_resource type="Resource" id="Resource_vc3vd"]
+script = ExtResource("9_2mpky")
 script_cmd = "GameManager.data_player.gain_item(\"303f_蔷薇馆的传说\")"
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_1vngp")])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_u8bbx")])
 node_type = 9
 pos = Vector2(360, -300)
 
-[sub_resource type="Resource" id="Resource_nagli"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_x0elu"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_hr682")
+child = SubResource("Resource_vc3vd")
 
-[sub_resource type="Resource" id="Resource_3ed4w"]
-script = ExtResource("9_p8vqj")
+[sub_resource type="Resource" id="Resource_q2pfy"]
+script = ExtResource("10_mlqe0")
 title = "file_aboutscar_title"
 close_any_time = false
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_d3qc6"), SubResource("Resource_nagli")])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_ck774"), SubResource("Resource_x0elu")])
 node_type = 14
 pos = Vector2(100, -220)
 
-[sub_resource type="Resource" id="Resource_uxvyu"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_44emo"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_3ed4w")
+child = SubResource("Resource_q2pfy")
 
-[sub_resource type="Resource" id="Resource_06mbc"]
-script = ExtResource("10_k35ay")
+[sub_resource type="Resource" id="Resource_hws2h"]
+script = ExtResource("11_62uxb")
 options = Array[Dictionary]([{
 "child_index": 0,
 "id": 0,
@@ -186,42 +193,45 @@ options = Array[Dictionary]([{
 "id": 1,
 "name": "test06"
 }])
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_uxvyu")])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_44emo")])
 node_type = 2
 pos = Vector2(-200, -220)
 
-[sub_resource type="Resource" id="Resource_2bfo3"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_pvky8"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_06mbc")
+child = SubResource("Resource_hws2h")
 
-[sub_resource type="Resource" id="Resource_ikwds"]
-script = ExtResource("5_cw370")
+[sub_resource type="Resource" id="Resource_jeeau"]
+script = ExtResource("6_bt118")
 text = "libsurvey01"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_2bfo3")])
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("4_kong4")]([])
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_pvky8")])
 node_type = 1
 pos = Vector2(-560, -240)
 
-[sub_resource type="Resource" id="Resource_6p583"]
-script = ExtResource("2_dkihu")
+[sub_resource type="Resource" id="Resource_cxbqt"]
+script = ExtResource("2_kggfv")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_ikwds")
+child = SubResource("Resource_jeeau")
 
-[sub_resource type="Resource" id="Resource_k4l15"]
-script = ExtResource("11_ossuj")
-children = Array[ExtResource("2_dkihu")]([SubResource("Resource_6p583")])
+[sub_resource type="Resource" id="Resource_l2xgk"]
+script = ExtResource("12_bvhsm")
+children = Array[ExtResource("2_kggfv")]([SubResource("Resource_cxbqt")])
 node_type = 0
 pos = Vector2(-760, -140)
 
 [resource]
-script = ExtResource("1_et6kp")
+script = ExtResource("1_2sf5w")
 title = "获取蔷薇馆馆志"
 is_collsion = true
 trigger_type = 1
 one_shot = false
-tree = SubResource("Resource_k4l15")
+tree = SubResource("Resource_l2xgk")
 map = {}

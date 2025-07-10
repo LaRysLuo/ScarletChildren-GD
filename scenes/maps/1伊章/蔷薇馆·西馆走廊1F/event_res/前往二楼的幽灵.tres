@@ -1,0 +1,132 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=26 format=3 uid="uid://b4qwsu4mx067v"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_4whac"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_tpovy"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_j4gh5"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="3_rw5y7"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_27aks"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="4_k2dif"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="4_kor5h"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="5_mgwj5"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="6_rjt34"]
+
+[sub_resource type="Resource" id="Resource_2k223"]
+script = ExtResource("3_rw5y7")
+text_id = "e01_01_b_01"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_ocqer"]
+script = ExtResource("3_rw5y7")
+text_id = "e01_01_b_02"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_jucfd"]
+script = ExtResource("3_rw5y7")
+text_id = "e01_01_b_03"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_fxgio"]
+script = ExtResource("4_27aks")
+text = ""
+role = ExtResource("4_k2dif")
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_rw5y7")]([SubResource("Resource_2k223"), SubResource("Resource_ocqer"), SubResource("Resource_jucfd")])
+children = Array[ExtResource("2_tpovy")]([])
+node_type = 111
+pos = Vector2(1920, -580)
+
+[sub_resource type="Resource" id="Resource_t5m4k"]
+script = ExtResource("2_tpovy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_fxgio")
+
+[sub_resource type="Resource" id="Resource_an1h7"]
+script = ExtResource("3_j4gh5")
+script_cmd = "gm.move_event_to(\"phantom\",Vector2i(21,1))"
+children = Array[ExtResource("2_tpovy")]([SubResource("Resource_t5m4k")])
+node_type = 9
+pos = Vector2(1580, -540)
+
+[sub_resource type="Resource" id="Resource_xne3d"]
+script = ExtResource("2_tpovy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_an1h7")
+
+[sub_resource type="Resource" id="Resource_6wara"]
+script = ExtResource("4_kor5h")
+time = 0.5
+children = Array[ExtResource("2_tpovy")]([SubResource("Resource_xne3d")])
+node_type = 6
+pos = Vector2(1300, -480)
+
+[sub_resource type="Resource" id="Resource_p7vew"]
+script = ExtResource("2_tpovy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_6wara")
+
+[sub_resource type="Resource" id="Resource_hmg7c"]
+script = ExtResource("5_mgwj5")
+move_type = 5
+target_char = {
+"coord": Vector2i(23, 1),
+"label": "phantom"
+}
+step_count = 3
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("2_tpovy")]([SubResource("Resource_p7vew")])
+node_type = 3
+pos = Vector2(940, -560)
+
+[sub_resource type="Resource" id="Resource_a008d"]
+script = ExtResource("2_tpovy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_hmg7c")
+
+[sub_resource type="Resource" id="Resource_ik54k"]
+script = ExtResource("3_j4gh5")
+script_cmd = "gm.move_event_to(\"phantom\",Vector2i(5,11))"
+children = Array[ExtResource("2_tpovy")]([SubResource("Resource_a008d")])
+node_type = 9
+pos = Vector2(660, -560)
+
+[sub_resource type="Resource" id="Resource_g0etg"]
+script = ExtResource("2_tpovy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ik54k")
+
+[sub_resource type="Resource" id="Resource_wte5v"]
+script = ExtResource("4_kor5h")
+time = 0.1
+children = Array[ExtResource("2_tpovy")]([SubResource("Resource_g0etg")])
+node_type = 6
+pos = Vector2(380, -500)
+
+[sub_resource type="Resource" id="Resource_e3omw"]
+script = ExtResource("2_tpovy")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wte5v")
+
+[sub_resource type="Resource" id="Resource_2kpdc"]
+script = ExtResource("6_rjt34")
+children = Array[ExtResource("2_tpovy")]([SubResource("Resource_e3omw")])
+node_type = 0
+pos = Vector2(160, -500)
+
+[resource]
+script = ExtResource("1_4whac")
+title = ""
+is_collsion = true
+trigger_type = 3
+one_shot = true
+tree = SubResource("Resource_2kpdc")
+map = {}

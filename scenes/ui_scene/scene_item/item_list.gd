@@ -24,8 +24,8 @@ var select_index:int = 0:
 		last_index = select_index
 		select_index = val
 
-var game_player:GamePlayer:
-	get():return GameManager.game_player
+var game_items:GameItems:
+	get():return GameManager.game_items
 var item_list:Array[Item]
 
 var current_item:Item:
@@ -82,7 +82,7 @@ func clear_item_list(ingore_clear_data):
 func usable(item:Item):
 	if !craft_list.is_empty() && !craft_list.has(item):return true
 	if craft_list.has(item):return false
-	if !game_player.usable(item): return false
+	if !game_items.usable(item): return false
 	return true
 
 # 玩家按下选择后
@@ -191,10 +191,10 @@ func _end_craft_item():
 	for item in craft_list:
 		key.append(item.item_id)
 	
-	if game_player.craft_enabled(key):
+	if game_items.craft_enabled(key):
 		## 移出对应元素
 		AudioManager.play_se("button03a")
-		game_player.make_craft_call(key)
+		game_items.make_craft_call(key)
 		print("物品组合了")
 	else:
 		AudioManager.play_buzzle()

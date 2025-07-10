@@ -8,22 +8,22 @@ class_name CharacterMoveData
 @export var wait_finished:bool
 
 
-func  _init(cmd:int = BaseEventNode.CharacterMove,pos:Vector2 = Vector2.ZERO,move_type:int =-1,target_char:Dictionary = {},step_count:int = -1,speed_factor:float = 1,wait_finished:bool = false) -> void:
-	self.node_type = cmd
-	self.pos = pos
-	self.move_type = move_type
-	self.target_char = target_char
-	self.step_count = step_count
-	self.speed_factor = speed_factor
-	self.wait_finished = wait_finished
+func  _init(_cmd:int = BaseEventNode.CharacterMove,_pos:Vector2 = Vector2.ZERO,_move_type:int =-1,_target_char:Dictionary = {},_step_count:int = -1,_speed_factor:float = 1,_wait_finished:bool = false) -> void:
+	self.node_type = _cmd
+	self.pos = _pos
+	self.move_type = _move_type
+	self.target_char = _target_char
+	self.step_count = _step_count
+	self.speed_factor = _speed_factor
+	self.wait_finished = _wait_finished
 
 
 ## 重写父类虚方法
-func _execute(ent,agrs):
+func _execute(_ent,_agrs):
 	## TODO 角色移动在游戏中的实现
 	print_rich("- 正在执行《角色行走》")
 	# 从当前场景中找到对应角色名的事件	
-	var event = _get_event(ent)
+	var event = _get_event(_ent)
 	if !event:
 		print_debug("输入了不存在的事件名称")
 		return

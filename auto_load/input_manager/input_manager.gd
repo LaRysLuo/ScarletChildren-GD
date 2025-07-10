@@ -1,5 +1,4 @@
 extends Node
-class_name InputManage
 
 ## 按键常量的定义
 
@@ -27,7 +26,7 @@ signal on_action_pressed(key:int)
 # 这里主要作用是手柄的防抖
 func _input(event: InputEvent) -> void:
 	if !input_trigger && event.is_pressed():
-		print("输入")
+		# print("输入")
 		var key:float = -1
 		if event.is_action_pressed("down"): key = KEY_DOWN
 		if event.is_action_pressed("left"): key =KEY_LEFT
@@ -42,3 +41,9 @@ func _input(event: InputEvent) -> void:
 		self.input_trigger = true
 		on_action_pressed.emit(key)
 	elif event.is_released() && input_trigger: self.input_trigger = false
+
+
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_F1:
+			Save.save_data(0)

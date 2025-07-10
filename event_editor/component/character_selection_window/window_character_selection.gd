@@ -69,7 +69,7 @@ func get_character_name(file_name:StringName):
 	var arr = file_name.split("_")
 	if(arr[0] == 'character'):
 		return arr[1]
-	return null
+	else: return file_name
 
 func get_scene_source(tile_map_layer:TileMapLayer,coord:Vector2i):
 	var source_id = tile_map_layer.get_cell_source_id(coord)

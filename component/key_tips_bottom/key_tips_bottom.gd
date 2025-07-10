@@ -26,7 +26,7 @@ var btn_config:Array[KeyTipsConfig] = []
 
 @export var a_btn:KeyTipsConfig:
 	set(val):
-		print("1111",val.key_name if val else "") 
+		# print("1111",val.key_name if val else "") 
 		if a_btn:
 			a_btn.on_value_changed.disconnect(refresh)
 		a_btn = val
@@ -176,11 +176,11 @@ func get_key_config(key_type:keyType) -> KeyTipsConfig:
 	return trigger_key
 
 ## 显示key
-func show_key(key_type:keyType):
+func show_key(_key_type:keyType):
 	get_key_config(keyType).is_show = true
 
 ## 隐藏key
-func hide_key(key_type:keyType):
+func hide_key(_key_type:keyType):
 	get_key_config(keyType).is_show = false
 
 ## 设置key可用

@@ -29,22 +29,21 @@ class_name ChasingEnemy
 @export var across_pause:bool = false
 
 # 获得玩家位置
-@onready var player:PlayerV1 = GameManager.player
+@onready var player:PlayerV1 = GameManager.game_player.player
 @onready var a_star:AStar2D = AStar2D.new()
 
 func _ready() -> void:
-	update_astar_points()
+	if chasing_enable: update_astar_points() # 这里频繁调用,暂时禁用
 	
 	#start_chasing()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#if !GameManager.is_normal_state:return
 	if !is_moving && chasing_enable && !across_pause: _chasing()
 
 ## 开启追逐战
 func start_chasing():
 	print("追逐战1开始")
-	
 	#await SceneManager.move_finished
 	AudioManager.play_monster_laughing()
 	## 应用暗角效果
@@ -158,7 +157,7 @@ func _across_restart(coord:Vector2i):
 	if !across_pause:return
 	self.level += 1
 	self.move_speed_factor = 1.0 + self.level * 0.1
-	var obj_map = GameManager.player.map
+	var obj_map = GameManager.game_player.player.map
 	self.reparent(obj_map,true)
 	self.map = obj_map
 	await GameManager.wait(0.1)
@@ -171,15 +170,15 @@ func _across_restart(coord:Vector2i):
 	## 播放开关门效果
 	var result:Dictionary = _find_around_door(coord)
 	if !result: return
-	var dir = result["dir"]
+	var _dir = result["_dir"]
 	var door:Door1 = result["door"]
 	# 1. 门打开
 	await  door.open_door()
 	# 2. 角色走出来
 	var check_pos:Vector2i = coord
 	for n in 2:
-		check_pos += dir
-		move_to_by_route(MoveRoute.new(dir,check_pos))
+		check_pos += _dir
+		move_to_by_route(MoveRoute.new(_dir,check_pos))
 	await pos_changed
 	# 3. 门关闭
 	door.close_door()
@@ -236,10 +235,10 @@ func _find_path(p:Vector2i,t:Vector2i) -> Array[Vector2i]:
 		push_warning("目标点不可达！")
 		return []
 	#update_astar_points(p,t)
-	var start_id = a_star.get_closest_point(p)
-	var start = a_star.get_point_position(start_id) 
-	var connnections = a_star.get_point_connections(a_star.get_closest_point(p))
-	var end = a_star.get_point_position(a_star.get_closest_point(t))
+	# var start_id = a_star.get_closest_point(p)
+	# var start = a_star.get_point_position(start_id) 
+	# var connnections = a_star.get_point_connections(a_star.get_closest_point(p))
+	# var end = a_star.get_point_position(a_star.get_closest_point(t))
 	var temp_path = a_star.get_point_path(
 		a_star.get_closest_point(p),
 		a_star.get_closest_point(t)

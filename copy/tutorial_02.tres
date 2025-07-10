@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=13 format=3 uid="uid://dgtqwh2mdtgsx"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_torci"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_38pjs"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_wjqcl"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="4_hhsvv"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="5_ywlv0"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="6_jggrx"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="7_3u4qm"]
+
+[sub_resource type="Resource" id="Resource_k1xsq"]
+script = ExtResource("3_wjqcl")
+script_cmd = "gain_player_ability(\"running\",true)"
+children = Array[ExtResource("2_38pjs")]([])
+node_type = 9
+pos = Vector2(2760, 100)
+
+[sub_resource type="Resource" id="Resource_7154t"]
+script = ExtResource("2_38pjs")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_k1xsq")
+
+[sub_resource type="Resource" id="Resource_y13xi"]
+script = ExtResource("6_jggrx")
+text = "e00_B04"
+role = ExtResource("5_ywlv0")
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("4_hhsvv")]([])
+children = Array[ExtResource("2_38pjs")]([SubResource("Resource_7154t")])
+node_type = 1
+pos = Vector2(2380, 40)
+
+[sub_resource type="Resource" id="Resource_0ubca"]
+script = ExtResource("2_38pjs")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_y13xi")
+
+[sub_resource type="Resource" id="Resource_qpehw"]
+script = ExtResource("7_3u4qm")
+children = Array[ExtResource("2_38pjs")]([SubResource("Resource_0ubca")])
+node_type = 0
+pos = Vector2(2120, 160)
+
+[resource]
+script = ExtResource("1_torci")
+title = "222"
+is_collsion = true
+trigger_type = 3
+one_shot = false
+tree = SubResource("Resource_qpehw")
+map = {}

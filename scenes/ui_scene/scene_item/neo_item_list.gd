@@ -35,15 +35,15 @@ var picker_mode:bool = false
 var picker_complete:Callable
 var picker_cancel:Callable
 
-## game_player
-var game_player:GamePlayer:
-	get(): return GameManager.game_player
+## game_items
+var game_items:GameItems:
+	get(): return GameManager.game_items
 
 ## 获得道具列表
 func get_items(index:int) -> Array[Item]:
 	var key = catagory_group[index].key
 	if !key: return []
-	return game_player.get_shown_items.filter(func(item:Item):return item.item_catagory == key)
+	return game_items.get_shown_items.filter(func(item:Item):return item.item_catagory == key)
 
 
 func _ready() -> void:
@@ -64,7 +64,7 @@ func _ready() -> void:
 	item_list.on_cancel.connect(_on_item_list_cancel)
 	item_list.on_submit.connect(_use_item)
 	
-	game_player.on_bag_item_changed.connect(_on_catagory_changed.bind(catagory_index))
+	game_items.on_bag_item_changed.connect(_on_catagory_changed.bind(catagory_index))
 
 	catagory_bar.active()
 
@@ -91,7 +91,7 @@ func _use_item(item:Item):
 		if !item_list.usable(item):
 			AudioManager.play_se("blip03")
 			return
-		game_player.use_item(item)
+		game_items.use_item(item)
 
 ## INFO 信号函数 当标签页变化时，刷新itemList
 func _on_catagory_changed(index:int):

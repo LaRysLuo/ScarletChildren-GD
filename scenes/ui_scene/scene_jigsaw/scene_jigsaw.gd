@@ -111,9 +111,9 @@ func _random_piece():
 		index += 1
 	_refresh_children()
 	
-func _find_piece_by_name(name:StringName) -> PuzzleUnit:
+func _find_piece_by_name(_name:StringName) -> PuzzleUnit:
 	for unit in puzzle_units:
-		if unit.name == name: 
+		if unit.name == _name: 
 			return unit
 	return null
 	

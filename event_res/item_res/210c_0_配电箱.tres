@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bqem4j8m1bsyb"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_xipmu"]
+
+[resource]
+script = ExtResource("1_xipmu")
+item_id = &"210c_0_配电箱"
+item_name = &"配电箱"
+item_catagory = 2
+item_desc = "杂货间的配电箱，缺少了2个电池"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_xipmu")]([])

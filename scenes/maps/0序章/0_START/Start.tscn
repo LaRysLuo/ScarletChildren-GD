@@ -1,0 +1,82 @@
+[gd_scene load_steps=14 format=3 uid="uid://2tn8ea18llkd"]
+
+[ext_resource type="Script" path="res://scenes/maps/0序章/0_START/start.gd" id="1_ctmho"]
+[ext_resource type="Script" path="res://event_sys/EventLoaderComponent/event_loader.gd" id="2_no6g5"]
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="3_6kmwn"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="4_34b2t"]
+[ext_resource type="Script" path="res://event_editor/models/transport_data.gd" id="5_ghnlh"]
+[ext_resource type="Script" path="res://event_editor/models/animation_scene_data.gd" id="5_wo48f"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="6_y2ues"]
+
+[sub_resource type="Resource" id="Resource_kmeh6"]
+script = ExtResource("5_ghnlh")
+target_map_path = "res://scenes/maps/0序章/不知名小屋/Map_不知名小屋.tscn"
+is_move_character = false
+target_coord = Vector2i(0, 0)
+is_fade = false
+children = Array[ExtResource("4_34b2t")]([])
+node_type = 8
+pos = Vector2(780, 140)
+
+[sub_resource type="Resource" id="Resource_mya6w"]
+script = ExtResource("4_34b2t")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_kmeh6")
+
+[sub_resource type="Resource" id="Resource_n21iw"]
+script = ExtResource("5_wo48f")
+animation_scene_path = "res://scenes/maps/0序章/UI_蔷薇的故事/UI_蔷薇的故事会.tscn"
+children = Array[ExtResource("4_34b2t")]([SubResource("Resource_mya6w")])
+node_type = 19
+pos = Vector2(480, 180)
+
+[sub_resource type="Resource" id="Resource_8vmg3"]
+script = ExtResource("4_34b2t")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_n21iw")
+
+[sub_resource type="Resource" id="Resource_hyyxa"]
+script = ExtResource("6_y2ues")
+children = Array[ExtResource("4_34b2t")]([SubResource("Resource_8vmg3")])
+node_type = 0
+pos = Vector2(240, 180)
+
+[sub_resource type="Resource" id="Resource_e1414"]
+script = ExtResource("3_6kmwn")
+title = ""
+is_collsion = true
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_hyyxa")
+map = {}
+
+[node name="Start" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ctmho")
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -21.0
+offset_right = 27.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "播放OP"
+
+[node name="EventLoader" type="Node2D" parent="."]
+script = ExtResource("2_no6g5")
+event_res = SubResource("Resource_e1414")

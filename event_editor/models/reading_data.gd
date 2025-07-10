@@ -5,11 +5,11 @@ class_name ReadingData
 @export var close_any_time:bool
 
 ## 构造函数
-func _init(cmd:int = BaseEventNode.Wait,pos:Vector2 = Vector2.ZERO,title:String = "",close_any_time:bool = false) -> void:
-	self.node_type = cmd
-	self.pos = pos
-	self.title = title
-	self.close_any_time = close_any_time
+func _init(_cmd:int = BaseEventNode.Wait,_pos:Vector2 = Vector2.ZERO,_title:String = "",_close_any_time:bool = false) -> void:
+	self.node_type = _cmd
+	self.pos = _pos
+	self.title = _title
+	self.close_any_time = _close_any_time
 
 ## 获得所有页面
 func _get_pages() -> Array[ReadingPageData]:
@@ -26,7 +26,7 @@ func _get_pages() -> Array[ReadingPageData]:
 
 ## 重写虚方法
 # 开启阅读模式
-func _execute(ent:Event,args:Dictionary):
+func _execute(_ent:Event,args:Dictionary):
 	## 获得页面节点上所有的页面
 	var pages = _get_pages()
 	

@@ -18,13 +18,10 @@ const ITEM_EFFECT_CONFIG = {
 
 
 
-
-
 ## 这是道具的数据类，应该要拿回到data_item
 @export var items_raw:Array[Item]
 
-## 载入所有道具
-# 并将物品的使用效果赋予
+## 从本地文件系统中读取所有道具
 func load_items_raw():
 	var dir = DirAccess.open(PATH)
 	if dir:
@@ -35,7 +32,8 @@ func load_items_raw():
 			file_name = file_name.get_basename()
 		print("文件名:",file_name)
 		while file_name != "":
-			if !dir.current_is_dir():
+			## 忽略掉文件开头带#的物品资源
+			if !dir.current_is_dir() and !file_name.begins_with("#"):
 				var item:Item = load(PATH+"/" + file_name )
 				print("文件名:",file_name)
 				var callback_new = ITEM_EFFECT_CONFIG.get(item.item_id)

@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_xcro7"]
 [ext_resource type="Texture2D" uid="uid://d0oc3m6oqaobj" path="res://scenes/maps/3地下 - 冰窖/map/地窖 - 1.png" id="2_5feri"]
 [ext_resource type="Texture2D" uid="uid://dbk0bigo0xx00" path="res://scenes/maps/3地下 - 冰窖/map/地窖 - 2.png" id="3_qqrv7"]
-[ext_resource type="Script" path="res://event_sys/ExPage/ex_page.gd" id="4_ekjt2"]
+[ext_resource type="Script" path="res://event_sys/TilemapEventComponent/ExPage/ex_page.gd" id="4_ekjt2"]
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="5_jamq8"]
-[ext_resource type="Script" path="res://event_sys/EventPage/event_page.gd" id="6_006lm"]
+[ext_resource type="Script" path="res://event_sys/TilemapEventComponent/EventPage/event_page.gd" id="6_006lm"]
 
 [sub_resource type="Resource" id="Resource_oflno"]
 script = ExtResource("5_jamq8")
@@ -18,8 +18,12 @@ target_scene_door = Vector2i(10, 10)
 [node name="冰窖" instance=ExtResource("1_xcro7")]
 
 [node name="Maps" parent="." index="0"]
+top_limit = null
 bottom_limit = 600.0
+left_limit = null
 right_limit = 800.0
+event_group = null
+event_ex = null
 
 [node name="0" parent="Maps" index="0"]
 position = Vector2(401, 300)
@@ -48,4 +52,3 @@ position = Vector2(304, 208)
 script = ExtResource("6_006lm")
 pos = Vector2i(9, 6)
 is_show = true
-dir = null

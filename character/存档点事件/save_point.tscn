@@ -31,6 +31,7 @@ animations = [{
 [node name="save_point" type="Node2D" groups=["events", "save_point"]]
 script = ExtResource("1_6uk5x")
 event_res = ExtResource("2_mjixt")
+event_name = "save_point"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 99
@@ -40,3 +41,4 @@ debug_color = Color(0.961249, 0, 0.511433, 0.42)
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_jmyr6")
+frame_progress = 0.274325

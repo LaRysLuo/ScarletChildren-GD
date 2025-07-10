@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c510s5w0jrgd3"]
+
+[ext_resource type="Script" path="res://auto_load/ui_manager/ui_manager.gd" id="1_vl8oo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrmgt"]
+bg_color = Color(0.103744, 0.103744, 0.103744, 1)
+
+[node name="Ui" type="CanvasLayer"]
+process_mode = 3
+process_priority = 1
+layer = 10
+script = ExtResource("1_vl8oo")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nrmgt")
+
+[node name="GridTrans" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

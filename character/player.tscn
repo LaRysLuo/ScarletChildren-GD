@@ -893,7 +893,7 @@ region_rect = Rect2(64, 32, 32, 32)
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." groups=["light"]]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(0, 7.185)
+position = Vector2(0, 5.5)
 sprite_frames = SubResource("SpriteFrames_yosah")
 animation = &"idle_down"
 offset = Vector2(0, -20.975)
@@ -901,8 +901,6 @@ offset = Vector2(0, -20.975)
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = 0
-limit_right = 866
-limit_bottom = 640
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://shsgcqjaw6yp"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_johiq"]
+
+[resource]
+script = ExtResource("1_johiq")
+item_id = &"210c_2_配电箱"
+item_name = &"配电箱"
+item_catagory = 2
+item_desc = " 杂货间的配电箱，3个电池槽都装上了电池。"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_johiq")]([])

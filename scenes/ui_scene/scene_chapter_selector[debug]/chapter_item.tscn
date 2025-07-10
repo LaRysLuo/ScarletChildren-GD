@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv28tatigk75y"]
+
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_chapter_selector[debug]/chapter_item.gd" id="1_jjejr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rux5x"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ChapterItem" type="Control" node_paths=PackedStringArray("shortcut_context")]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+shortcut_context = NodePath(".")
+script = ExtResource("1_jjejr")
+symbol = null
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_rux5x")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "1111"
+horizontal_alignment = 1

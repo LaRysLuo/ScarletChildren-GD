@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="StoryFlag" load_steps=2 format=3 uid="uid://8i8v6u2j1hm2"]
+
+[ext_resource type="Script" path="res://scripts/core/story_flag/story_flag.gd" id="1_ki47s"]
+
+[resource]
+script = ExtResource("1_ki47s")
+flag_name = "e00_tutorial01"
+flag_state = false

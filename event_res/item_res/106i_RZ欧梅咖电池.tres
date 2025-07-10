@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://dusffihlef5x0"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_n63s5"]
+
+[resource]
+script = ExtResource("1_n63s5")
+item_id = &"106i_RZ欧梅咖电池"
+item_name = &"RZ欧梅咖电池"
+item_catagory = 1
+item_desc = "从八音盒上取下来的电池"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_n63s5")]([])

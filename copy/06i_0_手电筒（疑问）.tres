@@ -1,96 +1,106 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=19 format=3 uid="uid://svnnid3agpfx"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=20 format=3 uid="uid://svnnid3agpfx"]
 
-[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_6kuvy"]
-[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_5raem"]
-[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_b83sh"]
-[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="3_tqv2o"]
-[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_552uf"]
-[ext_resource type="Script" path="res://event_editor/models/keyword_data.gd" id="5_rst5p"]
-[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="6_g84hc"]
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_afiil"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_sxrou"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_tppcp"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="4_818hm"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="5_e8t22"]
+[ext_resource type="Script" path="res://event_editor/models/keyword_data.gd" id="6_g36bv"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="7_ita14"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="8_l2wfq"]
 
-[sub_resource type="Resource" id="Resource_aj2qs"]
-script = ExtResource("4_552uf")
-text = "flashlight04"
-role = ExtResource("3_tqv2o")
-type = 0
-wait_time = 1000
-children = Array[ExtResource("2_5raem")]([])
-node_type = 1
-pos = Vector2(1540, 320)
-
-[sub_resource type="Resource" id="Resource_vyi75"]
-script = ExtResource("2_5raem")
-from_port_index = 0
-to_port_index = 0
-child = SubResource("Resource_aj2qs")
-
-[sub_resource type="Resource" id="Resource_3mhoo"]
-script = ExtResource("3_b83sh")
-script_cmd = "update_item(\"06i_0_手电筒（疑问）\",\"06i_1_手电筒（无电池）\")"
-children = Array[ExtResource("2_5raem")]([SubResource("Resource_vyi75")])
+[sub_resource type="Resource" id="Resource_ypch3"]
+script = ExtResource("3_tppcp")
+script_cmd = "GameManager.data_player.update_item(\"06i_0_手电筒（疑问）\",\"06i_1_手电筒（无电池）\")"
+children = Array[ExtResource("2_sxrou")]([])
 node_type = 9
 pos = Vector2(1280, 360)
 
-[sub_resource type="Resource" id="Resource_ym4oc"]
-script = ExtResource("2_5raem")
+[sub_resource type="Resource" id="Resource_tdshd"]
+script = ExtResource("2_sxrou")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_3mhoo")
+child = SubResource("Resource_ypch3")
 
-[sub_resource type="Resource" id="Resource_7s6j5"]
-script = ExtResource("4_552uf")
+[sub_resource type="Resource" id="Resource_gcfj5"]
+script = ExtResource("5_e8t22")
 text = "flashlight03"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_5raem")]([SubResource("Resource_ym4oc")])
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("4_818hm")]([])
+children = Array[ExtResource("2_sxrou")]([SubResource("Resource_tdshd")])
 node_type = 1
 pos = Vector2(920, 320)
 
-[sub_resource type="Resource" id="Resource_f6hsf"]
-script = ExtResource("2_5raem")
+[sub_resource type="Resource" id="Resource_s62g6"]
+script = ExtResource("2_sxrou")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_7s6j5")
+child = SubResource("Resource_gcfj5")
 
-[sub_resource type="Resource" id="Resource_x3vwo"]
-script = ExtResource("5_rst5p")
+[sub_resource type="Resource" id="Resource_060hc"]
+script = ExtResource("6_g36bv")
 keyword = "flashlight02_keyword"
-children = Array[ExtResource("2_5raem")]([SubResource("Resource_f6hsf")])
+children = Array[ExtResource("2_sxrou")]([SubResource("Resource_s62g6")])
 node_type = 12
 pos = Vector2(620, 340)
 
-[sub_resource type="Resource" id="Resource_lqwko"]
-script = ExtResource("2_5raem")
+[sub_resource type="Resource" id="Resource_kqwqq"]
+script = ExtResource("2_sxrou")
 from_port_index = 1
 to_port_index = 0
-child = SubResource("Resource_x3vwo")
+child = SubResource("Resource_060hc")
 
-[sub_resource type="Resource" id="Resource_1rpxn"]
-script = ExtResource("4_552uf")
+[sub_resource type="Resource" id="Resource_klau0"]
+script = ExtResource("5_e8t22")
+text = "flashlight04"
+role = ExtResource("7_ita14")
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("4_818hm")]([])
+children = Array[ExtResource("2_sxrou")]([])
+node_type = 1
+pos = Vector2(620, 20)
+
+[sub_resource type="Resource" id="Resource_oh3xp"]
+script = ExtResource("2_sxrou")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_klau0")
+
+[sub_resource type="Resource" id="Resource_o5ewa"]
+script = ExtResource("5_e8t22")
 text = "flashlight01"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_5raem")]([SubResource("Resource_lqwko")])
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("4_818hm")]([])
+children = Array[ExtResource("2_sxrou")]([SubResource("Resource_kqwqq"), SubResource("Resource_oh3xp")])
 node_type = 1
 pos = Vector2(260, 120)
 
-[sub_resource type="Resource" id="Resource_s5xj3"]
-script = ExtResource("2_5raem")
+[sub_resource type="Resource" id="Resource_sna18"]
+script = ExtResource("2_sxrou")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_1rpxn")
+child = SubResource("Resource_o5ewa")
 
-[sub_resource type="Resource" id="Resource_bn4c8"]
-script = ExtResource("6_g84hc")
-children = Array[ExtResource("2_5raem")]([SubResource("Resource_s5xj3")])
+[sub_resource type="Resource" id="Resource_c7a8m"]
+script = ExtResource("8_l2wfq")
+children = Array[ExtResource("2_sxrou")]([SubResource("Resource_sna18")])
 node_type = 0
 pos = Vector2(40, 220)
 
 [resource]
-script = ExtResource("1_6kuvy")
+script = ExtResource("1_afiil")
 title = "检查手电的问题"
 is_collsion = false
 trigger_type = 0
 one_shot = false
-tree = SubResource("Resource_bn4c8")
+tree = SubResource("Resource_c7a8m")
 map = {}

@@ -190,11 +190,11 @@ animations = [{
 event_name = "hasin"
 sprite = ExtResource("3_df78n")
 
-[node name="CollisionShape2D2" parent="." index="3"]
+[node name="CollisionShape2D2" parent="." index="1"]
 visible = false
 
-[node name="AnimatedSprite2D2" parent="." index="4"]
-position = Vector2(0, 0)
+[node name="AnimatedSprite2D2" parent="." index="2"]
+position = Vector2(0, 5.5)
 sprite_frames = SubResource("SpriteFrames_8xv6m")
 animation = &"idle_down"
 frame_progress = 0.730264

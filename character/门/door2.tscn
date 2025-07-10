@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://bnvpecscbbl2q"]
+
+[ext_resource type="Script" path="res://character/门/door1.gd" id="1_ieepy"]
+[ext_resource type="Texture2D" uid="uid://castuj5vumoa1" path="res://assets/common/e_t01_ドア内装.png" id="2_3iyn7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yogc0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n05by"]
+font_size = 12
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7bdc"]
+atlas = ExtResource("2_3iyn7")
+region = Rect2(32, 192, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u8uw"]
+atlas = ExtResource("2_3iyn7")
+region = Rect2(32, 128, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_maivf"]
+atlas = ExtResource("2_3iyn7")
+region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d8vj"]
+atlas = ExtResource("2_3iyn7")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb1uj"]
+atlas = ExtResource("2_3iyn7")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mlwy"]
+atlas = ExtResource("2_3iyn7")
+region = Rect2(32, 192, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ffnn2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7bdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u8uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maivf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d8vj")
+}],
+"loop": false,
+"name": &"close",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb1uj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d8vj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maivf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u8uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7bdc")
+}],
+"loop": false,
+"name": &"open",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mlwy")
+}],
+"loop": false,
+"name": &"opened",
+"speed": 10.0
+}]
+
+[node name="门2" type="Node2D" groups=["events"]]
+z_index = 1
+position = Vector2(0, 1)
+script = ExtResource("1_ieepy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 99
+shape = SubResource("RectangleShape2D_yogc0")
+debug_color = Color(0.961249, 0, 0.511433, 0.42)
+
+[node name="Label" type="Label" parent="CollisionShape2D"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -11.0
+offset_right = 8.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "4,3"
+label_settings = SubResource("LabelSettings_n05by")
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -17)
+sprite_frames = SubResource("SpriteFrames_ffnn2")
+animation = &"close"

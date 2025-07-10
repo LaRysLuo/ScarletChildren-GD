@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://be8jn8j2sd1cd"]
+[gd_scene load_steps=6 format=3 uid="uid://be8jn8j2sd1cd"]
 
-[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/maps/2蔷薇馆2F - 201室/map_1号房间.tscn" id="1_m1u7b"]
+[ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_m1u7b"]
 [ext_resource type="Script" path="res://event_editor/event_config.gd" id="2_lxpab"]
 [ext_resource type="Resource" uid="uid://c3jwfeslnm1b3" path="res://event_res/e05-restart.tres" id="3_h01no"]
+[ext_resource type="Script" path="res://component/event_condition/event_condition.gd" id="3_n7f23"]
 
 [sub_resource type="Resource" id="Resource_7c7o8"]
+resource_name = "(12,9)"
 script = ExtResource("2_lxpab")
+is_show = true
+condition = Array[ExtResource("3_n7f23")]([])
+frame_index = 0
 pos = Vector2i(12, 9)
 event_res = ExtResource("3_h01no")
 

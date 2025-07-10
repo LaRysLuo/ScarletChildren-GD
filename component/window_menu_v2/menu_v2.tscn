@@ -35,19 +35,26 @@ symbol = "item"
 
 [node name="Clue" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_wkc5l")]
 layout_mode = 2
-text = "线索"
+text = "备忘录"
 
 [node name="File" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_wkc5l")]
 layout_mode = 2
-text = "资料"
+text = "资料库"
 
 [node name="Deck" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_wkc5l")]
+visible = false
 layout_mode = 2
 text = "牌组"
 
+[node name="Cam" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_wkc5l")]
+layout_mode = 2
+text = "相机"
+symbol = "camera"
+
 [node name="Load" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_wkc5l")]
 layout_mode = 2
-text = "载入"
+text = "照片"
+symbol = "load"
 
 [node name="Config" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_wkc5l")]
 layout_mode = 2

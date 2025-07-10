@@ -26,9 +26,9 @@ func set_color():
 	
 ## 应用暗角特效
 # range:float/取值0 - 1 ，根据range显示不同程度的
-func apply_vignette(range:float,time:float = 0):
+func apply_vignette(_range:float,_time:float = 0):
 	# 如果range为0，关闭特效
-	if range == 0:
+	if _range == 0:
 		clear_effect()
 	else:
 		# 配置着色器
@@ -41,8 +41,8 @@ func apply_vignette(range:float,time:float = 0):
 		if !visible: show()
 		
 		# 如果time大于0，在等待一段时间后，隐藏该特效
-		if time > 0 :
-			await  get_tree().create_timer(time).timeout
+		if _time > 0 :
+			await  get_tree().create_timer(_time).timeout
 			clear_effect()
 
 ## 清除特效

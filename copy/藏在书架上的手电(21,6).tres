@@ -1,27 +1,28 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=14 format=3 uid="uid://btlpolvixwhtb"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=15 format=3 uid="uid://btlpolvixwhtb"]
 
-[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_w7exv"]
-[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_6th6m"]
-[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_d64e0"]
-[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="4_v7x5l"]
-[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="5_3j6ul"]
-[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="6_4qec6"]
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_sdrse"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_f7oeg"]
+[ext_resource type="Script" path="res://event_editor/models/script_data.gd" id="3_o667n"]
+[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="4_huniy"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="5_2elcc"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="6_3mj2y"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="7_ccqvc"]
 
-[sub_resource type="Resource" id="Resource_jv825"]
-script = ExtResource("3_d64e0")
-script_cmd = "GameManager.data_player.gain_item(\"06i_0_手电筒（无电池）\")"
-children = Array[ExtResource("2_6th6m")]([])
+[sub_resource type="Resource" id="Resource_r41lt"]
+script = ExtResource("3_o667n")
+script_cmd = "gain_item(\"101i_0_电池\")"
+children = Array[ExtResource("2_f7oeg")]([])
 node_type = 9
 pos = Vector2(1340, -380)
 
-[sub_resource type="Resource" id="Resource_1jsb3"]
-script = ExtResource("2_6th6m")
+[sub_resource type="Resource" id="Resource_8aird"]
+script = ExtResource("2_f7oeg")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_jv825")
+child = SubResource("Resource_r41lt")
 
-[sub_resource type="Resource" id="Resource_31gf7"]
-script = ExtResource("4_v7x5l")
+[sub_resource type="Resource" id="Resource_jwl2b"]
+script = ExtResource("4_huniy")
 options = Array[Dictionary]([{
 "child_index": 0,
 "id": 0,
@@ -31,42 +32,45 @@ options = Array[Dictionary]([{
 "id": 1,
 "name": "test06"
 }])
-children = Array[ExtResource("2_6th6m")]([SubResource("Resource_1jsb3")])
+children = Array[ExtResource("2_f7oeg")]([SubResource("Resource_8aird")])
 node_type = 2
 pos = Vector2(1040, -360)
 
-[sub_resource type="Resource" id="Resource_y3ida"]
-script = ExtResource("2_6th6m")
+[sub_resource type="Resource" id="Resource_sqw1t"]
+script = ExtResource("2_f7oeg")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_31gf7")
+child = SubResource("Resource_jwl2b")
 
-[sub_resource type="Resource" id="Resource_1rpcr"]
-script = ExtResource("5_3j6ul")
+[sub_resource type="Resource" id="Resource_epbcn"]
+script = ExtResource("6_3mj2y")
 text = "libsurvey06"
 type = 0
 wait_time = 1000
-children = Array[ExtResource("2_6th6m")]([SubResource("Resource_y3ida")])
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("5_2elcc")]([])
+children = Array[ExtResource("2_f7oeg")]([SubResource("Resource_sqw1t")])
 node_type = 1
 pos = Vector2(680, -400)
 
-[sub_resource type="Resource" id="Resource_cuswm"]
-script = ExtResource("2_6th6m")
+[sub_resource type="Resource" id="Resource_igon2"]
+script = ExtResource("2_f7oeg")
 from_port_index = 0
 to_port_index = 0
-child = SubResource("Resource_1rpcr")
+child = SubResource("Resource_epbcn")
 
-[sub_resource type="Resource" id="Resource_q0o6g"]
-script = ExtResource("6_4qec6")
-children = Array[ExtResource("2_6th6m")]([SubResource("Resource_cuswm")])
+[sub_resource type="Resource" id="Resource_l5g0h"]
+script = ExtResource("7_ccqvc")
+children = Array[ExtResource("2_f7oeg")]([SubResource("Resource_igon2")])
 node_type = 0
 pos = Vector2(440, -300)
 
 [resource]
-script = ExtResource("1_w7exv")
+script = ExtResource("1_sdrse")
 title = "藏在书架上的手电"
 is_collsion = true
 trigger_type = 1
 one_shot = false
-tree = SubResource("Resource_q0o6g")
+tree = SubResource("Resource_l5g0h")
 map = {}

@@ -14,6 +14,8 @@ class_name MapConfig
 
 @export var map_pre_event:Events_Res
 
+# @export var is_loaded:bool = false ## 实在载入完成
+
 var all_events:Array[Node]  = []
 
 
@@ -28,42 +30,19 @@ var movable:TileMapLayer:
 #var tile_black:TileMapLayer
 
 func _ready() -> void:
-	
+	print("[MapConfig]正在初始化")
+	# is_loaded = true
+	# print("is_loaded=",is_loaded)
 	self.hide()
-	movable.hide()
-	#_init_scene_event()
-	## 增加一个画面显示前的处理
-	await  _map_show_pre()
+	_get_movable().hide()
 	self.show()
-	#tile_black = $Black
-	#if tile_black: tile_black.show()
-	#if SceneManager.is_running:
-		#await SceneManager.move_finished
-	## 做本场景的事件初始化
-	#call_deferred("_init_scene_event")
 	call_deferred("auto_event_trigger")
 	visibility_changed.connect(_reload_event_config)
+	
 
-#func _exit_tree() -> void:
-	#print("TEST 开始断开信号")
-	#if all_events.is_empty():return 
-	#for event:Event in all_events:
-		#var config:EventConfig = get_event(event.ori_cell_pos,true)
-		#if config: config.event_visible_changed.disconnect(refresh_event_visible.bind(event))
-
-## 初始化地图的事件
-#func _init_scene_event():
-	#print("TEST 开始连接信号")
-	#all_events  = get_tree().get_nodes_in_group("events")
-		### 同时进行可视度的判断,将当前不可视的隐藏
-		### 并且连接信号
-	#for event:Event in all_events:
-		#var config:EventConfig = get_event(event.ori_cell_pos,true)
-		#if config:
-			#var is_show:bool = config.is_show && event.activable(config)
-			#print("事件可视化为%s,坐标(%s,%s)" % [is_show,event.ori_cell_pos.x,event.ori_cell_pos.y])
-			#refresh_event_visible(is_show,event)
-			#config.event_visible_changed.connect(refresh_event_visible.bind(event))
+## 获得移动层
+func _get_movable() -> TileMapLayer:
+	return get_node("./Movable")
 
 ## 重新加载事件配置
 func _reload_event_config():
@@ -73,19 +52,17 @@ func _reload_event_config():
 		ent._load_event_config()
 	pass
 
-## 增加一个游戏初始化前
-func _map_show_pre():
-	pass
 
 # 1. 事件的可视度判断
 # 2. 自动事件的触发
 ## 自动事件的触发
 func auto_event_trigger():
-	## INFO 这里增加了当游戏忙碌时，延后x秒再执行
-	if GameManager.game_state == GameManager.GameState.Buszing:
-		await  GameManager.on_event_trigger_end
-		#await  get_tree().create_timer(0.1).timeout
-	print("正在执行自动事件")
+	## INFO 这里增加了当游戏忙碌时，等待忙碌结束
+	if GameManager.is_buszing:
+		print("[MapConfig]GameManager忙碌中，等待忙碌结束")
+		await  GameManager.on_buszing_finished
+		await  get_tree().create_timer(0.1).timeout
+	print("[MapConfig]正在执行自动事件")
 	if all_events.is_empty(): all_events = get_tree().get_nodes_in_group("events")
 	# 筛选出地图上的event
 	var auto_events:Array[Node] = all_events.filter(func(event:Event):return event.can_auto_trigger())

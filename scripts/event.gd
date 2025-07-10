@@ -18,8 +18,15 @@ var maps:MapConfig:
 var handler:EventPageHandler:
 	get:return  maps.get_parent().get_node("EventPages") if maps else null
 
+## 自动获取EventPage
 var page:EventPage:
 	get:return handler.try_get_event_page(ori_cell_pos) if handler else null
+
+var game_items:GameItems:
+	get: return GameManager.game_items
+
+var game_variable:GameVariable:
+	get:return GameManager.game_variable	
 
 ## 信号
 signal  event_finish # 事件交互结束
@@ -41,7 +48,8 @@ var animated_sprite:AnimatedSprite2D:
 
 func _ready() -> void:
 	if Engine.is_editor_hint():return
-	GameManager.game_player.on_bag_item_changed.connect(_refresh_event_state)
+	game_items.on_bag_item_changed.connect(_refresh_event_state)
+	game_variable.variable_changed.connect(_refresh_event_state)
 	#_refresh_event_state()
 	_load_event_config()
 
@@ -63,14 +71,16 @@ func _load_event_config():
 	
 ## 刷新精灵图
 func _refresh_sprite_frame(frame_index:int,config:EventPage = null):
-	print("刷新精灵图",config.dir)
-	if !config: #&& !config.need_refresh: 
-		# print("没有需要更新",config.need_refresh)
+	if !config: 
+		animated_sprite.animation = "default"
+		animated_sprite.frame = frame_index
 		return
-	# config.need_refresh = false
+	## 如果有config
+	## 1. 更新动画朝向
 	var animation_name = get_dir_animation_name(config.dir)
-	print("animation_name",animation_name)
-	if animation_name: animated_sprite.animation =  animation_name
+	if animated_sprite && animated_sprite.sprite_frames && animated_sprite.sprite_frames.has_animation(animation_name) : 
+		animated_sprite.animation =  animation_name
+	## 2. 更新动画帧数
 	animated_sprite.frame = frame_index
 
 func get_dir_animation_name(_dir:int) :
@@ -89,41 +99,32 @@ func _init_event_visible(config:EventPage):
 		print("TEST 该信号已被此事件连接")
 		config.event_visible_changed.disconnect(_refresh_event_visible.bind(config))
 	config.event_visible_changed.connect(_refresh_event_visible.bind(config))
+	print("[Event]初始化事件可视化")
 
 ## 刷新事件可视化状态
 func _refresh_event_visible(is_show:bool):
-	#print("TEST 事件（%s,%s)可视化状态为=%s" % [config.pos.x,config.pos.y,is_show] )
+	# print("TEST 事件（%s,%s)可视化状态为=%s" % [config.pos.x,config.pos.y,is_show] )
+	print("[Event]事件的可视度变化了")
 	self.visible = is_show
 
 ## 连接信号使用，当或许的条件变化时，刷新事件
-func _refresh_event_state(item_name:StringName = "",state:int = 0):
+func _refresh_event_state():
 	## 需要等待场景
-	print("事件(%s,%s):触发玩家物品变化的回调函数" % [ori_cell_pos.x,ori_cell_pos.y])
 	if SceneManager.is_ui_visible():
-		print("事件(%s,%s):正在忙碌，等待忙碌结束"  % [ori_cell_pos.x,ori_cell_pos.y])
 		await  SceneManager.on_map_available
-		print("事件(%s,%s):忙碌结束"  % [ori_cell_pos.x,ori_cell_pos.y])
-	print("事件(%s,%s):处理物品变化的回调"  % [ori_cell_pos.x,ori_cell_pos.y])
 	_load_event_config()
-	#var config = get_event_config()
-	#print("test条件变化了%s,%s" % [self.name,config])
-	#if config && !activable(config): 
-		#config.is_show = activable(config)
-		#print("test条件变化了%s,%s" % [self.name,config.frame_index])
-	# 更新 动画帧
-		#_refresh_sprite_frame(config.frame_index,config)
-	#print("test当前透明度",self.visible)
+
 
 ## 交互函数
 func interact():
-	var page = handler.try_get_event_page(ori_cell_pos)
-	if !page: return
-	if !page.content || !page.content.tree:
-		printerr("当前事件%s未配置语句" % page.content.title) 
+	var _page = handler.try_get_event_page(ori_cell_pos)
+	if !_page: return
+	if !_page.content || !_page.content.tree:
+		printerr("当前事件%s未配置语句" % _page.content.title) 
 		event_finish.emit()
 		return
 	GameManager.set_game_state_buszing()
-	await _parse_event_config(page.content)
+	await _parse_event_config(_page.content)
 	GameManager.set_game_state_normal()
 
 ## 解析事件资源
@@ -136,7 +137,7 @@ func _parse_event_config(event):
 	## 当事件拥有one_shot限制时,将执行过1次写入字典
 	if event.one_shot:
 		var event_id:String = event.resource_path
-		GameManager.data_variable.set_switch(event_id,true)
+		GameManager.game_variable.set_switch(event_id,true)
 		self.need_reload = true
 		
 	await GameManager.trigger_event_res(event,self)
@@ -186,16 +187,16 @@ func touchable() -> bool:
 
 func can_auto_trigger() -> bool:
 	if page and page.content:
-		print("该事件坐标（%s,%s）是否可自动运行%s",[cell_pos.x,cell_pos.y,one_shot_valid(page) && page.content.trigger_type == Events_Res.TriggerType.Auto自动触发])
+		print("该事件坐标（%s,%s）是否可自动运行%s" % [cell_pos.x,cell_pos.y,one_shot_valid(page) && page.content.trigger_type == Events_Res.TriggerType.Auto自动触发])
 		#var event_id = event.event_res.resource_path
 		### 如果事件仅限执行一次，并且已执行过，则返回false
-		return  one_shot_valid(page) &&  visible && page.content.trigger_type == Events_Res.TriggerType.Auto自动触发
+		return  one_shot_valid(page) &&  page.enable && page.content.trigger_type == Events_Res.TriggerType.Auto自动触发
 	return false
 
 ## 是否仅限一次
 func one_shot_valid(event:EventPage) -> bool:
 	var event_id = event.content.resource_path
-	if	event.content.one_shot && GameManager.data_variable.get_event_switch(event_id):
+	if	event.content.one_shot && GameManager.game_variable.get_event_switch(event_id):
 		return false
 	return true
 
@@ -208,9 +209,9 @@ func _condition_valid(event:EventPage) -> bool:
 ## 准备弃用
 func get_event_config(ingore_condition:bool = false) -> EventConfig:
 	## 从MapConfig中找到该事件坐标的EventConfig
-	var map_config:MapConfig = GameManager.get_map_config()
-	if !map_config: return null
-	var event_config:EventConfig =	map_config.get_event(ori_cell_pos,ingore_condition)
+	var _map_config:MapConfig = GameManager.get_map_config()
+	if !_map_config: return null
+	var event_config:EventConfig =	_map_config.get_event(ori_cell_pos,ingore_condition)
 	print("该事件坐标为:(%s,%s)" % [ori_cell_pos.x,ori_cell_pos.y])
 	if !event_config:
 		printerr("该事件原坐标%s没有配置Event_RES" % ori_cell_pos )

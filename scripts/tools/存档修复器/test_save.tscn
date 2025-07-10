@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://1tv5dmoykihv"]
+
+[ext_resource type="Script" path="res://scripts/tools/存档修复器/test_save.gd" id="1_2dr6i"]
+
+[node name="TestSave" type="Node"]
+script = ExtResource("1_2dr6i")

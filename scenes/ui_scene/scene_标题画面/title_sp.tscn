@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3iuccgaftfe4"]
+[gd_scene load_steps=16 format=3 uid="uid://b3iuccgaftfe4"]
 
 [ext_resource type="Script" path="res://scenes/ui_scene/scene_标题画面/title_sp.gd" id="1_ja11u"]
 [ext_resource type="Texture2D" uid="uid://cwasdf21cyfkl" path="res://assets/标题画面v2.png" id="2_7eqkf"]
 [ext_resource type="Texture2D" uid="uid://cxakine65crfh" path="res://assets/250224(上色）.png" id="3_uchca"]
 [ext_resource type="Texture2D" uid="uid://b7khr4ubahvs8" path="res://assets/蔷薇之子字体.png" id="5_fcqgq"]
 [ext_resource type="Texture2D" uid="uid://di3q84qs54kot" path="res://assets/system/logo.png" id="5_pxcrn"]
+[ext_resource type="Script" path="res://component/window_menu_v2/menu_v2.gd" id="6_lw6vt"]
+[ext_resource type="PackedScene" uid="uid://3vsh52w13rec" path="res://component/lbutton_v2/lbutton_v2.tscn" id="7_dqxar"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7mw6r"]
 font_size = 18
@@ -33,7 +35,20 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_xoped"]
 resource_name = "确定"
+length = 0.5
 step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI信息/开始游戏标识:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_d28h2"]
 resource_name = "闪烁"
@@ -150,13 +165,14 @@ texture = ExtResource("5_fcqgq")
 stretch_mode = 3
 
 [node name="开始游戏标识" type="Label" parent="UI信息"]
+auto_translate_mode = 1
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 455.0
 offset_top = 420.0
 offset_right = 599.0
 offset_bottom = 443.0
-text = "请按Z键开始游戏"
+text = "TITLE_ANYKEY"
 label_settings = SubResource("LabelSettings_66es8")
 
 [node name="版权信息" type="Label" parent="UI信息"]
@@ -169,7 +185,60 @@ text = "scarlet's children 0.01@larik"
 label_settings = SubResource("LabelSettings_pxk6d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_discrete = 2
 libraries = {
 "": SubResource("AnimationLibrary_bt7bl")
 }
 autoplay = "闪烁"
+
+[node name="Control" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = 483.0
+offset_top = 372.0
+offset_right = 694.0
+offset_bottom = 507.0
+
+[node name="MenuV2" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 421.0
+offset_top = 367.0
+offset_right = 572.0
+offset_bottom = 474.0
+script = ExtResource("6_lw6vt")
+selected_btn_color = Color(0.941176, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuV2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuV2/MarginContainer"]
+layout_mode = 2
+
+[node name="NewGame" parent="MenuV2/MarginContainer/VBoxContainer" instance=ExtResource("7_dqxar")]
+layout_mode = 2
+icon = null
+text = "TITLE_NEW"
+symbol = "new_game"
+
+[node name="Continue" parent="MenuV2/MarginContainer/VBoxContainer" instance=ExtResource("7_dqxar")]
+layout_mode = 2
+icon = null
+text = "TITLE_LOAD"
+symbol = "load_game"
+disable = true
+
+[node name="Omake" parent="MenuV2/MarginContainer/VBoxContainer" instance=ExtResource("7_dqxar")]
+visible = false
+layout_mode = 2
+icon = null
+text = "TITLE_OMAKE"
+symbol = "omake"
+disable = true
+
+[node name="Config" parent="MenuV2/MarginContainer/VBoxContainer" instance=ExtResource("7_dqxar")]
+layout_mode = 2
+icon = null
+text = "TITLE_CONFIG"
+symbol = "config"

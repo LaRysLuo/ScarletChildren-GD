@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://q1sb11kvemj4"]
+
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/prefabs/window_help/window_help.gd" id="1_368p1"]
+[ext_resource type="LabelSettings" uid="uid://crb5su7vef2d8" path="res://assets/fonts/ui_label_settings.tres" id="2_j4pir"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pffn7"]
+bg_color = Color(0.11, 0.11, 0.11, 0.929412)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="WindowHelp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_368p1")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pffn7")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+label_settings = ExtResource("2_j4pir")
+autowrap_mode = 3

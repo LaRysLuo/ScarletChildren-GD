@@ -6,9 +6,9 @@ class_name Item
 ## 道具名称
 @export var item_name:StringName
 ## 道具分类
-@export var item_catagory:int ## 1表示道具 2表示线索
+@export var item_catagory:int ## 1表示道具 2表示线索 3表示资料
 ## 道具描述
-@export var item_desc:String
+@export_multiline var item_desc:String
 
 ## 道具状态,表示已更新
 @export var is_finished:bool  = false

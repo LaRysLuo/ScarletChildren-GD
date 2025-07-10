@@ -3,10 +3,10 @@ class_name KeywordData
 
 @export var keyword:String
 
-func _init(node_type:int = 0,pos:Vector2 = Vector2.ZERO,keyword="") -> void:
-	self.node_type = node_type
-	self.pos = pos
-	self.keyword = keyword
+func _init(_node_type:int = 0,_pos:Vector2 = Vector2.ZERO,_keyword="") -> void:
+	self.node_type = _node_type
+	self.pos = _pos
+	self.keyword = _keyword
 
 ## 获得思考回调
 func get_call() ->BaseEventNode:

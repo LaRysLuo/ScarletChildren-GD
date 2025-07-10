@@ -4,10 +4,10 @@ class_name ItemlinkData
 ## 道具的item_id
 @export var item_id:String
 
-func _init(node_type:int = 0,pos:Vector2 = Vector2.ZERO,item_id="") -> void:
-	self.node_type = node_type
-	self.pos = pos
-	self.item_id = item_id
+func _init(_node_type:int = 0,_pos:Vector2 = Vector2.ZERO,_item_id="") -> void:
+	self.node_type = _node_type
+	self.pos = _pos
+	self.item_id = _item_id
 
 ## 获取回调
 func get_call() -> BaseEventNode:

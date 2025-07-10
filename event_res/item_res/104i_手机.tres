@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://b4fgqcyf3c6m2"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_1n1w7"]
+
+[resource]
+script = ExtResource("1_1n1w7")
+item_id = &"104i_手机"
+item_name = &"手机"
+item_catagory = 1
+item_desc = "这是一台用了好久的智能机，前置摄像头都坏掉了"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_1n1w7")]([])

@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://6exey0lurxl0" path="res://scenes/rpg_map_template/template.tscn" id="1_dujwc"]
 [ext_resource type="Texture2D" uid="uid://dqfqg4rj0wd7u" path="res://scenes/maps/3蔷薇馆1F - 更衣室/maps/换衣间 - 1.png" id="2_a6235"]
 [ext_resource type="Texture2D" uid="uid://j7meiykmwnbl" path="res://scenes/maps/3蔷薇馆1F - 更衣室/maps/换衣间 - 3.png" id="3_6t1v0"]
-[ext_resource type="Script" path="res://event_sys/ExPage/ex_page.gd" id="4_ol4kn"]
+[ext_resource type="Script" path="res://event_sys/TilemapEventComponent/ExPage/ex_page.gd" id="4_ol4kn"]
 [ext_resource type="Script" path="res://component/event_extend/door_ex.gd" id="5_hof51"]
-[ext_resource type="Script" path="res://event_sys/EventPage/event_page.gd" id="6_28086"]
+[ext_resource type="Script" path="res://event_sys/TilemapEventComponent/EventPage/event_page.gd" id="6_28086"]
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="7_rj43o"]
 [ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="8_gsnwy"]
 [ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="9_j1m5l"]
@@ -94,8 +94,12 @@ map = {}
 [node name="更衣室" instance=ExtResource("1_dujwc")]
 
 [node name="Maps" parent="." index="0"]
+top_limit = null
 bottom_limit = 600.0
+left_limit = null
 right_limit = 800.0
+event_group = null
+event_ex = null
 
 [node name="0" parent="Maps" index="0"]
 position = Vector2(401, 300)
@@ -128,12 +132,10 @@ content = SubResource("Resource_e8q2k")
 position = Vector2(336, 240)
 script = ExtResource("6_28086")
 pos = Vector2i(10, 7)
-dir = null
 content = SubResource("Resource_778nj")
 
 [node name="娃娃架" type="Node2D" parent="EventPages" index="3"]
 position = Vector2(400, 272)
 script = ExtResource("6_28086")
 pos = Vector2i(12, 8)
-dir = null
 content = SubResource("Resource_4pbns")

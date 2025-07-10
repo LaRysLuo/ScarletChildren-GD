@@ -23,13 +23,18 @@ config/windows_native_icon="res://assets/icon/larys_2.ico"
 
 [autoload]
 
-SceneManager="*res://scenes/scene_manager.tscn"
-AudioManager="*res://scenes/audio_manager.tscn"
 GameManager="*res://scenes/game.tscn"
+UIManager="*res://auto_load/ui_manager/UI.tscn"
+SceneManager="*res://auto_load/scene_manager/scene_manager.tscn"
+AudioManager="*res://scenes/audio_manager.tscn"
 DialogueManager="*res://scenes/dialogue_system.tscn"
-InputManager="*res://auto_load/input_manager/input_manager.gd"
-SaveManager="*res://auto_load/save_manager.gd"
+InputManager="*res://auto_load/input_manager/InputManager.tscn"
 Interpreter="*res://auto_load/interpreter/interpreter.gd"
+AudioManagerV2="*res://auto_load/audio_manager_v2/audio_manager_v2.gd"
+
+[debug]
+
+file_logging/enable_file_logging=true
 
 [dialogic]
 
@@ -200,7 +205,8 @@ locale/fallback="zh"
 pseudolocalization/override=true
 pseudolocalization/skip_placeholders=false
 locale/locale_filter_mode=1
-locale/language_filter=[null]
+locale/language_filter=[null, "zh"]
+locale/country_filter=[]
 
 [layer_names]
 
@@ -219,6 +225,10 @@ common/physics_interpolation=true
 textures/canvas_textures/default_texture_filter=0
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
+
+[steam]
+
+initialization/app_id=3770050
 
 [xr]
 

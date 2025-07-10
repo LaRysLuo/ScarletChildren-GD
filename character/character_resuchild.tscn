@@ -1,7 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://jqjc3hen3qui"]
+[gd_scene load_steps=24 format=3 uid="uid://jqjc3hen3qui"]
 
 [ext_resource type="PackedScene" uid="uid://dcpd1u6slvjtw" path="res://character/character.tscn" id="1_860xh"]
-[ext_resource type="Script" path="res://scripts/event.gd" id="2_a4hry"]
 [ext_resource type="Texture2D" uid="uid://dc60mh7fb5453" path="res://assets/characters/$resu_child.png" id="3_d7138"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1cdor"]
@@ -188,15 +187,14 @@ animations = [{
 }]
 
 [node name="CharacterResuChild" groups=["characters", "events"] instance=ExtResource("1_860xh")]
-script = ExtResource("2_a4hry")
 event_name = "resuchild"
 sprite = ExtResource("3_d7138")
 
-[node name="CollisionShape2D2" parent="." index="3"]
+[node name="CollisionShape2D2" parent="." index="1"]
 visible = false
 
-[node name="AnimatedSprite2D2" parent="." index="4"]
-position = Vector2(0, 0)
+[node name="AnimatedSprite2D2" parent="." index="2"]
+position = Vector2(0, 5.5)
 sprite_frames = SubResource("SpriteFrames_qges1")
 animation = &"idle_down"
 frame_progress = 0.311866

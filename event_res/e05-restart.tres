@@ -1,117 +1,12 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=21 format=3 uid="uid://c3jwfeslnm1b3"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=5 format=3 uid="uid://c3jwfeslnm1b3"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_pxt85"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_6rn8t"]
 [ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_qkl56"]
-[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="3_56en8"]
-[ext_resource type="Script" path="res://event_editor/models/fadein_data.gd" id="3_ier7v"]
-[ext_resource type="Script" path="res://event_editor/models/transport_data.gd" id="4_r64rk"]
-[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="5_dmjra"]
-[ext_resource type="Script" path="res://event_editor/models/fadeout_data.gd" id="6_db4fh"]
-
-[sub_resource type="Resource" id="Resource_eq85u"]
-script = ExtResource("3_ier7v")
-children = Array[ExtResource("2_qkl56")]([])
-node_type = 5
-pos = Vector2(3640, 160)
-
-[sub_resource type="Resource" id="Resource_ucefv"]
-script = ExtResource("4_r64rk")
-target_map_path = "res://scenes/maps/map_社团部室.tscn"
-is_move_character = false
-target_coord = Vector2i(0, 0)
-is_fade = false
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_eq85u")])
-node_type = 8
-pos = Vector2(3200, 100)
-
-[sub_resource type="Resource" id="Resource_sbrc0"]
-script = ExtResource("5_dmjra")
-time = 0.5
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_ucefv")])
-node_type = 6
-pos = Vector2(2940, 140)
-
-[sub_resource type="Resource" id="Resource_87ctn"]
-script = ExtResource("6_db4fh")
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_sbrc0")])
-node_type = 4
-pos = Vector2(2780, 140)
-
-[sub_resource type="Resource" id="Resource_ssalv"]
-script = ExtResource("3_56en8")
-text = "正在一边进行着血腥的实验，一边发出瘆人的狂笑。"
-type = 0
-wait_time = 1000
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_87ctn")])
-node_type = 1
-pos = Vector2(2440, 80)
-
-[sub_resource type="Resource" id="Resource_oeaq1"]
-script = ExtResource("3_56en8")
-text = "双手沾满了鲜血，彷佛像陷入癫狂一样的科学怪人，"
-type = 0
-wait_time = 1000
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_ssalv")])
-node_type = 1
-pos = Vector2(2080, 80)
-
-[sub_resource type="Resource" id="Resource_2uuat"]
-script = ExtResource("3_56en8")
-text = "走进蔷薇馆下的地下密道，就能在秘密实验室里看到那个，"
-type = 0
-wait_time = 1000
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_oeaq1")])
-node_type = 1
-pos = Vector2(1720, 80)
-
-[sub_resource type="Resource" id="Resource_c7is2"]
-script = ExtResource("3_56en8")
-text = "在夜黑风高的午夜，只要你足够大胆，屏住呼吸，"
-type = 0
-wait_time = 1000
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_2uuat")])
-node_type = 1
-pos = Vector2(1380, 80)
-
-[sub_resource type="Resource" id="Resource_cixnv"]
-script = ExtResource("3_56en8")
-text = "只知道他时常掠走山脚下村民的孩子，成为他实验的牺牲品。"
-type = 0
-wait_time = 1000
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_c7is2")])
-node_type = 1
-pos = Vector2(1040, 80)
-
-[sub_resource type="Resource" id="Resource_ltrgs"]
-script = ExtResource("3_56en8")
-text = "据说那里住着一位沉迷于禁忌研究的疯狂科学家，他的名字无人知晓。"
-type = 0
-wait_time = 1000
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_cixnv")])
-node_type = 1
-pos = Vector2(700, 80)
-
-[sub_resource type="Resource" id="Resource_t3rmb"]
-script = ExtResource("3_56en8")
-text = "就能发现一座神秘而恐怖的洋馆——蔷薇馆。"
-type = 0
-wait_time = 1000
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_ltrgs")])
-node_type = 1
-pos = Vector2(360, 80)
-
-[sub_resource type="Resource" id="Resource_bwmox"]
-script = ExtResource("3_56en8")
-text = "在降魔山的另一侧，森林的最深处，穿过一条狭长的隧道"
-type = 0
-wait_time = 1000
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_t3rmb")])
-node_type = 1
-pos = Vector2(20, 80)
 
 [sub_resource type="Resource" id="Resource_6vh8h"]
 script = ExtResource("2_qkl56")
-children = Array[ExtResource("2_qkl56")]([SubResource("Resource_bwmox")])
+children = Array[ExtResource("2_6rn8t")]([])
 node_type = 0
 pos = Vector2(-216.086, 150)
 

@@ -1,12 +1,13 @@
 extends Resource
 class_name EventCondition
 
-enum EventConditionType{
-	Item
-}
+# enum EventConditionType{
+# 	Item,
+# 	StoryFlag,
+# }
 
 ## 事件条件类型
-@export var type:EventConditionType = EventConditionType.Item
+# @export var type:EventConditionType = EventConditionType.Item
 
 var game:GamePlay:
 	get(): return GameManager

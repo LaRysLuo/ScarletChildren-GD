@@ -1,0 +1,254 @@
+[gd_scene load_steps=23 format=3 uid="uid://cm48ifwgdh266"]
+
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/scene_main_v2.gd" id="1_jhejd"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="2_ajj7q"]
+[ext_resource type="Texture2D" uid="uid://bh0ki4f0oek2r" path="res://scenes/ui_scene/scene_main_v2/assets/250621.png" id="3_fiqc5"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/phone.gd" id="4_dq7oi"]
+[ext_resource type="Texture2D" uid="uid://02qcgg3t1gpv" path="res://scenes/ui_scene/scene_main_v2/assets/fake.png" id="6_rnrdt"]
+[ext_resource type="FontFile" uid="uid://mnflroidndvn" path="res://assets/fonts/fusion-pixel-10px-monospaced.otc" id="7_a7pas"]
+[ext_resource type="Texture2D" uid="uid://b4r77j17572m8" path="res://scenes/ui_scene/scene_main_v2/assets/知识库.png" id="7_h4psc"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/location.gd" id="7_od6n0"]
+[ext_resource type="PackedScene" uid="uid://bj3nbldfe185j" path="res://scenes/ui_scene/scene_main_v2/prefabs/app_menu_item.tscn" id="7_xenue"]
+[ext_resource type="Texture2D" uid="uid://dflft6j6kltlf" path="res://scenes/ui_scene/scene_main_v2/assets/设置.png" id="8_4ehin"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/time.gd" id="8_xwq0q"]
+[ext_resource type="Texture2D" uid="uid://o70ckfbhg7" path="res://scenes/ui_scene/scene_main_v2/assets/备忘.png" id="9_n02py"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/page_tabs.gd" id="11_ot4o2"]
+[ext_resource type="PackedScene" uid="uid://dyd5asfx7t3y8" path="res://scenes/ui_scene/scene_main_v2/prefabs/window_item/window_item.tscn" id="14_1cv46"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/page_controller.gd" id="14_fmis2"]
+[ext_resource type="PackedScene" uid="uid://q1sb11kvemj4" path="res://scenes/ui_scene/scene_main_v2/prefabs/window_help/window_help.tscn" id="15_covi0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_11qkm"]
+shader = ExtResource("2_ajj7q")
+shader_parameter/blur_radius = 3.321
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyimt"]
+bg_color = Color(0.385492, 0.385493, 0.385492, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ve6r2"]
+bg_color = Color(0.772549, 0.764706, 0.717647, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_15ucy"]
+texture = ExtResource("6_rnrdt")
+
+[sub_resource type="LabelSettings" id="LabelSettings_sdxwk"]
+font = ExtResource("7_a7pas")
+font_size = 18
+font_color = Color(0.513726, 0, 0.129412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_43kyx"]
+font = ExtResource("7_a7pas")
+font_size = 30
+font_color = Color(0.513726, 0, 0.129412, 1)
+
+[node name="SceneMenuV2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jhejd")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_horizontal_guides_ = [213.0]
+
+[node name="Catagory" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 76.0
+offset_top = 23.0
+offset_right = 160.0
+offset_bottom = 63.0
+
+[node name="PanelBg" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_11qkm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 16.0
+offset_right = 873.0
+offset_bottom = 600.0
+texture = ExtResource("3_fiqc5")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Phone" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 75.0
+offset_top = 608.0
+offset_right = 382.0
+offset_bottom = 1150.0
+script = ExtResource("4_dq7oi")
+
+[node name="PhoneBase" type="Panel" parent="Phone"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gyimt")
+
+[node name="PhoneBase2" type="Panel" parent="Phone"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ve6r2")
+
+[node name="Panel" type="Panel" parent="Phone/PhoneBase2"]
+self_modulate = Color(1, 1, 1, 0.792157)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 42.0
+offset_right = 14.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_15ucy")
+
+[node name="MarginContainer" type="MarginContainer" parent="Phone/PhoneBase2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Phone/PhoneBase2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 180
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Location" type="Label" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "???"
+label_settings = SubResource("LabelSettings_sdxwk")
+horizontal_alignment = 1
+script = ExtResource("7_od6n0")
+
+[node name="Time" type="Label" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "10时12分10秒"
+label_settings = SubResource("LabelSettings_43kyx")
+horizontal_alignment = 1
+script = ExtResource("8_xwq0q")
+
+[node name="AppMenuVB" type="VBoxContainer" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Row1" type="HBoxContainer" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="AppMenuItem" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row1" instance=ExtResource("7_xenue")]
+visible = false
+layout_mode = 2
+
+[node name="AppMenuItem2" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row1" instance=ExtResource("7_xenue")]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row1/AppMenuItem2/Icon" index="0"]
+texture = ExtResource("9_n02py")
+stretch_mode = 5
+
+[node name="Label" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row1/AppMenuItem2" index="1"]
+text = "备忘录"
+
+[node name="Row2" type="HBoxContainer" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="AppMenuItem3" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row2" instance=ExtResource("7_xenue")]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row2/AppMenuItem3/Icon" index="0"]
+texture = ExtResource("7_h4psc")
+stretch_mode = 5
+
+[node name="Label" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row2/AppMenuItem3" index="1"]
+text = "资料库"
+
+[node name="AppMenuItem4" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row2" instance=ExtResource("7_xenue")]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row2/AppMenuItem4/Icon" index="0"]
+texture = ExtResource("8_4ehin")
+stretch_mode = 5
+
+[node name="Label" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row2/AppMenuItem4" index="1"]
+text = "设置"
+
+[node name="PageTabs" type="HBoxContainer" parent="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("11_ot4o2")
+
+[node name="Page" type="Control" parent="Phone/PhoneBase2"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_fmis2")
+
+[node name="WindowItem" parent="." instance=ExtResource("14_1cv46")]
+layout_mode = 1
+offset_left = 38.0
+offset_top = 103.0
+offset_right = -380.0
+offset_bottom = -45.0
+
+[node name="WindowHelp" parent="." instance=ExtResource("15_covi0")]
+layout_mode = 1
+offset_left = 38.0
+offset_top = 16.0
+offset_right = -381.0
+offset_bottom = -501.0
+
+[editable path="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row1/AppMenuItem2"]
+[editable path="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row2/AppMenuItem3"]
+[editable path="Phone/PhoneBase2/MarginContainer/VBoxContainer/AppMenuVB/VBoxContainer2/Row2/AppMenuItem4"]

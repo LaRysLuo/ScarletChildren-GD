@@ -1,4 +1,4 @@
-extends Control
+extends InputableScene
 class_name WindowItem
 
 const MAX_ITEM_COUNT = 6
@@ -11,7 +11,7 @@ const item_inner_pre:PackedScene = preload("res://scenes/ui_scene/scene_main/win
 @onready var detail_label:Label = $InnerWindowBgMargin/InnerWindowBg/HBoxContainer/MarginContainer/Label
 
 ## 道具临时列表
-var item_list:Array[Dictionary]
+var item_list:Array
 var item_inner_list:Array[ItemInner]
 
 var _last_index:int = -1
@@ -26,11 +26,12 @@ signal on_cancel
 
 
 func _ready() -> void:
+	set_handler("cancel",_on_cancel)
 	self.hide()
 	pass
 
 ## 初始化窗口
-func set_items(items:Array[Dictionary]) -> void:
+func set_items(items:Array) -> void:
 	print("item",items)
 	self.item_list = items
 
@@ -43,9 +44,7 @@ func show_and_active():
 
 ## 冻结
 func hide_and_clear():
-	# _clear_item_list()
 	_page_reset()
-	# _select_index = -1
 	_last_index = -1
 	self.hide()
 	pass
@@ -72,7 +71,7 @@ func _render_item_inner(item:Dictionary,index:int):
 	item_inner_list.append(item_inner)
 	item_inner.lb_select_changed.connect(_on_select_changed)
 	item_inner.lb_submit.connect(_on_submit)
-	item_inner.lb_cancel.connect(_on_cancel)
+	# item_inner.lb_cancel.connect(_on_cancel)
 	item_grid.add_child(item_inner)
 	if index >= MAX_ITEM_COUNT: item_inner.hide()
 	item_inner.call_deferred("set_info",item_name,item_icon)
@@ -90,7 +89,10 @@ func _clear_item_list():
 
 ## 选择
 func select(index:int):
-	if item_inner_list.is_empty(): return
+	if item_inner_list.is_empty(): 
+		_show_arrow()
+		_clear_detail()
+		return
 	
 
 	on_select_changed.emit()
@@ -124,6 +126,13 @@ func _show_arrow():
 ## 显示物品详情
 func _show_detail():
 	detail_label.text =	item_list[self._select_index].get("desc") 
+
+func _clear_detail():
+	detail_label.text = ""
+
+## 使用道具
+func _use_item():
+	pass
 
 ## 页面向上移
 func _page_next(index: int): #8
@@ -165,6 +174,7 @@ func _on_select_changed(index:int):
 ## 回调函数：提交
 func _on_submit():
 	on_submit.emit(self._select_index)
+	_use_item()
 
 ## 回调函数：取消
 func _on_cancel(): 

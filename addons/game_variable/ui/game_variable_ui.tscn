@@ -1,0 +1,114 @@
+[gd_scene load_steps=3 format=3 uid="uid://db14e5xvxfp2i"]
+
+[ext_resource type="Script" path="res://addons/game_variable/ui/game_variable_ui.gd" id="1_xcyy8"]
+[ext_resource type="Script" path="res://addons/game_variable/ui/menu_box.gd" id="2_tiqec"]
+
+[node name="GameVariableUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 608.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xcyy8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBox" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_tiqec")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MenuBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/MenuBox/MarginContainer"]
+layout_mode = 2
+split_offset = 645
+dragger_visibility = 1
+
+[node name="MenuInner" type="HBoxContainer" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VariableName" type="HBoxContainer" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer/MenuInner"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer/MenuInner/VariableName"]
+layout_mode = 2
+text = "变量名称"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer/MenuInner/VariableName"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "1111"
+placeholder_text = "变量名"
+
+[node name="VariableType" type="HBoxContainer" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer/MenuInner"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer/MenuInner/VariableType"]
+layout_mode = 2
+text = "变量类型"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer/MenuInner/VariableType"]
+layout_mode = 2
+selected = 0
+fit_to_longest_item = false
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "STRING"
+popup/item_0/id = 4
+popup/item_1/text = "INT"
+popup/item_1/id = 2
+popup/item_2/text = "BOOL"
+popup/item_2/id = 1
+
+[node name="VariableValue" type="HBoxContainer" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer/MenuInner"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer/MenuInner/VariableValue"]
+layout_mode = 2
+text = "变量初始值"
+
+[node name="ValueInt" type="SpinBox" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer/MenuInner/VariableValue"]
+visible = false
+layout_mode = 2
+
+[node name="ValueString2" type="LineEdit" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer/MenuInner/VariableValue"]
+layout_mode = 2
+text = "111"
+
+[node name="ValueBool" type="CheckBox" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer/MenuInner/VariableValue"]
+visible = false
+layout_mode = 2
+button_pressed = true
+
+[node name="Button" type="Button" parent="VBoxContainer/MenuBox/MarginContainer/HSplitContainer"]
+layout_mode = 2
+text = "  添加  "
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MenuBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 460
+theme_override_constants/margin_bottom = 5
+
+[node name="Button" type="Button" parent="VBoxContainer/MenuBox/MarginContainer2"]
+layout_mode = 2
+text = "保存"
+
+[node name="List" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2

@@ -1,0 +1,104 @@
+[gd_resource type="Resource" script_class="Events_Res" load_steps=19 format=3 uid="uid://dm1ije0p61vmg"]
+
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_y8w23"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_hxu8t"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="3_4m172"]
+[ext_resource type="Script" path="res://event_editor/models/option_data.gd" id="3_k74ae"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_tj2a0"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="5_adh8h"]
+[ext_resource type="Script" path="res://event_editor/models/condition_data.gd" id="5_itu52"]
+
+[sub_resource type="Resource" id="Resource_o1miq"]
+script = ExtResource("3_k74ae")
+options = Array[Dictionary]([{
+"child_index": -1,
+"id": 0,
+"name": "OK"
+}, {
+"child_index": -1,
+"id": 1,
+"name": "NO"
+}])
+children = Array[ExtResource("2_hxu8t")]([])
+node_type = 2
+pos = Vector2(700, 100)
+
+[sub_resource type="Resource" id="Resource_j4nbb"]
+script = ExtResource("2_hxu8t")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_o1miq")
+
+[sub_resource type="Resource" id="Resource_tydga"]
+script = ExtResource("3_4m172")
+text_id = "save_03"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_ci4yr"]
+script = ExtResource("4_tj2a0")
+text = ""
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_4m172")]([SubResource("Resource_tydga")])
+children = Array[ExtResource("2_hxu8t")]([SubResource("Resource_j4nbb")])
+node_type = 111
+pos = Vector2(300, 40)
+
+[sub_resource type="Resource" id="Resource_ltjwq"]
+script = ExtResource("2_hxu8t")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_ci4yr")
+
+[sub_resource type="Resource" id="Resource_7gjrw"]
+script = ExtResource("3_4m172")
+text_id = "save_04"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_x64qp"]
+script = ExtResource("4_tj2a0")
+text = ""
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_4m172")]([SubResource("Resource_7gjrw")])
+children = Array[ExtResource("2_hxu8t")]([])
+node_type = 111
+pos = Vector2(300, 480)
+
+[sub_resource type="Resource" id="Resource_h1n40"]
+script = ExtResource("2_hxu8t")
+from_port_index = 1
+to_port_index = 0
+child = SubResource("Resource_x64qp")
+
+[sub_resource type="Resource" id="Resource_1rfo0"]
+script = ExtResource("5_itu52")
+script_cmd = "with_event(\"save_point\")"
+children = Array[ExtResource("2_hxu8t")]([SubResource("Resource_ltjwq"), SubResource("Resource_h1n40")])
+node_type = 17
+pos = Vector2(-240, 280)
+
+[sub_resource type="Resource" id="Resource_5reqb"]
+script = ExtResource("2_hxu8t")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_1rfo0")
+
+[sub_resource type="Resource" id="Resource_2tug3"]
+script = ExtResource("5_adh8h")
+children = Array[ExtResource("2_hxu8t")]([SubResource("Resource_5reqb")])
+node_type = 0
+pos = Vector2(-500, 300)
+
+[resource]
+script = ExtResource("1_y8w23")
+title = ""
+is_collsion = true
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_2tug3")
+map = {}

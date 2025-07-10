@@ -9,8 +9,8 @@ var fog_image:Image
 var fog_texture:ImageTexture
 
 
-var player:Player_v1:
-	get():return GameManager.player
+var player:PlayerV1:
+	get():return GameManager.game_player.player
 
 
 

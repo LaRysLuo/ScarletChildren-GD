@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc6fp1vo78wex"]
+
+[ext_resource type="PackedScene" uid="uid://cangcvnqycanr" path="res://scenes/ui_scene/scene_main_v2/pages/page_base/page_base.tscn" id="1_vwg20"]
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/pages/page_memo/page_memo.gd" id="2_tpfai"]
+[ext_resource type="PackedScene" uid="uid://bu4qx6kmwq2r3" path="res://component/item_list/item_list.tscn" id="3_bojsk"]
+[ext_resource type="PackedScene" uid="uid://dg4vq18vos2y8" path="res://scenes/ui_scene/scene_main_v2/pages/page_memo/prefabs/memo_item.tscn" id="3_o302e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_byk5o"]
+font_size = 30
+
+[node name="PageMemo" instance=ExtResource("1_vwg20")]
+script = ExtResource("2_tpfai")
+
+[node name="VBoxContainer" parent="MarginContainer" index="0"]
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+text = "备忘录"
+label_settings = SubResource("LabelSettings_byk5o")
+
+[node name="ItemList" parent="MarginContainer/VBoxContainer" index="1" instance=ExtResource("3_bojsk")]
+layout_mode = 2
+size_flags_vertical = 3
+list_item_scene = ExtResource("3_o302e")

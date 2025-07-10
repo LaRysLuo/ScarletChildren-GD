@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://508hyegvwf6l"]
+
+[ext_resource type="FontFile" uid="uid://mnflroidndvn" path="res://assets/fonts/fusion-pixel-10px-monospaced.otc" id="1_o25xp"]
+
+[resource]
+font = ExtResource("1_o25xp")
+font_size = 20
+font_color = Color(0.6, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)

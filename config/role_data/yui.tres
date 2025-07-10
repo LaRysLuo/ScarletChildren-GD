@@ -7,5 +7,5 @@
 script = ExtResource("1_pk46t")
 role_name = "唯音"
 theme_color = Color(0.768627, 0.211765, 0.419608, 1)
-tachie = ExtResource("2_8umlq")
+tachie_normal = ExtResource("2_8umlq")
 desc = ""

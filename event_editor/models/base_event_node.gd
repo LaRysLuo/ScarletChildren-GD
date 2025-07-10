@@ -4,6 +4,7 @@ class_name BaseEventNode
 
 const Start = 0 ## 开始节点
 const Message = 1 ##显示消息
+const MessageV2 = 111 ##显示消息V2
 const Option = 2 ##分支选项
 const CharacterMove = 3 ## 角色移动
 const Fadeout = 4 ## 画面淡出
@@ -21,7 +22,8 @@ const ReadingPage = 15 ## 阅读Ex - 页面
 const CinemaMode = 16 ## 启动剧场模式
 const ConditionNode = 17 ## 条件判断
 const PasswordInput = 18 ## 密码输入器
-
+const PlayAnimationScene = 19 ## 动画场景
+const AudioPlayer = 20 ## 音频播放器
 
 ## graph节点
 

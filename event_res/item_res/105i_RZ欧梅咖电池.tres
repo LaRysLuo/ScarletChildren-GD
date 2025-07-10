@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://2o41x87aqgop"]
+
+[ext_resource type="Script" path="res://component/item_res/item.gd" id="1_8onfr"]
+
+[resource]
+script = ExtResource("1_8onfr")
+item_id = &"105i_RZ欧梅咖电池"
+item_name = &"RZ欧梅咖电池"
+item_catagory = 1
+item_desc = "在图书室书架找到的，似乎是我小时候藏在那里的"
+is_finished = false
+use_event = Callable()
+err_desc = ""
+relations = Array[ExtResource("1_8onfr")]([])

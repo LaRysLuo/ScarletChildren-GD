@@ -11,19 +11,33 @@ const Typing = 1
 const WaitInput = 2
 const AutoPlay = 3
 
+## 对话框的三个参数
+enum {
+	POSITION_TOP,
+	POSITION_CENTER,
+	POSITION_BOTTOM
+}
+
+## 对话框的三个位置
+const POSITION_HEIGHT_TOP:float = 69 
+const POSITION_HEIGHT_CENTER:float = 295
+const POSITION_HEIGHT_BOTTOM:float = 520 
+
+
 ## 对外显示的配置属性 
  #打字动画速度,数字越大，速度越快
 @export var TYPING_SPEED = 120 
 
 ## 组件引用
-@onready var tachie_tr:TextureRect = get_node("TextureRect")
-@onready var dialogue_box:Control = get_node("DialogueBox")
-@onready var key_tips:KeyTipsBottom = get_node("DialogueBox/MarginContainer2/KeyTipsBottom")
-@onready var name_board: Control = get_node("DialogueBox/MarginContainer/VBoxContainer/Control")
-@onready var name_label: Label = get_node("DialogueBox/MarginContainer/VBoxContainer/Control/NameLabel")
-@onready var content_label: RichTextLabel = get_node("DialogueBox/MarginContainer/VBoxContainer/ContentLabel")
-@onready var options_node:OptionMenu =  get_node("Options") as OptionMenu # Options组件的基节点
-@onready var nextable_sign_tr:Control = get_node("DialogueBox/MarginContainer/VBoxContainer/Control2") 
+@onready var control:Control = get_node("Control")
+@onready var tachie_tr:TextureRect = get_node("Control/HBoxContainer/TextureRect")
+@onready var dialogue_box:Control = get_node("Control/DialogueBox")
+@onready var key_tips:KeyTipsBottom = get_node("Control/DialogueBox/MarginContainer2/KeyTipsBottom")
+@onready var name_board: Control = get_node("Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Control")
+@onready var name_label: Label = get_node("Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Control/NameLabel")
+@onready var content_label: RichTextLabel = get_node("Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/ContentLabel")
+@onready var options_node:OptionMenu =  get_node("Control/Options") as OptionMenu # Options组件的基节点
+@onready var nextable_sign_tr:Control = get_node("Control/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Control2") 
 
 var typing_tween:Tween
 var typing_text:String
@@ -65,6 +79,7 @@ func _exit_tree() -> void:
 	InputManager.on_action_pressed.disconnect(_action_input)
 
 func  _ready() -> void:
+	self.process_mode = Node.PROCESS_MODE_ALWAYS
 	## 把对话框体和选项框体隐藏
 	_hide_msgbox()
 	_hide_option_window()
@@ -121,10 +136,20 @@ func _action_input(key:int):
 #region 对外函数
 
 ## 【对外】显示消息
-func show_message(text:String,wait_type:int,wait_time:float,role:Role = null,expression_id:int = 0):
+func show_message(text:String,wait_type:int,wait_time:float,role:Role = null,expression_id:int = 0, position:int = POSITION_BOTTOM ):
 	var info :=  DialogueInfo.new(role,expression_id,text,wait_type,wait_time) # 生成对话信息
 	#var temp_list :Array[DialogueInfo] = [ info]
+	_update_window_position(position) ## 更新窗口位置
 	_start_dialogue( [ info]) #开始对话
+
+## [对外] 显示消息（数组）
+func show_message_array(dialogue_info_list:Array[DialogueData],wait_type:int,wait_time:float,role:Role = null,position:int = POSITION_BOTTOM):
+	var list:Array[DialogueInfo] = []
+	for dialogue in dialogue_info_list:
+		print("dialogue=",dialogue.text_id)
+		list.append(DialogueInfo.new(role,dialogue.expression_id,dialogue.text_id,wait_type,wait_time))
+	_update_window_position(position) ## 更新窗口位置
+	_start_dialogue(list)
 
 ## 【对外】显示选项
 ## 参数
@@ -132,16 +157,17 @@ func show_message(text:String,wait_type:int,wait_time:float,role:Role = null,exp
 ## child_index
 ## 使用await DialogueManager.options_finish来获取选择的child_index
 func show_options(options:Array[Dictionary]):
+	print("[DialogueSystem]正在显示选项")
 	is_option_show = true
 	var index = 0
 	for opt in options:
-		var name = opt["name"]
-		#var child_index = opt["child_index"]
-		options_node.add_option(name,_options_confirm.bind(index))
+		var _name = opt["name"]
+		options_node.add_option(_name,_options_confirm.bind(index))
 		index +=1
-	dialogue_box.show()
+	control.show()
 	options_node.enable()
 	options_node.show()
+	wait_input_mode = None
 
 ## 设置关键词
 func set_keyword(keyword_list):
@@ -163,12 +189,24 @@ func _translate_all_labels(node):
 			child.text = tr(child.text)
 		_translate_all_labels(child)
 
+## 根据传入的参数对话框的位置，如果没传，默认是底部
+func _update_window_position(postion:int):
+	var pos_y:float = _get_position_height(postion)
+	control.set_position(Vector2(0,pos_y))
+
+func _get_position_height(postion:int):
+	match postion:
+		POSITION_TOP: return POSITION_HEIGHT_TOP
+		POSITION_CENTER: return POSITION_HEIGHT_CENTER
+		POSITION_BOTTOM: return POSITION_HEIGHT_BOTTOM
+	return null
+
 ## 开始对话，传入对话文本
-func _start_dialogue(dialogue_list:Array[DialogueInfo]):
-	if dialogue_list.is_empty(): 
+func _start_dialogue(_dialogue_list:Array[DialogueInfo]):
+	if _dialogue_list.is_empty(): 
 		push_error("传入的对话内容不能为空")
 		return
-	self.dialogue_list.append_array(dialogue_list)  #将文本加入待处理的对话
+	self.dialogue_list.append_array(_dialogue_list)  #将文本加入待处理的对话
 	print("当前的待显示的对话列表",self.dialogue_list.size())
 	dialogue_box.show()
 	if wait_input_mode == None : _next_dialogue() # 开始下一个对话
@@ -189,15 +227,15 @@ func _render_content(info:DialogueInfo):
 		if tachie:
 			tachie_tr.show()
 			tachie_tr.texture = tachie
-	
+	control.show()
 	typing_tween = get_tree().create_tween()
 	content_label.text = ""
 	#print("开始打字=",content_label.text)
 	typing_text = tr(info.dialogue_text) 
 	var time:float =   10.0 / TYPING_SPEED  # 10 / 100 = 0.1
 	
-	for char in typing_text:
-		typing_tween.tween_callback(_append_character.bind(char)).set_delay(time)
+	for _char in typing_text:
+		typing_tween.tween_callback(_append_character.bind(_char)).set_delay(time)
 	
 	typing_tween.connect("finished",func():
 		#print("打字完成")
@@ -229,7 +267,8 @@ func _next_dialogue():
 		#GameManager.set_game_state_normal()
 		dialogue_finish.emit(-1)
 		return # 当对话文本是空的时候，结束对话模式
-	var info = self.dialogue_list.pop_front() #取出第一个对话内容
+	var info:DialogueInfo = self.dialogue_list.pop_front() #取出第一个对话内容
+	print("对话内容：",info.dialogue_text)
 	if info: _render_content(info) # 渲染对话框内容
 
 # 跳过打印机动画
@@ -250,6 +289,7 @@ func _start_wait_input():
 func _hide_msgbox():
 	tachie_tr.hide()
 	dialogue_box.hide()
+	control.hide()
 	nextable_sign_tr.hide()
 	ponder_mode = false
 

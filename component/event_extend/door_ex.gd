@@ -20,7 +20,7 @@ class_name DoorEx
 func _make_event_res() ->Events_Res:
 	var start = StartData.new()
 	var playanim_node_01 = PlayAnimData.new(BaseEventNode.PlayEventAnim,Vector2.ZERO,"open")
-	var wait_node_02 = WaitData.new(BaseEventNode.Wait,Vector2.ZERO,0.1)
+	# var wait_node_02 = WaitData.new(BaseEventNode.Wait,Vector2.ZERO,0.1)
 	var playanim_ndoe_03 = PlayAnimData.new(BaseEventNode.PlayEventAnim,Vector2.ZERO,"opened")
 	var charmove_node_04 = CharacterMoveData.new(BaseEventNode.CharacterMove,Vector2.ZERO,0,{"label":"玩家","coord":"player"},step1,1,true)
 	var script_node_05 = ScriptData.new(BaseEventNode.Scripts,Vector2.ZERO,"fadeout(.3)")

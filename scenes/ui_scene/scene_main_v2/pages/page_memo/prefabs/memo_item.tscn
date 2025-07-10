@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg4vq18vos2y8"]
+
+[ext_resource type="Script" path="res://scenes/ui_scene/scene_main_v2/pages/page_memo/prefabs/memo_item.gd" id="1_20lx7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukq6y"]
+bg_color = Color(0.158472, 0.158472, 0.158472, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.156863, 0.156863, 0.156863, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_ycgk4"]
+font_size = 18
+font_color = Color(0.74, 0.74, 0.74, 0.909804)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2w01k"]
+font_size = 14
+font_color = Color(0.505344, 0.505344, 0.505344, 1)
+
+[node name="MemoItem" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 74.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ukq6y")
+script = ExtResource("1_20lx7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+button_pressed = true
+action_mode = 0
+button_mask = 0
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "迷之身影"
+label_settings = SubResource("LabelSettings_ycgk4")
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "在门口见到的幽灵，总感觉他的样子有点熟悉，但是想不起来"
+label_settings = SubResource("LabelSettings_2w01k")
+autowrap_mode = 3

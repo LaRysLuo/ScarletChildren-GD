@@ -3,13 +3,16 @@ class_name MessageNode
 
 @export var text:String ## 信息文本
 @export var role:Role ## 角色数据
-@export var type:int ## 对话类型
+@export var type:int ## 等待类型
 @export var wait_time:int ## 等待时间（毫秒），只有当type为1才有效。
-@export var expression_id:int = 0
+@export var expression_id:int = 0 ## 表情id
+@export var position_type:int = 2 ## 位置类型
+
+@export var dialogue_list:Array[DialogueData] ## 对话数据列表
 
 var result = -1 ## 分支节点
 
-func  _init(_cmd:int = 0,_pos:Vector2 = Vector2.ZERO,_text:String ="",_role:Role = null,_type:int = 0,_wait_time:int = 0,_expression_id:int = 0) -> void:
+func  _init(_cmd:int = 0,_pos:Vector2 = Vector2.ZERO,_text:String ="",_role:Role = null,_type:int = 0,_wait_time:int = 0,_expression_id:int = 0,_position_type:int = 2,_dialogue_list:Array[DialogueData] = []) -> void:
 	self.node_type = _cmd
 	self.pos = _pos
 	self.text = _text
@@ -17,6 +20,8 @@ func  _init(_cmd:int = 0,_pos:Vector2 = Vector2.ZERO,_text:String ="",_role:Role
 	self.type = _type
 	self.wait_time = _wait_time
 	self.expression_id = _expression_id
+	self.position_type = _position_type
+	self.dialogue_list = _dialogue_list
 
 ## 重写下一步:当result有参数时，返回思考回调
 func next(_index:int = 0) -> BaseEventNode:
@@ -54,10 +59,24 @@ func _get_keyword() -> Array[KeywordData]:
 func _execute(_event,_args):
 	#print("开始显示信息，新逻辑执行成功，完美！")
 	result = -1
-	var keywords = _get_keyword()
-	DialogueManager.show_message(text,type,wait_time,role,expression_id)
-	DialogueManager.set_keyword(keywords)
-	print("result11=",result)
+	## 新逻辑：目前还没兼容思考节点相关内容
+	if !dialogue_list.is_empty():
+		print("dialogue_list的尺寸:",dialogue_list.size())
+		DialogueManager.show_message_array(dialogue_list,type,wait_time,role,position_type)
+	else:
+		var keywords = _get_keyword()
+		DialogueManager.show_message(text,type,wait_time,role,expression_id,position_type)
+		DialogueManager.set_keyword(keywords)
+	## 如果后续节点是optionNode,则直接不等待完成，直接显示下一个节点
+	if _get_next_option():
+		await DialogueManager.dialogue_typing_finish
+		return 
 	result = await  DialogueManager.dialogue_finish
-	print("result22=",result)
-	print("信息显示完成")
+	print("[MessageData]信息显示完成")
+
+## 判断下一个节点是否是选项节点
+func _get_next_option() -> bool:
+	if next(0) is OptionData:
+		print("[MessageData]下一个节点是选项节点")
+		return true
+	return false

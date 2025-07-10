@@ -57,8 +57,8 @@ func deactive():
 	self.isActive = false
 	#unfocus_all()
 
-func set_info(catagory_group:Array) -> void:
-	self.catagory_group = catagory_group
+func set_info(_catagory_group:Array) -> void:
+	self.catagory_group = _catagory_group
 	_init_catagory_bar()
 	
 

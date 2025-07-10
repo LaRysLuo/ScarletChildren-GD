@@ -35,7 +35,7 @@ vertical = true
 
 [node name="Label" type="Label" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
-text = "显示类型"
+text = "单行代码"
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer"]
 custom_minimum_size = Vector2(0, 100)

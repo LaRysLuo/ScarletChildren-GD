@@ -194,6 +194,6 @@ sprite = ExtResource("2_migms")
 visible = false
 
 [node name="AnimatedSprite2D2" parent="." index="2"]
-position = Vector2(0, 0)
+position = Vector2(0, 5.5)
 sprite_frames = SubResource("SpriteFrames_6aijv")
 animation = &"idle_down"

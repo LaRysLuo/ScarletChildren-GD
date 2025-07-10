@@ -1,17 +1,37 @@
-[gd_resource type="Resource" script_class="Events_Res" load_steps=6 format=3 uid="uid://bhl33yhciijsc"]
+[gd_resource type="Resource" script_class="Events_Res" load_steps=10 format=3 uid="uid://bhl33yhciijsc"]
 
 [ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="1_xc3ej"]
 [ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="2_4dt1i"]
 [ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="2_1027h"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="3_0omxw"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="4_f67gp"]
 
-[sub_resource type="Resource" id="Resource_7yxy7"]
+[sub_resource type="Resource" id="Resource_2apac"]
+script = ExtResource("3_0omxw")
+text_id = "save_01"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_sq8rr"]
+script = ExtResource("4_f67gp")
+text = ""
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("3_0omxw")]([SubResource("Resource_2apac")])
+children = Array[ExtResource("2_4dt1i")]([])
+node_type = 111
+pos = Vector2(3680, -80)
+
+[sub_resource type="Resource" id="Resource_3l1es"]
 script = ExtResource("2_4dt1i")
 from_port_index = 0
 to_port_index = 0
+child = SubResource("Resource_sq8rr")
 
-[sub_resource type="Resource" id="Resource_asf7n"]
+[sub_resource type="Resource" id="Resource_121u2"]
 script = ExtResource("2_1027h")
-children = Array[ExtResource("2_4dt1i")]([SubResource("Resource_7yxy7")])
+children = Array[ExtResource("2_4dt1i")]([SubResource("Resource_3l1es")])
 node_type = 0
 pos = Vector2(3440, 40)
 
@@ -21,5 +41,5 @@ title = ""
 is_collsion = false
 trigger_type = 0
 one_shot = false
-tree = SubResource("Resource_asf7n")
+tree = SubResource("Resource_121u2")
 map = {}

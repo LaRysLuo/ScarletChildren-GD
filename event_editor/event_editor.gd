@@ -21,6 +21,7 @@ var tween:Tween
 #const START_NODE_RES = preload("res://event_editor/nodes/start/start_node.tscn")
 const START_NODE_RES = preload("./nodes/start/start_node.tscn")
 const MESSAGE_NODE_RES = preload("res://event_editor/nodes/message_node/message_node.tscn")
+const MESSAGE_NODE_V2_RES = preload("res://event_editor/nodes/message_node/message_node_cp.tscn")
 const OPTION_NODE_RES = preload("res://event_editor/nodes/option/option_node.tscn")
 const CHAR_MOVE_RES = preload("./nodes/character_move/character_move.tscn")
 const FADEOUT_RES = preload("./nodes/fadeout/fadeout_node.tscn")
@@ -37,6 +38,8 @@ const READING_PAGE_RES = preload("res://event_editor/nodes/reading_page_node/rea
 const CINEMA_RES = preload("res://event_editor/nodes/cinema_node/cinema_mode.tscn")
 const CONDITION_RES = preload("res://event_editor/nodes/condition_node/condition_node.tscn")
 const INNERSCENE_RES = preload("res://event_editor/nodes/pw_input_node/pw_input_node.tscn")
+const ANIMATION_SCENE_RES = preload("res://event_editor/nodes/animation_scene_node/animation_scene_mode.tscn")
+const AUDIOPLAYER_RES = preload("res://event_editor/nodes/audio_player_node/audio_player_node.tscn")
 #const NODE_RES = preload("res://event_editor/nodes/charactermove_node.tscn")
 
 
@@ -52,7 +55,13 @@ var MENU_SETTING = [
 		## 消息节点
 		"id"= BaseEventNode.Message,
 		"name" = "显示消息",
-		"callback"= _add_message_node
+		"callback"= _add_message_node ,
+		"hidden" = true
+	},
+	{
+		"id" = BaseEventNode.MessageV2,
+		"name" = "显示消息V2",
+		"callback" = func(from = null): return _create_node(MESSAGE_NODE_V2_RES,from).from_data(from)
 	},
 	{
 		## 分支节点
@@ -133,8 +142,17 @@ var MENU_SETTING = [
 		"callback" = func(from = null): return _create_node(CONDITION_RES,from).from_data(from)
 	},{
 		"id" = BaseEventNode.PasswordInput,
-		"name" = "内联场景",
+		"name" = "密码输入",
 		"callback" = func(from = null): return _create_node(INNERSCENE_RES,from).from_data(from)
+	},{
+		"id" : BaseEventNode.PlayAnimationScene,
+		"name":"播放动画场景",
+		"callback": func(from = null): return _create_node(ANIMATION_SCENE_RES,from).from_data(from)
+	},
+	{
+		"id": BaseEventNode.AudioPlayer,
+		"name":"音频播放",
+		"callback":func(from = null): return _create_node(AUDIOPLAYER_RES,from).from_data(from)
 	}
 ]
 
@@ -142,7 +160,7 @@ var nodeMap = {}
 
 ## 菜单父节点
 var menu_parent:Control:
-	get(): return get_node("Box/VBoxContainer/Line2")
+	get(): return get_node("Box/VBoxContainer/VBoxContainer/Line2")
 
 ## 是否需要保存的标记
 var need_save:bool = false:
@@ -235,6 +253,9 @@ func _init_history():
 func _init_menu_btns():
 	## 根据数据生成按钮
 	for config in MENU_SETTING:
+		# 隐藏的按钮不显示
+		var _hidden:bool = config.get("hidden",false)
+		if  _hidden: continue
 		var btn:Button = Button.new()
 		btn.text = config["name"]
 		menu_parent.add_child(btn)
@@ -338,6 +359,7 @@ func _clear():
 
 ## LOAD 根据节点树创建重现节点
 func _create_child_graph_node(from:BaseEventNode):
+	# from是新的节点，根据from节点生成新的node
 	var result:BaseGN
 	var config = _get_menu_config(from.node_type)
 	result = config["callback"].call(from)
@@ -345,7 +367,6 @@ func _create_child_graph_node(from:BaseEventNode):
 	if !result:
 		printerr("解析节点失败，没有找到result,type为%s" % from.node_type)
 		return
-	print("正在解析：",result.title)
 	## 将视图滚动偏移量定位到开始点的位置
 	node_parent.scroll_offset = from.pos - Vector2(0,200)
 	
@@ -354,7 +375,10 @@ func _create_child_graph_node(from:BaseEventNode):
 		var child_nodes:Array[BaseGN] = []
 		for nodeConfig:ChildrenNodeConfig in from.children:
 			var child_data:BaseEventNode = nodeConfig.child
-			var child:BaseGN = await  _get_child_graph_node(child_data,child_nodes)
+			# print("[EventEditor]子类节点的数据是%s" % child_data.node_type)
+			print("[EventEditor]子类节点的unique_id是:%s" % child_data.resource_scene_unique_id)
+			var child:BaseGN = await _get_child_graph_node(child_data,child_nodes)
+			# print("[EventEditor]子类节点是%s" % child.name)
 			# 判断nodeConfig中的child是否已创建过
 			if child: _connect_node(result,nodeConfig,child)
 	return result
@@ -362,6 +386,7 @@ func _create_child_graph_node(from:BaseEventNode):
 func _get_child_graph_node(child_data:BaseEventNode,child_nodes:Array[BaseGN]) -> BaseGN:
 	var child:BaseGN
 	if !child_nodes.is_empty():
+		## INFO 注意这里的resource_scene_unique_id是关键，要保证Resource中的LocalToScene为开启的，不然多节点连接会出问题
 		child = _find_node_by_id(child_data.resource_scene_unique_id,child_nodes)
 	if !child: 
 		child = await _create_child_graph_node(child_data)
@@ -374,11 +399,13 @@ func _find_node_by_id(ori_id:StringName,group:Array[BaseGN]):
 	if filters.is_empty():return null
 	return filters.front()
 
-func _connect_node(result,node_config:ChildrenNodeConfig,child:BaseGN):
-	var from_name = node_parent.get_path_to(result).get_name(0)
-	var to_name = node_parent.get_path_to(child).get_name(0)
+## 连接节点
+func _connect_node(from,node_config:ChildrenNodeConfig,to:BaseGN):
+	var from_name = node_parent.get_path_to(from).get_name(0)
+	var to_name = node_parent.get_path_to(to).get_name(0)
 	var from_port = node_config.from_port_index
 	var to_port = node_config.to_port_index
+	print("[EventEditor]正在连接%s的%s到%s的%s" % [from_name,from_port,to_name,to_port])
 	node_parent.connect_node(from_name,from_port,to_name,to_port)
 
 ## 获得菜单配置
@@ -404,7 +431,7 @@ func _add_message_node(from:BaseEventNode = null) -> GraphNode:
 	if from:
 		var msgn = node as MessageGN  ## 获得Message实例
 		var from_message_data  = from as MessageNode
-		msgn.set_value(from_message_data.text,from_message_data.role,from_message_data.type,from_message_data.wait_time,from_message_data.expression_id)
+		msgn.set_value(from_message_data.text,from_message_data.role,from_message_data.type,from_message_data.wait_time,from_message_data.expression_id,from_message_data.position_type)
 	return node
 
 ## 添加选项

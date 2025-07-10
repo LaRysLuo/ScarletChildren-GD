@@ -201,5 +201,6 @@ sprite = ExtResource("2_a2iqv")
 
 [node name="AnimatedSprite2D2" parent="." index="2"]
 material = SubResource("ShaderMaterial_eherb")
+position = Vector2(0, 5.5)
 sprite_frames = SubResource("SpriteFrames_dj8i1")
 animation = &"idle_down"

@@ -106,7 +106,7 @@ func from_data(data:BaseEventNode) -> BaseGN:
 		set_value(data.target_map_path,data.is_move_character,data.target_coord,data.is_fade)
 	return self
 
-func to_data(edit:GraphEdit) -> BaseEventNode:
+func to_data(_edit:GraphEdit) -> BaseEventNode:
 	## 地图场景路径	
 	## 选定的地图坐标
 	var x = target_vector2i_x.value

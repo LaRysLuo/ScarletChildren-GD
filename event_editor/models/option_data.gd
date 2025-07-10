@@ -8,10 +8,10 @@ class_name OptionData
 
 var result = -1
 
-func  _init(cmd:int = BaseEventNode.Option,pos:Vector2 = Vector2.ZERO,options:Array[Dictionary] = []) -> void:
-	self.node_type = cmd
-	self.pos = pos
-	self.options = options
+func  _init(_cmd:int = BaseEventNode.Option,_pos:Vector2 = Vector2.ZERO,_options:Array[Dictionary] = []) -> void:
+	self.node_type = _cmd
+	self.pos = _pos
+	self.options = _options
 
 ## 返回一个子节点所在选项中的索引
 func get_opt_index(port_index:int) -> int:
@@ -23,7 +23,7 @@ func get_opt_index(port_index:int) -> int:
 	return -1
 
 ## 重写父类得next方法，并根据当前索引返回节点
-func next(index:int = 0) -> BaseEventNode:
+func next(_index:int = 0) -> BaseEventNode:
 	if result == -1: return null
 	#var filters =  children.filter(func(item:ChildrenNodeConfig):return item.to_port_index == result)
 	#if filters.is_empty():return null
@@ -35,7 +35,8 @@ func next(index:int = 0) -> BaseEventNode:
 
 
 ## TODO 待写OPTION的逻辑
-func _execute(ent,args):
+func _execute(_ent,_args):
+	print("[OptionData]正在运行选项节点")
 	DialogueManager.show_options(options)
 	result = await DialogueManager.options_finish
 	

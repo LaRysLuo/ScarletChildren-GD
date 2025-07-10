@@ -1,0 +1,365 @@
+[gd_scene load_steps=57 format=4 uid="uid://d2srboiqg3kqf"]
+
+[ext_resource type="Script" path="res://scenes/maps/0序章/迷途森林/maps.gd" id="1_osvw2"]
+[ext_resource type="TileSet" uid="uid://4h8rsnwtsgr2" path="res://tilesets/main.tres" id="2_g12ks"]
+[ext_resource type="Texture2D" uid="uid://c06wfx6ssyllv" path="res://assets/light/light_tex.tres" id="3_1x85g"]
+[ext_resource type="Script" path="res://scenes/maps/0序章/迷途森林/prefabs/map_chunk.gd" id="3_4omvu"]
+[ext_resource type="Texture2D" uid="uid://bvh063hevsmi8" path="res://scenes/maps/0序章/迷途森林/map_assets/迷途森林_1.png" id="4_50m1r"]
+[ext_resource type="Script" path="res://event_sys/TilemapEventComponent/EventPageHandler/event_page_handler.gd" id="4_d30r3"]
+[ext_resource type="Texture2D" uid="uid://ccke23404mjfy" path="res://scenes/maps/0序章/迷途森林/map_assets/迷途森林_2.png" id="4_prpo3"]
+[ext_resource type="Script" path="res://scenes/rpg_map_template/ui_controller.gd" id="5_wvkji"]
+[ext_resource type="Texture2D" uid="uid://dduxawcic3wkd" path="res://scenes/maps/0序章/迷途森林/map_assets/迷途森林_3.png" id="6_g3c8j"]
+[ext_resource type="Shader" path="res://scenes/maps/0序章/迷途森林/fog.gdshader" id="6_uj5xa"]
+[ext_resource type="PackedScene" uid="uid://6uslunbaolj1" path="res://scenes/ui_scene/comp_stamina_bar/comp_stamina_bar.tscn" id="6_vho80"]
+[ext_resource type="Script" path="res://event_editor/models/events_res.gd" id="7_qq2k7"]
+[ext_resource type="Script" path="res://event_editor/component/children_node_config.gd" id="8_ovs4i"]
+[ext_resource type="Resource" uid="uid://dhme3y601imdd" path="res://scenes/maps/0序章/迷途森林/tutorial_data/tutorial_01.tres" id="9_pmgjo"]
+[ext_resource type="Texture2D" uid="uid://bgd84xjprll1s" path="res://scenes/maps/0序章/迷途森林/map_assets/white_fog_smoke_texture.png" id="9_prkxb"]
+[ext_resource type="PackedScene" uid="uid://o8avdqr5gkcu" path="res://component/2d_fog/2d_fog.tscn" id="10_3v3mk"]
+[ext_resource type="Script" path="res://event_editor/models/base_event_node.gd" id="11_otl2t"]
+[ext_resource type="Resource" uid="uid://cibt47huk0tpq" path="res://scenes/maps/0序章/迷途森林/tutorial_data/tutorial_02.tres" id="16_5i783"]
+[ext_resource type="Script" path="res://event_editor/models/fadein_data.gd" id="17_appxj"]
+[ext_resource type="Script" path="res://event_editor/models/transport_data.gd" id="17_uly4m"]
+[ext_resource type="Script" path="res://event_editor/models/wait_data .gd" id="18_ec2bx"]
+[ext_resource type="Script" path="res://event_editor/models/fadeout_data.gd" id="20_j07kg"]
+[ext_resource type="Script" path="res://event_editor/base/dialogue_data.gd" id="20_wn8jm"]
+[ext_resource type="Script" path="res://scenes/maps/0序章/迷途森林/tutorial.gd" id="20_wrxkh"]
+[ext_resource type="Resource" uid="uid://bwhg086isf8w5" path="res://config/role_data/resu.tres" id="21_64ugq"]
+[ext_resource type="Script" path="res://scripts/core/tutorial/tutorial_data.gd" id="21_ft4m7"]
+[ext_resource type="Script" path="res://event_editor/models/message_node.gd" id="22_fglpw"]
+[ext_resource type="Script" path="res://event_editor/models/character_move_data.gd" id="23_sj73p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvroc"]
+shader = ExtResource("6_uj5xa")
+shader_parameter/time_speed = 0.02
+shader_parameter/scale = 1.0
+shader_parameter/opacity = 0.585
+shader_parameter/direction = Vector2(1, 0.3)
+
+[sub_resource type="Resource" id="Resource_li0n2"]
+script = ExtResource("21_ft4m7")
+tutorial_id = "e00_B03"
+tutorial_msg_preview = ""
+event_res = ExtResource("9_pmgjo")
+dir = "UP"
+need_run_count = 0
+taget_count = 1
+fog_change_count = -1.0
+extend_map = true
+
+[sub_resource type="Resource" id="Resource_wa8rw"]
+script = ExtResource("21_ft4m7")
+tutorial_id = "e00_B05"
+tutorial_msg_preview = ""
+event_res = ExtResource("16_5i783")
+dir = "UP"
+need_run_count = 1
+taget_count = 1
+fog_change_count = 0.7
+extend_map = false
+
+[sub_resource type="Resource" id="Resource_etknb"]
+script = ExtResource("20_wn8jm")
+text_id = "e00_B08"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_tc2dv"]
+script = ExtResource("22_fglpw")
+text = ""
+role = ExtResource("21_64ugq")
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("20_wn8jm")]([SubResource("Resource_etknb")])
+children = Array[ExtResource("8_ovs4i")]([])
+node_type = 111
+pos = Vector2(1340, 220)
+
+[sub_resource type="Resource" id="Resource_1pc5u"]
+script = ExtResource("8_ovs4i")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_tc2dv")
+
+[sub_resource type="Resource" id="Resource_pkaoq"]
+script = ExtResource("20_wn8jm")
+text_id = "e00_B07"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_jge5b"]
+script = ExtResource("22_fglpw")
+text = ""
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("20_wn8jm")]([SubResource("Resource_pkaoq")])
+children = Array[ExtResource("8_ovs4i")]([SubResource("Resource_1pc5u")])
+node_type = 111
+pos = Vector2(980, 220)
+
+[sub_resource type="Resource" id="Resource_udu2h"]
+script = ExtResource("8_ovs4i")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_jge5b")
+
+[sub_resource type="Resource" id="Resource_vfnvo"]
+script = ExtResource("20_wn8jm")
+text_id = "e00_B06"
+expression_id = 0
+
+[sub_resource type="Resource" id="Resource_4y7ea"]
+script = ExtResource("22_fglpw")
+text = ""
+role = ExtResource("21_64ugq")
+type = 0
+wait_time = 1000
+expression_id = 0
+position_type = 2
+dialogue_list = Array[ExtResource("20_wn8jm")]([SubResource("Resource_vfnvo")])
+children = Array[ExtResource("8_ovs4i")]([SubResource("Resource_udu2h")])
+node_type = 111
+pos = Vector2(640, 220)
+
+[sub_resource type="Resource" id="Resource_ghs0v"]
+script = ExtResource("8_ovs4i")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_4y7ea")
+
+[sub_resource type="Resource" id="Resource_wmlaw"]
+script = ExtResource("23_sj73p")
+move_type = 5
+target_char = {
+"coord": "player",
+"label": "玩家"
+}
+step_count = 3
+speed_factor = 1.0
+wait_finished = true
+children = Array[ExtResource("8_ovs4i")]([SubResource("Resource_ghs0v")])
+node_type = 3
+pos = Vector2(80, 240)
+
+[sub_resource type="Resource" id="Resource_bg5gw"]
+script = ExtResource("8_ovs4i")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_wmlaw")
+
+[sub_resource type="Resource" id="Resource_aeg27"]
+script = ExtResource("11_otl2t")
+children = Array[ExtResource("8_ovs4i")]([SubResource("Resource_bg5gw")])
+node_type = 0
+pos = Vector2(-180, 300)
+
+[sub_resource type="Resource" id="Resource_umyeb"]
+script = ExtResource("7_qq2k7")
+title = ""
+is_collsion = true
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_aeg27")
+map = {}
+
+[sub_resource type="Resource" id="Resource_wtvsk"]
+script = ExtResource("21_ft4m7")
+tutorial_id = "e00_B09"
+tutorial_msg_preview = "e00_B09"
+event_res = SubResource("Resource_umyeb")
+dir = "RANDOM"
+need_run_count = 0
+taget_count = 4
+fog_change_count = -1.0
+extend_map = false
+
+[sub_resource type="Resource" id="Resource_l3ybf"]
+script = ExtResource("17_appxj")
+time = 1.5
+children = Array[ExtResource("8_ovs4i")]([])
+node_type = 5
+pos = Vector2(1300, 180)
+
+[sub_resource type="Resource" id="Resource_semdm"]
+script = ExtResource("8_ovs4i")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_l3ybf")
+
+[sub_resource type="Resource" id="Resource_d1poc"]
+script = ExtResource("18_ec2bx")
+time = 0.5
+children = Array[ExtResource("8_ovs4i")]([SubResource("Resource_semdm")])
+node_type = 6
+pos = Vector2(1040, 180)
+
+[sub_resource type="Resource" id="Resource_w7b68"]
+script = ExtResource("8_ovs4i")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_d1poc")
+
+[sub_resource type="Resource" id="Resource_mhcrw"]
+script = ExtResource("17_uly4m")
+target_map_path = "res://scenes/maps/0序章/蔷薇馆前/map_蔷薇馆前.tscn"
+is_move_character = true
+target_coord = Vector2i(12, 24)
+is_fade = false
+children = Array[ExtResource("8_ovs4i")]([SubResource("Resource_w7b68")])
+node_type = 8
+pos = Vector2(620, 120)
+
+[sub_resource type="Resource" id="Resource_kpk6q"]
+script = ExtResource("8_ovs4i")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_mhcrw")
+
+[sub_resource type="Resource" id="Resource_h6ham"]
+script = ExtResource("20_j07kg")
+time = 0.5
+children = Array[ExtResource("8_ovs4i")]([SubResource("Resource_kpk6q")])
+node_type = 4
+pos = Vector2(380, 160)
+
+[sub_resource type="Resource" id="Resource_6pwp4"]
+script = ExtResource("8_ovs4i")
+from_port_index = 0
+to_port_index = 0
+child = SubResource("Resource_h6ham")
+
+[sub_resource type="Resource" id="Resource_qydty"]
+script = ExtResource("11_otl2t")
+children = Array[ExtResource("8_ovs4i")]([SubResource("Resource_6pwp4")])
+node_type = 0
+pos = Vector2(120, 160)
+
+[sub_resource type="Resource" id="Resource_gmhwk"]
+script = ExtResource("7_qq2k7")
+title = "333"
+is_collsion = true
+trigger_type = 0
+one_shot = false
+tree = SubResource("Resource_qydty")
+map = {}
+
+[sub_resource type="Resource" id="Resource_4onp1"]
+script = ExtResource("21_ft4m7")
+tutorial_id = "e00_B15"
+tutorial_msg_preview = "e00_B15"
+event_res = SubResource("Resource_gmhwk")
+dir = "UP"
+need_run_count = 0
+taget_count = 3
+fog_change_count = -1.0
+extend_map = false
+
+[node name="迷途森林" type="Node2D"]
+metadata/_edit_vertical_guides_ = [-20.0]
+
+[node name="Maps" type="Node2D" parent="."]
+script = ExtResource("1_osvw2")
+top_limit = -1600.0
+bottom_limit = 800.0
+right_limit = 800.0
+
+[node name="Objects" type="TileMapLayer" parent="Maps"]
+z_index = 1
+position = Vector2(-1, 0)
+tile_map_data = PackedByteArray("AAAMABYAAQAAAAAAAgA=")
+tile_set = ExtResource("2_g12ks")
+rendering_quadrant_size = 32
+
+[node name="Chunks" type="Node2D" parent="Maps"]
+
+[node name="Chunk0" type="Node2D" parent="Maps/Chunks"]
+position = Vector2(-1, 0)
+script = ExtResource("3_4omvu")
+
+[node name="0" type="Sprite2D" parent="Maps/Chunks/Chunk0"]
+position = Vector2(401, 400)
+texture = ExtResource("4_50m1r")
+
+[node name="1" type="Sprite2D" parent="Maps/Chunks/Chunk0"]
+z_index = 10
+position = Vector2(401, 400)
+texture = ExtResource("4_prpo3")
+
+[node name="2" type="Sprite2D" parent="Maps/Chunks/Chunk0"]
+z_index = 10
+position = Vector2(401, 400)
+texture = ExtResource("6_g3c8j")
+
+[node name="Movable" type="TileMapLayer" parent="Maps/Chunks/Chunk0"]
+visible = false
+modulate = Color(1, 1, 1, 0.286275)
+z_index = 100
+tile_map_data = PackedByteArray("AAAKAAQAAgABAAEAAAAKAAUAAgABAAEAAAAKAAYAAgABAAEAAAALAAMAAgABAAEAAAALAAQAAgABAAEAAAALAAUAAgABAAEAAAALAAYAAgABAAEAAAALAA0AAgABAAEAAAALAA4AAgABAAEAAAALAA8AAgABAAEAAAALABAAAgABAAEAAAALABEAAgABAAEAAAALABIAAgABAAEAAAALABMAAgABAAEAAAALABQAAgABAAEAAAALABUAAgABAAEAAAALABYAAgABAAEAAAAMAAAAAgABAAEAAAAMAAEAAgABAAEAAAAMAAIAAgABAAEAAAAMAAMAAgABAAEAAAAMAAQAAgABAAEAAAAMAAUAAgABAAEAAAAMAAYAAgABAAEAAAAMAAwAAgABAAEAAAAMAA0AAgABAAEAAAAMAA4AAgABAAEAAAAMAA8AAgABAAEAAAAMABAAAgABAAEAAAAMABEAAgABAAEAAAAMABIAAgABAAEAAAAMABMAAgABAAEAAAAMABQAAgABAAEAAAAMABUAAgABAAEAAAAMABYAAgABAAEAAAAMABcAAgABAAEAAAAMABgAAgABAAEAAAANAAAAAgABAAEAAAANAAEAAgABAAEAAAANAAIAAgABAAEAAAANAAMAAgABAAEAAAANAAQAAgABAAEAAAANAAUAAgABAAEAAAANAAYAAgABAAEAAAANAAcAAgABAAEAAAANAAgAAgABAAEAAAANAAkAAgABAAEAAAANAAoAAgABAAEAAAANAAsAAgABAAEAAAANAAwAAgABAAEAAAANAA0AAgABAAEAAAANAA4AAgABAAEAAAANAA8AAgABAAEAAAANABAAAgABAAEAAAANABEAAgABAAEAAAANABIAAgABAAEAAAANABMAAgABAAEAAAANABQAAgABAAEAAAANABUAAgABAAEAAAANABYAAgABAAEAAAAOAAAAAgABAAEAAAAOAAEAAgABAAEAAAAOAAIAAgABAAEAAAAOAAMAAgABAAEAAAAOAAQAAgABAAEAAAAOAAUAAgABAAEAAAAOAAYAAgABAAEAAAAOAAwAAgABAAEAAAAOAA0AAgABAAEAAAAOAA4AAgABAAEAAAAOAA8AAgABAAEAAAAOABAAAgABAAEAAAAOABEAAgABAAEAAAAOABIAAgABAAEAAAAOABMAAgABAAEAAAAOABQAAgABAAEAAAAOABUAAgABAAEAAAAOABYAAgABAAEAAAAPAAIAAgABAAEAAAAPAAMAAgABAAEAAAAPAAUAAgABAAEAAAAPAAYAAgABAAEAAAAPAA4AAgABAAEAAAAPAA8AAgABAAEAAAAPABAAAgABAAEAAAAPABEAAgABAAEAAAAPABIAAgABAAEAAAAPABMAAgABAAEAAAAPABQAAgABAAEAAAAPABUAAgABAAEAAAAQAAMAAgABAAEAAAAQAAUAAgABAAEAAAAQAAYAAgABAAEAAAAQAA4AAgABAAEAAAAQAA8AAgABAAEAAAAQABAAAgABAAEAAAAQABEAAgABAAEAAAARAAUAAgABAAEAAAARAA4AAgABAAEAAAARAA8AAgABAAEAAAARABAAAgABAAEAAAAOAP//AgABAAEAAAANAP//AgABAAEAAAAMAP//AgABAAEAAAA=")
+tile_set = ExtResource("2_g12ks")
+rendering_quadrant_size = 32
+
+[node name="Lights" type="Node2D" parent="."]
+visible = false
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Lights"]
+visible = false
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+position = Vector2(407, 549)
+scale = Vector2(0.742571, 0.720044)
+energy = 0.57
+range_z_max = 10
+range_layer_max = 1
+texture = ExtResource("3_1x85g")
+texture_scale = 8.15
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lights"]
+position = Vector2(0, 15)
+energy = 0.8
+blend_mode = 1
+range_z_min = 0
+range_z_max = 10
+range_layer_max = 1
+
+[node name="EventPages" type="Node2D" parent="."]
+script = ExtResource("4_d30r3")
+
+[node name="Effect" type="Parallax2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+script = ExtResource("5_wvkji")
+
+[node name="ComponetStaminaBar" parent="UI" instance=ExtResource("6_vho80")]
+light_mask = 0
+z_index = 12
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -18.0
+offset_right = 131.0
+offset_bottom = -8.0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+visible = false
+material = SubResource("ShaderMaterial_rvroc")
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 800.0
+offset_bottom = 602.0
+texture = ExtResource("9_prkxb")
+expand_mode = 2
+
+[node name="2DFog" parent="UI" instance=ExtResource("10_3v3mk")]
+fog_density = 0.645
+
+[node name="↓这个是教程的控制节点" type="Node2D" parent="."]
+
+[node name="Tutorial" type="Node2D" parent="."]
+script = ExtResource("20_wrxkh")
+tutorial_res = Array[ExtResource("21_ft4m7")]([SubResource("Resource_li0n2"), SubResource("Resource_wa8rw"), SubResource("Resource_wtvsk"), SubResource("Resource_4onp1")])
